@@ -1,0 +1,8 @@
+data/
+Results/
+checkpoints/
+splits/
+*.npz
+*.log
+__pycache__/
+Untitled Folder/
