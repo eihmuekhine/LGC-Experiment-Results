@@ -1,14 +1,11 @@
 """
 Fair hard-label comparison engine for the user's RAG/LGC ImageNet setting.
 
-IMPORTANT
----------
-This is a NEW file. It does not modify attacks/lgc_attack.py.
-
 Compared methods:
-  * RAG_TTBA_BASE            : Original TtBA (Linear Interpolation)
-  * RAG_TTBA_OPTIMIZED       : Linear TtBA + Adaptive Ratio + Tangent Extrapolation
-  * RAG_TTBA_SLERP_OPTIMIZED : SLERP (Angle-based Interpolation) + Adaptive Ratio + Tangent
+  * RAG_TTBA_BASE                   : Original TtBA (Linear Interpolation)
+  * RAG_TTBA_OPTIMIZED              : Linear TtBA + Adaptive Ratio + Tangent Extrapolation
+  * RAG_TTBA_SLERP_OPTIMIZED        : SLERP (Angle-based) + Adaptive + SMART Tangent
+  * RAG_TTBA_POLAR_BEZIER_OPTIMIZED : Rational Spherical Bezier + Adaptive + SMART Tangent
 """
 
 from __future__ import annotations
@@ -40,11 +37,6 @@ def _plane_basis(eta: torch.Tensor, v: torch.Tensor, eps: float = 1e-12):
     return e1, e2
 
 
-def _rotate_in_plane(eta: torch.Tensor, v: torch.Tensor, phi: torch.Tensor, eps: float = 1e-12):
-    e1, e2 = _plane_basis(eta, v, eps=eps)
-    return torch.cos(phi) * e1 + torch.sin(phi) * e2
-
-
 def build_hard_label_target_seed(
     encoder,
     x_orig: torch.Tensor,
@@ -60,7 +52,8 @@ class FairLGCCompareAttack:
     SUPPORTED = {
         "LGC", "LGC_H", "QS", "QS_SR_V1", "QS_SR_V2",
         "Hybrid", "QS_SR_HYBRID_V1", "QS_SR_HYBRID_V2", 
-        "RAG_TTBA_BASE", "RAG_TTBA_OPTIMIZED", "RAG_TTBA_SLERP_OPTIMIZED"
+        "RAG_TTBA_BASE", "RAG_TTBA_OPTIMIZED", 
+        "RAG_TTBA_SLERP_OPTIMIZED", "RAG_TTBA_POLAR_BEZIER_OPTIMIZED"
     }
     NORMAL_METHODS = SUPPORTED
     CURRENT_STATE_SSIM_METHODS = {"QS_SR_V2", "QS_SR_HYBRID_V2"}
@@ -73,7 +66,7 @@ class FairLGCCompareAttack:
         source_label: int,
         loss_fn_vgg,
         ssim_fn,
-        attack_method: str = "RAG_TTBA_SLERP_OPTIMIZED",
+        attack_method: str = "RAG_TTBA_POLAR_BEZIER_OPTIMIZED",
         target_seed: Optional[torch.Tensor] = None,
         target_label: Optional[int] = None,
         iteration: int = 1000,
@@ -85,16 +78,6 @@ class FairLGCCompareAttack:
         max_queries: int = 10000,
         verbose: str = "Yes",
         ttba_bridge_tol: float = 1e-3,
-        switch_ssim: float = 0.995,
-        qs_k_mode: str = "gap_based",
-        qs_k_min: int = 4,
-        qs_k_max: int = 16,
-        qs_fixed_k: int = 10,
-        qs_k_schedule: Optional[Dict[float, int]] = None,
-        enable_progress_k: bool = False,
-        qs_sr_screen_rounds: int = 2,
-        qs_sr_refine_reserve: int = 18,
-        qs_sr_monotone_safety: bool = True,
         update_query_reserve: int = 18,
     ):
         if attack_method not in self.SUPPORTED:
@@ -121,30 +104,8 @@ class FairLGCCompareAttack:
         self.verbose = verbose
         self.device = self.z_source.device
         self.eps = 1e-12
-        self.grad_estimator_batch_size = 40
         self.update_query_reserve = int(update_query_reserve)
-
         self.ttba_bridge_tol = float(ttba_bridge_tol)
-
-        self.switch_ssim = float(switch_ssim)
-        self.qs_k_mode = qs_k_mode
-        self.qs_k_min = int(qs_k_min)
-        self.qs_k_max = int(qs_k_max)
-        self.qs_fixed_k = int(qs_fixed_k)
-        self.qs_k_schedule = (
-            {0.05: 4, 0.02: 4, 0.008: 6, 0.0: 8}
-            if qs_k_schedule is None
-            else {float(k): int(v) for k, v in qs_k_schedule.items()}
-        )
-        self.enable_progress_k = bool(enable_progress_k)
-        self._K_fast = 0.15
-        self._K_slow = 0.03
-        self._cur_ssim = 0.0
-        self._prev_ssim = 0.0
-
-        self.qs_sr_screen_rounds = max(0, int(qs_sr_screen_rounds))
-        self.qs_sr_refine_reserve = max(1, int(qs_sr_refine_reserve))
-        self.qs_sr_monotone_safety = bool(qs_sr_monotone_safety)
 
         self.all_queries = 0
         self.q_breakdown = OrderedDict(
@@ -197,26 +158,22 @@ class FairLGCCompareAttack:
         return int(self._labels_to_status(labels)[0].item())
 
     def _find_initial_adversarial(self) -> Optional[torch.Tensor]:
-        if self.remaining_queries() <= 0:
-            return None
+        if self.remaining_queries() <= 0: return None
         if self.target_label is not None:
             delta = self.target_seed - self.z_source
             for factor in [1.0, 1.10, 1.25, 1.50, 2.0, 3.0]:
                 if self.remaining_queries() <= 0: break
                 cand = self.z_source + factor * delta
-                if self.is_adversarial(cand, "init") == 1:
-                    return cand.detach()
+                if self.is_adversarial(cand, "init") == 1: return cand.detach()
             for j in range(1, 51):
                 if self.remaining_queries() <= 0: break
                 cand = self.target_seed + (0.01 * j) * torch.randn_like(self.target_seed)
-                if self.is_adversarial(cand, "init") == 1:
-                    return cand.detach()
+                if self.is_adversarial(cand, "init") == 1: return cand.detach()
             return None
         for j in range(1, 501):
             if self.remaining_queries() <= 0: break
             cand = self.z_source + (0.02 * j) * torch.randn_like(self.z_source)
-            if self.is_adversarial(cand, "init") == 1:
-                return cand.detach()
+            if self.is_adversarial(cand, "init") == 1: return cand.detach()
         return None
 
     def _binary_to_boundary(self, z_clean: torch.Tensor, z_adv: torch.Tensor, category: str = "refine", max_steps: int = 100) -> torch.Tensor:
@@ -252,41 +209,55 @@ class FairLGCCompareAttack:
         if not torch.isfinite(nrm) or nrm.item() < self.eps: return None
         return eta / (nrm + self.eps)
 
+    # ================= DIRECTIONS =================
+
+    # 1. Linear Direction
     def _ttba_direction(self, z_b: torch.Tensor, eta: torch.Tensor, k: float) -> torch.Tensor:
         v = (z_b - self.z_source) / (torch.norm(z_b - self.z_source) + self.eps)
         n = eta / (torch.norm(eta) + self.eps)
         d = float(k) * n + (1.0 - float(k)) * v
         return d / (torch.norm(d) + self.eps)
 
-    # --- NEW: SLERP Interpolation (Angle-based) ---
+    # 2. SLERP Direction
     def _ttba_slerp_direction(self, z_b: torch.Tensor, eta: torch.Tensor, k: float) -> torch.Tensor:
         v = (z_b - self.z_source) / (torch.norm(z_b - self.z_source) + self.eps)
         n = eta / (torch.norm(eta) + self.eps)
-        
         dot_val = torch.clamp(torch.dot(n.reshape(-1), v.reshape(-1)), -1.0 + 1e-7, 1.0 - 1e-7)
         theta = torch.acos(dot_val)
-        
-        # Fallback to linear if theta is extremely small (prevent division by zero)
         if theta.item() < 1e-5:
             d = float(k) * n + (1.0 - float(k)) * v
             return d / (torch.norm(d) + self.eps)
-            
         alpha = float(k) * theta
         denom = torch.sin(theta)
-        
-        # d(alpha) = [sin(theta - alpha) / sin(theta)] * d_hat + [sin(alpha) / sin(theta)] * N_hat
         w1 = torch.sin(theta - alpha) / denom
         w2 = torch.sin(alpha) / denom
-        
         d = w1 * v + w2 * n
         return d / (torch.norm(d) + self.eps)
 
-    def _pixel_l2(self, z: torch.Tensor) -> float:
-        with torch.no_grad():
-            x = self.model.get_pixel_image(z)
-            return float(torch.norm(x - self.x_orig, p=2).item())
+    # 3. POLAR BEZIER Direction (New)
+    def _ttba_polar_bezier_direction(self, z_b: torch.Tensor, eta: torch.Tensor, k: float, w: float = 1.2) -> torch.Tensor:
+        v = (z_b - self.z_source) / (torch.norm(z_b - self.z_source) + self.eps)
+        n = eta / (torch.norm(eta) + self.eps)
+        
+        # Calculate Pure Tangent Vector (T)
+        dot_val = torch.clamp(torch.dot(n.reshape(-1), v.reshape(-1)), -1.0 + 1e-7, 1.0 - 1e-7)
+        T = n - dot_val * v
+        T = T / (torch.norm(T) + self.eps)
+        
+        # Control Points (Rational Bezier on Sphere)
+        P0, P1, P2 = v, T, n
+        k_f = float(k)
+        
+        b0 = (1.0 - k_f) ** 2
+        b1 = 2.0 * k_f * (1.0 - k_f) * w
+        b2 = k_f ** 2
+        
+        d = b0 * P0 + b1 * P1 + b2 * P2
+        return d / (torch.norm(d) + self.eps)
 
-    # --- BASE TtBA ---
+    # ================= ATTACK STEPS =================
+
+    # --- 1. BASE TtBA ---
     def _step_ttba(self, z_b: torch.Tensor, eta: torch.Tensor) -> torch.Tensor:
         r = torch.norm(z_b - self.z_source)
         if r.item() < self.eps: return z_b.detach()
@@ -310,11 +281,10 @@ class FairLGCCompareAttack:
         z_new = self._binary_to_boundary(self.z_source, adv_trial, "refine", max_steps=100)
         return z_new.detach()
 
-    # --- OPTIMIZED (Linear + Adaptive + Tangent) ---
+    # --- 2. OPTIMIZED (Linear) ---
     def _step_ttba_optimized(self, z_b: torch.Tensor, eta: torch.Tensor, iter_idx: int) -> torch.Tensor:
         r = torch.norm(z_b - self.z_source)
         if r.item() < self.eps: return z_b.detach()
-
         L, R_b = 0.0, 1.0
         while (R_b - L) > self.ttba_bridge_tol and self.remaining_queries() > 0:
             mid = 0.5 * (L + R_b)
@@ -324,17 +294,10 @@ class FairLGCCompareAttack:
             if status == 0: break
             if status == -1: R_b = mid
             else: L = mid
-        
-        alpha = 2.0 / 3.0
+        alpha = 0.666
         if len(self.history) >= 2:
-            l2_prev = self.history[-1]['l2_lat']
-            l2_pprev = self.history[-2]['l2_lat']
-            if l2_pprev > 1e-6:
-                progress = (l2_pprev - l2_prev) / l2_pprev
-                if progress > 0.05: alpha = 0.8
-                elif progress < 0.01: alpha = 0.5
-                else: alpha = 0.5 + (0.8 - 0.5) * ((progress - 0.01) / 0.04)
-        
+            progress = (self.history[-2]['l2_lat'] - self.history[-1]['l2_lat']) / max(self.history[-2]['l2_lat'], 1e-6)
+            alpha = 0.8 if progress > 0.05 else 0.5 if progress < 0.01 else 0.5 + 0.3 * ((progress - 0.01) / 0.04)
         k_app = alpha * L
         d = self._ttba_direction(z_b, eta, k_app)
         adv_trial = self.z_source + r * d
@@ -342,26 +305,21 @@ class FairLGCCompareAttack:
         
         r_new = torch.norm(z_new - self.z_source)
         if r_new.item() > self.eps and self.remaining_queries() > self.update_query_reserve:
-            v_new = (z_new - self.z_source) / r_new
-            tangent = v_new - torch.dot(v_new.reshape(-1), eta.reshape(-1)) * eta
-            tangent = tangent / (torch.norm(tangent) + self.eps)
-            step_scale = 0.02 + 0.06 * min(iter_idx / 100.0, 1.0)
-            z_ext = z_new + tangent * (step_scale * r_new)
-            
-            status = self.is_adversarial(z_ext, "tangent")
-            if status == 1:
-                z_ext_ref = self._binary_to_boundary(self.z_source, z_ext, "refine", max_steps=100)
-                if torch.norm(z_ext_ref - self.z_source).item() < r_new.item():
-                    z_new = z_ext_ref
-
+            if L <= 0.15 or iter_idx > 15:
+                v_new = (z_new - self.z_source) / r_new
+                tangent = v_new - torch.dot(v_new.reshape(-1), eta.reshape(-1)) * eta
+                tangent = tangent / (torch.norm(tangent) + self.eps)
+                step_scale = 0.02 + 0.06 * min(iter_idx / 100.0, 1.0)
+                z_ext = z_new + tangent * (step_scale * r_new)
+                if self.is_adversarial(z_ext, "tangent") == 1:
+                    z_ext_ref = self._binary_to_boundary(self.z_source, z_ext, "refine", max_steps=15)
+                    if torch.norm(z_ext_ref - self.z_source).item() < r_new.item(): z_new = z_ext_ref
         return z_new.detach()
 
-    # --- SLERP OPTIMIZED (Angle-based SLERP + Adaptive + Tangent) ---
+    # --- 3. SLERP OPTIMIZED ---
     def _step_ttba_slerp_optimized(self, z_b: torch.Tensor, eta: torch.Tensor, iter_idx: int) -> torch.Tensor:
         r = torch.norm(z_b - self.z_source)
         if r.item() < self.eps: return z_b.detach()
-
-        # 1. Binary Search for k_bridge (L) using SLERP formula
         L, R_b = 0.0, 1.0
         while (R_b - L) > self.ttba_bridge_tol and self.remaining_queries() > 0:
             mid = 0.5 * (L + R_b)
@@ -371,43 +329,71 @@ class FairLGCCompareAttack:
             if status == 0: break
             if status == -1: R_b = mid
             else: L = mid
-        
-        # 2. Adaptive Angle Ratio
-        # Since we use SLERP, we don't need JUMP/DIVE heuristics! Angles map perfectly uniformly.
-        alpha = 2.0 / 3.0
+        alpha = 0.666
         if len(self.history) >= 2:
-            l2_prev = self.history[-1]['l2_lat']
-            l2_pprev = self.history[-2]['l2_lat']
-            if l2_pprev > 1e-6:
-                progress = (l2_pprev - l2_prev) / l2_pprev
-                if progress > 0.05: alpha = 0.8
-                elif progress < 0.01: alpha = 0.5
-                else: alpha = 0.5 + (0.8 - 0.5) * ((progress - 0.01) / 0.04)
-        
+            progress = (self.history[-2]['l2_lat'] - self.history[-1]['l2_lat']) / max(self.history[-2]['l2_lat'], 1e-6)
+            alpha = 0.8 if progress > 0.05 else 0.5 if progress < 0.01 else 0.5 + 0.3 * ((progress - 0.01) / 0.04)
         k_app = alpha * L
         d = self._ttba_slerp_direction(z_b, eta, k_app)
         adv_trial = self.z_source + r * d
         z_new = self._binary_to_boundary(self.z_source, adv_trial, "refine", max_steps=100)
         
-        # 3. Tangent Extrapolation
         r_new = torch.norm(z_new - self.z_source)
         if r_new.item() > self.eps and self.remaining_queries() > self.update_query_reserve:
-            v_new = (z_new - self.z_source) / r_new
-            tangent = v_new - torch.dot(v_new.reshape(-1), eta.reshape(-1)) * eta
-            tangent = tangent / (torch.norm(tangent) + self.eps)
-            step_scale = 0.02 + 0.06 * min(iter_idx / 100.0, 1.0)
-            z_ext = z_new + tangent * (step_scale * r_new)
-            
-            status = self.is_adversarial(z_ext, "tangent")
-            if status == 1:
-                z_ext_ref = self._binary_to_boundary(self.z_source, z_ext, "refine", max_steps=100)
-                if torch.norm(z_ext_ref - self.z_source).item() < r_new.item():
-                    z_new = z_ext_ref
+            if L <= 0.15 or iter_idx > 15:
+                v_new = (z_new - self.z_source) / r_new
+                tangent = v_new - torch.dot(v_new.reshape(-1), eta.reshape(-1)) * eta
+                tangent = tangent / (torch.norm(tangent) + self.eps)
+                step_scale = 0.02 + 0.06 * min(iter_idx / 100.0, 1.0)
+                z_ext = z_new + tangent * (step_scale * r_new)
+                if self.is_adversarial(z_ext, "tangent") == 1:
+                    z_ext_ref = self._binary_to_boundary(self.z_source, z_ext, "refine", max_steps=15)
+                    if torch.norm(z_ext_ref - self.z_source).item() < r_new.item(): z_new = z_ext_ref
+        return z_new.detach()
 
+    # --- 4. POLAR BEZIER OPTIMIZED (New!) ---
+    def _step_ttba_polar_bezier_optimized(self, z_b: torch.Tensor, eta: torch.Tensor, iter_idx: int) -> torch.Tensor:
+        r = torch.norm(z_b - self.z_source)
+        if r.item() < self.eps: return z_b.detach()
+
+        # Dynamic Tension (w): Flat area needs more tangent pull
+        w_tension = 1.0 + 0.8 * min(iter_idx / 100.0, 1.0) 
+
+        L, R_b = 0.0, 1.0
+        while (R_b - L) > self.ttba_bridge_tol and self.remaining_queries() > 0:
+            mid = 0.5 * (L + R_b)
+            d = self._ttba_polar_bezier_direction(z_b, eta, mid, w=w_tension)
+            cand = self.z_source + r * d
+            status = self.is_adversarial(cand, "ttba_bridge")
+            if status == 0: break
+            if status == -1: R_b = mid
+            else: L = mid
+        
+        alpha = 0.666
+        if len(self.history) >= 2:
+            progress = (self.history[-2]['l2_lat'] - self.history[-1]['l2_lat']) / max(self.history[-2]['l2_lat'], 1e-6)
+            alpha = 0.8 if progress > 0.05 else 0.5 if progress < 0.01 else 0.5 + 0.3 * ((progress - 0.01) / 0.04)
+        
+        k_app = alpha * L
+        d = self._ttba_polar_bezier_direction(z_b, eta, k_app, w=w_tension)
+        adv_trial = self.z_source + r * d
+        z_new = self._binary_to_boundary(self.z_source, adv_trial, "refine", max_steps=100)
+        
+        r_new = torch.norm(z_new - self.z_source)
+        if r_new.item() > self.eps and self.remaining_queries() > self.update_query_reserve:
+            if L <= 0.15 or iter_idx > 15:
+                v_new = (z_new - self.z_source) / r_new
+                tangent = v_new - torch.dot(v_new.reshape(-1), eta.reshape(-1)) * eta
+                tangent = tangent / (torch.norm(tangent) + self.eps)
+                step_scale = 0.02 + 0.06 * min(iter_idx / 100.0, 1.0)
+                z_ext = z_new + tangent * (step_scale * r_new)
+                if self.is_adversarial(z_ext, "tangent") == 1:
+                    z_ext_ref = self._binary_to_boundary(self.z_source, z_ext, "refine", max_steps=15)
+                    if torch.norm(z_ext_ref - self.z_source).item() < r_new.item(): z_new = z_ext_ref
         return z_new.detach()
 
     # ------------------------------------------------------------------
-    # Metrics / checkpoints
+    # Core Loop
     # ------------------------------------------------------------------
     def _compute_metrics(self, z_adv: torch.Tensor) -> Dict[str, float]:
         with torch.no_grad():
@@ -419,12 +405,9 @@ class FairLGCCompareAttack:
             linf_pix = float(torch.max(torch.abs(delta)).item())
             ssim_val = float(self.ssim_fn(x_adv, self.x_orig, data_range=1.0).detach().item())
             lpips_val = float(self.loss_fn_vgg(x_adv * 2.0 - 1.0, self.x_orig * 2.0 - 1.0).detach().mean().item())
-
         return {
-            "query": int(self.all_queries),
-            "l2_lat": l2_lat, "linf_lat": linf_lat,
-            "l2_pix": l2_pix, "linf_pix": linf_pix,
-            "ssim": ssim_val, "lpips": lpips_val, "asr": 1.0,
+            "query": int(self.all_queries), "l2_lat": l2_lat, "linf_lat": linf_lat,
+            "l2_pix": l2_pix, "linf_pix": linf_pix, "ssim": ssim_val, "lpips": lpips_val, "asr": 1.0,
         }
 
     def _record_state(self, z_adv: torch.Tensor, phase: str):
@@ -432,13 +415,7 @@ class FairLGCCompareAttack:
         row["phase"] = phase
         self.history.append(row)
         if self.verbose == "Yes":
-            print(
-                f"      -> [{phase:<9}] Q={row['query']:<5d} "
-                f"| PixL2={row['l2_pix']:.4f} "
-                f"| LatL2={row['l2_lat']:.4f} "
-                f"| SSIM={row['ssim']:.5f} "
-                f"| LPIPS={row['lpips']:.5f}"
-            )
+            print(f"      -> [{phase:<9}] Q={row['query']:<5d} | PixL2={row['l2_pix']:.4f} | LatL2={row['l2_lat']:.4f} | SSIM={row['ssim']:.5f} | LPIPS={row['lpips']:.5f}")
 
     def checkpoint_summary(self):
         out = {
@@ -457,31 +434,24 @@ class FairLGCCompareAttack:
             if not eligible: continue
             h = min(eligible, key=lambda r: r["l2_pix"])
             out["state_query"][j] = int(h["query"])
-            for key in ["l2_lat", "linf_lat", "l2_pix", "linf_pix", "ssim", "lpips", "asr"]:
-                out[key][j] = float(h[key])
+            for key in ["l2_lat", "linf_lat", "l2_pix", "linf_pix", "ssim", "lpips", "asr"]: out[key][j] = float(h[key])
         return out
 
     def attack(self):
         z_b = self._initialize_boundary()
         if z_b is None:
             return {
-                "success": False, "final_z": self.z_source.detach(),
-                "final": None, "final_current": None,
-                "checkpoints": self.checkpoint_summary(),
-                "query_breakdown": dict(self.q_breakdown),
+                "success": False, "final_z": self.z_source.detach(), "final": None, "final_current": None,
+                "checkpoints": self.checkpoint_summary(), "query_breakdown": dict(self.q_breakdown),
                 "query_audit": {"total": int(self.all_queries), "sum_breakdown": int(sum(self.q_breakdown.values())), "match": int(self.all_queries) == int(sum(self.q_breakdown.values()))},
                 "diagnostics": self.diagnostics,
             }
 
         self._record_state(z_b, "Initial")
-        if self.attack_method in self.CURRENT_STATE_SSIM_METHODS:
-            self._prev_ssim = self._cur_ssim = float(self.history[-1]["ssim"])
-
         for i in range(self.iteration):
             if self.remaining_queries() <= self.update_query_reserve: break
             old_q, old_z = self.all_queries, z_b.detach().clone()
-            previous_recorded_ssim = float(self.history[-1]["ssim"])
-
+            
             qn = max(10, int(self.N0 * math.sqrt(i + 1.0)))
             qn = min(qn, max(0, self.remaining_queries() - self.update_query_reserve))
             if qn <= 0: break
@@ -495,18 +465,13 @@ class FairLGCCompareAttack:
                 z_candidate = self._step_ttba_optimized(z_b, eta, i)
             elif self.attack_method == "RAG_TTBA_SLERP_OPTIMIZED":
                 z_candidate = self._step_ttba_slerp_optimized(z_b, eta, i)
+            elif self.attack_method == "RAG_TTBA_POLAR_BEZIER_OPTIMIZED":
+                z_candidate = self._step_ttba_polar_bezier_optimized(z_b, eta, i)
             else:
                 break
 
             z_b = z_candidate.detach()
-
-            if self.attack_method in self.CURRENT_STATE_SSIM_METHODS:
-                self._prev_ssim = previous_recorded_ssim
-                self._record_state(z_b, f"Iter{i}")
-                self._cur_ssim = float(self.history[-1]["ssim"])
-            else:
-                self._prev_ssim = self._cur_ssim = previous_recorded_ssim
-                self._record_state(z_b, f"Iter{i}")
+            self._record_state(z_b, f"Iter{i}")
 
             if self.all_queries == old_q: break
             if torch.norm(z_b - old_z).item() < self.eps and self.remaining_queries() <= self.update_query_reserve: break
@@ -519,11 +484,9 @@ class FairLGCCompareAttack:
             final, final_current = None, None
 
         q_sum = int(sum(self.q_breakdown.values()))
-        audit = {"total": int(self.all_queries), "sum_breakdown": q_sum, "match": int(self.all_queries) == q_sum}
-
         return {
-            "success": True, "final_z": z_b.detach(), "final": final,
-            "final_current": final_current, "checkpoints": self.checkpoint_summary(),
-            "query_breakdown": dict(self.q_breakdown), "query_audit": audit,
+            "success": True, "final_z": z_b.detach(), "final": final, "final_current": final_current,
+            "checkpoints": self.checkpoint_summary(), "query_breakdown": dict(self.q_breakdown),
+            "query_audit": {"total": int(self.all_queries), "sum_breakdown": q_sum, "match": int(self.all_queries) == q_sum},
             "diagnostics": self.diagnostics,
         }
