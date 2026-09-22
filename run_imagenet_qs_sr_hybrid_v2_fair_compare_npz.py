@@ -1,6 +1,6 @@
 """
 Fair ImageNet comparison runner for:
-  RAG_TTBA_BASE, RAG_TTBA_OPTIMIZED, RAG_TTBA_SLERP_OPTIMIZED
+  RAG_TTBA_BASE, RAG_TTBA_OPTIMIZED, RAG_TTBA_SLERP_OPTIMIZED, RAG_TTBA_POLAR_BEZIER_OPTIMIZED
 """
 
 from __future__ import annotations
@@ -127,20 +127,12 @@ def prepare_strict_splits(args, arch, image_dir, img2label, classifier, mean_t, 
             for p in pairs: writer.writerow([p[0], p[1]])
     return pairs[: args.num_samples]
 
-def json_safe(obj):
-    if isinstance(obj, dict): return {str(k): json_safe(v) for k, v in obj.items()}
-    if isinstance(obj, (list, tuple)): return [json_safe(v) for v in obj]
-    if isinstance(obj, np.ndarray): return obj.tolist()
-    if isinstance(obj, (np.integer,)): return int(obj)
-    if isinstance(obj, (np.floating,)): return float(obj)
-    if isinstance(obj, torch.Tensor): return obj.detach().cpu().item() if obj.numel() == 1 else obj.detach().cpu().tolist()
-    return obj
-
 LEGACY_ARCH_NAME = {"resnet50": "ResNet50", "vgg16": "VGG16", "densenet121": "DenseNet121", "vit_b_16": "ViT"}
 LEGACY_ATTACK_NAME = {
     "RAG_TTBA_BASE": "TtBA_Base",
     "RAG_TTBA_OPTIMIZED": "TtBA_Optimized",
-    "RAG_TTBA_SLERP_OPTIMIZED": "TtBA_SLERP_Opt"
+    "RAG_TTBA_SLERP_OPTIMIZED": "TtBA_SLERP_Opt",
+    "RAG_TTBA_POLAR_BEZIER_OPTIMIZED": "TtBA_Polar_Bezier_Opt"
 }
 
 def _ragged_object_array(rows, key, dtype=np.float64):
@@ -208,8 +200,8 @@ def main():
         "--attack_methods", nargs="+", 
         default=[
             "RAG_TTBA_BASE", 
-            "RAG_TTBA_OPTIMIZED", 
-            "RAG_TTBA_SLERP_OPTIMIZED"
+            "RAG_TTBA_SLERP_OPTIMIZED",
+            "RAG_TTBA_POLAR_BEZIER_OPTIMIZED"
         ]
     )
     parser.add_argument("--ae_checkpoint", required=True)
@@ -254,7 +246,7 @@ def main():
 
     for arch in args.target_archs:
         print("\n" + "=" * 118)
-        print(f"FAIR LGC / TtBA / QS COMPARISON — {arch.upper()} — {args.mode.upper()}")
+        print(f"FAIR LGC / TtBA COMPARISON — {arch.upper()} — {args.mode.upper()}")
         print("=" * 118)
 
         classifier = get_target_model(arch, device)
@@ -304,9 +296,9 @@ def main():
             save_legacy_plot_npz(args.legacy_npz_dir, arch, args.mode, method, rows)
             summaries.append(summarize_method(method, rows))
 
-        print("\n" + "=" * 118 + "\nFINAL FAIR COMPARISON (SLERP)\n" + "=" * 118)
+        print("\n" + "=" * 118 + "\nFINAL FAIR COMPARISON\n" + "=" * 118)
         for row in summaries:
-            print(f"{row['method']:<28} ASR={100*row['asr']:.1f}% PixL2med={row['median_l2_pix']:.4f} LatL2med={row['median_l2_lat']:.4f} SSIMmean={row['mean_ssim']:.5f} LPIPSmean={row['mean_lpips']:.5f}")
+            print(f"{row['method']:<32} ASR={100*row['asr']:.1f}% PixL2med={row['median_l2_pix']:.4f} LatL2med={row['median_l2_lat']:.4f} SSIMmean={row['mean_ssim']:.5f} LPIPSmean={row['mean_lpips']:.5f}")
 
         del classifier, wrapper
         torch.cuda.empty_cache()
