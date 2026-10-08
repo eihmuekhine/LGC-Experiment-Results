@@ -1,0 +1,26 @@
+{
+ "protocol": "official TtBA repository main.py selection (build 38)",
+ "dataset": "imagenet-vit",
+ "arch": "vit_b_32",
+ "mode": "targeted",
+ "victim_weights": "vit_b_32-d86f8d99.pth",
+ "imgnum": 1000,
+ "kept": 1000,
+ "tested": 1292,
+ "natural_accuracy": 0.7739938080495357,
+ "val_images": 3923,
+ "classes": 1000,
+ "flat_images": 3923,
+ "unique_sources": 1000,
+ "torch": "2.7.1+cu128",
+ "torchvision": "0.22.1+cu128",
+ "device": "NVIDIA GeForce RTX 5090",
+ "first_sources": [
+  "ILSVRC2012_val_00024661.JPEG",
+  "ILSVRC2012_val_00046402.JPEG",
+  "ILSVRC2012_val_00030908.JPEG",
+  "ILSVRC2012_val_00021417.JPEG",
+  "ILSVRC2012_val_00038086.JPEG"
+ ],
+ "seconds": 16.8
+}

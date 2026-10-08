@@ -1,0 +1,62 @@
+BUILD 38 PRE-REGISTRATION -- LGC-EGC vs official TtBA under the official TtBA protocol
+Written 2026-10-08, before any build-38 attack result was produced or inspected.
+
+1. METHOD (frozen): LGC_RC_EGC = MethodSpec in lgc_bench/engine.py (line 656).
+   engine.py is byte-identical to the confirm_37 run (build37_r5). Harness changes in build 38
+   (run_benchmark_33b.py, lgc_bench/baseline_protocol.py) are additive only: --image_loader ttba_github,
+   --victim_ckpt_dir. Verified by diff and by the runtime config (only CLI fields differ). Hashes below.
+2. BASELINE: official TtBA, github.com/BUPTAIOC/TtBA commit ea6d1649fccda0eb8392c9171e43cc9e0974acf9,
+   run unmodified through ttba_github/ttba_run_official.py, TTBA_SHARDS=1 (official RNG sequence), budget 10000.
+3. VICTIMS (all three reported; run order vit_b_32, resnet50, vgg19):
+   vit_b_32-d86f8d99.pth, resnet50-11ad3fa6.pth (torchvision IMAGENET1K_V2), vgg19-dcbb9e9d.pth.
+   Full sha256 in /root/autodl-tmp/TtBA/TtBA_provenance.txt.
+4. DATA: Kaggle ifigotin/imagenetmini-1000 (zip sha256 83740eb15337aae0d0ddc2be7de98fa10b4af9eab9f40a9cabd0ea5ec2e4b46b,
+   identical in two downloads), val = 3923 images. Lists = first 1000 correctly classified images in the
+   official main.py order (seed 42), one list per victim x mode; reproduced bit-for-bit by two independent dumps.
+   Natural accuracy on the tested prefix: vit_b_32 0.774, resnet50 0.818, vgg19 0.695.
+5. ENVIRONMENT: one RTX 5090 (driver 595.71.05), torch 2.7.1+cu128, torchvision 0.22.1+cu128, for every
+   method and victim. LPIPS net = vgg (as lgc_bench/metrics.py and ttba_run_official.py).
+6. CLAIMS (confirm_ttba.py; method fixed; a failed claim is reported and dropped, never fixed):
+   Holm family (T1 x 3 victims, P1 x 3 victims x 2 modes):
+     T1 targeted : L2 AUC ratio EGC / TtBA_GH < 1 and upper 95% bound < 1.
+     P1 both     : LPIPS AUC delta (EGC - TtBA_GH) < 0 and upper bound < 0.
+   CI-only (non-inferiority):
+     T2 targeted     : L2@10k ratio upper bound <= 1.03.
+     N1 non-targeted : L2 AUC ratio and L2@10k ratio, upper bound <= 1.15.
+   AUC = per-image mean of log L2 over budgets 500/1000/2500/5000/10000 (same as confirm_37; the 2000 checkpoint
+   is recorded only for the descriptive comparison with the TtBA paper's Table 1).
+   Ratios = paired geometric means; CI = image bootstrap (B = 10000); test = one-sided Wilcoxon signed-rank.
+   Table-1 numbers of the TtBA paper are cited, not paired (different list and environment).
+7. OVERLAP: 13-14 (non-targeted) and 18-21 (targeted, incl. target images) image ids also occur in the
+   dev/selection/confirmation splits (seeds 992, 2027, 3141, 2718). They are kept (official protocol) and listed in
+   splits/imagenet/ttba_github/overlap_dev_seeds.json. Descriptive sensitivity analysis: every claim is recomputed
+   without these rows.
+8. PLANNED AFTER BUILD 38 (not part of the claim family): same-prior baseline LGC_RC_HSJA = the HSJA operator of the
+   existing LGC_HSJA spec, moved to the latent_ra space with the same residual-coordinate hard-label start.
+   (The existing LGC_HSJA uses the "latent" space and is not this control.) It is added after build 38, checked on
+   dev seed 992, then run with LGC_RC on the first 200 images of each build-38 list and reported descriptively
+   (paired ratios vs LGC_RC and vs LGC_RC_EGC, CIs).
+9. SMOKE TEST: N = 3 per list, 2026-10-08 08:10-08:23, for code checking only. Its outputs were deleted. Only
+   error counts, timings and the official TtBA progress lines were seen; no EGC result and no claim output was
+   inspected.
+10. DEVIATIONS: none planned; any deviation will be reported with its reason.
+
+HASHES (sha256):
+835f1933d9e571070e952aedafc5a50b9948717168115ea60b5433277006c28a  lgc_bench/engine.py
+78223d34f5cfa2288368aede049995a999c9e4b7063341b998eddfdcf3748751  lgc_bench/pullback.py
+e01f6f35f1a4fd2e0a84844fa79149bd2d1fadd168aa88d8a1bce68abaaabc35  lgc_bench/ambient.py
+01a252afb436d1c2082f8d89fd525a28abfb7466669d1fcd6ab7eb3a5ce91db0  lgc_bench/baseline_protocol.py
+b8bd8b7264e02190cdb25e9c3b0e4676f4109ff4dede89d9e983286c3ae77e68  run_benchmark_33b.py
+0ced361f9b5ef8ac5246e67a636d19828353bffbccb6555922cc43c8ea920672  confirm_ttba.py
+cf28e11ff121b1e37eee57ee3154206fb4102987055e2fcc7fff55e6b4c9c874  analyze_34b.py
+52b84adba7b2c66a931d99ab6d301258b6386cb23e451f469f7ec4b714e8050b  ttba_github/ttba_common.py
+198d3765c379cc2f1b5aea6c773eae5505ac3d5b23d76862c480c1fc63a88e34  ttba_github/ttba_dump_split.py
+90d88e54605c02d633e01eed0e15b0e443a515a3fac369387dadd83be2f49dbb  ttba_github/ttba_run_official.py
+68c611fc7e9fb4ecd21a1b6a9427262bdd479fc51f026aab6a7b21815c761c8a  ttba_github/run_ttba_protocol.sh
+e08a069e932e5162963794c5d1469a7554efb0641470f443d8337be9f12a6142  splits/imagenet/ttba_github/resnet50_non_targeted.csv
+550ec796e485b601aadbd8953a085a9466273bc8778311b5840a6e76e69caa34  splits/imagenet/ttba_github/resnet50_targeted.csv
+1e811637c264029425121870a88781a57ee67f2745fea16649e1ea03306671d9  splits/imagenet/ttba_github/vgg19_non_targeted.csv
+cf0a8efb783de12f8f4f130137ca4b756c1fe048bb23fae5b366b0f1d49a3360  splits/imagenet/ttba_github/vgg19_targeted.csv
+a5f152ec215aaac4efc266b863dad3841c7c6f5ff6aed651d973a213095959db  splits/imagenet/ttba_github/vit_b_32_non_targeted.csv
+c5eee382244c0beddb10bdec40a19e9d2bd57ee47a54cd61ab10b11937337a7b  splits/imagenet/ttba_github/vit_b_32_targeted.csv
+144c1365732d2314e810050a9f39b4131ebe46d4bae8559791557d6ee2c7d668  splits/imagenet/ttba_github/overlap_dev_seeds.json
