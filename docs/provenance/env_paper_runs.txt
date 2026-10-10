@@ -1,0 +1,33 @@
+LGC-EGC paper runs — environment provenance
+=============================================
+
+Date            : 2026-10-10 (UTC 2026-10-10T14:04Z)
+Container ID    : 2ba7efw2s1-30de4454 (AutoDL, region west-E / westDC3, hostname autodl-container-2ba7efw2s1-30de4454)
+GPU             : NVIDIA GeForce RTX 5090 (32 GB), 1 GPU, no processes, Util 0%
+Driver version  : 595.71.05
+CUDA            : nvidia-smi reports max "CUDA Version 13.2"; torch.version.cuda = 12.8 (built +cu128);
+                  nvcc (toolkit) = V12.1.105
+
+python -c "import torch, torchvision; print(torch.__version__, torchvision.__version__, torch.version.cuda, torch.backends.cudnn.version())"
+  -> 2.7.1+cu128 0.22.1+cu128 12.8 90701
+
+pip freeze (selected):
+  torch==2.7.1+cu128
+  torchvision==0.22.1+cu128
+  numpy==2.5.2
+  scipy==1.18.1
+  pandas==3.0.5
+  matplotlib==3.9.0
+  piq==0.8.0
+  lpips==0.1.4
+  torchmetrics==1.9.0
+  PyYAML==6.0.1
+
+git (LGC_frozen worktree):
+  rev-parse HEAD  : 9e2822e8bb5c1aee6b04d39fea7f813ed0086454
+  describe --tags : build38-prereg
+  engine sha      : 835f1933d9e5 (frozen, never edited)
+
+Notes:
+  - OMP_NUM_THREADS=0 and MKL_NUM_THREADS=0 are set in the container environment (invalid value;
+    libgomp warns and falls back to a single thread). Recorded as-is; all runs below share the same env.

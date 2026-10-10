@@ -452,6 +452,7 @@ def parse_args() -> argparse.Namespace:
                         "the traces; implies --save_traces; DIAGNOSTIC ONLY, the attacks never see the gradient)")
     p.add_argument("--no_geom_log", action="store_true", help="do not write geometry*.csv (bridge methods)")
     p.add_argument("--save_images", action="store_true", help="PNG of the state at the last checkpoint")
+    p.add_argument("--save_adv", action="store_true", help="evaluation-only: store the adversarial image at every checkpoint in <run_dir>/adv_store (advstore.py)")
     p.add_argument("--prepare_only", action="store_true",
                    help="download classifiers/LPIPS and write the splits, then exit (run once before shards)")
     p.add_argument("--no_report", action="store_true", help="skip the final analysis (automatic for shards)")
@@ -1433,6 +1434,10 @@ def main() -> None:
                             else:
                                 lat = float("nan")
                             row.update({"found": 1, "state_query": sq, "lat_l2": lat})
+                            if getattr(args, "save_adv", False):  # evaluation-only (advstore): no query, no RNG
+                                from advstore import store_adv
+                                store_adv(os.path.join(run_dir, "adv_store"), arch, stem, spec.name, cp, img, x0,
+                                          state_query=sq, adv_flag=m.get("adv_float", -1), mode=args.mode)
                             if args.save_images and cp == args.checkpoints[-1]:
                                 from torchvision.utils import save_image
 
