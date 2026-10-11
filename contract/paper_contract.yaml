@@ -6,14 +6,15 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.3"
+version: "1.4"
 date: "2026-10-11"
-status: "FROZEN (2026-10-11, v1.3). Decisions D1-D7 confirmed by the user; the v1.3 sha256 is recorded in amendment 2 item 11."
+status: "FROZEN (2026-10-11, v1.4). Decisions D1-D8 confirmed by the user; the v1.4 sha256 is recorded in amendment 2 item 11."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
   - "1.2 2026-10-11 user: Sign_OPT has no targeted mode (attack/Sign_OPT.py:370); methods.Sign_OPT.modes -> [non_targeted]"
   - "1.3 2026-10-11 user: HSJA and Sign_OPT removed from the run roster (D7: scope + compute, decided before any n = 200 result); cited only; E5, E16 and disk estimate updated"
+  - "1.4 2026-10-11 user: D8 CGBA accounting fix (faithful model + boundary-walk query-count fix, B3b T2/T3; trajectory bit-identical; disclosed)"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -61,6 +62,17 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     dagger block (if ttba_table1.json contains them), never in E1, E3-E8, a statistic or a
     ratio with our results. adapters/run_hsja.py and run_signopt.py are kept for a possible
     descriptive appendix run during revision.
+
+  D8_cgba_accounting_fix: >-
+    (v1.4, user 2026-10-11) run_cgba.py uses (a) _faithful_model -- the normalised tensor goes straight
+    into the raw un-normalised ResNet-50 exactly as the official drivers, removing the old
+    UnnormalizeVictim float32 double-normalisation round-trip (B3b T2: a 2.384e-07 error flips a
+    decision and diverges the trajectory; ratio reached 0.68/1.17); and (b) a PatchedProposedAttack
+    subclass that corrects the official boundary-walk query count (proposed_attack.py:145/:165
+    off-by-one at the 40-iteration cap: num_calls==40 after only 39 is_adversarial calls), which
+    otherwise trips assert self.all_queries == q_num (proposed_attack.py:252) on non_targeted images.
+    The returned boundary point is unchanged; B3b T3 proves the trajectory is bit-identical up to and
+    past the crash point. Disclosed in the paper as "accounting fix, trajectory unchanged".
 
 constants:
   budget: 10000
