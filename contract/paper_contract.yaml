@@ -6,12 +6,13 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.1"
+version: "1.2"
 date: "2026-10-10"
 status: "FROZEN (2026-10-10). Decisions D1-D6 confirmed by the user; sha256 recorded in amendment 2 item 11."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
+  - "1.2 2026-10-11 user: Sign_OPT has no targeted mode (attack/Sign_OPT.py:370); methods.Sign_OPT.modes -> [non_targeted]"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -84,7 +85,7 @@ methods:   # id = the `method` value written in every output file
   CGBA_H:     {role: main, modes: [targeted], producer: adapters/run_cgba.py, convention: tracker_best}
   HSJA:       {role: main, modes: [non_targeted, targeted], producer: adapters/run_hsja.py, convention: tracker_best}
   ARS_OPT:    {role: main, modes: [non_targeted, targeted], producer: adapters/run_arsopt.py, convention: tracker_best, condition: "prior-free mode exists (B1); else status CUT and listed in the threat-model table"}
-  Sign_OPT:   {role: appendix, modes: [non_targeted, targeted], producer: adapters/run_signopt.py, convention: tracker_best}
+  Sign_OPT:   {role: appendix, modes: [non_targeted], producer: adapters/run_signopt.py, convention: tracker_best}
 
 artefacts:   # required for EVERY (method, victim, mode) cell of the main study; {n} = n_main
   per_checkpoint:
