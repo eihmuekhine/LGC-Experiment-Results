@@ -6,13 +6,14 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.2"
-date: "2026-10-10"
-status: "FROZEN (2026-10-10). Decisions D1-D6 confirmed by the user; sha256 recorded in amendment 2 item 11."
+version: "1.3"
+date: "2026-10-11"
+status: "FROZEN (2026-10-11, v1.3). Decisions D1-D7 confirmed by the user; the v1.3 sha256 is recorded in amendment 2 item 11."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
   - "1.2 2026-10-11 user: Sign_OPT has no targeted mode (attack/Sign_OPT.py:370); methods.Sign_OPT.modes -> [non_targeted]"
+  - "1.3 2026-10-11 user: HSJA and Sign_OPT removed from the run roster (D7: scope + compute, decided before any n = 200 result); cited only; E5, E16 and disk estimate updated"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -51,6 +52,16 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     Paired statistics use images where both methods are adversarial at B, and print the count excluded.
     Failures are never re-run selectively; an interrupted run is resumed only for images without a completed row.
 
+  D7_baseline_scope: >-
+    (v1.3, user 2026-10-11) HSJA and Sign_OPT are not run. Reason: scope (the comparison is
+    restricted to recent prior-free decision-based attacks with official code: TtBA, ARS-OPT,
+    CGBA / CGBA-H) and compute; Sign_OPT is also untargeted-only (attack/Sign_OPT.py:370).
+    Decided before any n = 200 result was opened, not on B3 numbers (B3 HSJA / Sign-OPT numbers
+    are unvalidated and never reported). Their published numbers may appear only in the E2
+    dagger block (if ttba_table1.json contains them), never in E1, E3-E8, a statistic or a
+    ratio with our results. adapters/run_hsja.py and run_signopt.py are kept for a possible
+    descriptive appendix run during revision.
+
 constants:
   budget: 10000
   checkpoints: [100, 200, 500, 1000, 2000, 2500, 5000, 10000]
@@ -83,9 +94,13 @@ methods:   # id = the `method` value written in every output file
   TtBA:       {role: main, modes: [non_targeted, targeted], producer: adapters/run_ttba_v2.py, convention: tracker_best, extra_columns: [pix_l2_iter]}
   CGBA:       {role: main, modes: [non_targeted], producer: adapters/run_cgba.py, convention: tracker_best}
   CGBA_H:     {role: main, modes: [targeted], producer: adapters/run_cgba.py, convention: tracker_best}
-  HSJA:       {role: main, modes: [non_targeted, targeted], producer: adapters/run_hsja.py, convention: tracker_best}
   ARS_OPT:    {role: main, modes: [non_targeted, targeted], producer: adapters/run_arsopt.py, convention: tracker_best, condition: "prior-free mode exists (B1); else status CUT and listed in the threat-model table"}
-  Sign_OPT:   {role: appendix, modes: [non_targeted], producer: adapters/run_signopt.py, convention: tracker_best}
+
+cited_methods:   # never run, no artefacts; E2 dagger block only (D7)
+  HSJA: {source: ttba_github/ttba_table1.json, element: E2_l2_table_ttba_format,
+         block: dagger, condition: "rows present for that victim/mode/budget; else related work only"}
+  Sign_OPT: {source: ttba_github/ttba_table1.json, element: E2_l2_table_ttba_format,
+             block: dagger, condition: "as HSJA"}
 
 artefacts:   # required for EVERY (method, victim, mode) cell of the main study; {n} = n_main
   per_checkpoint:
@@ -107,7 +122,7 @@ artefacts:   # required for EVERY (method, victim, mode) cell of the main study;
     must_contain: [git_commit_or_repo_commit, engine_sha256 (ours), split_csv_sha256, victim_weight_file, torch, cuda, gpu_name, budget, checkpoints]
   run_manifest:
     file: "<out>/<mode>/run_manifest.json (baselines; lgc-baselines F1-F12)"
-  disk_estimate: "about 0.3 MB per npz -> 200 x 8 x 0.3 MB = 0.48 GB per (method, victim, mode); 6 methods x 6 cells = about 17 GB; B4 must show >= 25 GB free"
+  disk_estimate: "about 0.3 MB per npz -> 200 x 8 x 0.3 MB = 0.48 GB per (method, victim, mode); 4 methods x 6 cells = about 11.5 GB plus x0.npy (about 0.12 GB per output dir); B4 must show >= 25 GB free"
 
 invariants:   # each is a check in check_contract.py; id -> severity
   I01_all_checkpoints: {severity: FAIL, rule: "every (image, method) has exactly the 8 budgets of constants.checkpoints (found = 0 rows count)"}
@@ -146,7 +161,7 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
   E5_curves:
     status: REQUIRED
     content: "median (IQR) pix_l2 and LPIPS-vgg vs queries at the 8 checkpoints (log-x 100..10000), same resolution for every method (traces not used)"
-    inputs: {source: [per_checkpoint, metrics_csv], budgets: checkpoints, methods: main+ours+appendix, cells: all6}
+    inputs: {source: [per_checkpoint, metrics_csv], budgets: checkpoints, methods: main+ours, cells: all6}
   E6_pareto:
     status: REQUIRED
     content: "per-image (L2, LPIPS-vgg) at 10000, ours vs each baseline, small multiples"
@@ -190,5 +205,5 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     inputs: {source: [env, run_manifest]}
   E16_threat_model_table:
     status: REQUIRED
-    content: "text-only table (no numbers from runs): methods that use surrogates/priors and why they are excluded"
+    content: "text-only table (no numbers from runs): (a) methods excluded by the threat model (surrogates / priors) and why; (b) methods excluded by scope (HSJA, Sign_OPT; cited only, D7)"
     inputs: {source: none}
