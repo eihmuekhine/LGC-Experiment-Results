@@ -1,0 +1,25 @@
+{
+ "protocol": "robustbench selection (E11, contract v1.5 D9)",
+ "arch": "Salman2020Do_R50",
+ "mode": "targeted",
+ "victim_weights": "Salman2020Do_R50.pt",
+ "victim_weight_sha256": "1835a5bbe5e31ef35915889dc949b96528bed513205bb9ec1cac80c32c84ce46",
+ "n": 200,
+ "kept": 200,
+ "tested": 298,
+ "correct": 200,
+ "natural_accuracy": 0.6711409395973155,
+ "val_images": 3923,
+ "classes": 1000,
+ "unique_sources": 200,
+ "torch": "2.7.1+cu128",
+ "device": "NVIDIA GeForce RTX 5090",
+ "first_sources": [
+  "ILSVRC2012_val_00010608.JPEG",
+  "ILSVRC2012_val_00046453.JPEG",
+  "ILSVRC2012_val_00024509.JPEG",
+  "ILSVRC2012_val_00002428.JPEG",
+  "ILSVRC2012_val_00037273.JPEG"
+ ],
+ "seconds": 4.4
+}

@@ -1,0 +1,27 @@
+{
+ "protocol": "places365 selection (E10, contract v1.5 D9)",
+ "arch": "densenet161_places365",
+ "mode": "non_targeted",
+ "victim_weights": "densenet161_places365.pth.tar",
+ "victim_weight_sha256": "b311cb0e8bea8ecf34dee58da317c6217894db94721005c54cadcb7f2f2f9598",
+ "n": 200,
+ "kept": 200,
+ "tested": 1000,
+ "correct": 570,
+ "natural_accuracy": 0.57,
+ "accuracy_gate": true,
+ "accuracy_ref": 0.565,
+ "val_images": 36500,
+ "classes": 365,
+ "unique_sources": 200,
+ "torch": "2.7.1+cu128",
+ "device": "NVIDIA GeForce RTX 5090",
+ "first_sources": [
+  "Places365_val_00002172.jpg",
+  "Places365_val_00023888.jpg",
+  "Places365_val_00004317.jpg",
+  "Places365_val_00033086.jpg",
+  "Places365_val_00018167.jpg"
+ ],
+ "seconds": 19.1
+}

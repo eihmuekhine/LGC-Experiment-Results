@@ -1,0 +1,206 @@
+# contract/column_map.yaml — C1.
+# Maps each producer's REAL output column names to the CONTRACT column names
+# (contract/paper_contract.yaml, `artefacts`).  This file is the ONLY place names may differ.
+# It was read from the writers' source code (never guessed); `sources.<file>.<column>` gives
+# the file:line of each real column.  The checker (tools/eval/check_contract.py) resolves every
+# contract field through the `artefacts` block (candidate real names in preference order); the
+# `sources` block is the auditable provenance used by the C1 report.
+#
+# NOTE (image stem): the EGC runner writes `image` WITH the .JPEG extension (= split `source`),
+# while adv_store and the baseline trackers write `image` WITHOUT the extension (stem).  The
+# checker normalises on the stem when linking per_checkpoint rows to adv_store npz files.
+version: "1.0"
+
+# ---- resolution block (used by check_contract.py) ----------------------------------------
+# contract column name -> candidate real names, in preference order (contract name is tried last).
+artefacts:
+  per_checkpoint:
+    arch: [arch]
+    mode: [mode]
+    image: [image]
+    method: [method]
+    budget: [budget]
+    found: [found]
+    state_query: [state_query]
+    pix_l2: [pix_l2]
+    pix_linf: [pix_linf]
+    adv_float: [adv_float]
+    adv_uint8: [adv_uint8]
+    ssim: [ssim]
+    lpips: [lpips]
+    source_label: [source_label]
+    target_label: [target_label]
+  runs:
+    image: [image]
+    method: [method]
+    status: [status]
+    wall_time_s: [wall_time_s]
+    queries: [queries, total_queries]
+  npz:
+    delta: [delta]
+    budget: [budget]
+    state_query: [state_query]
+    adv_flag: [adv_flag]
+    l2: [l2]
+    linf: [linf]
+    method: [method]
+    image: [image]
+    arch: [arch]
+    mode: [mode]
+  env:
+    git_commit_or_repo_commit: [git_commit_or_repo_commit, repo_commit, git_commit]
+    engine_sha256: [engine_sha256]
+    split_csv_sha256: [split_csv_sha256]
+    victim_weight_file: [victim_weight_file, victim_weights]
+    torch: [torch]
+    cuda: [cuda]
+    gpu_name: [gpu_name, gpu]
+    budget: [budget, max_queries]
+    checkpoints: [checkpoints, budgets]
+
+# ---- provenance block (file:line of every real column; audited in C1) ---------------------
+# Only the writers below produce paper artefacts.  `in_memory` fields are produced by the engine
+# and consumed by run_benchmark_33b.py (they do not name a CSV column of their own).
+sources:
+  run_benchmark_33b.py:                # ours, LGC_RC_EGC -> per_checkpoint.csv / runs.csv / adv_store
+    per_checkpoint:
+      arch: 112
+      mode: 112
+      image: 112            # = split `source`, WITH .JPEG extension
+      source_label: 112
+      target_label: 112
+      method: 112           # spec.name == "LGC_RC_EGC"
+      budget: 112
+      found: 113
+      state_query: 113      # sq from res.checkpoint_states[cp]
+      pix_l2: 113           # image_metrics()
+      pix_linf: 113
+      ssim: 113
+      lpips: 113
+      adv_float: 114
+      adv_uint8: 114
+    runs:
+      image: 118            # = split `source`, WITH .JPEG extension
+      method: 118
+      status: 118
+      total_queries: 118    # -> contract `queries`
+      wall_time_s: 119
+    adv_store:
+      hook: "store_adv(os.path.join(run_dir, 'adv_store'), arch, stem, spec.name, cp, img, x0, ...) @ 1437-1440"
+  lgc_bench/engine.py:                # in-memory AttackResult (consumed by run_benchmark_33b.py)
+    result:
+      method: 1033
+      status: 1034          # "ok" | "init_failed"
+      checkpoint_states: 1035   # dict budget -> (state, state_query)
+      final_state_query: 1037
+      queries: 1038         # -> runs `total_queries`
+      wall_time: 1041       # -> runs `wall_time_s`
+      checkpoint_fill_crossed: 5435   # _fill_crossed
+      checkpoint_exact: 5481
+      checkpoint_carry_forward: 5503
+  lgc_bench/metrics.py:               # image_metrics() values folded into per_checkpoint rows
+    pix_l2: 97
+    pix_linf: 98
+    rmse: 99
+    ssim: 102
+    lpips: 105
+    adv_float: 108
+    adv_uint8: 110
+  tools/eval/hardlabel_tracker.py:    # baselines -> finalize() rows, save_trace()
+    per_checkpoint:
+      arch: 192
+      mode: 192
+      image: 192           # stem (NO extension)
+      method: 192
+      budget: 192
+      found: 193
+      state_query: 193
+      pix_l2: 193
+      adv_float: 194
+      adv_uint8: 194
+      pix_linf: 196
+    trace:                 # save_trace() npz keys
+      q: 212
+      l2: 212
+      queries: 212
+      max_queries: 213
+  tools/eval/advstore.py:             # adv_store npz keys + x0.npy + x0_mismatch.csv
+    npz:
+      delta: 100
+      budget: 101
+      state_query: 101
+      adv_flag: 102
+      l2: 103
+      linf: 103
+      mode: 104
+      method: 104
+      image: 104           # stem (NO extension), _safe()'d
+      arch: 105
+    x0_npy: 78             # written once per (arch, image)
+    x0_mismatch_csv: 86    # forbidden by I07
+  ttba_github/ttba_common.py:         # official TtBA wrapper writer (ttbagh_*.csv)
+    per_checkpoint:
+      arch: 23
+      mode: 23
+      image: 23
+      source_label: 23
+      target_label: 23
+      method: 23           # METHOD = "TtBA_GH"
+      budget: 23
+      found: 24
+      state_query: 24
+      pix_l2: 24
+      pix_linf: 24
+      ssim: 24             # always NaN in ttba_run_official.py (no stored image)
+      lpips: 24
+      # NOTE: NO adv_float / adv_uint8 columns
+    runs:
+      image: 26
+      method: 26
+      status: 26
+      total_queries: 26    # -> contract `queries`
+      wall_time_s: 27
+  tools/eval/adapters/adapter_template.py:   # baseline adapter (writes tracker.finalize() rows)
+    per_checkpoint:
+      arch: 38
+      mode: 38
+      image: 38
+      method: 38
+      budget: 38
+      found: 38
+      state_query: 38
+      pix_l2: 38
+      pix_linf: 39
+      adv_float: 39
+      adv_uint8: 39
+      # NOTE: NO ssim / lpips / source_label / target_label columns
+    runs:
+      image: 40
+      method: 40
+      status: 40
+      queries: 40         # -> contract `queries`
+      wall_time_s: 40
+    env:                   # env_<method>.json
+      repo_commit: 107     # -> contract `git_commit_or_repo_commit`
+      torch: 109
+      cuda: 109
+      gpu: 110             # -> contract `gpu_name`
+      budgets: 112         # -> contract `checkpoints`
+      max_queries: 112     # -> contract `budget`
+      split_csv: 112       # PATH only, not the sha256
+  ttba_github/run_frame_b1.sh:        # env_frame.txt (ours)
+    env:
+      torch: 40
+      cuda: 40
+      gpu_name: 41         # nvidia-smi --query-gpu=name
+      engine_sha256: 41    # sha256sum lgc_bench/engine.py
+      git_commit: 42       # git rev-parse HEAD
+      split_csv_sha256: 42 # sha256sum splits/.../<arch>_<mode>.csv
+      checkpoints: 43      # "checkpoints 100 200 ... 10000"
+      adv_store_dtype: 43  # "ADV_STORE_DTYPE float16 ADV_STORE_BUDGETS unset"
+
+# ---- contract columns with NO writer at all (see reports/C1_contract.md) --------------------
+unproduced:
+  env:
+    - victim_weight_file   # no writer records the victim weight file/sha (only split sha + engine sha)
+    - budget               # no writer emits a literal "budget" 10000 token (adapter: max_queries; frame: checkpoints only)
