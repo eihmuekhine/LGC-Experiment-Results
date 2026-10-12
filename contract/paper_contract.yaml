@@ -6,15 +6,16 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.4"
-date: "2026-10-11"
-status: "FROZEN (2026-10-11, v1.4). Decisions D1-D8 confirmed by the user; the v1.4 sha256 is recorded in amendment 2 item 11."
+version: "1.5"
+date: "2026-10-12"
+status: "FROZEN (2026-10-12, v1.5). Decisions D1-D9 confirmed by the user; the v1.5 sha256 is recorded in amendment 2 deviation D9."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
   - "1.2 2026-10-11 user: Sign_OPT has no targeted mode (attack/Sign_OPT.py:370); methods.Sign_OPT.modes -> [non_targeted]"
   - "1.3 2026-10-11 user: HSJA and Sign_OPT removed from the run roster (D7: scope + compute, decided before any n = 200 result); cited only; E5, E16 and disk estimate updated"
   - "1.4 2026-10-11 user: D8 CGBA accounting fix (faithful model + boundary-walk query-count fix, B3b T2/T3; trajectory bit-identical; disclosed)"
+  - "1.5 2026-10-12 user: E10 (Places365) and E11 (RobustBench R50) promoted to REQUIRED, both modes, n = 200 (D9); reduced roster for E10/E11; D5, disk and cost updated"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -45,9 +46,9 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     The operator-substitution row (PVR-E step in the A-block) is included only if its source CSV is found and
     hashed (E9b).
   D5_conditional_sections: >-
-    Places365 (E10), the robust / AT model (E11) and the low-query breadth table (E12) are CONDITIONAL.
-    Each is written only if its runs are approved after the B4 cost table and pass the same artefact checks.
-    Otherwise the section is cut (no legacy numbers).
+    E12 (low-query breadth table) remains CONDITIONAL: it is written only if its runs are approved
+    after the B4/B4b cost table and pass the same artefact checks; otherwise the section is cut
+    (no legacy numbers). E10 (Places365) and E11 (AT robust) were promoted to REQUIRED by D9 (v1.5).
   D6_failures: >-
     An image with status error, or not adversarial at B, counts as a failure for ASR (L2 = inf).
     Paired statistics use images where both methods are adversarial at B, and print the count excluded.
@@ -73,6 +74,14 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     otherwise trips assert self.all_queries == q_num (proposed_attack.py:252) on non_targeted images.
     The returned boundary point is unchanged; B3b T3 proves the trajectory is bit-identical up to and
     past the crash point. Disclosed in the paper as "accounting fix, trajectory unchanged".
+
+  D9_extra_datasets: >-
+    (v1.5, user 2026-10-12) E10 (Places365) and E11 (AT robust) are REQUIRED, both modes, n = 200.
+    E10 victims: resnet50_places365, densenet161_places365 (official MIT Places365, ImageNet
+    normalisation). E11 victim: Salman2020Do_R50 (RobustBench, Linf, 64.02% clean / 34.96% robust,
+    loaded via robustbench.utils.load_model). E10/E11 use the reduced roster
+    {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)} to control cost (ARS_OPT is already shown on the main
+    ImageNet study). Decided before any n = 200 result was opened on these datasets.
 
 constants:
   budget: 10000
@@ -134,7 +143,7 @@ artefacts:   # required for EVERY (method, victim, mode) cell of the main study;
     must_contain: [git_commit_or_repo_commit, engine_sha256 (ours), split_csv_sha256, victim_weight_file, torch, cuda, gpu_name, budget, checkpoints]
   run_manifest:
     file: "<out>/<mode>/run_manifest.json (baselines; lgc-baselines F1-F12)"
-  disk_estimate: "about 0.3 MB per npz -> 200 x 8 x 0.3 MB = 0.48 GB per (method, victim, mode); 4 methods x 6 cells = about 11.5 GB plus x0.npy (about 0.12 GB per output dir); B4 must show >= 25 GB free"
+  disk_estimate: "~0.48 GB per (method, victim, mode); main 24 cells ~11.5 GB + E10 12 cells ~5.8 GB + E11 6 cells ~2.9 GB = ~20 GB plus x0.npy; B4b/B5 must show >= 25 GB free"
 
 invariants:   # each is a check in check_contract.py; id -> severity
   I01_all_checkpoints: {severity: FAIL, rule: "every (image, method) has exactly the 8 budgets of constants.checkpoints (found = 0 rows count)"}
@@ -195,11 +204,28 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     content: "EGC with a PVR-E / TtBA step in the A-block vs EGC"
     inputs: {source: "the run that produced 1.001 NT / 1.003 T: locate CSV + sha256, else CUT"}
   E10_places365:
-    status: CONDITIONAL
-    inputs: {victims: [resnet50_places365, densenet161_places365], n: "100-200", note: "same artefacts and invariants"}
+    status: REQUIRED
+    content: "cross-dataset generalization on Places365-Standard val_256 (365 classes); per-victim x per-mode
+              tables (E1-E8 format) for resnet50_places365 and densenet161_places365"
+    inputs:
+      victims: [resnet50_places365, densenet161_places365]
+      modes: [non_targeted, targeted]
+      n: 200
+      methods: [LGC_RC_EGC, TtBA, CGBA, CGBA_H]
+      sources:
+        resnet50_places365: "http://places2.csail.mit.edu/models_places365/resnet50_places365.pth.tar"
+        densenet161_places365: "http://places2.csail.mit.edu/models_places365/densenet161_places365.pth.tar"
+        data: "http://data.csail.mit.edu/places/places365/val_256.tar"
   E11_robust_model:
-    status: CONDITIONAL
-    inputs: {victims: [RobustBench Salman2020Do_R50], modes: [non_targeted], n: 100, methods: [LGC_RC_EGC, TtBA, CGBA], note: "same artefacts and invariants"}
+    status: REQUIRED
+    content: "robustness against an adversarially trained ResNet-50 (RobustBench); per-mode tables (E1-E8 format)"
+    inputs:
+      victims: [Salman2020Do_R50]
+      modes: [non_targeted, targeted]
+      n: 200
+      methods: [LGC_RC_EGC, TtBA, CGBA, CGBA_H]
+      sources:
+        Salman2020Do_R50: "RobustBench Linf (NeurIPS 2020), 64.02% clean / 34.96% robust"
   E12_low_query_breadth:
     status: CONDITIONAL
     inputs: {mode: non_targeted, budget: 1000, extra_victims: "to be named", n: 200}
