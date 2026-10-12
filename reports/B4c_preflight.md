@@ -196,7 +196,7 @@ Per-cell usage (n=3) scaled ×200, 42 cells total (24 main + 18 E10/E11):
 Committed: `adapters/`, `ttba_github/run_frame_b1_generic.py`, `ttba_github/ttba_dump_split_places365.py`,
 `ttba_github/ttba_dump_split_robust.py`, `splits/places365/`, `splits/robust/`, `tools/eval/check_contract.py`,
 `tools/eval/tests_contract/`, `contract/column_map.yaml`, `reports/*.md`. NOT added: `Results/`, `cache`,
-`checkpoints/`, `models/`. HEAD reported below.
+`checkpoints/`, `models/`. HEAD: `16ead02a7e732e22497a10b964f326f6aca2e16d`.
 
 ## T9 — cProfile (optional; TtBA adapter, resnet50 NT row 1)
 
