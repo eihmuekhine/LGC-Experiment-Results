@@ -1,0 +1,15 @@
+Build 38 — Amendment 2, Deviation D9 (2026-10-12).
+Records a change made AFTER tag build38-amend2. Does NOT modify prereg_build38_amendment2.txt.
+Contract rule: "After tag build38-amend2, a change is also a reported deviation."
+
+Change D9: E10 (Places365) and E11 (AT robust) promoted to REQUIRED, both modes, n = 200.
+  E10 victims: resnet50_places365, densenet161_places365 (official MIT Places365, ImageNet normalisation).
+  E11 victim: Salman2020Do_R50 (RobustBench Linf, NeurIPS 2020, 64.02% clean / 34.96% robust).
+  Reduced roster for E10/E11: {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)}.
+  ARS_OPT stays on the main ImageNet study only.
+  Rationale: IEEE TMM / Pattern Recognition reviewers expect cross-dataset generalization
+  and adversarial-training robustness. Decided before any n = 200 result was opened on these datasets.
+
+Contract v1.5, status FROZEN, sha256 331c27b0b95d6847893d641274345a643930c3b8fc2c375a2e7d03d02718ef67.
+Tag build38-amend2 unchanged (commit d845c74).
+Recorded 2026-10-12.
