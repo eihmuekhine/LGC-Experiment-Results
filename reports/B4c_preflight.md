@@ -65,26 +65,42 @@ image (`ILSVRC2012_val_00007450`) in `Results/b4_smoke_{ttba,cgba,arsopt}_resnet
 
 ### (a) mean/median pix_l2 @2000/5000/10000 (n=3) vs `ttba_github/ttba_table1.json`
 
-`ttba_github/ttba_table1.json` is **MISSING (UNVERIFIED)** — no published ratios can be computed, so no cell is
-flagged (the ratio/flag step has no denominator). Our baseline magnitudes:
+`ttba_github/ttba_table1.json` top-level keys: `["format", "source", "table1"]`; `table1` victim keys
+`["efficientnet_b0", "inception_v3", "resnet50", "vgg19", "vit_b_32"]`; `format` = `[mean, median] L2 at the budget;
+1000 images per model; their image list and environment (torch 2.3.0, RTX 4090) -- NOT paired with our runs`.
 
-| method | arch | mode | @2000 | @5000 | @10000 |
+**Provenance note:** the file is NOT in the frozen worktree and is UNTRACKED in the main repo
+(`/root/autodl-tmp/Latent-Geometric-Chords/ttba_github/ttba_table1.json`). It is read from that path by
+`adapters/diag/diag_t3a_magnitude.py`. It must be committed to `paper-runs` before B5/P5 (the E2 dagger block reads
+`external: ttba_github/ttba_table1.json`). Not committed here (data file; T8 commit list excludes it).
+
+Ratio = ours / published, per statistic; **FLAG** = ratio > 2 or < 0.5:
+
+| method | arch | mode | @2000 (ours mean/med, r=mean/med) | @5000 | @10000 |
 |---|---|---|---|---|---|
-| CGBA | resnet50 | NT | mean 71.45 / med 74.57 | 71.45 / 74.57 | 71.45 / 74.57 |
-| CGBA | vgg19 | NT | 2.30 / 2.21 | 1.06 / 1.30 | 0.70 / 0.99 |
-| CGBA | vit_b_32 | NT | 6.10 / 6.46 | 1.58 / 1.57 | 0.91 / 1.19 |
-| CGBA_H | resnet50 | T | 58.64 / 42.95 | 54.17 / 38.32 | 49.92 / 35.05 |
-| CGBA_H | vgg19 | T | 63.63 / 43.07 | 51.57 / 29.57 | 38.43 / 22.02 |
-| CGBA_H | vit_b_32 | T | 18.37 / 16.22 | 7.28 / 7.10 | 3.61 / 3.66 |
-| TtBA | resnet50 | NT | 36.56 / 40.25 | 21.09 / 22.96 | 10.95 / 11.83 |
-| TtBA | vgg19 | NT | 0.75 / 0.35 | 0.40 / 0.21 | 0.29 / 0.16 |
-| TtBA | vit_b_32 | NT | 7.17 / 6.07 | 1.25 / 1.62 | 0.71 / 0.79 |
-| TtBA | resnet50 | T | 47.11 / 31.76 | 37.67 / 24.61 | 27.66 / 16.42 |
-| TtBA | vgg19 | T | 40.68 / 25.97 | 21.72 / 12.30 | 7.11 / 6.04 |
-| TtBA | vit_b_32 | T | 18.23 / 17.83 | 8.08 / 8.62 | 3.95 / 4.27 |
+| CGBA | resnet50 | NT | 71.45/74.57 (**3.85/5.83**) | 71.45/74.57 (**7.07/14.62**) | 71.45/74.57 (**12.24/29.84**) |
+| CGBA | vgg19 | NT | 2.30/2.21 (0.60/1.01) | 1.06/1.30 (0.55/1.16) | 0.70/0.99 (0.60/1.32) |
+| CGBA | vit_b_32 | NT | 6.10/6.46 (1.35/**2.09**) | 1.58/1.57 (0.67/1.00) | 0.91/1.19 (0.58/1.12) |
+| CGBA_H | resnet50 | T | 58.64/42.95 (0.99/0.78) | 54.17/38.32 (1.18/0.90) | 49.92/35.05 (1.45/1.16) |
+| CGBA_H | vgg19 | T | 63.63/43.07 (1.18/0.93) | 51.57/29.57 (1.78/1.38) | 38.43/22.02 (**2.68/2.08**) |
+| CGBA_H | vit_b_32 | T | 18.37/16.22 (0.79/0.78) | 7.28/7.10 (0.76/0.91) | 3.61/3.66 (0.74/0.93) |
+| TtBA | resnet50 | NT | 36.56/40.25 (**2.97/5.39**) | 21.09/22.96 (**3.34/8.19**) | 10.95/11.83 (**3.17/6.96**) |
+| TtBA | vgg19 | NT | 0.75/0.35 (**0.21/0.16**) | 0.40/0.21 (**0.22/0.19**) | 0.29/0.16 (**0.25/0.22**) |
+| TtBA | vit_b_32 | NT | 7.17/6.07 (1.59/1.99) | 1.25/1.62 (0.55/1.04) | 0.71/0.79 (**0.47**/0.75) |
+| TtBA | resnet50 | T | 47.11/31.76 (0.82/0.60) | 37.67/24.61 (0.89/0.65) | 27.66/16.42 (0.99/0.67) |
+| TtBA | vgg19 | T | 40.68/25.97 (0.87/0.63) | 21.72/12.30 (0.84/0.61) | 7.11/6.04 (0.58/0.72) |
+| TtBA | vit_b_32 | T | 18.23/17.83 (0.82/0.91) | 8.08/8.62 (0.88/1.13) | 3.95/4.27 (0.82/1.12) |
 
-Note (descriptive): CGBA resnet50 NT finishes ~761 queries (boundary-walk cap) and carries forward, hence the flat
-2000/5000/10000 values; CGBA on vgg19/vit_b_32 NT is far smaller. This is the G5 preview, not a tuning decision.
+**Flagged cells (12 budget×cell, ratio > 2 or < 0.5):**
+- CGBA resnet50 NT, all three budgets (ratio 3.85–29.84) — **known/documented**: the best-so-far stops improving after
+  the boundary walk (`state_query` 761/892/1144) and carries forward to 10k while `queries=10000` (B3b T3: the NT
+  boundary walk hits the 40-iteration cap; the D8 cap-fix corrects only the count, not the trajectory).
+- CGBA vit_b_32 NT @2000 (median 2.09); CGBA_H vgg19 T @10000 (2.68/2.08).
+- TtBA resnet50 NT, all three budgets (2.97–8.19, ours worse); TtBA vgg19 NT, all three budgets (0.16–0.25, ours
+  better); TtBA vit_b_32 NT @10000 (mean 0.47).
+
+This is the **G5 preview only** (n = 3 vs published n = 1000, unpaired). The definitive G5 magnitude gate runs after
+the first 30 images of each cell in B5. Nothing is tuned or changed here.
 
 ### (b) L2 mapping check (CGBA resnet50 NT row 1)
 
@@ -99,14 +115,16 @@ Final returned iterate `x_n` (normalised space, clipped to `[lb,ub]` as `Attack(
 
 **Verdict: OK** — the normalised↔pixel L2 mapping is correct.
 
-### (c) argument table (conditional)
+### (c) argument table (conditional — TRIGGERED)
 
-Not triggered: (a) flagged no CGBA/CGBA_H cell (no `ttba_table1.json` to ratio against). For the record, every
-argument `run_cgba.py` passes to `Proposed_attack` (values `run_cgba.py` PARAMS: `dim_reduc_factor=4` :44, `iteration=93`
-:45, `initial_query=30` :46, `tol=1e-4` :47, `sigma=2e-4` :48, `attack_method='CGBA'/'CGBA_H'` :139, `mean/std`
-`C.MEAN/C.STD` :125) equals the official drivers' ImageNet values (`Non_targeted_attack.py:30-36` /
-`Targeted_attack.py:33-37`; `proposed_attack.py:15` class defaults). The only difference is `verbose_control='No'`
-(print-only logging) vs the official default `'Yes'`. **Nothing changed.**
+Triggered: (a) flags CGBA/CGBA_H cells (CGBA resnet50 NT all budgets, CGBA vit_b_32 NT @2000, CGBA_H vgg19 T @10000).
+Every argument `run_cgba.py` passes to `Proposed_attack` (values `run_cgba.py` PARAMS: `dim_reduc_factor=4` :44,
+`iteration=93` :45, `initial_query=30` :46, `tol=1e-4` :47, `sigma=2e-4` :48, `attack_method='CGBA'/'CGBA_H'` :139,
+`mean/std` `C.MEAN/C.STD` (`_common.py:42-43`) :125) equals the official drivers' ImageNet values (verified against
+the clone `/root/autodl-tmp/baselines/CGBA` @ `73d3e9c9`: `Non_targeted_attack.py` `iteration=93` :29,
+`dim_reduc_factor=4` :32, `mean` :34, `std` :35; `Targeted_attack.py` `dim_reduc_factor=4` :30, `iteration=93` :32,
+`mean` :35, `std` :36; `proposed_attack.py:15` class defaults). The only difference is `verbose_control='No'`
+(print-only logging) vs the official default `'Yes'`. **Nothing changed** (per T3: descriptive, no tuning).
 
 ---
 
@@ -126,9 +144,17 @@ Split sha256 in each existing env file:
 | `b4_smoke_egc_resnet50/env_frame.txt` | `e08a069e…` (resnet50 NT) **and** `550ec796…` (resnet50 T) |
 | `b4_smoke_egc_vgg19/env_frame.txt` | `1e811637…` (vgg19 NT) **and** `cf0a8efb…` (vgg19 T) |
 | `b4_smoke_egc_vit_b_32/env_frame.txt` | `a5f152ec…` (vit_b_32 NT) **and** `c5eee382…` (vit_b_32 T) |
-| `b4b_smoke_LGC_RC_EGC_resnet50_places365/env_frame.txt` | `70bd3d5c…` (resnet50_places365 **T only** — broken) |
-| `b4b_smoke_LGC_RC_EGC_densenet161_places365/env_frame.txt` | `51935b75…` (densenet161_places365 **T only** — broken) |
-| `b4b_smoke_LGC_RC_EGC_Salman2020Do_R50/env_frame.txt` | `2985ebc4…` (Salman2020Do_R50 **T only** — broken) |
+| `b4b_smoke_LGC_RC_EGC_resnet50_places365_non_targeted/env_frame.txt` | `351bc50f…` (resnet50_places365 NT) |
+| `b4b_smoke_LGC_RC_EGC_resnet50_places365_targeted/env_frame.txt` | `70bd3d5c…` (resnet50_places365 T) |
+| `b4b_smoke_LGC_RC_EGC_densenet161_places365_non_targeted/env_frame.txt` | `89252849…` (densenet161_places365 NT) |
+| `b4b_smoke_LGC_RC_EGC_densenet161_places365_targeted/env_frame.txt` | `51935b75…` (densenet161_places365 T) |
+| `b4b_smoke_LGC_RC_EGC_Salman2020Do_R50_non_targeted/env_frame.txt` | `1b847d4c…` (Salman2020Do_R50 NT) |
+| `b4b_smoke_LGC_RC_EGC_Salman2020Do_R50_targeted/env_frame.txt` | `2985ebc4…` (Salman2020Do_R50 T) |
+
+The three original per-victim dirs (`b4b_smoke_LGC_RC_EGC_{resnet50_places365,densenet161_places365,Salman2020Do_R50}`)
+each held **only the targeted split sha** (the NT sha was overwritten by the T run sharing one `env_frame.txt`) —
+that was the bug this phase fixes; they were retired to `Results/retired_b4b_egc_per_victim/` (preserved, excluded
+from the `b4b_smoke_*` glob).
 
 `run_frame_b1.sh` names out dirs **per arch** (`OUT=${OUT_PREFIX}_$A`, e.g. `Results/b1_resnet50`), with both modes
 in one dir and `env_frame.txt` at the root holding both modes' split shas. For B5, ours uses **one out_dir per
@@ -196,7 +222,12 @@ Per-cell usage (n=3) scaled ×200, 42 cells total (24 main + 18 E10/E11):
 Committed: `adapters/`, `ttba_github/run_frame_b1_generic.py`, `ttba_github/ttba_dump_split_places365.py`,
 `ttba_github/ttba_dump_split_robust.py`, `splits/places365/`, `splits/robust/`, `tools/eval/check_contract.py`,
 `tools/eval/tests_contract/`, `contract/column_map.yaml`, `reports/*.md`. NOT added: `Results/`, `cache`,
-`checkpoints/`, `models/`. HEAD: `16ead02a7e732e22497a10b964f326f6aca2e16d`.
+`checkpoints/`, `models/`, `ttba_github/ttba_table1.json` (untracked data file — see the T3(a) provenance note; must be
+committed by the user before B5, it is read for the E2 dagger block).
+
+B4c work commit: `16ead02a7e732e22497a10b964f326f6aca2e16d`. T3(a) ratio/flag correction (this report amendment +
+`adapters/diag/diag_t3a_magnitude.py`) is the follow-up commit; final HEAD reported after `git commit`
+(`git rev-parse HEAD`).
 
 ## T9 — cProfile (optional; TtBA adapter, resnet50 NT row 1)
 
@@ -236,7 +267,7 @@ adapter runs unchanged under the normal `python` launcher.)
 | `adapters/diag/diag_t1b_cfg_diff.py` | `91030e042c89c25d3c873a93069486afbd9a6c1e2a795c8fc63fda01cea06f66` |
 | `adapters/diag/diag_t1c_compare_egc.py` | `73ebf2e2cab813c3becb3ce4f287788531acc669817adb2fa03dc1a65fbb8caa` |
 | `adapters/diag/diag_t2_regress.py` | `e1181ed90d54d1ecdbb7183c42045f5af89d370572ade271a36747777efd43af` |
-| `adapters/diag/diag_t3a_magnitude.py` | `dfc768940ed95527edbc7db001cf9ef22775f9e3ce9e81bb86f18fc6ee0bee3a` |
+| `adapters/diag/diag_t3a_magnitude.py` | `e3f964e0d9b8f4c3d1523d373c6239759fd2ed5400c8e384ce78bf76648d19f9` |
 | `adapters/diag/diag_t3b_cgba_l2map.py` | `337e3b01fdbe8dce7a9de64bce597f15eabce806d758ccd49b53426986bd11cf` |
 | `adapters/diag/diag_t6_rawnet.py` | `ec3b9af9bf1c8d650dd93e95f989a1fc71d5bb05402fbcba67a0aad6ac7add75` |
 | `adapters/diag/diag_t7_disk.py` | `17d30e4cdbf85d4907fa94378a5ce618f361888d93604b1c82d2e719ca5a46e7` |
