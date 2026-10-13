@@ -89,6 +89,10 @@ PAPER_FAITHFUL_FIX = "clip acos arg, proposed_attack.py:182, D11_outcome"
 
 _VARIANT = "fixed"
 
+# D11 observation: per-image clip-event counts (acos argument outside [-1,1] before the clamp), in C.run
+# processing order.  Collected by run_official and merged into runs_<method>.csv after C.run returns.
+_CLIP_EVENTS: list = []
+
 
 def _patched_attack_class(variant: str = "fixed"):
     """``Proposed_attack`` subclass with the D8 count fix and (``variant == "fixed"``) the D11 acos clip.
@@ -112,6 +116,7 @@ def _patched_attack_class(variant: str = "fixed"):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self._cap_fix_log = []
+            self.clip_events_182 = 0  # D11 observation: acos arg outside [-1,1] before the clamp (per image)
 
         def _counted(self, c0, n, name):
             new = self.all_queries - c0
@@ -142,7 +147,10 @@ def _patched_attack_class(variant: str = "fixed"):
                 while True:
                     mid_dir = adv_dir + clean_dir
                     mid_dir = mid_dir/torch.norm(mid_dir)
-                    theta = torch.acos(torch.clamp(torch.dot(boundary_dir.reshape(-1), mid_dir.reshape(-1))/ (torch.linalg.norm(boundary_dir)*torch.linalg.norm(mid_dir)), -1.0, 1.0))
+                    arg = torch.dot(boundary_dir.reshape(-1), mid_dir.reshape(-1))/ (torch.linalg.norm(boundary_dir)*torch.linalg.norm(mid_dir))
+                    if arg < -1.0 or arg > 1.0:
+                        self.clip_events_182 += 1
+                    theta = torch.acos(torch.clamp(arg, -1.0, 1.0))
                     d = torch.cos(theta)*norm_dis
                     x_mid = x_0 + mid_dir*d
                     num_calls +=1
@@ -163,24 +171,51 @@ def _patched_attack_class(variant: str = "fixed"):
 
 def run_official(tracker, x0, y_src, x_tgt, y_tgt, params):
     PatchedProposedAttack = _patched_attack_class(_VARIANT)
+    attack = None
+    try:
+        src = C.normalize(x0)
+        tar = C.normalize(x_tgt) if x_tgt is not None else None
+        lb = C.normalize(torch.zeros_like(x0))
+        ub = C.normalize(torch.ones_like(x0))
+        attack = PatchedProposedAttack(tracker, src, list(C.MEAN), list(C.STD), lb, ub, tar_img=tar,
+                                       dim_reduc_factor=params["dim_reduc_factor"],
+                                       attack_method=params["attack_method"], iteration=params["iteration"],
+                                       initial_query=params["initial_query"], tol=params["tol"],
+                                       sigma=params["sigma"], verbose_control=params["verbose_control"])
+        attack.Attack()
+    finally:
+        # observation-only: append exactly one entry per image so the C.run runs_*.csv rows stay aligned
+        _CLIP_EVENTS.append(0 if attack is None else int(getattr(attack, "clip_events_182", 0)))
 
-    src = C.normalize(x0)
-    tar = C.normalize(x_tgt) if x_tgt is not None else None
-    lb = C.normalize(torch.zeros_like(x0))
-    ub = C.normalize(torch.ones_like(x0))
-    attack = PatchedProposedAttack(tracker, src, list(C.MEAN), list(C.STD), lb, ub, tar_img=tar,
-                                   dim_reduc_factor=params["dim_reduc_factor"],
-                                   attack_method=params["attack_method"], iteration=params["iteration"],
-                                   initial_query=params["initial_query"], tol=params["tol"],
-                                   sigma=params["sigma"], verbose_control=params["verbose_control"])
-    attack.Attack()
+
+def _write_clip_events(method: str, out_dir: str, mode: str) -> None:
+    """Merge the per-image clip-event counts (in C.run processing order) into runs_<method>.csv."""
+    import csv as _csv
+
+    run_path = os.path.join(out_dir, mode, f"runs_{method}.csv")
+    if not os.path.exists(run_path):
+        return
+    with open(run_path, newline="", encoding="utf-8") as fh:
+        rows = list(_csv.DictReader(fh))
+    fields = list(rows[0].keys()) if rows else []
+    if "clip_events_182" not in fields:
+        fields.append("clip_events_182")
+    for i, r in enumerate(rows):
+        r["clip_events_182"] = _CLIP_EVENTS[i] if i < len(_CLIP_EVENTS) else ""
+    with open(run_path, "w", newline="", encoding="utf-8") as fh:
+        w = _csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
+        w.writeheader()
+        for r in rows:
+            w.writerow(r)
 
 
 def main() -> int:
     global _VARIANT
+    _CLIP_EVENTS.clear()
     peek = argparse.ArgumentParser(add_help=False)
     peek.add_argument("--mode", choices=["non_targeted", "targeted"], default="non_targeted")
     peek.add_argument("--cgba_variant", choices=["fixed", "d8only"], default="fixed")
+    peek.add_argument("--out_dir", default=None)
     ns, _ = peek.parse_known_args()
     _VARIANT = ns.cgba_variant
     targeted = ns.mode == "targeted"
@@ -195,8 +230,11 @@ def main() -> int:
     def extra_env(args, contract):
         return {"cgba_variant": _VARIANT, "paper_faithful_fix": PAPER_FAITHFUL_FIX}
 
-    return C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official,
-                 os.path.abspath(__file__), extra_env=extra_env)
+    rc = C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official,
+               os.path.abspath(__file__), extra_env=extra_env)
+    if ns.out_dir:
+        _write_clip_events(method, ns.out_dir, ns.mode)
+    return rc
 
 
 if __name__ == "__main__":

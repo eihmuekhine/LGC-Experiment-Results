@@ -1,0 +1,39 @@
+[*] importing torch / torchvision (first run after install can take 1-2 min) ...
+[*] device=cuda | torch=2.7.1+cu128 | gpu=NVIDIA GeForce RTX 5090 (31 GB) | tf32=False deterministic=True | shard 1/1
+[*] methods: ['LGC_RC_EGC']
+[*] autoencoder vgg16 loaded from checkpoints/vgg16_imagenet.pth
+
+==========================================================================================
+ IMAGENET | RESNET50 | NON_TARGETED
+==========================================================================================
+[*] victim resnet50: official TtBA weights resnet50-11ad3fa6.pth from /root/autodl-tmp/TtBA/model
+[*] protocol split /tmp/opencode/b4e2_t4/resnet50_non_targeted.csv (ttba_github:imagenet-resnet50:targeted0, weights resnet50-11ad3fa6.pth): 2 rows
+
+[1/2] ILSVRC2012_val_00015433.JPEG -> ANY WRONG CLASS
+[*] image loader: official TtBA repo pre-processing (mean |x - data loader| on the first image 0.0000)
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3749 SSIM=0.9997 LPIPS=0.0013 adv float/uint8/repaired=1/0/1 | 22.9s | +1share=0.42 | GTE N=0% B=0% T=0% F=0% upd/it=15.3 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=4.23 amb-gain=32% gate@1094 kA=- kL=24.0
+   [time] 0.4 min for 1 images on resnet50; ~0.4 min left on this arch (this shard)
+
+[2/2] ILSVRC2012_val_00025151.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.5725 SSIM=0.9756 LPIPS=0.1413 adv float/uint8/repaired=1/0/1 | 23.4s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=16.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=27% p-share=1.07 amb-gain=13% gate@6243 kA=- kL=12.0
+   [time] 0.8 min for 2 images on resnet50; ~0.0 min left on this arch (this shard)
+
+=== resnet50 @ budget 10000 (sorted by median pixel L2) ===
+    arch     method  budget  n      ASR  ASR_uint8_raw  ASR_uint8_repaired  pixL2_mean  pixL2_median  SSIM_mean  LPIPS_mean
+resnet50 LGC_RC_EGC   10000  2 100.0000         0.0000            100.0000      1.9737        1.9737     0.9877      0.0713
+
+=== query breakdown (% of queries) ===
+            q_init_%  q_boundary_%  q_normal_%  q_update_%  iterations  wall_time_s  mean_sign_share  one_sided_pct  mean_n_probes
+method                                                                                                                            
+LGC_RC_EGC       0.0           0.2        90.7         9.1        60.0         23.2              0.4            0.0          153.3
+
+=== progress: finished runs per arch x method ===
+status               ok
+arch     method        
+resnet50 LGC_RC_EGC   2
+
+[*] analysis written:
+    summary                  Results/b4e2_t4_egc_resnet50/non_targeted/analysis/summary.csv
+    paired                   Results/b4e2_t4_egc_resnet50/non_targeted/analysis/paired_vs_LGC.csv
+    threshold_asr            Results/b4e2_t4_egc_resnet50/non_targeted/analysis/threshold_asr.csv
+    query_breakdown          Results/b4e2_t4_egc_resnet50/non_targeted/analysis/query_breakdown.csv

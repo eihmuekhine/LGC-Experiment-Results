@@ -1,0 +1,20 @@
+
+=== resnet50 @ budget 10000 (sorted by median pixel L2) ===
+    arch     method  budget  n      ASR  ASR_uint8_raw  ASR_uint8_repaired  pixL2_mean  pixL2_median  SSIM_mean  LPIPS_mean
+resnet50 LGC_RC_EGC   10000  1 100.0000         0.0000            100.0000     14.4036       14.4036     0.9593      0.0945
+
+=== query breakdown (% of queries) ===
+            q_init_%  q_boundary_%  q_normal_%  q_update_%  iterations  wall_time_s  mean_sign_share  one_sided_pct  mean_n_probes
+method                                                                                                                            
+LGC_RC_EGC       0.0           0.2        90.5         9.3        60.0         26.1              0.4            0.0          152.9
+
+=== progress: finished runs per arch x method ===
+status               ok
+arch     method        
+resnet50 LGC_RC_EGC   1
+
+[*] analysis written:
+    summary                  Results/b4e2_t5_egc_resnet50/non_targeted/analysis/summary.csv
+    paired                   Results/b4e2_t5_egc_resnet50/non_targeted/analysis/paired_vs_LGC.csv
+    threshold_asr            Results/b4e2_t5_egc_resnet50/non_targeted/analysis/threshold_asr.csv
+    query_breakdown          Results/b4e2_t5_egc_resnet50/non_targeted/analysis/query_breakdown.csv

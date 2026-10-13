@@ -1,0 +1,8 @@
+[*] checkpoints (contract): 100 200 500 1000 2000 2500 5000 10000
+[*] resnet50 non_targeted  EGC 78 s  TtBA 0 s  Tue Oct 13 23:33:32 CST 2026
+[*] resnet50 targeted  EGC 85 s  TtBA 0 s  Tue Oct 13 23:34:57 CST 2026
+[*] vgg19 non_targeted  EGC 86 s  TtBA 0 s  Tue Oct 13 23:36:25 CST 2026
+[*] vgg19 targeted  EGC 98 s  TtBA 0 s  Tue Oct 13 23:38:03 CST 2026
+[*] vit_b_32 non_targeted  EGC 75 s  TtBA 0 s  Tue Oct 13 23:39:20 CST 2026
+[*] vit_b_32 targeted  EGC 81 s  TtBA 0 s  Tue Oct 13 23:40:41 CST 2026
+DONE

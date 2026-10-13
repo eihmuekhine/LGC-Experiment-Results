@@ -351,8 +351,40 @@ def test_contract() -> None:
         check("T14b REQUIRED E10/E11 cannot be cut -> I14 FAIL", v(rep, "I14") == "FAIL")
 
 
+def test_status_out() -> None:
+    """T18: the status file is written next to --report (not the tracked reports/contract_status.md)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tree = build_tree(fresh(tmp), env=good_env())
+        report = os.path.join(tmp, "b4e2_gate.md")
+        tracked = os.path.join(os.getcwd(), "reports", "contract_status.md")
+        before = None
+        if os.path.exists(tracked):
+            with open(tracked, encoding="utf-8") as fh:
+                before = fh.read()
+
+        argv = ["--contract", os.path.join(REPO, "contract", "paper_contract.yaml"),
+                "--column_map", os.path.join(REPO, "contract", "column_map.yaml"),
+                "--stage", "final", "--n", "3", "--split_dir", tree["split_dir"],
+                "--roots", tree["root"], "--report", report]
+        cc.main(argv)
+
+        default_status = os.path.splitext(report)[0] + "_status.md"
+        check("T18 status written next to --report (<stem>_status.md)", os.path.exists(default_status))
+
+        after = None
+        if os.path.exists(tracked):
+            with open(tracked, encoding="utf-8") as fh:
+                after = fh.read()
+        check("T18 tracked reports/contract_status.md NOT rewritten", after == before)
+
+        custom = os.path.join(tmp, "custom_status.md")
+        cc.main(argv + ["--status_out", custom])
+        check("T18 --status_out honored", os.path.exists(custom))
+
+
 def main() -> int:
     test_contract()
+    test_status_out()
     bad = [n for n, ok in RESULTS if not ok]
     print(f"\n{'ALL PASS' if not bad else 'FAILED: ' + ', '.join(bad)}  ({len(RESULTS) - len(bad)}/{len(RESULTS)})")
     return 0 if not bad else 1
