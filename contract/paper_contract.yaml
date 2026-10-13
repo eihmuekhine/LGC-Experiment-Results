@@ -6,9 +6,9 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.6"
+version: "1.7"
 date: "2026-10-12"
-status: "FROZEN (2026-10-12, v1.6). Decisions D1-D10 confirmed by the user; the v1.6 sha256 is recorded in amendment 2 deviation D10."
+status: "FROZEN (2026-10-13, v1.7). Decisions D1-D11 confirmed by the user; the v1.7 sha256 is recorded in amendment 2 deviation D11."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
@@ -17,6 +17,7 @@ changelog:
   - "1.4 2026-10-11 user: D8 CGBA accounting fix (faithful model + boundary-walk query-count fix, B3b T2/T3; trajectory bit-identical; disclosed)"
   - "1.5 2026-10-12 user: E10 (Places365) and E11 (RobustBench R50) promoted to REQUIRED, both modes, n = 200 (D9); reduced roster for E10/E11; D5, disk and cost updated"
   - "1.6 2026-10-12 user: E10/E11 split sha256 and victim files registered (D10); EGC out_dir per (victim, mode)"
+  - "1.7 2026-10-13 user: D11 CGBA stall decision tree (locate the defect in B4d; paper-faithful fix; m=3 unless Alg.-1-consistent no-improvement, then m=2)"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -88,6 +89,18 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     (v1.6, user 2026-10-12) Register the E10/E11 split sha256 and victim weight files in constants;
     ours uses one out_dir per (victim, mode) so NT and T never share env_frame.txt. Reported deviation
     before any E10/E11 n = 200 result is opened.
+
+  D11_cgba_stall: >-
+    (v1.7, user 2026-10-13) The CGBA non-targeted ResNet-50 run stalls (best-so-far flat after ~1k queries,
+    pix_l2@2000 == pix_l2@10000), contradicting CGBA Alg. 1 / Eq. (7) (Thales semicircle over [x_s, x_b]: the
+    tracker best should decrease by at least cos(45 deg) on the first candidate). Treated as a defect to locate,
+    not as official behaviour. Decision tree (decided before any n = 200 CGBA result):
+      (a) defect in our integration -> fix, redo G3 + smoke, disclose; m = 3.
+      (b) official code deviates from CGBA Alg. 1 / Eq. (7) at file:line -> minimal paper-faithful fix, disclosed
+          (official-code numbers in the appendix); m = 3.
+      (c) trace shows Alg.-1-consistent geometry with genuinely no improvement -> CGBA descriptive; m = 2.
+    Diagnosed in B4d T4 (adapters/diag/cgba_trace.py): r_i = ||x_q - x_s|| / ||x_b - x_s|| vs cos(psi_i),
+    psi_i = 90 - 90/2^i degrees.
 
 constants:
   budget: 10000
