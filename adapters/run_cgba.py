@@ -188,8 +188,27 @@ def run_official(tracker, x0, y_src, x_tgt, y_tgt, params):
         _CLIP_EVENTS.append(0 if attack is None else int(getattr(attack, "clip_events_182", 0)))
 
 
-def _write_clip_events(method: str, out_dir: str, mode: str) -> None:
-    """Merge the per-image clip-event counts (in C.run processing order) into runs_<method>.csv."""
+def _existing_stems(out_dir: str, mode: str, method: str) -> set:
+    """Snapshot of the image stems already present in runs_<method>.csv BEFORE C.run.
+
+    On a resumed run the done images are skipped and contribute no _CLIP_EVENTS entry, so the counts must be
+    attached to the NEW rows only; pre-existing rows keep their clip_events_182 untouched."""
+    import csv as _csv
+
+    run_path = os.path.join(out_dir, mode, f"runs_{method}.csv")
+    if not os.path.exists(run_path):
+        return set()
+    with open(run_path, newline="", encoding="utf-8") as fh:
+        return {r["image"] for r in _csv.DictReader(fh)}
+
+
+def _write_clip_events(method: str, out_dir: str, mode: str, pre_existing: set) -> None:
+    """Merge the per-image clip-event counts into runs_<method>.csv.
+
+    _CLIP_EVENTS holds one entry per image attacked THIS run, in C.run processing order.  On a resumed run the
+    done images are skipped without appending to _CLIP_EVENTS, so the entries must be assigned to the NEW rows
+    only (rows whose ``image`` stem is not in ``pre_existing``), in processing order; pre-existing rows'
+    clip_events_182 are left untouched.  Column name and observation-only semantics are unchanged."""
     import csv as _csv
 
     run_path = os.path.join(out_dir, mode, f"runs_{method}.csv")
@@ -200,8 +219,11 @@ def _write_clip_events(method: str, out_dir: str, mode: str) -> None:
     fields = list(rows[0].keys()) if rows else []
     if "clip_events_182" not in fields:
         fields.append("clip_events_182")
-    for i, r in enumerate(rows):
-        r["clip_events_182"] = _CLIP_EVENTS[i] if i < len(_CLIP_EVENTS) else ""
+    it = iter(_CLIP_EVENTS)
+    for r in rows:
+        if r.get("image") in pre_existing:
+            continue
+        r["clip_events_182"] = next(it, "")
     with open(run_path, "w", newline="", encoding="utf-8") as fh:
         w = _csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
@@ -230,10 +252,11 @@ def main() -> int:
     def extra_env(args, contract):
         return {"cgba_variant": _VARIANT, "paper_faithful_fix": PAPER_FAITHFUL_FIX}
 
+    pre_existing = _existing_stems(ns.out_dir, ns.mode, method) if ns.out_dir else set()
     rc = C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official,
                os.path.abspath(__file__), extra_env=extra_env)
     if ns.out_dir:
-        _write_clip_events(method, ns.out_dir, ns.mode)
+        _write_clip_events(method, ns.out_dir, ns.mode, pre_existing)
     return rc
 
 

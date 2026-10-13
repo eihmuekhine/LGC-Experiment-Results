@@ -1,7 +1,9 @@
 # B4e2 — Close B4e on the study GPU (RTX 5090): T4–T8
 
-Status: **COMPLETE**. Worktree `/root/autodl-tmp/LGC_frozen`, branch `paper-runs`, HEAD
-`e9ff7da83c71205f0884fbbf7b7f49cb3f8090a8` (tag `build38-amend2-17-ge9ff7da`).
+Status: **COMPLETE**. Worktree `/root/autodl-tmp/LGC_frozen`, branch `paper-runs`. The T0–T8 runs below used base
+`e9ff7da83c71205f0884fbbf7b7f49cb3f8090a8` (tag `build38-amend2-17-ge9ff7da`); this report is **committed at the
+new HEAD** `aee5027` (B4e2 close) and amended by the B4e2 follow-up commit (`reports/B4e2_followup.md`) — **not**
+`e9ff7da`.
 
 ## 1. Scope
 
@@ -13,6 +15,8 @@ PASS, one GPU name in I10) and `human_preflight` FLAG = 7, documented as a devia
   `ce4f18615a9cd3f72dd16aa7144e739b1b97c50ef1c02de4b4572fc3cb5820a5`
 - Contract `paper_contract.yaml` (v1.8) sha256:
   `95d10f8a15f3477971e3aa3d86901b2086c88df8174d4741bed73bd699152645`
+- T3 raw evidence (committed): `reports/raw/B4e2/T3_gate.md` (the `check_contract --stage smoke` gate report,
+  exit 0) and `reports/human_preflight_b4e2.md` (FLAG lines = 7, characterised in §4 deviation 1).
 
 ## 2. Environment
 
@@ -23,7 +27,7 @@ PASS, one GPU name in I10) and `human_preflight` FLAG = 7, documented as a devia
 | capability / SM count | (12, 0) / 170 |
 | torch | 2.7.1+cu128 |
 | backend flags (D12) | `cuda.matmul.allow_tf32=False`, `cudnn.allow_tf32=False`, `cudnn.deterministic=True`, `cudnn.benchmark=False` |
-| HEAD | `e9ff7da83c71205f0884fbbf7b7f49cb3f8090a8` |
+| HEAD | `e9ff7da83c71205f0884fbbf7b7f49cb3f8090a8` (base; report committed at `aee5027` → follow-up commit) |
 | engine sha | `835f1933d9e571070e952aedafc5a50b9948717168115ea60b5433277006c28a` |
 | OMP_NUM_THREADS | 8 (every command) |
 
@@ -115,9 +119,13 @@ Fresh-run invariance (row 1 into new dirs → IDENTICAL to T2):
   the two counter lines are the only other additions, and every other line is byte-identical. **PASS** (also
   `d8only` still inherits the official method).
 - Re-run CGBA resnet50 NT rows 1–3 into `Results/b4e2_t6_cgba_resnet50` (log `T6.log`): **numerics IDENTICAL**
-  to T2 (24/24 `per_checkpoint` rows equal; npz `delta` bit-equal). Printed counts: `clip_events_182 = 0` for all
-  three images (`ILSVRC2012_val_00007450` 0, `_00015433` 0, `_00025151` 0). Under D12 precision parity the NaN
-  event does not occur for this cell, consistent with B4e §T2.
+  to T2 (24/24 `per_checkpoint` rows equal; npz `delta` bit-equal). The counts are recorded in
+  `Results/b4e2_t6_cgba_resnet50/non_targeted/runs_CGBA.csv` column `clip_events_182` (values 0,0,0 for the three
+  images `ILSVRC2012_val_00007450`, `_00015433`, `_00025151`). Under D12 precision parity the NaN event does not
+  occur for this cell, consistent with B4e §T2.
+- **CGBA_D8only note:** `clip_events_182` is constant-0 by design for `CGBA_D8only` (the counter lives only in the
+  `fixed` `SemiCircular_boundary_search` override; `d8only` inherits the official method and never increments it).
+  The E17 NaN-share measurement is a separate B4g/B5 item, not this counter.
 
 ### T7 — `tools/eval/check_contract.py` status-file placement
 
@@ -174,6 +182,11 @@ E10/E11 total.
 4. **T4 log split into two files** (`T4.log` for EGC, `T4_ttba.log` for TtBA) because T4 runs two runners.
 5. **E17 s/img source**: E17 d8only was not re-run in T2 and has no separate STUDY_GPU smoke; its `s/img` is
    taken from the T2 CGBA NT cells (identical algorithm, the clip adds no measurable time).
+6. **Resume policy divergence (unresolved, user decision for B5).** T5 changed `ttba_github/ttba_common.py:83`
+   (`done_images` now treats ANY row as done, whatever its status). The baseline adapters that go through `C.run`
+   (`adapters/_common.py:421-425`) still filter `status in ("ok", "budget")`, so CGBA / CGBA_H / CGBA_D8only and
+   ARS_OPT re-run `error` rows on resume. The two resume policies therefore diverge, and the binding policy for B5
+   is a **user decision** (to be recorded in contract v1.9).
 
 ## 5. sha256 of created / changed files; GPU minutes
 
@@ -185,7 +198,27 @@ E10/E11 total.
 | `adapters/diag/diag_b4e_t5_done_images.py` | new sandbox unit test (T5) | `219d1b53885ebd661c4aaf031eb7a9adb1f0d2271551c73403fe47b600eb58bb` |
 | `tools/eval/check_contract.py` | status next to --report / --status_out (T7) | `ce2cf71cb722dcf1c5f5d0ed3c8446b26be8574f2dda66b92e1812be1bedd1ab` |
 | `tools/eval/tests_contract/test_contract.py` | +T18 status-file test (T7) | `6ab5deaa107f3d2a8972462f98803babba770d9ea822a66c4013e8396ff4eaaa` |
-| `reports/raw/B4e2/T4.log`, `T4_ttba.log`, `T5_egc.log`, `T5_ttba.log`, `T6.log`, `T8.log` | logs | under `reports/raw/B4e2/` |
+
+Log files under `reports/raw/B4e2/` (skill lgc-preflight §5 — sha256 of every created/changed file):
+
+| file | sha256 |
+|---|---|
+| `T1_A.log` | `ea4b1fa7d09beb3bee39b818797a05e5495728d41a2d46818186503e842cc272` |
+| `T1_A2.log` | `ec6b4e39984dcc1e578cde38507eefd8c1a80adbb2e6d84eb0869e4e09545d91` |
+| `T1_B.log` | `2d97b1591bca554669e432446b631e16e6f68e415d0dfb1768b5ccf127da9327` |
+| `T2_arsopt_main.log` | `edf7560e03e490bc7117789d5ec538e33a964da27455400df78ce648348ebf1d` |
+| `T2_cgba_e10e11.log` | `c7b24c6bfb323f7df1de6d84bd3d41d06987a135c4d91de6389dbd7cc15b2982` |
+| `T2_cgba_main.log` | `e342709e96d61be050441004c908cc82a30894f2ce7e72c468a61073a78aa8df` |
+| `T2_egc_e10e11.log` | `e2f4492d481026b071f2eb75a45f33ba4e8e8a25ef31ed4da68de1666f5b52d6` |
+| `T2_egc_main.log` | `b17da8ed0da9cccaa72d81aafcd8ff67e2c1ca11a0d9d2822c8d3685cb216911` |
+| `T2_ttba_e10e11.log` | `0d729150141e1b10f0e3ba6f0116b762a8de37160558586ff5bed66e9b406349` |
+| `T2_ttba_main.log` | `cf8c2f055eadfcb089ddc06ca4a9800dfc05233119269bd74a74653bc2ed81a5` |
+| `T4.log` | `bfd7c2f6eea1ae8f78c20688903d0f797a9b2b933c6beba546c17d0d19492155` |
+| `T4_ttba.log` | `02c96587a7871758f7aa2283ca606d23a4484b67415d8748663dab3be08d209e` |
+| `T5_egc.log` | `32a1770b919c940241141ade4fb9a06fa03f8cb8ab9b4d663b7866d6b7cad02b` |
+| `T5_ttba.log` | `78f44658fab8ba47a8c9ff8caf728fdcbb4648b0f90d9fcb06def85978ea3000` |
+| `T6.log` | `95a834204189f96f968ba0bf42f6ed7156a858bb95ee54d574ca5e76bb252dd9` |
+| `T8.log` | `f142c3ddcb0e102836d67c7d820d681b44ec21c98733360f9d2366d9457f3de7` |
 
 GPU minutes this session (T4–T8): ≈ 5 min of attack time (T4 EGC ≈46 s + T4 TtBA ≈105 s + T5 EGC ≈26 s +
 T5 TtBA ≈53 s + T6 CGBA ≈70 s) plus model-load overhead; T7/T8 are CPU-only. Frozen engine untouched
