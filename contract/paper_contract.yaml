@@ -6,9 +6,9 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.7"
-date: "2026-10-12"
-status: "FROZEN (2026-10-13, v1.7). Decisions D1-D11 confirmed by the user; the v1.7 sha256 is recorded in amendment 2 deviation D11."
+version: "1.8"
+date: "2026-10-13"
+status: "FROZEN (2026-10-13, v1.8). Decisions D1-D14 confirmed by the user; the v1.8 sha256 is recorded in the amendment 2 deviation note for v1.8."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
@@ -18,6 +18,7 @@ changelog:
   - "1.5 2026-10-12 user: E10 (Places365) and E11 (RobustBench R50) promoted to REQUIRED, both modes, n = 200 (D9); reduced roster for E10/E11; D5, disk and cost updated"
   - "1.6 2026-10-12 user: E10/E11 split sha256 and victim files registered (D10); EGC out_dir per (victim, mode)"
   - "1.7 2026-10-13 user: D11 CGBA stall decision tree (locate the defect in B4d; paper-faithful fix; m=3 unless Alg.-1-consistent no-improvement, then m=2)"
+  - "1.8 2026-10-13 user: D11_outcome (B4d verdict b, acos clip), D12 precision parity, D13 G5 rule, D14 B5 concurrency, E17 CGBA D8-only appendix"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -101,6 +102,39 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
       (c) trace shows Alg.-1-consistent geometry with genuinely no improvement -> CGBA descriptive; m = 2.
     Diagnosed in B4d T4 (adapters/diag/cgba_trace.py): r_i = ||x_q - x_s|| / ||x_b - x_s|| vs cos(psi_i),
     psi_i = 90 - 90/2^i degrees.
+
+  D11_outcome: >-
+    (v1.8, user 2026-10-13) B4d verdict for D11_cgba_stall: case (b). proposed_attack.py:182
+    (SemiCircular_boundary_search) computes theta = acos(dot / (norm * norm)) without clipping; in float32 the
+    argument reaches 1 + 2^-23 when the bisection directions coincide, which gives a NaN boundary point, after
+    which every walk caps and the best-so-far freezes (smoke: resnet50 NT 3/3, Salman2020Do_R50 NT 3/3,
+    resnet50_places365 NT 1/3, CGBA_H 0; the unmodified code raises its assertion at proposed_attack.py:252).
+    Fix: an adapter-side override of SemiCircular_boundary_search that differs from the official method in one
+    line only, clipping the acos argument to [-1, 1] (as hard_label_attacks CGBA/attack_gpu.py:263-264).
+    Trajectories without the event are bit-identical (B4e T1). CGBA / CGBA_H stay in the confirmatory P2 family
+    (m = 3). Appendix E17 reports the D8-only variant (count fix, no clip) on rows 1-30 of every CGBA NT cell.
+
+  D12_precision_parity: >-
+    (v1.8, user 2026-10-13) Every method queries the victim under the frozen-engine backend
+    (lgc_bench/env.py configure_backend): cuda.matmul.allow_tf32 = False, cudnn.allow_tf32 = False,
+    cudnn.deterministic = True, cudnn.benchmark = False. All methods attack the same FP32 classifier and
+    adv_float is decided by one oracle. The official TtBA / CGBA / ARS-OPT code leaves cuDNN TF32 at the PyTorch
+    default (enabled); this is disclosed, and published TtBA Table 1 numbers are compared as magnitudes only
+    (E2 dagger block, G5), never row-wise.
+
+  D13_g5_rule: >-
+    (v1.8, user 2026-10-13) G5 runs after the first 30 images of each TtBA / CGBA / CGBA_H cell
+    (tools/eval/g5_check.py). TtBA: median pix_l2_iter vs the TtBA Table 1 median. CGBA / CGBA_H:
+    rho_B = [med L_m(B) / med L_TtBA(B)] / [pub med_m(B) / pub med_TtBA(B)] on images completed by both methods.
+    95 % paired bootstrap CI (10000 resamples); PASS if the CI intersects [0.5, 2] at every B in
+    {2000, 5000, 10000}; FAIL stops that cell for investigation (no tuning). Runs with n < 30 (smoke) are tool
+    checks only, never a gate.
+
+  D14_b5_concurrency: >-
+    (v1.8, user 2026-10-13) One attack process per GPU. Exception: two TtBA processes (different cells) may share
+    the GPU if B4e T4 shows bitwise identity with solo runs and weighted speedup
+    S = sum_p (solo s/img_p / concurrent s/img_p) >= 1.6 for that victim. Rows 1-10 of every cell run solo;
+    E13 uses solo rows only.
 
 constants:
   budget: 10000
@@ -273,3 +307,7 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     status: REQUIRED
     content: "text-only table (no numbers from runs): (a) methods excluded by the threat model (surrogates / priors) and why; (b) methods excluded by scope (HSJA, Sign_OPT; cited only, D7)"
     inputs: {source: none}
+  E17_cgba_official_appendix:
+    status: REQUIRED
+    content: "CGBA D8-only variant (official code with the D8 count fix, no acos clip) next to the D11 fix: share of images with the NaN event (= share on which the unmodified code raises its assertion) and median pix_l2 at 2000 / 5000 / 10000; rows 1-30 of every CGBA NT cell (main + E10/E11)"
+    inputs: {source: "Results/appendix_cgba_d8only_<arch>/non_targeted (method id CGBA_D8only; not a main-study cell, outside the checker roots; path + sha256 recorded in reports/E17_sources.md)", n: 30}
