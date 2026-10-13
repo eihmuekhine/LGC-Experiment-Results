@@ -188,27 +188,32 @@ def run_official(tracker, x0, y_src, x_tgt, y_tgt, params):
         _CLIP_EVENTS.append(0 if attack is None else int(getattr(attack, "clip_events_182", 0)))
 
 
-def _existing_stems(out_dir: str, mode: str, method: str) -> set:
-    """Snapshot of the image stems already present in runs_<method>.csv BEFORE C.run.
+def _pre_existing_count(out_dir: str, mode: str, method: str) -> int:
+    """Number of rows already present in runs_<method>.csv BEFORE C.run.
 
-    On a resumed run the done images are skipped and contribute no _CLIP_EVENTS entry, so the counts must be
-    attached to the NEW rows only; pre-existing rows keep their clip_events_182 untouched."""
+    Rows present before C.run (done ok/budget images that C.run skips, and error rows that C.run re-attacks and
+    re-appends) must keep their clip_events_182 untouched; only rows appended THIS run receive a _CLIP_EVENTS
+    entry.  Keying on row position (not stem) is what fixes the error-row resume: a re-attacked error image
+    appends a SECOND row with the same stem, and that NEW row is exactly the row at index >= pre-existing count,
+    so it receives the new count while the old error row stays empty.  Mirrors _common.py:425 done_images, which
+    treats only (ok, budget) as done and therefore re-attacks error images."""
     import csv as _csv
 
     run_path = os.path.join(out_dir, mode, f"runs_{method}.csv")
     if not os.path.exists(run_path):
-        return set()
+        return 0
     with open(run_path, newline="", encoding="utf-8") as fh:
-        return {r["image"] for r in _csv.DictReader(fh)}
+        return sum(1 for _ in _csv.DictReader(fh))
 
 
-def _write_clip_events(method: str, out_dir: str, mode: str, pre_existing: set) -> None:
+def _write_clip_events(method: str, out_dir: str, mode: str, pre_existing: int) -> None:
     """Merge the per-image clip-event counts into runs_<method>.csv.
 
-    _CLIP_EVENTS holds one entry per image attacked THIS run, in C.run processing order.  On a resumed run the
-    done images are skipped without appending to _CLIP_EVENTS, so the entries must be assigned to the NEW rows
-    only (rows whose ``image`` stem is not in ``pre_existing``), in processing order; pre-existing rows'
-    clip_events_182 are left untouched.  Column name and observation-only semantics are unchanged."""
+    _CLIP_EVENTS holds one entry per image attacked THIS run, in C.run processing order (run_official appends
+    exactly one entry per call).  On a resumed run the done images are skipped without appending to _CLIP_EVENTS
+    and errored images are re-attacked, so the entries must be assigned to the rows appended THIS run only --
+    every row at index >= pre_existing -- in processing order.  Pre-existing rows (done ok/budget AND the old
+    error rows) keep their clip_events_182 untouched.  Column name and observation-only semantics are unchanged."""
     import csv as _csv
 
     run_path = os.path.join(out_dir, mode, f"runs_{method}.csv")
@@ -220,8 +225,8 @@ def _write_clip_events(method: str, out_dir: str, mode: str, pre_existing: set) 
     if "clip_events_182" not in fields:
         fields.append("clip_events_182")
     it = iter(_CLIP_EVENTS)
-    for r in rows:
-        if r.get("image") in pre_existing:
+    for i, r in enumerate(rows):
+        if i < pre_existing:
             continue
         r["clip_events_182"] = next(it, "")
     with open(run_path, "w", newline="", encoding="utf-8") as fh:
@@ -252,7 +257,7 @@ def main() -> int:
     def extra_env(args, contract):
         return {"cgba_variant": _VARIANT, "paper_faithful_fix": PAPER_FAITHFUL_FIX}
 
-    pre_existing = _existing_stems(ns.out_dir, ns.mode, method) if ns.out_dir else set()
+    pre_existing = _pre_existing_count(ns.out_dir, ns.mode, method) if ns.out_dir else 0
     rc = C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official,
                os.path.abspath(__file__), extra_env=extra_env)
     if ns.out_dir:

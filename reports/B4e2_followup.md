@@ -77,6 +77,14 @@ OMP_NUM_THREADS=8 python adapters/diag/diag_b4e2_t6_resume.py
 
 Result: 5/5 PASS (A untouched, B=7, C=13, snapshot={A}, column name preserved). **VERDICT: PASS.**
 
+> **G1 (follow-up-2, see `B4e2_followup2.md`):** the stem-keyed merge above left a residual error-row-resume
+> misalignment (`checker_review_followup.md` finding 1): `_existing_stems` treated every pre-existing row
+> (including `error`) as "existing" while `_common.py:425` re-attacks error images, so a re-attacked error image's
+> second row (same stem) was skipped and its count shifted onto the next new image.  G1 replaced `_existing_stems`
+> with `_pre_existing_count` (row-position merge): only rows appended this run (`index >= pre-existing count`)
+> receive a `_CLIP_EVENTS` entry.  Column name, counter semantics and the done-image behaviour are unchanged; the
+> F1(a) numerics remain bit-identical and `diag_b4e2_t6_resume.py` now also passes the error-row scenario (b).
+
 ## 4. F2 — `reports/B4e2_close.md` edits
 
 - (i) T6: replaced the unsupported "Printed counts: …" with the exact evidence path
@@ -114,7 +122,18 @@ Result: 5/5 PASS (A untouched, B=7, C=13, snapshot={A}, column name preserved). 
 | 4 | T3 gate report + `human_preflight_b4e2.md` uncommitted | **fixed** | `reports/raw/B4e2/T3_gate.md` committed; `human_preflight_b4e2.md` committed (FLAG=7) |
 | 5 | §5 missing log sha256; stale HEAD `e9ff7da` | **fixed** | log sha256 table added; HEAD note added |
 
-## 7. sha256 of created / changed files; GPU minutes
+## 7. Deviations from the prompt
+
+1. §9.1's summary claim was over-qualified (`checker_review_followup.md` finding 1): the F1 stem-keyed merge
+   fixed the done-image resume but not the error-row resume — `_existing_stems` treated every pre-existing row
+   (including `error`) as "existing", while `_common.py:425` `done_images` re-attacks error images, so a
+   re-attacked error image appended a second row with the same stem and its `clip_events_182` count was shifted
+   onto the next new image.  The claim is now scoped to "a resume over done (ok/budget) images"; the error-row
+   case is fixed in G1 above (row-position merge, `_pre_existing_count`) and recorded in `B4e2_followup2.md`.
+   Evidence: extended `diag_b4e2_t6_resume.py` scenario (b) (error X; new X,Y; counts [5,9] -> X-new=5, Y=9) and
+   the bit-identical F1(a) re-run (24/24 rows, 24 npz delta bit-equal, `clip_events_182` = 0,0,0).
+
+## 8. sha256 of created / changed files; GPU minutes
 
 | file | change | sha256 |
 |---|---|---|
@@ -131,11 +150,12 @@ Result: 5/5 PASS (A untouched, B=7, C=13, snapshot={A}, column name preserved). 
 GPU minutes: F1(a) CGBA resnet50 NT rows 1–3 ≈ 74 s of attack time (three ~25 s images) plus model load; F3 is
 CPU-only except the smoke gate (read-only). Frozen engine untouched (`835f1933d9e5…`).
 
-## 8. Summary (plain English)
+## 9. Summary (plain English)
 
 1. F1: fixed `_write_clip_events` to attach `clip_events_182` to the NEW rows by image stem (snapshot before `C.run`),
-   so a resumed CGBA run no longer misaligns the column; a CPU sandbox test and a bit-identical fresh re-run
-   (24/24 rows, 24 npz) confirm the fix with `clip_events_182 = 0,0,0`.
+   so a resume over done (ok/budget) images no longer misaligns the column; an error-row resume is fixed in G1 above.
+   A CPU sandbox test and a bit-identical fresh re-run (24/24 rows, 24 npz) confirm the fix with
+   `clip_events_182 = 0,0,0`.
 2. F2: corrected `B4e2_close.md` — cited the actual `runs_CGBA.csv` evidence, documented the `_common.py` vs
    `ttba_common.py` resume-policy divergence as a user decision (contract v1.9), committed the T3 gate report and
    `human_preflight_b4e2.md` (FLAG=7), added every log sha256, and noted the new HEAD and the CGBA_D8only

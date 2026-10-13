@@ -1,0 +1,44 @@
+Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B4e2 follow-up-2:
+address the two findings in reports/raw/B4e2/checker_review_followup.md. GPU ON (study GPU = RTX 5090).
+Worktree /root/autodl-tmp/LGC_frozen, contract v1.8. Save this prompt as
+reports/raw/B4e2/prompt_followup2.txt and print its sha256. EXECUTE step by step. Do not start B5.
+Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official clones, the contract or prereg.
+Allowed: adapters/run_cgba.py, adapters/diag/*, reports/*.
+
+G1 (fix the residual error-row-resume misalignment): _write_clip_events keys on stem only, but
+_common.py:425 done_images treats only (ok, budget) as done, so an ERROR row's image is re-attacked
+and a SECOND row with the same stem is appended; the merge then skips that new row and shifts its
+count onto the next new image (see checker_review_followup.md finding 1 + the reviewer's inline
+demo). Fix the snapshot so a pre-existing ERROR row's stem is NOT treated as "existing":
+  - in _existing_stems, snapshot only rows whose status is in ("ok","budget") (mirror
+    _common.py:425 done_images), or
+  - collect per-image counts as (stem, count) pairs in run_official and merge by (stem,
+    occurrence) for new rows only.
+Keep column name, counter semantics, and the done-image behaviour (F1) unchanged.
+Verify:
+  (a) re-run the fresh CGBA resnet50 NT rows 1-3 into a throwaway dir -> per_checkpoint
+      numerics IDENTICAL to Results/b4e2_smoke_cgba_resnet50 (24/24 rows, 24 npz delta
+      bit-equal), clip_events_182 = 0,0,0;
+  (b) extend adapters/diag/diag_b4e2_t6_resume.py (or add a sibling test) with the
+      error-row-resume scenario: pre-existing error row X, new rows X,Y, counts [5,9] ->
+      assert X-new gets 5 and Y gets 9 (the reviewer's demo must now pass);
+  (c) the existing diag_b4e2_t6_resume.py 5/5 PASS scenario (ok-row A, B=7, C=13) still passes.
+
+G2 (report corrections, reports/B4e2_followup.md only):
+  (i) §8.1: change "so a resumed CGBA run no longer misaligns the column" to the scoped claim
+      "so a resume over done (ok/budget) images no longer misaligns the column; an error-row
+      resume is fixed in G1 above";
+  (ii) add the required "Deviations from the prompt" section (skill lgc-preflight §5 item 4);
+      if empty, write "None."; otherwise list every deviation;
+  (iii) cite the reviewer's finding 1 + the G1 evidence.
+
+G3 (re-verify): python adapters/diag/diag_b4e_t1_clip_source.py -> PASS;
+ python adapters/diag/diag_b4e_t5_done_images.py -> PASS;
+ python adapters/diag/diag_b4e2_t6_resume.py -> PASS;
+ python tools/eval/tests_contract/test_contract.py -> ALL PASS;
+ python tools/eval/selftest_evalkit.py -> ALL PASS (20/20);
+ check_contract --stage smoke --split_dir splits/imagenet/ttba_github splits/places365 splits/robust
+   --roots $(cat reports/B4e2_smoke_roots.txt) --report /tmp/b4e2_followup2_gate.md -> exit 0.
+
+Write reports/B4e2_followup2.md (skill lgc-preflight §5, with the Deviations section) with a
+findings table (fixed / deferred / evidence). Commit code, report, reports/raw/B4e2/*. STOP.
