@@ -20,6 +20,7 @@ seeds or hyper-parameters is changed.
 """
 from __future__ import annotations
 
+import argparse
 import math
 import os
 import sys
@@ -43,6 +44,12 @@ CKPT_DIR = "/root/autodl-tmp/TtBA/model"
 DATA_DIR = "/root/autodl-tmp/ttba_mini_flat"
 BUDGET = 10000
 ARCH = "resnet50"
+
+SPLITS = {
+    "resnet50": "splits/imagenet/ttba_github/resnet50_non_targeted.csv",
+    "Salman2020Do_R50": "splits/robust/Salman2020Do_R50_non_targeted.csv",
+    "resnet50_places365": "splits/places365/resnet50_places365_non_targeted.csv",
+}
 
 
 def tof(x):
@@ -72,7 +79,7 @@ class TraceAttack(Proposed_attack):
         adv_dir = boundary_dir
         adv = x_b
         clean = x_0
-        self._nan = {"min_sum_norm": float("inf"), "max_acos_arg": -1.0, "where": None}
+        self._nan = {"min_sum_norm": float("inf"), "max_acos_arg": -1.0, "where": None, "first_nan_query": None}
         while True:
             mid_dir = adv_dir + clean_dir
             sum_norm = torch.norm(mid_dir)
@@ -90,6 +97,7 @@ class TraceAttack(Proposed_attack):
             if torch.isnan(x_mid).any() and self._nan["where"] is None:
                 self._nan["where"] = f"x_mid nan at num_calls={num_calls} (sum_norm={float(sum_norm):.3e} "
                 f"acos_arg={float(acos_arg):.6f})"
+                self._nan["first_nan_query"] = self.all_queries + 1  # the query that is about to be issued
             if self.is_adversarial(x_mid) == 1:
                 adv_dir = mid_dir
                 adv = x_mid
@@ -156,11 +164,11 @@ class TraceAttack(Proposed_attack):
         return out, qs
 
 
-def run_image(r, idx):
+def run_image(arch, r, idx):
     name = r["source"]
     y_src = int(r["source_label"])
-    x0 = C.load_image(DATA_DIR, name, "cuda")
-    victim = C.load_victim(ARCH, CKPT_DIR, "cuda")
+    x0 = C.load_x0_any(arch, name, "cuda", DATA_DIR)
+    victim = C.load_victim_any(arch, "cuda", CKPT_DIR)
     raw = A._faithful_model(victim)
     params = dict(A.PARAMS, attack_method="CGBA")
     ckpts = C.contract_checkpoints(C.load_contract())
@@ -206,6 +214,17 @@ def run_image(r, idx):
         print(f"    iter={w['iter']:2d} theta={w['theta_deg']:>8.2f} R={w['R']:>10.3f} cap={str(w['cap']):5s} "
               f"break_i={str(w['break_i']):>3s} ret_ratio={w['returned_ratio']:>8.4f} qs={w['qs']}")
 
+    first_nan_query = None
+    for w in atk.walks:
+        d = w.get("bssp_nan_diag")
+        if d and d.get("first_nan_query") is not None:
+            first_nan_query = d["first_nan_query"]
+            break
+    if first_nan_query is not None:
+        print(f"  FIRST-NAN-QUERY-INDEX (global) = {first_nan_query}")
+    else:
+        print("  FIRST-NAN-QUERY-INDEX (global) = None (no NaN event)")
+
     # detail for the first 3 walks + every capped walk + any walk that returned NaN
     for w in atk.walks:
         show = (w["iter"] < 3) or w["cap"] or (w["returned_ratio"] != w["returned_ratio"])
@@ -224,10 +243,13 @@ def run_image(r, idx):
 
 
 def main():
-    nrows = int(sys.argv[1]) if len(sys.argv) > 1 else 3
-    rows = C.load_split_rows(f"splits/imagenet/ttba_github/{ARCH}_non_targeted.csv")[:nrows]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arch", choices=sorted(SPLITS), default="resnet50")
+    ap.add_argument("--rows", type=int, default=3)
+    a = ap.parse_args()
+    rows = C.load_split_rows(SPLITS[a.arch])[: a.rows]
     for i, r in enumerate(rows):
-        run_image(r, i)
+        run_image(a.arch, r, i)
     print("\nDONE cgba_trace")
 
 

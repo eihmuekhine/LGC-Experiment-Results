@@ -39,6 +39,24 @@ from hardlabel_tracker import BudgetExhausted, HardLabelTracker  # noqa: E402
 
 import torch  # noqa: E402
 
+
+def configure_precision() -> None:
+    """D12 precision parity: every adapter runs the frozen-engine FP32 backend.
+
+    ``lgc_bench/env.py:configure_backend`` sets ``cuda.matmul.allow_tf32 = False``, ``cudnn.allow_tf32 = False``,
+    ``cudnn.deterministic = True``, ``cudnn.benchmark = False`` for the two EGC runners.  The baseline adapters
+    historically inherited the PyTorch defaults (cudnn TF32 enabled, benchmark auto), which made the decision
+    oracle depend on the GPU generation (D16: RTX 5090 vs RTX PRO 6000 vs RTX 4080 SUPER give different TF32
+    results for several victims).  This function makes every adapter attack the same FP32 classifier so that
+    results are reproducible across the GPU migration.  Called at import time, before any victim/model is built."""
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+
+configure_precision()
+
 MEAN = (0.485, 0.456, 0.406)
 STD = (0.229, 0.224, 0.225)
 IMG_SIZE = 224
@@ -64,7 +82,7 @@ CONTRACT_PATH = os.path.join(REPO_ROOT, "contract", "paper_contract.yaml")
 
 CKPT_FIELDS = ["arch", "mode", "image", "method", "budget", "found", "state_query", "pix_l2", "pix_linf",
                "adv_float", "adv_uint8", "source_label", "target_label", "ssim", "lpips"]
-RUN_FIELDS = ["arch", "mode", "image", "method", "queries", "status", "wall_time_s", "error"]
+RUN_FIELDS = ["arch", "mode", "image", "method", "queries", "nonfinite_queries", "status", "wall_time_s", "error"]
 
 
 # --------------------------------------------------------------------------------------------- contract
@@ -282,6 +300,46 @@ def normalize(x):
     return (x - mu) / sd
 
 
+# ------------------------------------------------------------------------------------------ non-finite guard
+class NonfiniteGuard(torch.nn.Module):
+    """Wraps the model the HardLabelTracker calls and counts queries whose input contains a non-finite element.
+
+    Observation only (B4e T1c): it never alters the model's output, the query accounting or the attack trajectory.
+    A "query" is one image of the input batch (the tracker counts batches element-wise); the guard counts, over the
+    whole attack, how many of those images carried a NaN or +/-inf anywhere.  Written to runs*.csv as
+    ``nonfinite_queries``.
+    """
+
+    def __init__(self, model):
+        super().__init__()
+        self.model = model
+        self.nonfinite_queries = 0
+
+    def forward(self, x):
+        xb = x if x.dim() == 4 else x.unsqueeze(0)
+        nonfinite = torch.isnan(xb).any(dim=(1, 2, 3)) | torch.isinf(xb).any(dim=(1, 2, 3))
+        self.nonfinite_queries += int(nonfinite.sum().item())
+        return self.model(x)
+
+
+class _GuardedHardLabelTracker(HardLabelTracker):
+    """HardLabelTracker that wraps its model in a NonfiniteGuard (B4e T1c).  Identical bookkeeping otherwise."""
+
+    def __init__(self, model, *args, **kwargs):
+        self._nf_guard = NonfiniteGuard(model)
+        super().__init__(self._nf_guard, *args, **kwargs)
+
+    @property
+    def nonfinite_queries(self) -> int:
+        return self._nf_guard.nonfinite_queries
+
+
+# Every adapter constructs its tracker through C.HardLabelTracker, so rebinding it here applies the non-finite
+# guard to all of them (run_cgba / run_arsopt / run_hsja / run_signopt use C.HardLabelTracker; run_ttba_v2.py is
+# pointed at C.HardLabelTracker too).  hardlabel_tracker.HardLabelTracker itself is untouched (selftest tests it).
+HardLabelTracker = _GuardedHardLabelTracker
+
+
 # -------------------------------------------------------------------------------------------- shared images
 def load_split_rows(split_csv: str) -> List[dict]:
     with open(split_csv, newline="", encoding="utf-8") as fh:
@@ -392,6 +450,12 @@ def build_env(method: str, arch: str, mode: str, args, contract: dict, params: d
         "budget": contract_budget(contract), "max_queries": contract_budget(contract),
         "checkpoints": checkpoints, "budgets": checkpoints,
         "adapter_sha256": adapter_sha256, "tracker_sha256": tracker_sha256,
+        "precision": {
+            "cuda_matmul_allow_tf32": torch.backends.cuda.matmul.allow_tf32,
+            "cudnn_allow_tf32": torch.backends.cudnn.allow_tf32,
+            "cudnn_deterministic": torch.backends.cudnn.deterministic,
+            "cudnn_benchmark": torch.backends.cudnn.benchmark,
+        },
         "contract_sha256": sha256_file(CONTRACT_PATH),
         "adv_store_dtype": os.environ.get("ADV_STORE_DTYPE", "float16"),
         "ADV_STORE_BUDGETS": "unset" if not os.environ.get("ADV_STORE_BUDGETS") else os.environ["ADV_STORE_BUDGETS"],
@@ -399,15 +463,19 @@ def build_env(method: str, arch: str, mode: str, args, contract: dict, params: d
 
 
 def build_manifest(env: dict, contract: dict) -> dict:
-    return {"method": env["method"], "arch": env["arch"], "mode": env["mode"],
-            "split_csv": env["split_csv"], "split_csv_sha256": env["split_csv_sha256"],
-            "victim_weight_file": env["victim_weight_file"], "victim_weight_sha256": env["victim_weight_sha256"],
-            "repo": env["repo"], "repo_commit": env["repo_commit"],
-            "adapter_sha256": env["adapter_sha256"], "tracker_sha256": env["tracker_sha256"],
-            "contract_sha256": env["contract_sha256"], "hyper_parameters": env["params"],
-            "hyper_parameter_sources": env["hyper_parameter_sources"],
-            "torch": env["torch"], "cuda": env["cuda"], "gpu_name": env["gpu"],
-            "budget": env["budget"], "checkpoints": env["checkpoints"]}
+    m = {"method": env["method"], "arch": env["arch"], "mode": env["mode"],
+         "split_csv": env["split_csv"], "split_csv_sha256": env["split_csv_sha256"],
+         "victim_weight_file": env["victim_weight_file"], "victim_weight_sha256": env["victim_weight_sha256"],
+         "repo": env["repo"], "repo_commit": env["repo_commit"],
+         "adapter_sha256": env["adapter_sha256"], "tracker_sha256": env["tracker_sha256"],
+         "contract_sha256": env["contract_sha256"], "hyper_parameters": env["params"],
+         "hyper_parameter_sources": env["hyper_parameter_sources"],
+         "torch": env["torch"], "cuda": env["cuda"], "gpu_name": env["gpu"],
+         "budget": env["budget"], "checkpoints": env["checkpoints"]}
+    for key in ("cgba_variant", "paper_faithful_fix"):
+        if key in env:
+            m[key] = env[key]
+    return m
 
 
 def check_manifest(run_dir: str, manifest: dict) -> None:
@@ -432,6 +500,9 @@ def make_parser(description: str) -> argparse.ArgumentParser:
                     choices=["vgg19", "resnet50", "vit_b_32",
                              "resnet50_places365", "densenet161_places365", "Salman2020Do_R50"])
     ap.add_argument("--mode", choices=["non_targeted", "targeted"], required=True)
+    ap.add_argument("--cgba_variant", choices=["fixed", "d8only"], default="fixed",
+                    help="CGBA adapter only: 'fixed' = D11 acos clip (method id CGBA / CGBA_H); "
+                         "'d8only' = D8 count fix only, no clip (method id CGBA_D8only, non_targeted only).")
     ap.add_argument("--split_csv", required=True)
     ap.add_argument("--data_dir", default="/root/autodl-tmp/ttba_mini_flat")
     ap.add_argument("--ckpt_dir", default="/root/autodl-tmp/TtBA/model")
@@ -511,7 +582,8 @@ def run(method: str, description: str, params: dict, hyper_sources: dict,
         if status == "error":
             # No per_checkpoint rows for an errored image: it will be re-attacked on resume (no duplicates).
             append_csv(run_path, RUN_FIELDS, [{"arch": args.arch, "mode": args.mode, "image": stem,
-                                               "method": method, "queries": tracker.queries, "status": status,
+                                               "method": method, "queries": tracker.queries,
+                                               "nonfinite_queries": tracker.nonfinite_queries, "status": status,
                                                "wall_time_s": round(time.time() - t0, 2), "error": err}])
             print(f"[{idx + 1}/{len(rows)}] {stem} {method} ERROR {err}", flush=True)
             continue
@@ -524,7 +596,8 @@ def run(method: str, description: str, params: dict, hyper_sources: dict,
         append_csv(ck_path, CKPT_FIELDS, ck_rows)
         tracker.save_trace(os.path.join(run_dir, "traces", args.arch, stem, f"{method}.npz"))
         append_csv(run_path, RUN_FIELDS, [{"arch": args.arch, "mode": args.mode, "image": stem, "method": method,
-                                            "queries": tracker.queries, "status": status,
+                                            "queries": tracker.queries,
+                                            "nonfinite_queries": tracker.nonfinite_queries, "status": status,
                                             "wall_time_s": round(time.time() - t0, 2), "error": err}])
         last = ck_rows[-1]
         print(f"[{idx + 1}/{len(rows)}] {stem} {method} q={tracker.queries} "

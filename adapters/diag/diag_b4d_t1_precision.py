@@ -10,9 +10,9 @@ For every paper runner, report the effective values of
 and WHERE each is set (file:line), by reading the source text (never re-running an attack).
 
 The only place any runner DISABLES TF32 is lgc_bench/env.py:configure_backend (matmul + cudnn
-allow_tf32 -> False), called by the two EGC runners.  The baseline adapters do NOT call
-configure_backend: they inherit the torch defaults, except TtBA's official dataset.load_dataset_model
-sets cudnn.deterministic=True (dataset.py:220).  No runner sets float32_matmul_precision.
+allow_tf32 -> False), called by the two EGC runners, and -- since B4e T2 (D12) -- adapters/_common.py
+configure_precision() (matmul + cudnn allow_tf32 -> False, cudnn.deterministic -> True, cudnn.benchmark ->
+False), called at import by every adapter.  No runner sets float32_matmul_precision.
 
     python adapters/diag/diag_b4d_t1_precision.py
 """
@@ -143,14 +143,13 @@ def main() -> int:
           "fp32_prec=highest (configure_backend @ run_benchmark_33b.py:1157)")
     print("run_frame_b1_generic.py         : TF32 OFF (matmul=F,cudnn=F), deterministic=T, benchmark=F, "
           "fp32_prec=highest (configure_backend @ :95)")
-    print("run_cgba.py / run_arsopt.py     : torch defaults — matmul=F, cudnn.allow_tf32=T, deterministic=F, "
-          "benchmark=F, fp32_prec=highest (NO precision setting in adapter)")
-    print("run_ttba_v2.py                  : cudnn.deterministic=T (official dataset.py:220), cudnn.allow_tf32=T "
-          "(default), matmul=F (default), benchmark=F (default), fp32_prec=highest")
+    print("run_cgba.py / run_arsopt.py     : TF32 OFF (matmul=F,cudnn=F), deterministic=T, benchmark=F "
+          "(configure_precision @ adapters/_common.py:52-55, called at import)")
+    print("run_ttba_v2.py                  : TF32 OFF (matmul=F,cudnn=F), deterministic=T, benchmark=F "
+          "(configure_precision @ adapters/_common.py:52-55; official dataset.py:220 also sets deterministic=T)")
     print()
-    print("TF32 DISABLED only in lgc_bench/env.py:configure_backend (EGC runners). The TtBA paper env "
-          "(torch 2.3.0, RTX 4090) ran with cudnn.allow_tf32=True (default): our TtBA adapter does NOT disable "
-          "TF32, so it matches the paper's default. NOTHING changed.")
+    print("ALL RUNNERS IDENTICAL: cuda.matmul.allow_tf32=False, cudnn.allow_tf32=False, "
+          "cudnn.deterministic=True, cudnn.benchmark=False (D12 precision parity).")
     return 0
 
 

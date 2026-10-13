@@ -27,6 +27,12 @@ Allowed changes (documented in env_<method>.json / run_manifest.json):
     unchanged (the cap branch returns ``x_b``), so the trajectory is unchanged; only the count is corrected;
   * verbose_control='No' (print-only; the algorithm is unchanged).
 
+`--cgba_variant fixed` (default) additionally overrides ``SemiCircular_boundary_search`` with a verbatim copy of
+proposed_attack.py:171-196 whose only change wraps the acos argument at :182 in ``torch.clamp(..., -1.0, 1.0)``
+(D11_outcome: the un-clipped argument reaches 1 + 2^-23 and ``torch.acos`` returns NaN, freezing the best-so-far).
+``--cgba_variant d8only`` keeps exactly the D8 count fix (no clip) and is the E17 appendix variant
+(method id ``CGBA_D8only``, non_targeted only).
+
 Everything else (dim_reduc_factor, iteration, initial_query, tol, sigma, the batch gradient estimator size 40 and
 the whole Attack() loop) is the official default, unchanged.
 """
@@ -79,15 +85,27 @@ def make_tracker(victim, x0, y_src, y_tgt, x_tgt, checkpoints, budget):
                               init_adv_pixel=x_tgt if y_tgt is not None else None)
 
 
-def _patched_attack_class():
-    """``Proposed_attack`` subclass that returns the TRUE query count of each boundary walk (B3b T3).
+PAPER_FAITHFUL_FIX = "clip acos arg, proposed_attack.py:182, D11_outcome"
+
+_VARIANT = "fixed"
+
+
+def _patched_attack_class(variant: str = "fixed"):
+    """``Proposed_attack`` subclass with the D8 count fix and (``variant == "fixed"``) the D11 acos clip.
 
     The official walks start ``num_calls = 1`` and return ``num_calls == 40`` after only 39 ``is_adversarial`` calls
     (the 40-iteration cap branch returns ``x_b`` unchanged), so ``q_num`` overshoots ``all_queries`` by one and trips
     ``assert self.all_queries == q_num`` (proposed_attack.py:252).  The returned boundary point is left untouched
     (trajectory identical); only the count is corrected.  A call whose corrected count differs from the official one
     is logged.  Defined lazily because ``proposed_attack`` lives in the official clone, which is only on sys.path
-    after the adapter's main loop adds it."""
+    after the adapter's main loop adds it.
+
+    For ``variant == "fixed"`` (D11_outcome), ``SemiCircular_boundary_search`` is additionally overridden with a
+    verbatim copy of proposed_attack.py:171-196 whose ONLY change wraps the ``acos`` argument at :182 in
+    ``torch.clamp(..., -1.0, 1.0)`` (as the machanic reimplementation does at attack_gpu.py:263-264).  The un-clipped
+    argument reaches 1 + 2^-23 in float32 when the bisection directions coincide, giving ``acos`` -> NaN and a
+    frozen best-so-far (D11 verdict b).  ``variant == "d8only"`` keeps exactly the current adapter (D8 count fix, no
+    clip) and is the E17 appendix variant (method id ``CGBA_D8only``)."""
     from proposed_attack import Proposed_attack
 
     class PatchedProposedAttack(Proposed_attack):
@@ -112,11 +130,39 @@ def _patched_attack_class():
             out, n = super().go_to_boundary_CGBA_H(x_s, eta_o, x_b)
             return out, self._counted(c0, n, "CGBA_H")
 
+        if variant == "fixed":
+            def SemiCircular_boundary_search(self, x_0, x_b, p_near_boundary):
+                num_calls = 0
+                norm_dis = torch.norm(x_b-x_0)
+                boundary_dir = (x_b-x_0)/torch.norm(x_b-x_0)
+                clean_dir = (p_near_boundary - x_0)/torch.norm(p_near_boundary - x_0)
+                adv_dir = boundary_dir
+                adv = x_b
+                clean = x_0
+                while True:
+                    mid_dir = adv_dir + clean_dir
+                    mid_dir = mid_dir/torch.norm(mid_dir)
+                    theta = torch.acos(torch.clamp(torch.dot(boundary_dir.reshape(-1), mid_dir.reshape(-1))/ (torch.linalg.norm(boundary_dir)*torch.linalg.norm(mid_dir)), -1.0, 1.0))
+                    d = torch.cos(theta)*norm_dis
+                    x_mid = x_0 + mid_dir*d
+                    num_calls +=1
+                    if self.is_adversarial(x_mid)==1:
+                        adv_dir = mid_dir
+                        adv = x_mid  
+                    else:
+                        clean_dir = mid_dir  
+                        clean = x_mid                             
+                    if torch.norm(adv-clean).cpu().numpy()<self.tol:
+                        break
+                    if num_calls >100:
+                        break      
+                return adv, num_calls
+
     return PatchedProposedAttack
 
 
 def run_official(tracker, x0, y_src, x_tgt, y_tgt, params):
-    PatchedProposedAttack = _patched_attack_class()
+    PatchedProposedAttack = _patched_attack_class(_VARIANT)
 
     src = C.normalize(x0)
     tar = C.normalize(x_tgt) if x_tgt is not None else None
@@ -131,13 +177,26 @@ def run_official(tracker, x0, y_src, x_tgt, y_tgt, params):
 
 
 def main() -> int:
+    global _VARIANT
     peek = argparse.ArgumentParser(add_help=False)
     peek.add_argument("--mode", choices=["non_targeted", "targeted"], default="non_targeted")
+    peek.add_argument("--cgba_variant", choices=["fixed", "d8only"], default="fixed")
     ns, _ = peek.parse_known_args()
+    _VARIANT = ns.cgba_variant
     targeted = ns.mode == "targeted"
-    method = "CGBA_H" if targeted else "CGBA"
+    if _VARIANT == "d8only" and targeted:
+        raise SystemExit("[!] --cgba_variant d8only is non_targeted only (E17 appendix); use fixed for targeted mode")
+    if _VARIANT == "d8only":
+        method = "CGBA_D8only"
+    else:
+        method = "CGBA_H" if targeted else "CGBA"
     params = dict(PARAMS, attack_method=("CGBA_H" if targeted else "CGBA"))
-    return C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official, os.path.abspath(__file__))
+
+    def extra_env(args, contract):
+        return {"cgba_variant": _VARIANT, "paper_faithful_fix": PAPER_FAITHFUL_FIX}
+
+    return C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official,
+                 os.path.abspath(__file__), extra_env=extra_env)
 
 
 if __name__ == "__main__":
