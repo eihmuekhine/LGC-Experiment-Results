@@ -230,3 +230,46 @@ prefix-identical to the official code before the NaN event, no stall after). Pre
 deterministic) is in every adapter; the re-run baseline smoke is clean (0 stall / 0 non-finite / 0 errors) and
 passes the contract gate on its own. The G5 gate tool + tests pass and the dry-run reports "tool check only".
 Solo B5 cost is ≈ 87.6 GPU-h; the GPU migration and a TtBA resume bug are flagged for contract v1.9.
+
+---
+
+## B4e follow-up: env-recording fix (D12 precision block for TtBA)
+
+**Finding.** `adapters/run_ttba_v2.py` builds its `env` dict manually in both paths (ImageNet `main()` and the
+generic E10/E11 `_main_generic()`) and did NOT include the D12 `precision` block that `adapters/_common.py`'s
+`build_env()` adds. `env_TtBA.json` therefore lacked `cuda_matmul_allow_tf32` / `cudnn_allow_tf32` /
+`cudnn_deterministic` / `cudnn_benchmark`, and `tools/eval/human_preflight.py` FLAGged every TtBA root with
+"not recorded in any env/config file: ['cudnn_tf32', 'deterministic']". Run behaviour was already correct
+(`configure_precision()` runs at `_common` import time); this was a recording gap only.
+
+**Fix (observation-only; no attack-logic / seed / hyper-parameter change).** Added a `precision` block to both
+env dicts in `adapters/run_ttba_v2.py`, reading the four values from `torch` at run time exactly as
+`_common.build_env()` does. `import torch` already precedes both env constructions.
+
+```python
+"precision": {
+    "cuda_matmul_allow_tf32": torch.backends.cuda.matmul.allow_tf32,
+    "cudnn_allow_tf32": torch.backends.cudnn.allow_tf32,
+    "cudnn_deterministic": torch.backends.cudnn.deterministic,
+    "cudnn_benchmark": torch.backends.cudnn.benchmark,
+},
+```
+
+- `adapters/run_ttba_v2.py` sha256 = `80cbcdcc19b2d428b3c56890e7a430b93a77def8caba86f99544e4b0e83bb8ee`.
+
+**Verification.**
+
+| check | result |
+|---|---|
+| `python -m py_compile adapters/run_ttba_v2.py` | OK |
+| precision-block keys == `_common.build_env` (unit check, CPU) | OK |
+| `python tools/eval/tests_contract/test_contract.py` | **ALL PASS (18/18)**, exit 0 |
+| `python tools/eval/selftest_evalkit.py` | **ALL PASS (20/20)**, exit 0 |
+| `python tools/eval/human_preflight.py --roots Results/b4e_smoke_* --out reports/human_preflight_b4e` | **FLAG lines = 6** (unchanged) |
+
+**Why FLAG is still 6 (not 0).** The 6 FLAG lines are the six *existing* `b4e_smoke_ttba_*` env files, which
+were written by the pre-fix code and are immutable records of those runs; the fix only affects newly-written env
+files. Reaching FLAG = 0 requires regenerating those env files via a real TtBA re-run, which (a) cannot be done at
+this time because **no GPU is present** (`nvidia-smi` → "No devices were found"), and (b) must not be done by
+overwriting the existing B4e smoke or hand-editing result files. Any fresh TtBA run with this adapter will emit
+the `precision` block and clear the FLAG (expected at B5).
