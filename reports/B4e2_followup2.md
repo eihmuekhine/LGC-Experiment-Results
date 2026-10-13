@@ -139,7 +139,7 @@ option 1 stem filter, because option 1 alone would leave the old `error` row con
 |---|---|---|
 | `adapters/run_cgba.py` | G1: `_existing_stems` -> `_pre_existing_count` (row-position merge) | `c2779755a1de88ab2830cd61ba0f9edc676a341595de5da0219d85a2c8f91b51` |
 | `adapters/diag/diag_b4e2_t6_resume.py` | G1(b): added error-row scenario (b) | `e5a1d8feced63a50c3d6f370a261e42c184605b838bd6b75864f6da78a4090a9` |
-| `reports/B4e2_followup.md` | G2 edits (i–iii) | `ff1f0ba378e1a4a19768b48e315e10b89ca95cc1b00b6a93d89dbff69555f1cb` |
+| `reports/B4e2_followup.md` | G2 edits (i–iii) | `2f0da00d3bcbdc6463c36a3d16ccf6797dfd67786364a0ccae3e345981bc8dc1` |
 | `reports/B4e2_followup2.md` | this report | (see commit) |
 | `reports/raw/B4e2/prompt_followup2.txt` | this prompt | `1d7525b95ae0197160b7cb1c35a4a1c8b1a0e8dc8e95e690379e3380e4a06271` |
 | `reports/raw/B4e2/checker_review_followup.md` | findings source (committed here) | `403d9d219155de48047c1222b9a374be24a4f68481f529782c39cb609b510172` |
