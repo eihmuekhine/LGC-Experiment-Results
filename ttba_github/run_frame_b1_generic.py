@@ -56,7 +56,7 @@ RUN_FIELDS = ["dataset", "arch", "mode", "image", "method", "space", "status", "
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--arch", required=True,
-                    choices=["vgg19", "resnet50", "vit_b_32",
+                    choices=["vgg19", "resnet50", "vit_b_32", "kat_linear",
                              "resnet50_places365", "densenet161_places365", "Salman2020Do_R50"])
     ap.add_argument("--mode", choices=["non_targeted", "targeted"], required=True)
     ap.add_argument("--split_csv", required=True)
@@ -104,7 +104,7 @@ def main() -> int:
     cfg = EngineConfig(max_queries=budget, checkpoints=tuple(checkpoints), query_batch=a.query_batch,
                        log_geometry=True, save_trace=a.save_traces, verbose=False)
 
-    dataset = "places365" if a.arch in C.PLACES365_WEIGHTS else "imagenet"
+    dataset = "kat" if a.arch == "kat_linear" else ("places365" if a.arch in C.PLACES365_WEIGHTS else "imagenet")
     run_dir = os.path.join(a.out_dir, a.mode)
     os.makedirs(run_dir, exist_ok=True)
     ckpt_csv = os.path.join(run_dir, "per_checkpoint.csv")

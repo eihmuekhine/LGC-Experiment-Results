@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Paired comparison at 10000 queries, vit\_b\_32, targeted.}
+\begin{tabular}{lccccc}
+\toprule
+LGC\_RC\_EGC vs. & $\ell_2$ ratio & $\Delta$ LPIPS$_{\mathrm{alex}}$ & $\Delta$ LPIPS$_{\mathrm{vgg}}$ & $\Delta$ DISTS & $\Delta$ SSIM \\
+\midrule
+TtBA & 0.927 [0.660, 1.103] (1/2) & -0.0270 [-0.0562, 0.0011] (2/1) & -0.0714 [-0.1461, -0.0020] (3/0) & -0.0384 [-0.0766, -0.0083] (3/0) & 0.0150 [0.0002, 0.0267] (3/0) \\
+CGBA\_H & 0.993 [0.846, 1.240] (2/1) & -0.0167 [-0.0338, -0.0029] (3/0) & -0.0586 [-0.1204, -0.0099] (3/0) & -0.0346 [-0.0634, -0.0130] (3/0) & 0.0103 [0.0030, 0.0167] (3/0) \\
+ARS\_OPT & 0.454 [0.381, 0.589] (3/0) & -0.0563 [-0.0953, -0.0053] (3/0) & -0.1039 [-0.1492, -0.0386] (3/0) & -0.0606 [-0.0788, -0.0297] (3/0) & 0.1012 [0.0529, 0.1315] (3/0) \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Paired over common images; 95\% bootstrap CI; $^{*}$ Holm-corrected two-sided Wilcoxon $p<0.05$; (wins/losses) for ours.}
+\end{table*}

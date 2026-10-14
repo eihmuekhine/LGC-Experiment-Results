@@ -1,0 +1,35 @@
+Load skills lgc-preflight, lgc-baselines, lgc-reviewer-eval and lgc-paper-contract. Phase B4g. GPU ON (study GPU,
+STOP if different), D12 flags. Worktree /root/autodl-tmp/LGC_frozen, contract v1.8. The human saved this prompt as
+reports/raw/B4g/prompt.txt; print its sha256. Do not start B5. Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh,
+official clones, the contract or prereg files. Allowed: adapters/_common.py (new arch kat_linear only),
+ttba_github/run_frame_b1_generic.py (--arch kat_linear only), adapters/diag/*, generated/smoke_canary/*.
+
+T1 Known-answer test. adapters/diag/kat_linear.py builds a linear victim and runs EVERY method (LGC_RC_EGC via
+ run_frame_b1_generic.py; TtBA, CGBA/CGBA_H (fixed), ARS_OPT via their adapters) through the normal loader, tracker
+ and adv store, budget 10000, contract checkpoints.
+ Victim: input x in [0,1]^(3x224x224); z = (x - mu)/sd with ImageNet mu/sd inside; logits = W vec(z) + b, K = 10.
+ W_k = bilinear upsampling of a (3,14,14) N(0,1) array to (3,224,224) (seed 0), b ~ N(0,1) (seed 0). The pixel-space
+ gradient of logit k is g_k = W_k / sd (per channel).
+ Images: 256x256 RGB PNGs with values k/255, so Resize(256) is a no-op and CenterCrop(224) is exact; generate
+ candidates 0.5 + 0.08*N(0,1) clipped to [0.3, 0.7] (seed i) and keep the first 5 whose analytic non-targeted
+ distance d* = min_{j != y} (l_y - l_j) / ||g_y - g_j||_2 (computed on the loaded 224x224 x0) lies in [1, 10] and whose
+ minimiser x0 - d* (g_y - g_j*)/||g_y - g_j*|| lies inside [0,1]. Targeted: target class t = the second-largest logit;
+ target image = a candidate classified as t; LB_t = (l_y - l_t)/||g_y - g_t||_2 is a lower bound on any targeted L2.
+ Write splits/kat/kat_linear_{non_targeted,targeted}.csv in the contract split format.
+ Checks per (method, mode, image, checkpoint with found = 1), using the stored npz (delta is float16, u = 2^-11):
+  (a) adversarial: margin m(x0 + delta) <= max_j ||g_y - g_j|| * u * ||delta|| (NT: m = l_y - max_{j != y} l_j;
+      T: m = max_{j != t} l_j - l_t);
+  (b) lower bound: ||delta|| >= d* (1 - u) (NT) or >= LB_t (1 - u) (T);
+  (c) pix_l2 in per_checkpoint equals ||delta|| (relative error < 1e-3);
+  (d) queries == 10000 for baselines, <= 10000 for ours; tracker count == forward count at the linear victim minus
+      the listed evaluation-only calls;
+  (e) descriptive: pix_l2@10000 / d* per method and image (no pass/fail).
+ Table per method x mode: n checked, (a)-(d) PASS counts, median and max ratio (e). Any FAIL in (a)-(d): STOP.
+T2 Pipeline canary on the roots in reports/B4e2_smoke_roots.txt (n = 3; outputs labelled SMOKE, never interpreted):
+ tools/eval/eval_metrics_offline.py -> generated/smoke_canary/metrics.csv (every contract metric, one row per npz);
+ tools/eval/check_contract.py --stage paper --n 3 --metrics_csv generated/smoke_canary/metrics.csv (report I13 and the
+ I14 status list); tools/eval/make_tables_figures.py with the contract budgets -> generated/smoke_canary/ (E1-E8
+ tables and figures); tools/eval/make_comparison_grid.py -> E7 grid. Table: element | output file | produced? |
+ methods present | cells present | n printed. Override every evalkit default list with the contract values.
+
+Write reports/B4g_kat_canary.md (skill lgc-preflight §5), commit. STOP.

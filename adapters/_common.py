@@ -161,6 +161,8 @@ def load_victim_any(arch: str, device: str, ckpt_dir: str = "/root/autodl-tmp/Tt
 
     Every victim has the SAME interface: input [N,3,224,224] in [0,1] -> logits, with ImageNet normalisation
     inside the wrapper, and a ``victim_weight_file`` / ``victim_weight_sha256`` attribute."""
+    if arch == "kat_linear":
+        return build_kat_linear_victim(device)
     if arch in PLACES365_WEIGHTS:
         return build_places365_victim(arch, device)
     if arch == ROBUST_MODEL_NAME:
@@ -227,6 +229,87 @@ def build_robust_victim(device: str):
     model.victim_weight_file = ROBUST_WEIGHT_FILE
     model.victim_weight_sha256 = ROBUST_WEIGHT_SHA256
     return model
+
+
+# ----------------------------------------------------------------------------------- kat_linear victim (B4g)
+# Known-answer test victim: a linear classifier with K=10 classes over ImageNet-normalised features.
+#   z = (x - mu)/sd ; logits_k = <W_k, z> + b_k
+# W_k = bilinear upsampling of a (3,14,14) N(0,1) array to (3,224,224) (seed 0), b ~ N(0,1) (seed 0).
+# The pixel-space gradient of logit k is g_k = W_k / sd (per channel), so every check of the B4g known-answer
+# test is analytic.  The victim counts every forward pass (per image) and, when KAT_FORWARD_COUNT_FILE is set,
+# dumps that count at process exit (used by adapters/diag/kat_linear.py check (d)).
+KAT_LINEAR_K = 10
+KAT_DATA_DIR = os.path.join(REPO_ROOT, "generated", "smoke_canary", "kat")
+
+
+def kat_linear_w_b():
+    """Deterministic W (K,3,224,224) float32 and b (K,) float32 for the kat_linear victim (seed 0)."""
+    import torch.nn.functional as F
+
+    rng = np.random.RandomState(0)
+    A = rng.randn(KAT_LINEAR_K, 3, 14, 14).astype(np.float32)          # (K,3,14,14) N(0,1)
+    b = rng.randn(KAT_LINEAR_K).astype(np.float32)                     # (K,) N(0,1)
+    W = F.interpolate(torch.from_numpy(A), size=(IMG_SIZE, IMG_SIZE),
+                      mode="bilinear", align_corners=False).numpy()    # (K,3,224,224)
+    return W, b
+
+
+class KatLinearRaw(torch.nn.Module):
+    """Un-normalised linear map for the kat_linear victim: normalised input z -> logits = W vec(z) + b.
+
+    This is the analogue of the torchvision net the real victims expose as ``_Norm.m`` / ``NormalizedVictim.net``:
+    ``C.raw_net(victim)`` returns it, so the CGBA faithful path feeds the normalised tensor straight into this net
+    (exactly as the official CGBA drivers feed the un-normalised ResNet-50).  It counts every forward pass (per
+    image); when KAT_FORWARD_COUNT_FILE is set, the count is dumped at process exit (adapters/diag/kat_linear.py
+    check (d))."""
+
+    def __init__(self, W, b):
+        super().__init__()
+        self.register_buffer("W", torch.from_numpy(W))
+        self.register_buffer("b", torch.from_numpy(b))
+        self.forward_count = 0
+        self._count_file = os.environ.get("KAT_FORWARD_COUNT_FILE")
+        if self._count_file:
+            import atexit
+            atexit.register(lambda: self._dump_forward_count())
+
+    def _dump_forward_count(self) -> None:
+        try:
+            with open(self._count_file, "w", encoding="utf-8") as fh:
+                fh.write(str(self.forward_count))
+        except Exception:  # noqa: BLE001
+            pass
+
+    def forward(self, z):
+        self.forward_count += int(z.shape[0])
+        return torch.einsum("kchw,bchw->bk", self.W, z) + self.b
+
+
+class KatLinearVictim(torch.nn.Module):
+    """Linear victim: input x in [0,1]^(3x224x224) -> logits (K,); z = (x - mu)/sd; logits = W vec(z) + b.
+
+    The input is clamped to [0,1] (its stated domain) before normalisation, mirroring how the real victims are fed
+    only in-range images (TtBA wraps them in ClampedVictim, CGBA clips in-loop).  The un-normalised linear map is
+    exposed as ``.m`` so the CGBA faithful path (``C.raw_net``) receives the normalised tensor directly."""
+
+    def __init__(self, device: str = "cpu"):
+        super().__init__()
+        W, b = kat_linear_w_b()
+        self.m = KatLinearRaw(W, b)
+        self.register_buffer("mu", torch.tensor(MEAN, dtype=torch.float32).view(1, 3, 1, 1))
+        self.register_buffer("sd", torch.tensor(STD, dtype=torch.float32).view(1, 3, 1, 1))
+        wb = np.concatenate([W.ravel(), b.ravel()])
+        self.victim_weight_file = "kat_linear_seed0"
+        self.victim_weight_sha256 = sha256_bytes(wb.astype(np.float32).tobytes())
+
+    def forward(self, x):
+        x = x.clamp(0.0, 1.0)
+        z = (x - self.mu) / self.sd
+        return self.m(z)
+
+
+def build_kat_linear_victim(device: str):
+    return KatLinearVictim(device).to(device).eval()
 
 
 def robust_victim_info(device: str = "cpu") -> dict:
@@ -407,6 +490,8 @@ def load_x0_any(arch: str, name: str, device: str, data_dir: str = "/root/autodl
 
     Places365 -> Places365 loader (Resize 256 -> CenterCrop 224, flat val_256); RobustBench -> the TtBA-mini
     flat ImageNet loader; the main ImageNet victims -> ``load_image(data_dir, ...)`` (unchanged)."""
+    if arch == "kat_linear":
+        return load_image(KAT_DATA_DIR, name, device)
     if arch in PLACES365_WEIGHTS:
         return load_image_places365(name, device)
     if arch == ROBUST_MODEL_NAME:
@@ -516,7 +601,7 @@ def check_manifest(run_dir: str, manifest: dict) -> None:
 def make_parser(description: str) -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(description=description, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--arch", required=True,
-                    choices=["vgg19", "resnet50", "vit_b_32",
+                    choices=["vgg19", "resnet50", "vit_b_32", "kat_linear",
                              "resnet50_places365", "densenet161_places365", "Salman2020Do_R50"])
     ap.add_argument("--mode", choices=["non_targeted", "targeted"], required=True)
     ap.add_argument("--cgba_variant", choices=["fixed", "d8only"], default="fixed",
