@@ -1,0 +1,31 @@
+# LESSONS — one ledger of what went wrong and what now prevents it (LGC-EGC revision)
+
+Version 1.0, 2026-10-14. Replaces lessons scattered over handoffs, skills (U-lists) and reviews.
+Every agent reads the **active** rows at the start of a phase (skill `lgc-preflight` §7). `encoded` rows are enforced by
+code or tests and are kept as the reason for that code. A lesson is never deleted: it is set to `retired` with a reason.
+New rows: proposed by A, R or L in a STOP bundle or a review; added only by H (or L on H's instruction).
+Unlike AutoResearchClaw's time-decayed lesson store, rows here do not fade with time: most are invariants of the protocol.
+
+| id | date | area | severity | lesson | evidence | mitigation (where encoded) | status |
+|---|---|---|---|---|---|---|---|
+| L01 | 2026-10-13 | oracle | critical | PyTorch leaves cuDNN TF32 on by default; baselines then attack a different (TF32) classifier than our FP32 engine. CGBA resnet50 NT L2@10k 67.8/46.9/31.7 (TF32) vs 6.45/6.33/2.61 (FP32). | B4e report T2; b4e_review | D12; `adapters/_common.py` sets flags at import; env `precision` block; human_preflight §1 | encoded |
+| L02 | 2026-10-13 | baseline | critical | Official CGBA `proposed_attack.py:182` acos is unclamped; FP32 rounding gives 1+2^-23 -> NaN -> best-so-far freezes (flat 2000->10000). `:155` (walk theta) is also unclamped. | B4d T4; GLM calibration review | D11 clip at :182; NonfiniteGuard; stall scan (human_preflight §5); :155 -> STOP + pre-registered remedy (v1.9) | active |
+| L03 | 2026-10-13 | env | critical | The AutoDL instance changed GPU between sessions (RTX 5090 -> 4080 SUPER -> PRO 6000) without notice; results diverge across GPUs. | B4e T0; I10 FAIL | T0 device check STOP in every GPU prompt; D16 one GPU type; human_preflight §1 | active |
+| L04 | 2026-10-12/13 | agent | major | Author summaries are unreliable: a false "MISSING" (B4c), "not a fairness gap" for TF32 (B4d), a wall-clock throughput metric on unequal workloads (B4d), "verbatim" copy that was not verbatim (cgba_trace.py:109). | b4c/b4d reviews; calibration | skill `lgc-preflight` §2 evidence rules; reviewer reads raw outputs first | active |
+| L05 | 2026-10-13 | review | major | A model switch inside the author's session is not a review: it inherits the author's context, edit rights and later decisions (answers leaked). | B4e follow-up session export | runbook v1.2: agent `reviewer`, new session, header check | active |
+| L06 | 2026-10-13 | review | major | Prompts were not archived; reviewers reconstructed specs from the author's transcript. | B4d/B4e reviews | H saves `reports/raw/<phase>/prompt.txt`; A prints its sha256 | active |
+| L07 | 2026-10-10 | agent | major | OpenCode auto-loads the repo-root `AGENTS.md` and installed skills; stale or foreign instructions leak into every session. | handoff 2026-10-10 §9.5 | archive old AGENTS.md; never install skill packs globally (e.g. `npx @orchestra-research/ai-research-skills`) on the AutoDL machine | active |
+| L08 | 2026-10-09 | agent | major | Agent-written evaluation code had bugs (read-only property write, GPU->CPU copy per query, inverted uint8 check). | handoff §6 evalkit | tested evalkit only; agents implement from specs with acceptance tests | encoded |
+| L09 | 2026-10-08 | infra | major | Six concurrent attack processes slowed TtBA 13-25x (486 s/img vs ~19 s); TtBA+EGC pair gave weighted speedup ~1.1. | Build 38; B4d T3 | D14 one process per GPU; parallelism across GPUs only | encoded |
+| L10 | 2026-10-13 | harness | major | `ttba_common.py:83 done_images` keeps only status "ok"; baselines end with "budget", so resume re-runs finished images. The proposed fix that skips only ok/budget still re-runs "error" rows, against D6. | B4e follow-up F3 | D18: any row = done (B4e2 T5) | active |
+| L11 | 2026-10-13 | harness | minor | `check_contract.py` rewrites the tracked `reports/contract_status.md` regardless of `--report`; two concurrent runs race on it. | GLM B4e re-review | B4e2 T7; reviewers use `--report /tmp/...` | active |
+| L12 | 2026-10-13 | provenance | minor | One writer (`run_ttba_v2.py`) built its env dict by hand and missed the D12 block (FLAG = 6). | B4e follow-up F1 | one `build_env` for every writer; human_preflight §1 | active |
+| L13 | 2026-10-10 | spec | major | Several plan documents drifted apart. | handoff §9.1 | `contract/paper_contract.yaml` is the single source of truth | encoded |
+| L14 | 2026-10-10/13 | spec | major | The lead analyst's own specs were wrong three times (architecture-independent pi; "exclude dev seeds" vs prereg §7; reviewer "same session as A"). | handoff §9.2; runbook v1.1 | check every new spec against `prereg_build38.txt`, the contract and the code | active |
+| L15 | 2026-10-12 | stats | major | n = 3 G5 previews are noise: a faithful TtBA showed ratios 0.16-8.2. | B4c review | D13: G5 only at n >= 30, paired bootstrap CI | encoded |
+| L16 | 2026-10-12 | protocol | critical | An UnnormalizeVictim round trip flipped decisions. | B3b | raw-net diff must be 0 (B4f T6) | encoded |
+| L17 | 2026-10-10 | baseline | major | CGBA query count was off by one. | D8 | adapter count fix; tracker is the only counter | encoded |
+| L18 | 2026-10-10 | protocol | major | Runs without `--split_csv` silently use another image list. | handoff §9.3 | runner refuses without it; I02 image-set check | encoded |
+| L19 | 2026-10-10 | infra | minor | The no-GPU instance has little RAM; `eval_metrics_offline.py --selftest` runs out of memory. | handoff §6 | run it with the GPU on | active |
+| L20 | 2026-10-13 | infra | minor | An empty model reply within 1-4 s is a request error (provider pin name, privacy filter, context limit), not an answer. | Qwen/Kimi calibration attempts | read the OpenCode log before retrying | active |
+| L21 | 2026-10-14 | review | major | A run can be complete, logged and still uninformative (identical outputs across methods or images). | AutoResearchClaw T10 case study; CGBA stall | human_preflight §7 degeneracy checks | active |

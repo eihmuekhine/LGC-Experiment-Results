@@ -56,8 +56,28 @@ would object -> L2, keep the default; (3) needed only to run inside the harness 
 5. sha256 of every created or changed file; GPU minutes.
 6. Five-line plain-English summary. STOP.
 
-## 6. Review mode (when invoked as `@checker`)
-You did not write the code. Read, in this order: the prompt/spec, `git diff <base>..HEAD`, the raw outputs under
-`reports/raw/<phase>/`, and only then the author's report. For each acceptance criterion give PASS/FAIL with your own
-evidence (rerun cheap commands yourself). List every claim in the author's report that the evidence does not support.
-Never edit files in review mode.
+## 6. Review mode (agent `reviewer`, always in a new session)
+You did not write the code. If this session already contains the author's work (earlier turns by another agent or
+model), say so in the first line and stop: that is not an independent review. Read, in this order: the prompt/spec
+(`reports/raw/<phase>/prompt.txt`), `git diff <base>..HEAD`, the raw outputs under `reports/raw/<phase>/`, and only then
+the author's report. For each acceptance criterion give PASS/FAIL with your own evidence (rerun cheap commands
+yourself). List every claim in the author's report that the evidence does not support. Never edit files except your
+review file; never run git checkout/reset/commit/add; run tools/eval/check_contract.py only with --report /tmp/<name>.md
+(it can rewrite reports/contract_status.md). If the spec file is missing, write that as the first finding.
+
+## 7. Lessons ledger and STOP bundle
+- At the start of every phase read `docs/LESSONS.md` and list, in the report's first section, the ids of the `active`
+  rows that apply to this phase. Never contradict an active row; if a prompt seems to, STOP and ask.
+- On any STOP write `reports/stop/<phase>_<cell>_<YYYYmmdd-HHMM>.md` before anything else, with exactly these fields:
+  1. `code`: E-ENV (GPU, driver, flags) | E-INFRA (OOM, disk, killed process, network; no row written) | E-BUDGET |
+     E-NAN | E-STALL | E-X0 | E-DEGEN (human_preflight §7) | E-G5 | E-SPEC (prompt unclear or needs a file outside
+     the allowed list) | E-OTHER;
+  2. `signature`: the exact failing line or check output;
+  3. `evidence`: file:line or command, and the last 50 log lines;
+  4. `env`: GPU name, driver, torch, backend flags, HEAD, contract sha256;
+  5. `scope`: cells and images affected; rows already completed;
+  6. `candidates`: possible causes with what would distinguish them (no fix applied);
+  7. `proposed lesson`: one row in the LESSONS.md format, or "none".
+- Only E-INFRA may be handled without the human: resume the same cell if B4e2 T4 (row-split invariance) was IDENTICAL
+  and the D18 resume rule is in force, otherwise restart the whole cell into a fresh directory; at most 2 attempts per
+  cell, each recorded in the STOP bundle. Every other code waits for the human. Never re-run single images selectively.

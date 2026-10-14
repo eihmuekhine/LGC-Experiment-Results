@@ -8,7 +8,7 @@ Usage (from the worktree root):
     python tools/eval/human_preflight.py --roots Results/b4e_smoke_* --out reports/human_preflight_b4e
 
 Outputs:
-    <out>.md                      tables for sections 1-5 (read every FLAG line)
+    <out>.md                      tables for sections 1-5 and 7 (read every FLAG line)
     <out>_grid_<arch>_<mode>.png  section 6: clean | adversarial per method | 0.5 + amp * delta
 
 Sections:
@@ -18,6 +18,7 @@ Sections:
     4 L2 recompute  ||delta|| from the npz vs pix_l2 in per_checkpoint and the npz l2 field
     5 curves        found rate and median pix_l2 per budget; flat best-so-far (stall) count
     6 visual grid   images a human must look at
+    7 degeneracy    identical trajectories across methods, constant outputs, found rate 0, one x0 for many images
 """
 from __future__ import annotations
 
@@ -343,6 +344,74 @@ def section_grid(roots: List[str], out: str, n_images: int, budget: int, amp: fl
     return lines + [""]
 
 
+# ---------------------------------------------------------------------------------------------- 7
+def section_degeneracy(roots: List[str], expect_identical: List[Tuple[str, str]]) -> Tuple[List[str], int]:
+    """Silent-collapse checks (cf. AutoResearchClaw DEGENERATE_METRICS / its T10 case study).
+
+    (a) two different methods with bit-identical pix_l2 trajectories on the same image (wiring or copy bug),
+        except declared pairs such as CGBA vs CGBA_D8only, which are identical by design under D12;
+    (b) one method with zero spread of pix_l2 across >= 3 images at its last budget (collapse to a constant);
+    (c) one method that never finds an adversarial example at its last budget (found rate 0);
+    (d) two different images with the same x0 hash (loader feeds one image for many rows).
+    """
+    lines = ["## 7. Degeneracy (silent collapse: identical methods, constant outputs, never found, duplicated inputs)", ""]
+    allowed = {frozenset(p) for p in expect_identical}
+    flags_out = 0
+    frames = []
+    for root in roots:
+        for md in mode_dirs(root):
+            ck = read_csvs(md, "per_checkpoint")
+            if ck.empty or not {"budget", "found", "pix_l2", "image"} <= set(ck.columns):
+                continue
+            ck = ck.copy()
+            ck["mode_dir"] = os.path.basename(md)
+            ck["arch_"] = ck["arch"].astype(str) if "arch" in ck.columns else "?"
+            frames.append(ck)
+    if not frames:
+        return lines + ["- no per_checkpoint files", ""], 0
+    ck = pd.concat(frames, ignore_index=True)
+    for c in ("budget", "found", "pix_l2"):
+        ck[c] = pd.to_numeric(ck[c], errors="coerce")
+    ck["img"] = ck["image"].map(stem)
+    for (arch, mode), g in ck.groupby(["arch_", "mode_dir"]):
+        traj: Dict[str, Dict[str, tuple]] = defaultdict(dict)
+        for (meth, img), h in g.groupby(["method", "img"]):
+            h = h.sort_values("budget")
+            traj[meth][img] = tuple(zip(h["budget"].tolist(), h["found"].tolist(), h["pix_l2"].round(12).tolist()))
+        meths = sorted(traj)
+        for i, m1 in enumerate(meths):
+            for m2 in meths[i + 1:]:
+                common = set(traj[m1]) & set(traj[m2])
+                same = [im for im in common if traj[m1][im] == traj[m2][im] and any(f == 1 for _, f, _ in traj[m1][im])]
+                if same:
+                    ok = frozenset((m1, m2)) in allowed
+                    lines.append(f"- {arch}/{mode}: {m1} and {m2} identical on {len(same)}/{len(common)} images"
+                                 + ("  (declared identical by design)" if ok else "  **FLAG**"))
+                    flags_out += int(not ok)
+        for meth, h in g.groupby("method"):
+            bmax = h["budget"].max()
+            last = h[h["budget"] == bmax]
+            found = last[last["found"] == 1]["pix_l2"].dropna()
+            if len(last) >= 3 and len(found) == 0:
+                lines.append(f"- {arch}/{mode} {meth}: found rate 0 at budget {int(bmax)} on {len(last)} images  **FLAG**")
+                flags_out += 1
+            elif len(found) >= 3 and float(found.std(ddof=0)) == 0.0:
+                lines.append(f"- {arch}/{mode} {meth}: pix_l2 identical on all {len(found)} images at budget {int(bmax)}  **FLAG**")
+                flags_out += 1
+    xh: Dict[Tuple[str, str], set] = defaultdict(set)
+    for root in roots:
+        for p in glob.glob(os.path.join(root, "*", "adv_store", "*", "*", "x0.npy")):
+            parts = p.split(os.sep)
+            xh[(parts[-3], sha256_file(p))].add(parts[-2])
+    dup = {k: v for k, v in xh.items() if len(v) > 1}
+    for (arch, h), imgs in sorted(dup.items()):
+        lines.append(f"- {arch}: one x0 tensor ({h[:12]}) stored for {len(imgs)} different images {sorted(imgs)[:4]}  **FLAG**")
+    flags_out += len(dup)
+    if flags_out == 0:
+        lines.append("- no degenerate pattern found")
+    return lines + [""], flags_out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--roots", nargs="+", required=True)
@@ -353,7 +422,10 @@ def main() -> int:
     ap.add_argument("--grid_budget", type=int, default=10000)
     ap.add_argument("--amp", type=float, default=10.0)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--expect_identical", nargs="*", default=["CGBA:CGBA_D8only"],
+                    help="method pairs that are identical by design (A:B); others identical => FLAG")
     a = ap.parse_args()
+    pairs = [tuple(x.split(":", 1)) for x in a.expect_identical if ":" in x]
     roots = [r for r in a.roots if os.path.isdir(r)]
     out_dir = os.path.dirname(os.path.abspath(a.out))
     os.makedirs(out_dir, exist_ok=True)
@@ -362,7 +434,8 @@ def main() -> int:
             raise SystemExit(f"[!] --out must not be inside a result root ({r})")
     report, total = [f"# Human pre-flight report", "", f"roots: {roots}", ""], 0
     for fn in (lambda: section_env(roots), lambda: section_x0(roots), lambda: section_budget(roots, a.budget),
-               lambda: section_l2(roots, a.l2_samples, a.seed), lambda: section_curves(roots)):
+               lambda: section_l2(roots, a.l2_samples, a.seed), lambda: section_curves(roots),
+               lambda: section_degeneracy(roots, pairs)):
         lines, n = fn()
         report += lines
         total += n
