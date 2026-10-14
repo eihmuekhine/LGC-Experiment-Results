@@ -1,0 +1,19 @@
+[*] GPU: NVIDIA GeForce RTX 5090
+[*] D12 flags: matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| file | n | wrong source | wrong target | same-label | dups |
+|---|---|---|---|---|---|
+| splits/imagenet/ttba_github/vgg19_non_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/imagenet/ttba_github/vgg19_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/imagenet/ttba_github/resnet50_non_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/imagenet/ttba_github/resnet50_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/imagenet/ttba_github/vit_b_32_non_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/imagenet/ttba_github/vit_b_32_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/places365/resnet50_places365_non_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/places365/resnet50_places365_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/places365/densenet161_places365_non_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/places365/densenet161_places365_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/robust/Salman2020Do_R50_non_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+| splits/robust/Salman2020Do_R50_targeted.csv | 200 | 0 | 0 | 0 | 0 |
+
+[*] files with any violation: 0/12

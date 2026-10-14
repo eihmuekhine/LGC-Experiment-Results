@@ -1,0 +1,91 @@
+[*] roots: 24
+
+## (d) per-cell query accounting (budget 10000)
+
+| root/mode | method | n | ==10000 | <10000 (status) | >10000 |
+|---|---|---|---|---|---|
+| Results/b4e2_smoke_LGC_RC_EGC_resnet50/non_targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_resnet50/targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_vgg19/non_targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_vgg19/targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_vit_b_32/non_targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_vit_b_32/targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_resnet50_places365_non_targeted/non_targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_resnet50_places365_targeted/targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_densenet161_places365_non_targeted/non_targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_densenet161_places365_targeted/targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_Salman2020Do_R50_non_targeted/non_targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_LGC_RC_EGC_Salman2020Do_R50_targeted/targeted | LGC_RC_EGC | 3 | 0 | ok, ok, ok | 0 |
+| Results/b4e2_smoke_ttba_resnet50/non_targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_resnet50/targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_vgg19/non_targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_vgg19/targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_vit_b_32/non_targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_vit_b_32/targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_resnet50_places365/non_targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_resnet50_places365/targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_densenet161_places365/non_targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_densenet161_places365/targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/non_targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/targeted | TtBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_resnet50/non_targeted | CGBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_resnet50/targeted | CGBA_H | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_vgg19/non_targeted | CGBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_vgg19/targeted | CGBA_H | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_vit_b_32/non_targeted | CGBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_vit_b_32/targeted | CGBA_H | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_resnet50_places365/non_targeted | CGBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_resnet50_places365/targeted | CGBA_H | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_densenet161_places365/non_targeted | CGBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_densenet161_places365/targeted | CGBA_H | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_Salman2020Do_R50/non_targeted | CGBA | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_cgba_Salman2020Do_R50/targeted | CGBA_H | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_arsopt_resnet50/non_targeted | ARS_OPT | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_arsopt_resnet50/targeted | ARS_OPT | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_arsopt_vgg19/non_targeted | ARS_OPT | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_arsopt_vgg19/targeted | ARS_OPT | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_arsopt_vit_b_32/non_targeted | ARS_OPT | 3 | 3 | - | 0 |
+| Results/b4e2_smoke_arsopt_vit_b_32/targeted | ARS_OPT | 3 | 3 | - | 0 |
+
+## (e) tracker vs official counter (TtBA: queries=tracker, total_queries=official atk.queries)
+
+| root/mode | image | tracker queries | official total_queries | offset (tracker-official) |
+|---|---|---|---|---|
+| Results/b4e2_smoke_ttba_resnet50/non_targeted | ILSVRC2012_val_00007450.JPEG | 10000 | 9999 | 1 |
+| Results/b4e2_smoke_ttba_resnet50/non_targeted | ILSVRC2012_val_00015433.JPEG | 10000 | 9914 | 86 |
+| Results/b4e2_smoke_ttba_resnet50/non_targeted | ILSVRC2012_val_00025151.JPEG | 10000 | 9779 | 221 |
+| Results/b4e2_smoke_ttba_resnet50/targeted | ILSVRC2012_val_00007450.JPEG | 10000 | 9794 | 206 |
+| Results/b4e2_smoke_ttba_resnet50/targeted | ILSVRC2012_val_00015433.JPEG | 10000 | 9880 | 120 |
+| Results/b4e2_smoke_ttba_resnet50/targeted | ILSVRC2012_val_00025151.JPEG | 10000 | 9784 | 216 |
+| Results/b4e2_smoke_ttba_vgg19/non_targeted | ILSVRC2012_val_00037360.JPEG | 10000 | 9859 | 141 |
+| Results/b4e2_smoke_ttba_vgg19/non_targeted | ILSVRC2012_val_00002148.JPEG | 10000 | 9939 | 61 |
+| Results/b4e2_smoke_ttba_vgg19/non_targeted | ILSVRC2012_val_00039161.JPEG | 10000 | 9963 | 37 |
+| Results/b4e2_smoke_ttba_vgg19/targeted | ILSVRC2012_val_00037360.JPEG | 10000 | 9779 | 221 |
+| Results/b4e2_smoke_ttba_vgg19/targeted | ILSVRC2012_val_00002148.JPEG | 10000 | 9992 | 8 |
+| Results/b4e2_smoke_ttba_vgg19/targeted | ILSVRC2012_val_00039161.JPEG | 10000 | 9852 | 148 |
+| Results/b4e2_smoke_ttba_vit_b_32/non_targeted | ILSVRC2012_val_00024661.JPEG | 10000 | 9902 | 98 |
+| Results/b4e2_smoke_ttba_vit_b_32/non_targeted | ILSVRC2012_val_00046402.JPEG | 10000 | 9886 | 114 |
+| Results/b4e2_smoke_ttba_vit_b_32/non_targeted | ILSVRC2012_val_00030908.JPEG | 10000 | 9944 | 56 |
+| Results/b4e2_smoke_ttba_vit_b_32/targeted | ILSVRC2012_val_00024661.JPEG | 10000 | 9989 | 11 |
+| Results/b4e2_smoke_ttba_vit_b_32/targeted | ILSVRC2012_val_00046402.JPEG | 10000 | 9999 | 1 |
+| Results/b4e2_smoke_ttba_vit_b_32/targeted | ILSVRC2012_val_00030908.JPEG | 10000 | 9782 | 218 |
+| Results/b4e2_smoke_ttba_resnet50_places365/non_targeted | Places365_val_00002172.jpg | 10000 | 9985 | 15 |
+| Results/b4e2_smoke_ttba_resnet50_places365/non_targeted | Places365_val_00023888.jpg | 10000 | 9964 | 36 |
+| Results/b4e2_smoke_ttba_resnet50_places365/non_targeted | Places365_val_00004317.jpg | 10000 | 9995 | 5 |
+| Results/b4e2_smoke_ttba_resnet50_places365/targeted | Places365_val_00002172.jpg | 10000 | 9839 | 161 |
+| Results/b4e2_smoke_ttba_resnet50_places365/targeted | Places365_val_00023888.jpg | 10000 | 9851 | 149 |
+| Results/b4e2_smoke_ttba_resnet50_places365/targeted | Places365_val_00004317.jpg | 10000 | 9866 | 134 |
+| Results/b4e2_smoke_ttba_densenet161_places365/non_targeted | Places365_val_00002172.jpg | 10000 | 9970 | 30 |
+| Results/b4e2_smoke_ttba_densenet161_places365/non_targeted | Places365_val_00023888.jpg | 10000 | 9969 | 31 |
+| Results/b4e2_smoke_ttba_densenet161_places365/non_targeted | Places365_val_00004317.jpg | 10000 | 9810 | 190 |
+| Results/b4e2_smoke_ttba_densenet161_places365/targeted | Places365_val_00002172.jpg | 10000 | 9804 | 196 |
+| Results/b4e2_smoke_ttba_densenet161_places365/targeted | Places365_val_00023888.jpg | 10000 | 9789 | 211 |
+| Results/b4e2_smoke_ttba_densenet161_places365/targeted | Places365_val_00004317.jpg | 10000 | 9986 | 14 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/non_targeted | ILSVRC2012_val_00010608.JPEG | 10000 | 9999 | 1 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/non_targeted | ILSVRC2012_val_00046453.JPEG | 10000 | 9801 | 199 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/non_targeted | ILSVRC2012_val_00024509.JPEG | 10000 | 9799 | 201 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/targeted | ILSVRC2012_val_00010608.JPEG | 10000 | 9900 | 100 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/targeted | ILSVRC2012_val_00046453.JPEG | 10000 | 9915 | 85 |
+| Results/b4e2_smoke_ttba_Salman2020Do_R50/targeted | ILSVRC2012_val_00024509.JPEG | 10000 | 9893 | 107 |
+
+[*] cells with any >budget image: 0

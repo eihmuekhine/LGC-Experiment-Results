@@ -57,6 +57,23 @@ def configure_precision() -> None:
 
 configure_precision()
 
+
+def backend_flags() -> dict:
+    """The five precision-parity backend flags read from torch at run time (skill lgc-preflight §4).
+
+    Written into every adapter env_*.json under the literal ``backend.*`` keys so that human_preflight section 1
+    and the D12 parity audit see exactly what the attack ran with.  ``float32_matmul_precision`` is read via
+    ``torch.get_float32_matmul_precision()`` (the ``torch.backends`` attribute of the same name does not exist
+    in torch 2.7)."""
+    return {
+        "backend.cuda_matmul_allow_tf32": torch.backends.cuda.matmul.allow_tf32,
+        "backend.cudnn_allow_tf32": torch.backends.cudnn.allow_tf32,
+        "backend.cudnn_deterministic": torch.backends.cudnn.deterministic,
+        "backend.cudnn_benchmark": torch.backends.cudnn.benchmark,
+        "backend.float32_matmul_precision": torch.get_float32_matmul_precision(),
+    }
+
+
 MEAN = (0.485, 0.456, 0.406)
 STD = (0.229, 0.224, 0.225)
 IMG_SIZE = 224
@@ -455,7 +472,9 @@ def build_env(method: str, arch: str, mode: str, args, contract: dict, params: d
             "cudnn_allow_tf32": torch.backends.cudnn.allow_tf32,
             "cudnn_deterministic": torch.backends.cudnn.deterministic,
             "cudnn_benchmark": torch.backends.cudnn.benchmark,
+            "float32_matmul_precision": torch.get_float32_matmul_precision(),
         },
+        **backend_flags(),
         "contract_sha256": sha256_file(CONTRACT_PATH),
         "adv_store_dtype": os.environ.get("ADV_STORE_DTYPE", "float16"),
         "ADV_STORE_BUDGETS": "unset" if not os.environ.get("ADV_STORE_BUDGETS") else os.environ["ADV_STORE_BUDGETS"],
