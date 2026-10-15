@@ -21,7 +21,6 @@ changelog:
   - "1.8 2026-10-13 user: D11_outcome (B4d verdict b, acos clip), D12 precision parity, D13 G5 rule, D14 B5 concurrency, E17 CGBA D8-only appendix"
   - "1.9 2026-10-15 user: D16 study GPU migration (RTX PRO 6000 Blackwell), D19 oracle-domain clamp for both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized), TtBA done_images L4 resume fix"
   - "1.9-rev1 2026-10-16 user: D16 revised — study GPU confirmed as RTX 5090 (driver 595.71.05); RTX PRO 6000 migration deferred; E12 remains CONDITIONAL; E18 not in contract (E1-E17 only)"
-
   - "1.9-rev2 2026-10-16 user: ImageNet-only robustness evaluation. E10 (Places365) CUT. E11 (RobustBench Salman2020Do_R50) unchanged — controlled comparison against main-6 standard R50."
   - "1.9-rev3 2026-10-16 user: E12 redefined as low-query extension on robust R50 (budget 1000, n=200, non_targeted); replaces former 'extra_victims to be named'. D5 updated: no conditional sections remain." 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
@@ -60,7 +59,6 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     An image with status error, or not adversarial at B, counts as a failure for ASR (L2 = inf).
     Paired statistics use images where both methods are adversarial at B, and print the count excluded.
     Failures are never re-run selectively; an interrupted run is resumed only for images without a completed row.
-
   D7_baseline_scope: >-
     (v1.3, user 2026-10-11) HSJA and Sign_OPT are not run. Reason: scope (the comparison is
     restricted to recent prior-free decision-based attacks with official code: TtBA, ARS-OPT,
@@ -70,7 +68,6 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     dagger block (if ttba_table1.json contains them), never in E1, E3-E8, a statistic or a
     ratio with our results. adapters/run_hsja.py and run_signopt.py are kept for a possible
     descriptive appendix run during revision.
-
   D8_cgba_accounting_fix: >-
     (v1.4, user 2026-10-11) run_cgba.py uses (a) _faithful_model -- the normalised tensor goes straight
     into the raw un-normalised ResNet-50 exactly as the official drivers, removing the old
@@ -81,20 +78,17 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     otherwise trips assert self.all_queries == q_num (proposed_attack.py:252) on non_targeted images.
     The returned boundary point is unchanged; B3b T3 proves the trajectory is bit-identical up to and
     past the crash point. Disclosed in the paper as "accounting fix, trajectory unchanged".
-
   D9_extra_datasets: >-
     (v1.5, user 2026-10-12; revised v1.9-rev2, 2026-10-16) E11 (RobustBench Salman2020Do_R50,
     Linf, 64.02% clean / 34.96% robust, loaded via robustbench.utils.load_model) is REQUIRED,
     both modes, n = 200. E10 (Places365) is CUT — ImageNet-only scope (v1.9-rev2). E11 uses the
     reduced roster {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)} to control cost (ARS_OPT is already
     shown on the main ImageNet study). Decided before any n = 200 result was opened.
-
   D10_e11_registration: >-
     (v1.6, user 2026-10-12; revised v1.9-rev2, 2026-10-16) Register the E11 split sha256 and victim
     weight files in constants; ours uses one out_dir per (victim, mode) so NT and T never share
     env_frame.txt. Reported deviation before any E11 n = 200 result is opened. (E10 registration
     removed — E10 CUT, ImageNet-only scope.)
-
   D11_cgba_stall: >-
     (v1.7, user 2026-10-13) The CGBA non-targeted ResNet-50 run stalls (best-so-far flat after ~1k queries,
     pix_l2@2000 == pix_l2@10000), contradicting CGBA Alg. 1 / Eq. (7) (Thales semicircle over [x_s, x_b]: the
@@ -106,7 +100,6 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
       (c) trace shows Alg.-1-consistent geometry with genuinely no improvement -> CGBA descriptive; m = 2.
     Diagnosed in B4d T4 (adapters/diag/cgba_trace.py): r_i = ||x_q - x_s|| / ||x_b - x_s|| vs cos(psi_i),
     psi_i = 90 - 90/2^i degrees.
-
   D11_outcome: >-
     (v1.8, user 2026-10-13) B4d verdict for D11_cgba_stall: case (b). proposed_attack.py:182
     (SemiCircular_boundary_search) computes theta = acos(dot / (norm * norm)) without clipping; in float32 the
@@ -117,7 +110,6 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     line only, clipping the acos argument to [-1, 1] (as hard_label_attacks CGBA/attack_gpu.py:263-264).
     Trajectories without the event are bit-identical (B4e T1). CGBA / CGBA_H stay in the confirmatory P2 family
     (m = 3). Appendix E17 reports the D8-only variant (count fix, no clip) on rows 1-30 of every CGBA NT cell.
-
   D12_precision_parity: >-
     (v1.8, user 2026-10-13) Every method queries the victim under the frozen-engine backend
     (lgc_bench/env.py configure_backend): cuda.matmul.allow_tf32 = False, cudnn.allow_tf32 = False,
@@ -125,7 +117,6 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     adv_float is decided by one oracle. The official TtBA / CGBA / ARS-OPT code leaves cuDNN TF32 at the PyTorch
     default (enabled); this is disclosed, and published TtBA Table 1 numbers are compared as magnitudes only
     (E2 dagger block, G5), never row-wise.
-
   D13_g5_rule: >-
     (v1.8, user 2026-10-13) G5 runs after the first 30 images of each TtBA / CGBA / CGBA_H cell
     (tools/eval/g5_check.py). TtBA: median pix_l2_iter vs the TtBA Table 1 median. CGBA / CGBA_H:
@@ -133,20 +124,17 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     95 % paired bootstrap CI (10000 resamples); PASS if the CI intersects [0.5, 2] at every B in
     {2000, 5000, 10000}; FAIL stops that cell for investigation (no tuning). Runs with n < 30 (smoke) are tool
     checks only, never a gate.
-
   D14_b5_concurrency: >-
     (v1.8, user 2026-10-13) One attack process per GPU. Exception: two TtBA processes (different cells) may share
     the GPU if B4e T4 shows bitwise identity with solo runs and weighted speedup
     S = sum_p (solo s/img_p / concurrent s/img_p) >= 1.6 for that victim. Rows 1-10 of every cell run solo;
     E13 uses solo rows only.
-
   D16_study_gpu_migration: >-
     (v1.9-rev1, user 2026-10-16) Study GPU confirmed as NVIDIA GeForce RTX 5090
     (driver 595.71.05); the migration to RTX PRO 6000 Blackwell Server Edition is deferred.
     Under D12 FP32 precision parity all methods attack the same deterministic FP32 classifier.
     In addition, ttba_github/ttba_common.py:83 done_images is permitted to treat status
     in ("ok", "budget") as completed (L4 resume fix).
-
   D19_oracle_domain_clamp: >-
     (v1.9, user 2026-10-15) Every method must decide adversariality on the exact clamped [0, 1] pixel image
     that is stored and scored. Two oracle-domain defects were identified and fixed:
@@ -160,7 +148,6 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
           recorded in env_CGBA*.json and run_manifest.json as oracle_domain = "clamp_normalized".
     Both fixes alter what the search itself queries whenever a probe leaves range, requiring a full re-run
     of all affected ARS_OPT and CGBA / CGBA_H cells.
-
 constants:
   budget: 10000
   checkpoints: [100, 200, 500, 1000, 2000, 2500, 5000, 10000]
@@ -190,20 +177,17 @@ constants:
   adv_store: {dtype: float16, ADV_STORE_BUDGETS: "must be UNSET (store every checkpoint)"}
   metrics_offline: [l2, linf, psnr, ssim, ms_ssim, lpips_alex, lpips_vgg, dists, fsim]
   metric_roles: {primary: [lpips_vgg, lpips_alex, dists], secondary: [ssim], descriptive: [l2, ms_ssim, psnr, linf, fsim]}
-
 methods:   # id = the `method` value written in every output file
   LGC_RC_EGC: {role: ours, modes: [non_targeted, targeted], producer: "ttba_github/run_frame_b1.sh (--split_csv, --save_adv)", convention: engine_state}
   TtBA:       {role: main, modes: [non_targeted, targeted], producer: adapters/run_ttba_v2.py, convention: tracker_best, extra_columns: [pix_l2_iter]}
   CGBA:       {role: main, modes: [non_targeted], producer: adapters/run_cgba.py, convention: tracker_best}
   CGBA_H:     {role: main, modes: [targeted], producer: adapters/run_cgba.py, convention: tracker_best}
   ARS_OPT:    {role: main, modes: [non_targeted, targeted], producer: adapters/run_arsopt.py, convention: tracker_best, condition: "prior-free mode exists (B1); else status CUT and listed in the threat-model table"}
-
 cited_methods:   # never run, no artefacts; E2 dagger block only (D7)
   HSJA: {source: ttba_github/ttba_table1.json, element: E2_l2_table_ttba_format,
          block: dagger, condition: "rows present for that victim/mode/budget; else related work only"}
   Sign_OPT: {source: ttba_github/ttba_table1.json, element: E2_l2_table_ttba_format,
              block: dagger, condition: "as HSJA"}
-
 artefacts:   # required for EVERY (method, victim, mode) cell of the main study; {n} = n_main
   per_checkpoint:
     file_glob: "<out>/<mode>/per_checkpoint*.csv"
@@ -225,7 +209,6 @@ artefacts:   # required for EVERY (method, victim, mode) cell of the main study;
   run_manifest:
     file: "<out>/<mode>/run_manifest.json (baselines; lgc-baselines F1-F12)"
   disk_estimate: "~0.48 GB per (method, victim, mode); main 24 cells ~11.5 GB + E11 6 cells ~2.9 GB = ~14.4 GB plus x0.npy; B4b/B5 must show >= 20 GB free"
-
 invariants:   # each is a check in check_contract.py; id -> severity
   I01_all_checkpoints: {severity: FAIL, rule: "every (image, method) has exactly the 8 budgets of constants.checkpoints (found = 0 rows count)"}
   I02_image_set: {severity: FAIL, rule: "the image set of every cell equals the sources of rows 1-200 of the split CSV, in any order; no extra image"}
@@ -242,7 +225,6 @@ invariants:   # each is a check in check_contract.py; id -> severity
   I13_metrics_complete: {severity: FAIL, rule: "metrics CSV has one row per stored npz, every column of constants.metrics_offline finite, l2_relerr < 1e-3"}
   I14_elements_complete: {severity: FAIL, rule: "every REQUIRED paper element has all its inputs; every CONDITIONAL element is either complete or marked CUT"}
   I15_macros: {severity: FAIL, rule: "every \\Num macro used in paper/v3 is defined in generated/numbers.tex and traced in summary_*.json; no '??' left"}
-
 paper_elements:   # E-id: what the paper shows -> exactly what data it needs
   E1_main_perceptual_table:
     status: REQUIRED
@@ -332,3 +314,7 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     status: REQUIRED
     content: "CGBA D8-only variant (official code with the D8 count fix, no acos clip) next to the D11 fix: share of images with the NaN event (= share on which the unmodified code raises its assertion) and median pix_l2 at 2000 / 5000 / 10000; rows 1-30 of every CGBA NT cell (main + E11)"
     inputs: {source: "Results/appendix_cgba_d8only_<arch>/non_targeted (method id CGBA_D8only; not a main-study cell, outside the checker roots; path + sha256 recorded in reports/E17_sources.md)", n: 30}
+# E18 STATUS (2026-10-16): E18 not present in paper_elements (E-series = E1-E17).
+# Referenced only in docs/PREFLIGHT_RUNBOOK.md:189 as "decisions on E18,".
+# Treated as not-applicable pending H review of PREFLIGHT_RUNBOOK.md.
+# B5 scope must NOT include E18.
