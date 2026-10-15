@@ -74,6 +74,15 @@ Notes:
   adv-uint8), CGBA NT 50035 (50000 + 35), CGBA_H/ARS_OPT 50040 (50000 + 40), LGC_RC_EGC 49999 / 50009 (engine stops
   just below budget).
 
+> **Erratum (B4h-T3, contract v1.9 D19 — added 2026-10-16).** This known-answer test did **not** exercise the two
+> oracle-domain defects that B4h-T3 fixes. **L23 caveat:** check (a) on `kat_linear` clamps its own [0,1] input
+> (`KatLinearVictim.forward`, `_common.py`) and the CGBA faithful path feeds the *linear* map `.m` directly, so the
+> unclamped `bin_search` / `SemiCircular_boundary_search` queries that ARS_OPT (pixel space) and CGBA/CGBA_H
+> (normalised space) emit against **real** victims were never exposed here — a defect whose decision (unclamped)
+> and stored image (clamped) disagree is invisible on a victim that masks it. The B4h-T3 re-run of this suite still
+> passes (a)–(d) (`reports/raw/B4h/t3_kat_linear.log`); the real-victim fix is verified by the `domain_consistency.py`
+> gate in `reports/B4h_t3_fix_and_gate.md` (X = 0 for ARS_OPT and CGBA/CGBA_H on all 18 smoke cells).
+
 ### The linear victim (built identically by every method via `_common.build_kat_linear_victim`)
 
 - `z = (x − μ)/σ` (ImageNet μ/σ inside), `logits = W·vec(z) + b`, K = 10.

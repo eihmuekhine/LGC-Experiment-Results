@@ -1,0 +1,36 @@
+Load skills lgc-preflight, lgc-baselines, lgc-reviewer-eval, and lgc-paper-contract.
+Phase B4h-T3 (D19 oracle-domain fix for BOTH ARS_OPT and CGBA/CGBA_H + L4 TtBA done_images fix + KAT regression & domain consistency gate).
+GPU ON. Worktree /root/autodl-tmp/LGC_frozen, HEAD e55dea1f32d4a31889bddf77d8ff38fcd1777572, contract v1.9 (print its sha256 first; expect fc04498315dec51b0f663568d76a7804d46f63aa57eb2950a2126d157451ca32).
+EXECUTE step by step; do NOT just plan. Do not start full B5/T6 runs yet.
+
+Never edit lgc_bench/*, run_benchmark_33b.py, ttba_github/run_frame_b1.sh, official clones, or the contract.
+Allowed edits: adapters/_common.py, adapters/run_arsopt.py, adapters/run_cgba.py, ttba_github/ttba_common.py (1-line done_images L4 fix only, per contract v1.9 D16), adapters/diag/*, tools/eval/* (tests/diagnostics only if needed), reports/*.
+
+Step 0 — Direct verification of eval_metrics_offline.py (closes B4h-T1b item 1):
+  Run `sha256sum tools/eval/eval_metrics_offline.py` and `sed -n '1,140p' tools/eval/eval_metrics_offline.py` and save the raw output to `reports/raw/B4h/t3_eval_metrics_offline_head.txt`. Confirm verbatim that `adv_flag` is read from `metas[i].get("adv_flag", -1)` without querying any victim model.
+
+Step 1 — Implement D19 oracle-domain fixes (and D16 L4 resume fix):
+  (a) In `adapters/_common.py`, next to `ClampedVictim`, add `ClampedVictimNormalized(torch.nn.Module)`:
+      - `__init__(self, victim, lb, ub)` registers `lb.clone().detach()` and `ub.clone().detach()` as buffers.
+      - `forward(self, x)` returns `self.victim(torch.clamp(x, self.lb, self.ub))`.
+      - Ensure `build_manifest` forwards `"oracle_domain"` if present in `env`.
+  (b) In `adapters/run_cgba.py`:
+      - Update `_faithful_model(victim, lb, ub)` to return `C.ClampedVictimNormalized(C.raw_net(victim), lb, ub)`.
+      - Thread `lb = C.normalize(torch.zeros_like(x0))` and `ub = C.normalize(torch.ones_like(x0))` into `make_tracker` (and any diagnostic call sites of `_faithful_model`).
+      - Record `"oracle_domain": "clamp_normalized"` in `env_CGBA*.json` and `run_manifest.json` via `extra_env` / `build_manifest`.
+  (c) In `adapters/run_arsopt.py`:
+      - In `make_tracker`, wrap `victim` in `C.ClampedVictim(victim)`.
+      - Record `"oracle_domain": "clamp01"` in `env_ARS_OPT.json` and `run_manifest.json` via `extra_env` / `build_manifest`.
+  (d) In `ttba_github/ttba_common.py:83` (`done_images`), apply the 1-line L4 fix authorized in contract v1.9 D16:
+      `return {r["image"] for r in csv.DictReader(f) if r.get("status") in ("ok", "budget")}`.
+
+Step 2 — CPU unit tests & selftests:
+  - Add a unit test verifying that `ClampedVictimNormalized` clamps out-of-box normalised inputs channel-wise to `[lb, ub]` and agrees identically with `C.normalize(C.to_pixel_unnormalize(x))` before feeding the raw net.
+  - Run `python tools/eval/selftest_evalkit.py` and `python tools/eval/tests_contract/test_contract.py` (must be ALL PASS).
+
+Step 3 — KAT regression & Smoke / Domain Consistency Gate (GPU ON):
+  - Re-run the KAT canary suite and update `reports/B4g_kat_canary.md` with the L23 caveat (noting check (a) on `kat_linear` did not exercise unclamped `bin_search`/`SemiCircular_boundary_search` queries on real victims).
+  - Run 3-image smoke tests for ARS_OPT (resnet50, vgg19, vit_b_32 NT/T — 6 cells) and CGBA/CGBA_H (all 6 victims NT/T — 12 cells) into `Results/b4h_t3_smoke_<method>_<arch>`.
+  - Note on acceptance: Do NOT expect CGBA to be bitwise IDENTICAL to B4e smoke where queries previously left `[lb, ub]` during `bin_search` or `SemiCircular_boundary_search`. Trajectories should only differ on images/walks where unclamped queries occurred.
+  - Run `domain_consistency.py` across all new `Results/b4h_t3_smoke_*` roots. Confirm that X rows (stored-image re-decision mismatches) = 0 for both ARS_OPT and CGBA/CGBA_H.
+  - Save all raw outputs under `reports/raw/B4h/`, write `reports/B4h_t3_fix_and_gate.md` (with sha256 table, GPU minutes, and LESSONS L22/L23 entries), commit, and STOP.

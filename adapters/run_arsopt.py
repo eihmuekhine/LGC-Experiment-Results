@@ -5,9 +5,11 @@ Official code: github.com/machanic/hard_label_attacks (arXiv 2512.21241), ``PARS
 (class ``ParsOptL2Norm``), prior-free mode ``method='ARS'`` (no surrogate: pars_opt_l2_norm_attack.py:21, :317-327).
 
 Allowed changes (documented in env_ARS_OPT.json / run_manifest.json):
-  * model object: the decision-only HardLabelTracker.  The tracker carries ``arch`` only so the official
-    constructor's CLIP gate (DataLoaderMaker.get_test_attacked_data) can run unchanged; it is never used by the
-    prior-free algorithm (``self.model(x).max(1)[1]`` reads only the top-1 decision);
+  * model object: the decision-only HardLabelTracker, whose victim is wrapped in ``C.ClampedVictim`` (D19: the
+    ARS-OPT prior-free loop queries in pixel space without an in-loop clamp, so every query is clamped to [0,1]
+    before the decision -- recorded as ``oracle_domain = "clamp01"``).  The tracker carries ``arch`` only so the
+    official constructor's CLIP gate (DataLoaderMaker.get_test_attacked_data) can run unchanged; it is never used by
+    the prior-free algorithm (``self.model(x).max(1)[1]`` reads only the top-1 decision);
   * data input: our image x0 ([0,1]) and, for targeted mode, the CSV target image (the ``target_class_image``
     the official ``targeted_attack`` starts from), bypassing the repo's own ImageNet dataset
     (select_random_image_of_target_class / attack_all_images are not used);
@@ -95,7 +97,7 @@ def _install_shims() -> None:
 
 
 def make_tracker(victim, x0, y_src, y_tgt, x_tgt, checkpoints, budget):
-    tracker = C.HardLabelTracker(victim, x0, y_src, y_tgt, checkpoints, budget,
+    tracker = C.HardLabelTracker(C.ClampedVictim(victim), x0, y_src, y_tgt, checkpoints, budget,
                                  to_pixel=C.to_pixel_clamp,
                                  init_adv_pixel=x_tgt if y_tgt is not None else None)
     tracker.arch = _ARCH  # only gates the constructor's CLIP dataset branch; unused by the ARS loop
@@ -130,7 +132,12 @@ def main() -> int:
     _ARCH = ns.arch
     _TARGETED = ns.mode == "targeted"
     params = dict(BASE_PARAMS, lr=(0.2 if _TARGETED else 0.4))
-    return C.run(METHOD, __doc__, params, HYPER_SOURCES, make_tracker, run_official, os.path.abspath(__file__))
+
+    def extra_env(args, contract):
+        return {"oracle_domain": "clamp01"}
+
+    return C.run(METHOD, __doc__, params, HYPER_SOURCES, make_tracker, run_official, os.path.abspath(__file__),
+                 extra_env=extra_env)
 
 
 if __name__ == "__main__":

@@ -84,4 +84,4 @@ def done_images(path: str) -> set:
     if not os.path.exists(path):
         return set()
     with open(path, newline="") as f:
-        return {r["image"] for r in csv.DictReader(f)}
+        return {r["image"] for r in csv.DictReader(f) if r.get("status") in ("ok", "budget")}

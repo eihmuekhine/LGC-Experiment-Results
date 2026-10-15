@@ -360,6 +360,26 @@ class ClampedVictim(torch.nn.Module):
         return self.victim(x.clamp(0.0, 1.0))
 
 
+class ClampedVictimNormalized(torch.nn.Module):
+    """Victim that clamps a NORMALISED-space input channel-wise to ``[lb, ub]`` before the underlying raw net.
+
+    This is the D19 oracle-domain clamp for CGBA / CGBA_H: the official ``bin_search`` (:77-85) and
+    ``SemiCircular_boundary_search`` (:179-191) probe in ImageNet-normalised space without clipping, while the
+    decision and the stored pixel image were computed on two different inputs (unclamped normalised vs clamped
+    pixel).  Wrapping the raw net with per-channel bounds ``lb = normalize(0)`` and ``ub = normalize(1)`` makes the
+    decision use the exact clamped [0,1] pixel image (``normalize`` and ``to_pixel_unnormalize`` are inverse up to
+    the clamp), which is what ``to_pixel_unnormalize`` stores.  ``lb``/``ub`` are registered as buffers; they are
+    built from ``x0`` on the attack's device (so no device/dtype transfer is relied upon)."""
+    def __init__(self, victim, lb, ub):
+        super().__init__()
+        self.victim = victim
+        self.register_buffer("lb", lb.clone().detach())
+        self.register_buffer("ub", ub.clone().detach())
+
+    def forward(self, x):
+        return self.victim(torch.clamp(x, self.lb, self.ub))
+
+
 class UnnormalizeVictim(torch.nn.Module):
     """Victim that accepts an ImageNet-normalised tensor and un-normalises it to [0,1] before the underlying
     victim.  CGBA works in normalised space (mean/std applied) but the shared victim expects [0,1].
@@ -576,7 +596,7 @@ def build_manifest(env: dict, contract: dict) -> dict:
          "hyper_parameter_sources": env["hyper_parameter_sources"],
          "torch": env["torch"], "cuda": env["cuda"], "gpu_name": env["gpu"],
          "budget": env["budget"], "checkpoints": env["checkpoints"]}
-    for key in ("cgba_variant", "paper_faithful_fix"):
+    for key in ("cgba_variant", "paper_faithful_fix", "oracle_domain"):
         if key in env:
             m[key] = env[key]
     return m

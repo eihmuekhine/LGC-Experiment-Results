@@ -68,19 +68,28 @@ HYPER_SOURCES = {
 }
 
 
-def _faithful_model(victim):
-    """The UN-normalised network the official drivers feed the normalised tensor into.
+def _faithful_model(victim, lb, ub):
+    """The UN-normalised network the official drivers feed the normalised tensor into, clamped to the [0,1] pixel
+    domain (D19).
 
     ``build_ttba_github_victim`` wraps the torchvision net in ``_Norm`` (baseline_protocol.py:354-367) and stores the
     raw net as ``_Norm.m``; ``net = torch_models.resnet50(pretrained=True)`` has no normalisation layer, so the
     normalised tensor must go straight into that raw net.  The E10/E11 victims expose the same raw net as
     ``NormalizedVictim.net`` (Places365) / ``Sequential.model`` (RobustBench); ``C.raw_net`` extracts it.  A victim
-    without such a wrapper (unit-test dummy) is returned unchanged."""
-    return C.raw_net(victim)
+    without such a wrapper (unit-test dummy) is returned unchanged.
+
+    D19 (oracle-domain): the official ``bin_search`` (:77-85) and ``SemiCircular_boundary_search`` (:179-191) probe
+    in normalised space WITHOUT clipping, while the tracker stored the clamped pixel projection (``to_pixel_unnormalize``).
+    The raw net is therefore wrapped in ``C.ClampedVictimNormalized`` with ``lb = normalize(0)`` / ``ub = normalize(1)``
+    so every normalised-space query is clamped channel-wise to the exact [0,1] pixel domain before the decision --
+    the same image that is stored and scored (``to_pixel_unnormalize`` is ``normalize``'s inverse up to the clamp)."""
+    return C.ClampedVictimNormalized(C.raw_net(victim), lb, ub)
 
 
 def make_tracker(victim, x0, y_src, y_tgt, x_tgt, checkpoints, budget):
-    return C.HardLabelTracker(_faithful_model(victim), x0, y_src, y_tgt, checkpoints, budget,
+    lb = C.normalize(torch.zeros_like(x0))
+    ub = C.normalize(torch.ones_like(x0))
+    return C.HardLabelTracker(_faithful_model(victim, lb, ub), x0, y_src, y_tgt, checkpoints, budget,
                               to_pixel=C.to_pixel_unnormalize,
                               init_adv_pixel=x_tgt if y_tgt is not None else None)
 
@@ -255,7 +264,8 @@ def main() -> int:
     params = dict(PARAMS, attack_method=("CGBA_H" if targeted else "CGBA"))
 
     def extra_env(args, contract):
-        return {"cgba_variant": _VARIANT, "paper_faithful_fix": PAPER_FAITHFUL_FIX}
+        return {"cgba_variant": _VARIANT, "paper_faithful_fix": PAPER_FAITHFUL_FIX,
+                "oracle_domain": "clamp_normalized"}
 
     pre_existing = _pre_existing_count(ns.out_dir, ns.mode, method) if ns.out_dir else 0
     rc = C.run(method, __doc__, params, HYPER_SOURCES, make_tracker, run_official,

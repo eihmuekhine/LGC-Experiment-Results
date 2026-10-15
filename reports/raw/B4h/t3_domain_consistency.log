@@ -1,0 +1,25 @@
+[*] GPU NVIDIA GeForce RTX 5090  D12 matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| method | cell (arch/mode) | rows | C | Q9 | Q6 | X | median m(s=1) non-C | max m(s=1) non-C | adv_uint8==1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ARS_OPT | resnet50/non_targeted | 24 | 15 | 9 | 0 | 0 | 0.000452 | 0.00272 | 11 |
+| ARS_OPT | resnet50/targeted | 24 | 11 | 13 | 0 | 0 | 0.000244 | 0.00122 | 12 |
+| ARS_OPT | vgg19/non_targeted | 24 | 23 | 1 | 0 | 0 | 8.11e-06 | 8.11e-06 | 10 |
+| ARS_OPT | vgg19/targeted | 24 | 15 | 9 | 0 | 0 | 0.000307 | 0.0027 | 11 |
+| ARS_OPT | vit_b_32/non_targeted | 24 | 15 | 9 | 0 | 0 | 0.000218 | 0.00119 | 14 |
+| ARS_OPT | vit_b_32/targeted | 24 | 17 | 7 | 0 | 0 | 8.87e-05 | 0.000396 | 8 |
+| CGBA | resnet50/non_targeted | 24 | 19 | 5 | 0 | 0 | 0.000251 | 0.000603 | 13 |
+| CGBA_H | resnet50/targeted | 24 | 17 | 7 | 0 | 0 | 0.000256 | 0.000982 | 8 |
+| CGBA | vgg19/non_targeted | 24 | 24 | 0 | 0 | 0 | nan | nan | 4 |
+| CGBA_H | vgg19/targeted | 24 | 16 | 8 | 0 | 0 | 0.000497 | 0.00191 | 13 |
+| CGBA | vit_b_32/non_targeted | 24 | 23 | 1 | 0 | 0 | 4.05e-05 | 4.05e-05 | 13 |
+| CGBA_H | vit_b_32/targeted | 24 | 22 | 2 | 0 | 0 | 0.000163 | 0.000287 | 17 |
+| CGBA | resnet50_places365/non_targeted | 24 | 22 | 2 | 0 | 0 | 4.43e-05 | 8.68e-05 | 6 |
+| CGBA_H | resnet50_places365/targeted | 24 | 17 | 7 | 0 | 0 | 0.000259 | 0.000671 | 11 |
+| CGBA | densenet161_places365/non_targeted | 24 | 21 | 3 | 0 | 0 | 3.24e-05 | 7.58e-05 | 13 |
+| CGBA_H | densenet161_places365/targeted | 24 | 23 | 1 | 0 | 0 | 0.000163 | 0.000163 | 14 |
+| CGBA | Salman2020Do_R50/non_targeted | 24 | 16 | 8 | 0 | 0 | 6.01e-05 | 0.000145 | 14 |
+| CGBA_H | Salman2020Do_R50/targeted | 24 | 15 | 9 | 0 | 0 | 6.58e-05 | 0.000302 | 13 |
+
+[*] wrote reports/raw/B4h/t3_domain_consistency_rows.csv (432 rows)
+[+] no X>0 for any method (ARS_OPT and CGBA/CGBA_H both clamp correctly)
