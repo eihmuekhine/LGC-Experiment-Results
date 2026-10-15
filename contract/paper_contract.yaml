@@ -6,9 +6,9 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.8"
-date: "2026-10-13"
-status: "FROZEN (2026-10-13, v1.8). Decisions D1-D14 confirmed by the user; the v1.8 sha256 is recorded in the amendment 2 deviation note for v1.8."
+version: "1.9"
+date: "2026-10-15"
+status: "FROZEN (2026-10-15, v1.9). Decisions D1-D19 confirmed by the user; D19 oracle-domain clamp extended to both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized)."
 changelog:
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
@@ -19,6 +19,7 @@ changelog:
   - "1.6 2026-10-12 user: E10/E11 split sha256 and victim files registered (D10); EGC out_dir per (victim, mode)"
   - "1.7 2026-10-13 user: D11 CGBA stall decision tree (locate the defect in B4d; paper-faithful fix; m=3 unless Alg.-1-consistent no-improvement, then m=2)"
   - "1.8 2026-10-13 user: D11_outcome (B4d verdict b, acos clip), D12 precision parity, D13 G5 rule, D14 B5 concurrency, E17 CGBA D8-only appendix"
+  - "1.9 2026-10-15 user: D16 study GPU migration (RTX PRO 6000 Blackwell), D19 oracle-domain clamp for both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized), TtBA done_images L4 resume fix"
 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
@@ -135,6 +136,26 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     the GPU if B4e T4 shows bitwise identity with solo runs and weighted speedup
     S = sum_p (solo s/img_p / concurrent s/img_p) >= 1.6 for that victim. Rows 1-10 of every cell run solo;
     E13 uses solo rows only.
+
+  D16_study_gpu_migration: >-
+    (v1.9, user 2026-10-15) The study GPU migrated from NVIDIA GeForce RTX 5090 to NVIDIA RTX PRO 6000
+    Blackwell Server Edition (driver 580.82.09); under D12 FP32 precision parity all methods attack the
+    same deterministic FP32 classifier. In addition, ttba_github/ttba_common.py:83 done_images is
+    permitted to treat status in ("ok", "budget") as completed (L4 resume fix).
+
+  D19_oracle_domain_clamp: >-
+    (v1.9, user 2026-10-15) Every method must decide adversariality on the exact clamped [0, 1] pixel image
+    that is stored and scored. Two oracle-domain defects were identified and fixed:
+      (1) ARS_OPT: tracker victim wrapped in ClampedVictim (pixel-space scalar clamp to [0, 1]); recorded
+          in env_ARS_OPT.json and run_manifest.json as oracle_domain = "clamp01".
+      (2) CGBA / CGBA_H: bin_search (:77-85) and SemiCircular_boundary_search (:179-191, incl. the patched
+          fixed copy) do not clip queries, while hardlabel_tracker.py decided on the unclamped normalised
+          query and stored the clamped pixel projection separately. Fix: wrap the raw net in make_tracker
+          with ClampedVictimNormalized using per-channel bounds lb = normalize(0), ub = normalize(1) (never
+          the scalar ClampedVictim), so every normalised-space query is clamped before the decision;
+          recorded in env_CGBA*.json and run_manifest.json as oracle_domain = "clamp_normalized".
+    Both fixes alter what the search itself queries whenever a probe leaves range, requiring a full re-run
+    of all affected ARS_OPT and CGBA / CGBA_H cells.
 
 constants:
   budget: 10000
