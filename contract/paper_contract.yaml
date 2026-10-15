@@ -148,6 +148,13 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
           recorded in env_CGBA*.json and run_manifest.json as oracle_domain = "clamp_normalized".
     Both fixes alter what the search itself queries whenever a probe leaves range, requiring a full re-run
     of all affected ARS_OPT and CGBA / CGBA_H cells.
+  D20_e18_status: >-
+    (v1.9-rev3, user 2026-10-16) E18 was listed in docs/PREFLIGHT_RUNBOOK.md:189 as a planned
+    v1.9 decision item ("decisions on E18, main-protocol ablation and same-prior control"),
+    but no corresponding paper element (E18) or decision (D18) is defined in the contract
+    (E-series = E1-E17). H has reviewed PREFLIGHT_RUNBOOK.md; E18 is treated as NOT APPLICABLE
+    for B5 scope unless H explicitly defines it. This note records the gap and its resolution.
+
 constants:
   budget: 10000
   checkpoints: [100, 200, 500, 1000, 2000, 2500, 5000, 10000]
