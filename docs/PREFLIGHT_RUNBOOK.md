@@ -1,6 +1,6 @@
 # PREFLIGHT RUNBOOK — from smoke to the first n = 200 run (LGC-EGC, TMM/PR)
 
-Version 1.3, 2026-10-14 (v1.3: LESSONS.md ledger, STOP bundle, fast path B4e2 -> B4f -> B4g, human_preflight §7 degeneracy; v1.2: reviewer as its own agent in a new session, GLM 5.3, B4e2, calibration workspace). Binding order of work before B5. The contract (`contract/paper_contract.yaml`) wins over this
+Version 1.4, 2026-10-15 (v1.4: docs/HUMAN_CHECKS_B5.md stage-by-stage human checks and decisions, prompts/B5-host_prompt.txt T0-T6, tools/eval/compare_roots.py and find_in_contract.py, human_preflight driver/hostname + --require_host; v1.3: LESSONS.md ledger, STOP bundle, fast path B4e2 -> B4f -> B4g, human_preflight §7 degeneracy; v1.2: reviewer as its own agent in a new session, GLM 5.3, B4e2, calibration workspace). Binding order of work before B5. The contract (`contract/paper_contract.yaml`) wins over this
 file; this file wins over older plans. Principle: **fairness = identical task, not identical algorithm** (layers L1-L4 in
 skill `lgc-preflight` §1).
 
@@ -47,7 +47,9 @@ Three rules for every AI step:
 Install (AutoDL):
 ```bash
 cd /root/autodl-tmp/LGC_frozen
-unzip -o /path/to/lgc_preflight_kit_v1.3.zip -d .
+# first install: unzip -o /path/to/lgc_preflight_kit_v1.3.zip -d .
+# update to v1.4: use the delta zip only (it does not contain docs/LESSONS.md, so your L22/L23 rows are kept):
+#   unzip -o /path/to/lgc_preflight_kit_v1.4_delta.zip -d .   (see docs/HUMAN_CHECKS_B5.md "Install")
 cp -r .opencode/skills/lgc-preflight /root/autodl-tmp/Latent-Geometric-Chords/.opencode/skills/   # where OpenCode reads skills
 python tools/eval/human_preflight.py --help
 git add docs/PREFLIGHT_RUNBOOK.md docs/LESSONS.md tools/eval/human_preflight.py reports/HUMAN_SIGNOFF_B5_TEMPLATE.md .opencode/skills/lgc-preflight calib/

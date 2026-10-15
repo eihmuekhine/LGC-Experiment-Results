@@ -12,7 +12,8 @@ Outputs:
     <out>_grid_<arch>_<mode>.png  section 6: clean | adversarial per method | 0.5 + amp * delta
 
 Sections:
-    1 environment   GPU name, torch, backend flags, ADV_STORE_BUDGETS, split sha256 per env file
+    1 environment   GPU name, driver, hostname, torch, backend flags, ADV_STORE_BUDGETS, split sha256 per env file
+                    (--require_host: FLAG roots that record no driver/hostname; use it on B5 roots)
     2 x0 identity   one x0.npy hash per (arch, image) across every root/method
     3 query budget  runs*.csv: queries vs budget, status counts, non-finite queries
     4 L2 recompute  ||delta|| from the npz vs pix_l2 in per_checkpoint and the npz l2 field
@@ -39,6 +40,9 @@ HEX64 = re.compile(r"\b[0-9a-f]{64}\b")
 GPU_RE = re.compile(r"((?:NVIDIA\s+)?(?:GeForce\s+)?RTX[^\n\"]*|NVIDIA[^\n\"]*)")
 TORCH_RE = re.compile(r"torch[\s=:\"]+(\d+\.\d+\.\d+\S*)")
 ADV_RE = re.compile(r"ADV_STORE_BUDGETS[=\s\"':]+([^\s,\"'}]+)")
+# host drift (LESSONS L03): every RTX 5090 host prints the same GPU name, so the GPU column alone cannot see a host change
+DRIVER_RE = re.compile(r"driver(?:[ _]?version)?[\s\"':=|]+(\d{3}\.\d{1,3}(?:\.\d{1,3})?)", re.I)
+HOST_RE = re.compile(r"(?<![A-Za-z_])hostname[\s\"':=]+([A-Za-z0-9][A-Za-z0-9._-]{2,})", re.I)
 
 
 def stem(name: str) -> str:
@@ -78,11 +82,12 @@ def canon_flags(txt: str) -> Dict[str, str]:
     return out
 
 
-def section_env(roots: List[str]) -> Tuple[List[str], int]:
-    lines = ["## 1. Environment (one GPU name, one torch, identical backend flags, ADV_STORE_BUDGETS unset)", "",
-             "| root | env file | GPU | torch | backend flags | ADV_STORE_BUDGETS | split sha256 (first 12) |",
-             "|---|---|---|---|---|---|---|"]
-    gpus, torches = Counter(), Counter()
+def section_env(roots: List[str], require_host: bool = False) -> Tuple[List[str], int]:
+    lines = ["## 1. Environment (one GPU name, one torch, one driver, one host, identical backend flags, "
+             "ADV_STORE_BUDGETS unset)", "",
+             "| root | env file | GPU | driver | host | torch | backend flags | ADV_STORE_BUDGETS | split sha256 (first 12) |",
+             "|---|---|---|---|---|---|---|---|---|"]
+    gpus, torches, drivers, hosts = Counter(), Counter(), Counter(), Counter()
     flag_values: Dict[str, Counter] = defaultdict(Counter)
     flags_out, n_files = 0, 0
     for root in roots:
@@ -90,17 +95,22 @@ def section_env(roots: List[str]) -> Tuple[List[str], int]:
                            + glob.glob(os.path.join(root, "*", "env_*.json")) + glob.glob(os.path.join(root, "env_*.json"))
                            + glob.glob(os.path.join(root, "*", "config_*.json"))))
         root_flags: Dict[str, str] = {}
+        root_has_host = False
         for f in files:
             n_files += 1
             txt = open(f, encoding="utf-8", errors="replace").read()
-            gpu, torch_v, adv, shas = "?", "?", "MISSING", []
+            gpu, torch_v, adv, shas, drv, host = "?", "?", "MISSING", [], "?", "?"
             if f.endswith(".json"):
                 try:
                     d = json.loads(txt)
                 except json.JSONDecodeError:
                     d = {}
+                if not isinstance(d, dict):
+                    d = {}
                 gpu = str(d.get("gpu") or d.get("gpu_name") or "?")
                 torch_v = str(d.get("torch") or "?")
+                drv = str(d.get("driver") or d.get("driver_version") or d.get("nvidia_driver") or "?")
+                host = str(d.get("hostname") or d.get("host") or "?")
                 if "ADV_STORE_BUDGETS" in d:
                     adv = str(d["ADV_STORE_BUDGETS"])
                 if d.get("split_csv_sha256"):
@@ -114,6 +124,17 @@ def section_env(roots: List[str]) -> Tuple[List[str], int]:
             m = ADV_RE.search(txt) if adv == "MISSING" else None
             if m:
                 adv = m.group(1)
+            m = DRIVER_RE.search(txt) if drv == "?" else None
+            if m:
+                drv = m.group(1)
+            m = HOST_RE.search(txt) if host == "?" else None
+            if m:
+                host = m.group(1)
+            if drv != "?":
+                drivers[drv] += 1
+            if host != "?":
+                hosts[host] += 1
+            root_has_host = root_has_host or (drv != "?" and host != "?")
             fl = canon_flags(txt)
             for k, v in fl.items():
                 root_flags.setdefault(k, v)
@@ -124,18 +145,25 @@ def section_env(roots: List[str]) -> Tuple[List[str], int]:
             if torch_v != "?":
                 torches[torch_v] += 1
             flag_str = "; ".join(f"{k}={v}" for k, v in sorted(fl.items())) or "-"
-            lines.append(f"| {os.path.basename(root)} | {os.path.relpath(f, root)} | {gpu} | {torch_v} | {flag_str} | {adv} | "
-                         f"{', '.join(s[:12] for s in shas[:3])} |")
+            lines.append(f"| {os.path.basename(root)} | {os.path.relpath(f, root)} | {gpu} | {drv} | {host} | {torch_v} | "
+                         f"{flag_str} | {adv} | {', '.join(s[:12] for s in shas[:3])} |")
         missing = [k for k in ("cudnn_tf32", "deterministic") if k not in root_flags]
         if files and missing:
-            lines.append(f"| {os.path.basename(root)} | **FLAG** | | | not recorded in any env/config file: {missing} | | |")
+            lines.append(f"| {os.path.basename(root)} | **FLAG** | | | | | not recorded in any env/config file: {missing} | | |")
+            flags_out += 1
+        if files and require_host and not root_has_host:
+            lines.append(f"| {os.path.basename(root)} | **FLAG** | | driver and hostname not recorded (--require_host) | | | | | |")
             flags_out += 1
     lines.append("")
-    for label, counter in (("GPU names", gpus), ("torch versions", torches)):
+    for label, counter in (("GPU names", gpus), ("torch versions", torches), ("drivers", drivers), ("hosts", hosts)):
         lines.append(f"- {label}: {dict(counter)}")
         if len(counter) > 1:
-            lines.append(f"  - **FLAG: more than one value across env files**")
+            lines.append(f"  - **FLAG: more than one value across env files** (drivers/hosts: expected only if roots from "
+                         f"earlier hosts are included on purpose; B5 roots must show one value)")
             flags_out += 1
+    if not drivers and not hosts:
+        lines.append("- note: no driver or hostname recorded in any env file; host drift (L03) cannot be checked from "
+                     "these folders, use `nvidia-smi` and the B5 runner host log")
     for k, c in sorted(flag_values.items()):
         lines.append(f"- backend {k}: {dict(c)}")
         if len(c) > 1:
@@ -424,6 +452,8 @@ def main() -> int:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--expect_identical", nargs="*", default=["CGBA:CGBA_D8only"],
                     help="method pairs that are identical by design (A:B); others identical => FLAG")
+    ap.add_argument("--require_host", action="store_true",
+                    help="FLAG every root whose env files record no driver + hostname (use for B5 roots)")
     a = ap.parse_args()
     pairs = [tuple(x.split(":", 1)) for x in a.expect_identical if ":" in x]
     roots = [r for r in a.roots if os.path.isdir(r)]
@@ -433,7 +463,7 @@ def main() -> int:
         if os.path.abspath(out_dir).startswith(os.path.abspath(r)):
             raise SystemExit(f"[!] --out must not be inside a result root ({r})")
     report, total = [f"# Human pre-flight report", "", f"roots: {roots}", ""], 0
-    for fn in (lambda: section_env(roots), lambda: section_x0(roots), lambda: section_budget(roots, a.budget),
+    for fn in (lambda: section_env(roots, a.require_host), lambda: section_x0(roots), lambda: section_budget(roots, a.budget),
                lambda: section_l2(roots, a.l2_samples, a.seed), lambda: section_curves(roots),
                lambda: section_degeneracy(roots, pairs)):
         lines, n = fn()
