@@ -70,6 +70,42 @@ def main() -> int:
     cvn(x_in)
     check("in-range input passes through unchanged", bool((raw.last - x_in).abs().max() < 1e-7))
 
+    # ---- B4h T2: oob_queries (observation-only, per image) ----
+    print("[2] oob_queries: pixel-space (ClampedVictim) and normalised-space (ClampedVictimNormalized) counting")
+
+    class FlatLogits(torch.nn.Module):
+        def forward(self, z):
+            return torch.zeros(z.shape[0], 2, device=z.device, dtype=z.dtype)
+
+    rng2 = torch.Generator().manual_seed(1)
+    px0 = torch.rand(1, 3, 8, 8, generator=rng2)                  # pixel [0,1], batch of 1
+
+    # pixel space: guard sees xb directly (before ClampedVictim clamps it)
+    trk = C.HardLabelTracker(C.ClampedVictim(FlatLogits()), px0, 0, budgets=[100], max_queries=100,
+                             to_pixel=C.to_pixel_clamp)
+    trk.labels(px0)
+    check("pixel: in-range query -> oob 0", trk.oob_queries == 0)
+    oob_hi = px0.clone(); oob_hi[0, 0, 0, 0] = 1.5
+    trk.labels(oob_hi)
+    check("pixel: coordinate > 1+1e-6 -> oob 1", trk.oob_queries == 1)
+    oob_lo = px0.clone(); oob_lo[0, 1, 2, 3] = -1e-3
+    trk.labels(oob_lo)
+    check("pixel: coordinate < -1e-6 -> oob 2", trk.oob_queries == 2)
+
+    # normalised space: guard un-normalises xb (xb*sd+mu, no clamp) before the [0,1] check
+    lb = C.normalize(torch.zeros_like(px0))
+    ub = C.normalize(torch.ones_like(px0))
+    trk2 = C.HardLabelTracker(C.ClampedVictimNormalized(FlatLogits(), lb, ub), px0, 0,
+                              budgets=[100], max_queries=100, to_pixel=C.to_pixel_unnormalize)
+    trk2.labels(C.normalize(px0))
+    check("norm: in-range query -> oob 0", trk2.oob_queries == 0)
+    oob_hi_n = C.normalize(px0).clone(); oob_hi_n[0, 0, 0, 0] = 10.0   # pixel = 10*sd+mu >> 1
+    trk2.labels(oob_hi_n)
+    check("norm: un-normalised coordinate > 1+1e-6 -> oob 1", trk2.oob_queries == 1)
+    oob_lo_n = C.normalize(px0).clone(); oob_lo_n[0, 2, 1, 0] = -10.0  # pixel = -10*sd+mu << -1e-6
+    trk2.labels(oob_lo_n)
+    check("norm: un-normalised coordinate < -1e-6 -> oob 2", trk2.oob_queries == 2)
+
     bad = [n for n, ok in RESULTS if not ok]
     print(f"\n{'ALL PASS' if not bad else 'FAILED: ' + ', '.join(bad)}  ({len(RESULTS) - len(bad)}/{len(RESULTS)})")
     return 0 if not bad else 1

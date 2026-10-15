@@ -48,8 +48,8 @@ from ttba_common import DATASETS, WEIGHTS, CheckpointRecorder, HookList, done_im
 METHOD = "TtBA"
 CKPT_FIELDS = ["arch", "mode", "image", "method", "budget", "found", "state_query", "pix_l2", "pix_linf",
                "adv_float", "adv_uint8", "source_label", "target_label", "ssim", "pix_l2_iter", "seed_mode"]
-RUN_FIELDS = ["arch", "mode", "image", "method", "queries", "total_queries", "nonfinite_queries", "status",
-              "wall_time_s", "error", "success_eps", "x0_pred_ok", "seed_mode"]
+RUN_FIELDS = ["arch", "mode", "image", "method", "queries", "total_queries", "nonfinite_queries", "oob_queries",
+              "status", "wall_time_s", "error", "success_eps", "x0_pred_ok", "seed_mode"]
 
 PARAMS = {
     "dim_reduc_factor": 4,
@@ -195,7 +195,8 @@ def _main_generic(a) -> int:
         if status == "error":
             write_rows(run_path, RUN_FIELDS, [{"arch": arch, "mode": mode, "image": name, "method": METHOD,
                                                "queries": tracker.queries, "total_queries": -1,
-                                               "nonfinite_queries": tracker.nonfinite_queries, "status": status,
+                                               "nonfinite_queries": tracker.nonfinite_queries,
+                                               "oob_queries": tracker.oob_queries, "status": status,
                                                "wall_time_s": round(wall, 2), "error": err}])
             print(f"[!] {name} ERROR {err}", flush=True)
             continue
@@ -216,7 +217,8 @@ def _main_generic(a) -> int:
         tracker.save_trace(os.path.join(run_dir, "traces", arch, C.stem_of(name), f"{METHOD}.npz"))
         write_rows(run_path, RUN_FIELDS, [{
             "arch": arch, "mode": mode, "image": name, "method": METHOD, "queries": tracker.queries,
-            "total_queries": atk.queries, "nonfinite_queries": tracker.nonfinite_queries, "status": status,
+            "total_queries": atk.queries, "nonfinite_queries": tracker.nonfinite_queries,
+            "oob_queries": tracker.oob_queries, "status": status,
             "wall_time_s": round(wall, 2), "error": err,
             "success_eps": int(atk.success == 1), "x0_pred_ok": int(pred == int(r["source_label"])),
             "seed_mode": a.seed_mode}])
@@ -387,7 +389,8 @@ def main() -> int:
         if status == "error":
             write_rows(run_path, RUN_FIELDS, [{"arch": arch, "mode": mode, "image": name, "method": METHOD,
                                                "queries": tracker.queries, "total_queries": -1,
-                                               "nonfinite_queries": tracker.nonfinite_queries, "status": status,
+                                               "nonfinite_queries": tracker.nonfinite_queries,
+                                               "oob_queries": tracker.oob_queries, "status": status,
                                                "wall_time_s": round(wall, 2), "error": err}])
             print(f"[!] {name} ERROR {err}", flush=True)
             continue
@@ -408,7 +411,8 @@ def main() -> int:
         tracker.save_trace(os.path.join(run_dir, "traces", arch, C.stem_of(name), f"{METHOD}.npz"))
         write_rows(run_path, RUN_FIELDS, [{
             "arch": arch, "mode": mode, "image": name, "method": METHOD, "queries": tracker.queries,
-            "total_queries": atk.queries, "nonfinite_queries": tracker.nonfinite_queries, "status": status,
+            "total_queries": atk.queries, "nonfinite_queries": tracker.nonfinite_queries,
+            "oob_queries": tracker.oob_queries, "status": status,
             "wall_time_s": round(wall, 2), "error": err,
             "success_eps": int(atk.success == 1), "x0_pred_ok": int(pred == int(r["source_label"])),
             "seed_mode": a.seed_mode}])

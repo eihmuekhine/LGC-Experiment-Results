@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{E8 low-query regime for densenet161\_places365, non\_targeted: found rate (\%), ASR (\%) at RMSE $\le$ 0.1, 0.05, 0.01, median pixel $\ell_2$ and median LPIPS-vgg.  n = LGC_RC_EGC:3, TtBA:3, CGBA:3; RMSE = $\ell_2/\sqrt{3\cdot 224 \cdot 224}$.}
+\begin{tabular}{lcccccccccccccccccccccccc}
+\toprule
+Method & \multicolumn{6}{c}{100} & \multicolumn{6}{c}{200} & \multicolumn{6}{c}{500} & \multicolumn{6}{c}{1000} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19} \cmidrule(lr){20-25}
+ & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS \\
+\midrule
+LGC\_RC\_EGC & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{33.3\%} & \textbf{0.0\%} & \textbf{20.22} & \textbf{0.1495} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{66.7\%} & 0.0\% & \textbf{15.56} & \textbf{0.1046} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{66.7\%} & 0.0\% & \textbf{10.98} & \textbf{0.0655} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{33.3\%} & \textbf{7.37} & \textbf{0.0412} \\
+TtBA & 100.0\% & 100.0\% & 33.3\% & 0.0\% & 29.33 & 0.4389 & 100.0\% & 100.0\% & 33.3\% & \textbf{33.3\%} & 27.19 & 0.4141 & 100.0\% & 100.0\% & 33.3\% & \textbf{33.3\%} & 19.59 & 0.3185 & 100.0\% & 100.0\% & 100.0\% & 33.3\% & 13.63 & 0.2251 \\
+CGBA & 100.0\% & 66.7\% & 33.3\% & 0.0\% & 36.70 & 0.4390 & 100.0\% & 100.0\% & 33.3\% & 33.3\% & 27.23 & 0.3984 & 100.0\% & 100.0\% & 66.7\% & 33.3\% & 17.38 & 0.2871 & 100.0\% & 100.0\% & 66.7\% & 33.3\% & 12.70 & 0.2050 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Found rate and ASR are percentages over the n images; an image with found = 0 or adv\_flag = 0 counts as a failure ($\ell_2=\infty$, contract D6). ASR$_{1}$/ASR$_{2}$/ASR$_{3}$ = ASR at RMSE $\le$ 0.1, 0.05, 0.01.  Median $\ell_2$ and LPIPS-vgg over found rows only.}
+\end{table*}

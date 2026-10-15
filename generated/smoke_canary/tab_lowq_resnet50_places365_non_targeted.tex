@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{E8 low-query regime for resnet50\_places365, non\_targeted: found rate (\%), ASR (\%) at RMSE $\le$ 0.1, 0.05, 0.01, median pixel $\ell_2$ and median LPIPS-vgg.  n = LGC_RC_EGC:3, TtBA:3, CGBA:3; RMSE = $\ell_2/\sqrt{3\cdot 224 \cdot 224}$.}
+\begin{tabular}{lcccccccccccccccccccccccc}
+\toprule
+Method & \multicolumn{6}{c}{100} & \multicolumn{6}{c}{200} & \multicolumn{6}{c}{500} & \multicolumn{6}{c}{1000} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19} \cmidrule(lr){20-25}
+ & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS \\
+\midrule
+LGC\_RC\_EGC & \textbf{100.0\%} & \textbf{100.0\%} & 33.3\% & 0.0\% & 27.14 & \textbf{0.2193} & \textbf{100.0\%} & \textbf{100.0\%} & 33.3\% & \textbf{33.3\%} & 21.00 & \textbf{0.1657} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{33.3\%} & 16.72 & \textbf{0.1190} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{33.3\%} & 11.07 & \textbf{0.0672} \\
+TtBA & 100.0\% & 100.0\% & 33.3\% & \textbf{33.3\%} & 19.98 & 0.3866 & 100.0\% & 100.0\% & \textbf{66.7\%} & 33.3\% & 17.96 & 0.3624 & 100.0\% & 100.0\% & 100.0\% & 33.3\% & 12.70 & 0.2795 & 100.0\% & 100.0\% & 100.0\% & 33.3\% & 8.83 & 0.1976 \\
+CGBA & 100.0\% & 100.0\% & \textbf{66.7\%} & 33.3\% & \textbf{17.89} & 0.3630 & 100.0\% & 100.0\% & 66.7\% & 33.3\% & \textbf{15.36} & 0.3281 & 100.0\% & 100.0\% & 66.7\% & 33.3\% & \textbf{10.50} & 0.2401 & 100.0\% & 100.0\% & 100.0\% & 33.3\% & \textbf{8.43} & 0.1904 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Found rate and ASR are percentages over the n images; an image with found = 0 or adv\_flag = 0 counts as a failure ($\ell_2=\infty$, contract D6). ASR$_{1}$/ASR$_{2}$/ASR$_{3}$ = ASR at RMSE $\le$ 0.1, 0.05, 0.01.  Median $\ell_2$ and LPIPS-vgg over found rows only.}
+\end{table*}

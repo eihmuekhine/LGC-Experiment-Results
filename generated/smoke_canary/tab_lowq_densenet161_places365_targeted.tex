@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{E8 low-query regime for densenet161\_places365, targeted: found rate (\%), ASR (\%) at RMSE $\le$ 0.1, 0.05, 0.01, median pixel $\ell_2$ and median LPIPS-vgg.  n = LGC_RC_EGC:3, TtBA:3, CGBA_H:3; RMSE = $\ell_2/\sqrt{3\cdot 224 \cdot 224}$.}
+\begin{tabular}{lcccccccccccccccccccccccc}
+\toprule
+Method & \multicolumn{6}{c}{100} & \multicolumn{6}{c}{200} & \multicolumn{6}{c}{500} & \multicolumn{6}{c}{1000} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19} \cmidrule(lr){20-25}
+ & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS \\
+\midrule
+LGC\_RC\_EGC & \textbf{100.0\%} & \textbf{0.0\%} & \textbf{0.0\%} & \textbf{0.0\%} & 55.63 & 0.3759 & \textbf{100.0\%} & \textbf{0.0\%} & \textbf{0.0\%} & \textbf{0.0\%} & 49.63 & 0.3421 & \textbf{100.0\%} & \textbf{33.3\%} & \textbf{0.0\%} & \textbf{0.0\%} & \textbf{38.90} & \textbf{0.2392} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{33.3\%} & \textbf{0.0\%} & \textbf{27.10} & \textbf{0.1718} \\
+TtBA & 100.0\% & 0.0\% & 0.0\% & 0.0\% & \textbf{45.83} & 0.3459 & 100.0\% & 0.0\% & 0.0\% & 0.0\% & 45.56 & 0.3573 & 100.0\% & 33.3\% & 0.0\% & 0.0\% & 42.22 & 0.5085 & 100.0\% & 66.7\% & 0.0\% & 0.0\% & 30.71 & 0.4348 \\
+CGBA\_H & 100.0\% & 0.0\% & 0.0\% & 0.0\% & 45.93 & \textbf{0.3302} & 100.0\% & 0.0\% & 0.0\% & 0.0\% & \textbf{45.12} & \textbf{0.3376} & 100.0\% & 33.3\% & 0.0\% & 0.0\% & 41.92 & 0.3708 & 100.0\% & 66.7\% & 0.0\% & 0.0\% & 33.72 & 0.3528 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Found rate and ASR are percentages over the n images; an image with found = 0 or adv\_flag = 0 counts as a failure ($\ell_2=\infty$, contract D6). ASR$_{1}$/ASR$_{2}$/ASR$_{3}$ = ASR at RMSE $\le$ 0.1, 0.05, 0.01.  Median $\ell_2$ and LPIPS-vgg over found rows only.}
+\end{table*}

@@ -235,6 +235,18 @@ Log `reports/raw/B4f/T6_domain.log`.
 
 **Verdict: PASS** (all 3 ratios inside [4.367, 4.444]; all 6 victims bit-identical to `raw_net((x0−mu)/sd)`).
 
+> **Erratum (B4h, contract v1.9 D19 — added 2026-10-16).** The ARS-OPT and CGBA/CGBA_H rows of the table above are
+> superseded. This T6 audit described the pre-fix state, where the *decision* and the *stored/scored image* could be
+> two different tensors: ARS-OPT queried unclamped `[0,1]` pixels (tracker clamped for the decision via
+> `to_pixel_clamp` but the attack loop itself never clipped), and CGBA/CGBA_H `bin_search` (`proposed_attack.py:77-85`)
+> and `SemiCircular_boundary_search` (`:179-191`) probed in ImageNet-normalised space *without* clipping (the
+> `clip_image_values` at `proposed_attack.py:65,140,160,264` does NOT cover those two boundary searches). The D19
+> oracle-domain fix (B4h-T3) wraps the tracker victim in `ClampedVictim` (ARS-OPT, `oracle_domain = "clamp01"`) and
+> `ClampedVictimNormalized` (CGBA/CGBA_H, `oracle_domain = "clamp_normalized"`) so every query is clamped to the exact
+> `[0,1]` pixel image that is stored and scored. The domain-consistency gate (`adapters/diag/domain_consistency.py`)
+> verifies X = 0 on all affected cells (`reports/B4h_t3_fix_and_gate.md`). The raw-net identity and d_n/d_p results
+> above are unchanged by D19.
+
 ---
 
 ## T7 — Env recording

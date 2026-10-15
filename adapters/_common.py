@@ -99,7 +99,8 @@ CONTRACT_PATH = os.path.join(REPO_ROOT, "contract", "paper_contract.yaml")
 
 CKPT_FIELDS = ["arch", "mode", "image", "method", "budget", "found", "state_query", "pix_l2", "pix_linf",
                "adv_float", "adv_uint8", "source_label", "target_label", "ssim", "lpips"]
-RUN_FIELDS = ["arch", "mode", "image", "method", "queries", "nonfinite_queries", "status", "wall_time_s", "error"]
+RUN_FIELDS = ["arch", "mode", "image", "method", "queries", "nonfinite_queries", "oob_queries", "status",
+              "wall_time_s", "error"]
 
 
 # --------------------------------------------------------------------------------------------- contract
@@ -175,7 +176,8 @@ def raw_net(victim):
 
     The ImageNet TtBA victims wrap the raw net as ``_Norm.m`` (baseline_protocol.py), the Places365 victims as
     ``NormalizedVictim.net``, and the RobustBench victim is a Sequential whose first submodule is the
-    ``normalize`` layer with the raw net as ``.model``."""
+    ``normalize`` layer with the raw net as ``.model``.  A victim that exposes none of these is a wiring error:
+    raise instead of silently returning the victim unchanged (which double-normalises and silently diverges)."""
     m = getattr(victim, "m", None)
     if m is not None:
         return m
@@ -186,7 +188,7 @@ def raw_net(victim):
         kids = list(victim._modules.keys())
         if kids and kids[0] == "normalize":
             return victim.model
-    return victim
+    raise ValueError(f"raw_net: victim {type(victim).__name__} exposes neither .m, .net, nor Sequential.normalize")
 
 
 def build_places365_victim(arch: str, device: str):
@@ -422,36 +424,60 @@ def normalize(x):
 
 # ------------------------------------------------------------------------------------------ non-finite guard
 class NonfiniteGuard(torch.nn.Module):
-    """Wraps the model the HardLabelTracker calls and counts queries whose input contains a non-finite element.
+    """Wraps the model the HardLabelTracker calls and counts non-finite and out-of-box queries.
 
-    Observation only (B4e T1c): it never alters the model's output, the query accounting or the attack trajectory.
-    A "query" is one image of the input batch (the tracker counts batches element-wise); the guard counts, over the
-    whole attack, how many of those images carried a NaN or +/-inf anywhere.  Written to runs*.csv as
-    ``nonfinite_queries``.
+    Observation only (B4e T1c / B4h T2): it never alters the model's output, the query accounting or the attack
+    trajectory.  A "query" is one image of the input batch (the tracker counts batches element-wise); the guard
+    counts, over the whole attack:
+      * ``nonfinite_queries``: how many of those images carried a NaN or +/-inf anywhere; and
+      * ``oob_queries``: how many carried a PIXEL-space coordinate outside [-1e-6, 1 + 1e-6] (B4h T2).  When the
+        wrapped model works in ImageNet-normalised space (``normalized_space=True``, i.e. the tracker's ``to_pixel``
+        is ``to_pixel_unnormalize`` or the model is ``ClampedVictimNormalized``), the raw input is mapped back to
+        pixel space WITHOUT clamping (``xb * sd + mu``) before the check; otherwise ``xb`` is checked directly in
+        pixel space, BEFORE ``ClampedVictim`` clamps it.  So out-of-box probes are still observed even though the
+        decision itself is computed on the clamped image.
     """
 
-    def __init__(self, model):
+    def __init__(self, model, normalized_space: bool = False):
         super().__init__()
         self.model = model
+        self.normalized_space = normalized_space
         self.nonfinite_queries = 0
+        self.oob_queries = 0
+
+    def _to_pixel_uncclamped(self, xb):
+        if not self.normalized_space:
+            return xb
+        mu = torch.tensor(MEAN, device=xb.device, dtype=xb.dtype).view(1, 3, 1, 1)
+        sd = torch.tensor(STD, device=xb.device, dtype=xb.dtype).view(1, 3, 1, 1)
+        return xb * sd + mu
 
     def forward(self, x):
         xb = x if x.dim() == 4 else x.unsqueeze(0)
         nonfinite = torch.isnan(xb).any(dim=(1, 2, 3)) | torch.isinf(xb).any(dim=(1, 2, 3))
         self.nonfinite_queries += int(nonfinite.sum().item())
+        px = self._to_pixel_uncclamped(xb)
+        oob = (px < -1e-6).any(dim=(1, 2, 3)) | (px > 1 + 1e-6).any(dim=(1, 2, 3))
+        self.oob_queries += int(oob.sum().item())
         return self.model(x)
 
 
 class _GuardedHardLabelTracker(HardLabelTracker):
-    """HardLabelTracker that wraps its model in a NonfiniteGuard (B4e T1c).  Identical bookkeeping otherwise."""
+    """HardLabelTracker that wraps its model in a NonfiniteGuard (B4e T1c / B4h T2).  Identical bookkeeping otherwise."""
 
     def __init__(self, model, *args, **kwargs):
-        self._nf_guard = NonfiniteGuard(model)
+        to_pixel = kwargs.get("to_pixel")
+        normalized = (to_pixel is to_pixel_unnormalize) or isinstance(model, ClampedVictimNormalized)
+        self._nf_guard = NonfiniteGuard(model, normalized_space=normalized)
         super().__init__(self._nf_guard, *args, **kwargs)
 
     @property
     def nonfinite_queries(self) -> int:
         return self._nf_guard.nonfinite_queries
+
+    @property
+    def oob_queries(self) -> int:
+        return self._nf_guard.oob_queries
 
 
 # Every adapter constructs its tracker through C.HardLabelTracker, so rebinding it here applies the non-finite
@@ -707,7 +733,8 @@ def run(method: str, description: str, params: dict, hyper_sources: dict,
             # No per_checkpoint rows for an errored image: it will be re-attacked on resume (no duplicates).
             append_csv(run_path, RUN_FIELDS, [{"arch": args.arch, "mode": args.mode, "image": stem,
                                                "method": method, "queries": tracker.queries,
-                                               "nonfinite_queries": tracker.nonfinite_queries, "status": status,
+                                               "nonfinite_queries": tracker.nonfinite_queries,
+                                               "oob_queries": tracker.oob_queries, "status": status,
                                                "wall_time_s": round(time.time() - t0, 2), "error": err}])
             print(f"[{idx + 1}/{len(rows)}] {stem} {method} ERROR {err}", flush=True)
             continue
@@ -721,7 +748,8 @@ def run(method: str, description: str, params: dict, hyper_sources: dict,
         tracker.save_trace(os.path.join(run_dir, "traces", args.arch, stem, f"{method}.npz"))
         append_csv(run_path, RUN_FIELDS, [{"arch": args.arch, "mode": args.mode, "image": stem, "method": method,
                                             "queries": tracker.queries,
-                                            "nonfinite_queries": tracker.nonfinite_queries, "status": status,
+                                            "nonfinite_queries": tracker.nonfinite_queries,
+                                            "oob_queries": tracker.oob_queries, "status": status,
                                             "wall_time_s": round(time.time() - t0, 2), "error": err}])
         last = ck_rows[-1]
         print(f"[{idx + 1}/{len(rows)}] {stem} {method} q={tracker.queries} "

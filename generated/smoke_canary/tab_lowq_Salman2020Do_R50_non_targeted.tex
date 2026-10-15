@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{E8 low-query regime for Salman2020Do\_R50, non\_targeted: found rate (\%), ASR (\%) at RMSE $\le$ 0.1, 0.05, 0.01, median pixel $\ell_2$ and median LPIPS-vgg.  n = LGC_RC_EGC:3, TtBA:3, CGBA:3; RMSE = $\ell_2/\sqrt{3\cdot 224 \cdot 224}$.}
+\begin{tabular}{lcccccccccccccccccccccccc}
+\toprule
+Method & \multicolumn{6}{c}{100} & \multicolumn{6}{c}{200} & \multicolumn{6}{c}{500} & \multicolumn{6}{c}{1000} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19} \cmidrule(lr){20-25}
+ & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS \\
+\midrule
+LGC\_RC\_EGC & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{33.3\%} & \textbf{33.3\%} & \textbf{20.33} & \textbf{0.1915} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{66.7\%} & \textbf{33.3\%} & \textbf{8.88} & \textbf{0.0462} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{66.7\%} & \textbf{3.60} & \textbf{0.0064} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{100.0\%} & \textbf{66.7\%} & \textbf{2.38} & \textbf{0.0024} \\
+TtBA & 100.0\% & 100.0\% & 33.3\% & 0.0\% & 32.72 & 0.4395 & 100.0\% & 100.0\% & 33.3\% & 33.3\% & 30.47 & 0.4355 & 100.0\% & 100.0\% & 33.3\% & 33.3\% & 26.46 & 0.3559 & 100.0\% & 100.0\% & 33.3\% & 33.3\% & 19.97 & 0.2493 \\
+CGBA & 100.0\% & 100.0\% & 33.3\% & 0.0\% & 31.16 & 0.4055 & 100.0\% & 100.0\% & 33.3\% & 33.3\% & 29.43 & 0.3964 & 100.0\% & 100.0\% & 33.3\% & 33.3\% & 22.94 & 0.3228 & 100.0\% & 100.0\% & 66.7\% & 33.3\% & 18.94 & 0.2492 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Found rate and ASR are percentages over the n images; an image with found = 0 or adv\_flag = 0 counts as a failure ($\ell_2=\infty$, contract D6). ASR$_{1}$/ASR$_{2}$/ASR$_{3}$ = ASR at RMSE $\le$ 0.1, 0.05, 0.01.  Median $\ell_2$ and LPIPS-vgg over found rows only.}
+\end{table*}

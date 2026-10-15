@@ -69,6 +69,7 @@ def worker(name: str, targeted: bool) -> str:
 
     repo = BASELINES[name]
     victim = DummyVictim().to(device)
+    victim.m = victim  # raw_net() requires .m/.net/Sequential.normalize; the linear dummy IS its own raw net
     x0 = torch.rand(1, 3, 16, 16, device=device)
     y_src = predict(victim, x0)
     x_tgt, y_tgt = None, None
