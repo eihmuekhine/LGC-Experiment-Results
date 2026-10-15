@@ -20,7 +20,10 @@ changelog:
   - "1.7 2026-10-13 user: D11 CGBA stall decision tree (locate the defect in B4d; paper-faithful fix; m=3 unless Alg.-1-consistent no-improvement, then m=2)"
   - "1.8 2026-10-13 user: D11_outcome (B4d verdict b, acos clip), D12 precision parity, D13 G5 rule, D14 B5 concurrency, E17 CGBA D8-only appendix"
   - "1.9 2026-10-15 user: D16 study GPU migration (RTX PRO 6000 Blackwell), D19 oracle-domain clamp for both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized), TtBA done_images L4 resume fix"
+  - "1.9-rev1 2026-10-16 user: D16 revised — study GPU confirmed as RTX 5090 (driver 595.71.05); RTX PRO 6000 migration deferred; E12 remains CONDITIONAL; E18 not in contract (E1-E17 only)"
 
+  - "1.9-rev2 2026-10-16 user: ImageNet-only robustness evaluation. E10 (Places365) CUT. E11 (RobustBench Salman2020Do_R50) unchanged — controlled comparison against main-6 standard R50."
+  - "1.9-rev3 2026-10-16 user: E12 redefined as low-query extension on robust R50 (budget 1000, n=200, non_targeted); replaces former 'extra_victims to be named'. D5 updated: no conditional sections remain." 
 decisions:   # D-items resolved here; the user confirms or edits before FROZEN
   D1_budgets: >-
     (v1.1, user 2026-10-10)
@@ -50,9 +53,9 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     The operator-substitution row (PVR-E step in the A-block) is included only if its source CSV is found and
     hashed (E9b).
   D5_conditional_sections: >-
-    E12 (low-query breadth table) remains CONDITIONAL: it is written only if its runs are approved
-    after the B4/B4b cost table and pass the same artefact checks; otherwise the section is cut
-    (no legacy numbers). E10 (Places365) and E11 (AT robust) were promoted to REQUIRED by D9 (v1.5).
+    (v1.9-rev3, user 2026-10-16) No conditional sections remain. E8 is a DERIVED view of E1-E7
+    (no additional runs; all 8 checkpoints recorded per D1). E12 CUT (data available in E11's
+    budget-1000 rows). E10 (Places365) CUT (ImageNet-only scope). E11 (RobustBench R50) REQUIRED.
   D6_failures: >-
     An image with status error, or not adversarial at B, counts as a failure for ASR (L2 = inf).
     Paired statistics use images where both methods are adversarial at B, and print the count excluded.
@@ -80,17 +83,17 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     past the crash point. Disclosed in the paper as "accounting fix, trajectory unchanged".
 
   D9_extra_datasets: >-
-    (v1.5, user 2026-10-12) E10 (Places365) and E11 (AT robust) are REQUIRED, both modes, n = 200.
-    E10 victims: resnet50_places365, densenet161_places365 (official MIT Places365, ImageNet
-    normalisation). E11 victim: Salman2020Do_R50 (RobustBench, Linf, 64.02% clean / 34.96% robust,
-    loaded via robustbench.utils.load_model). E10/E11 use the reduced roster
-    {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)} to control cost (ARS_OPT is already shown on the main
-    ImageNet study). Decided before any n = 200 result was opened on these datasets.
+    (v1.5, user 2026-10-12; revised v1.9-rev2, 2026-10-16) E11 (RobustBench Salman2020Do_R50,
+    Linf, 64.02% clean / 34.96% robust, loaded via robustbench.utils.load_model) is REQUIRED,
+    both modes, n = 200. E10 (Places365) is CUT — ImageNet-only scope (v1.9-rev2). E11 uses the
+    reduced roster {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)} to control cost (ARS_OPT is already
+    shown on the main ImageNet study). Decided before any n = 200 result was opened.
 
-  D10_e10e11_registration: >-
-    (v1.6, user 2026-10-12) Register the E10/E11 split sha256 and victim weight files in constants;
-    ours uses one out_dir per (victim, mode) so NT and T never share env_frame.txt. Reported deviation
-    before any E10/E11 n = 200 result is opened.
+  D10_e11_registration: >-
+    (v1.6, user 2026-10-12; revised v1.9-rev2, 2026-10-16) Register the E11 split sha256 and victim
+    weight files in constants; ours uses one out_dir per (victim, mode) so NT and T never share
+    env_frame.txt. Reported deviation before any E11 n = 200 result is opened. (E10 registration
+    removed — E10 CUT, ImageNet-only scope.)
 
   D11_cgba_stall: >-
     (v1.7, user 2026-10-13) The CGBA non-targeted ResNet-50 run stalls (best-so-far flat after ~1k queries,
@@ -138,10 +141,11 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     E13 uses solo rows only.
 
   D16_study_gpu_migration: >-
-    (v1.9, user 2026-10-15) The study GPU migrated from NVIDIA GeForce RTX 5090 to NVIDIA RTX PRO 6000
-    Blackwell Server Edition (driver 580.82.09); under D12 FP32 precision parity all methods attack the
-    same deterministic FP32 classifier. In addition, ttba_github/ttba_common.py:83 done_images is
-    permitted to treat status in ("ok", "budget") as completed (L4 resume fix).
+    (v1.9-rev1, user 2026-10-16) Study GPU confirmed as NVIDIA GeForce RTX 5090
+    (driver 595.71.05); the migration to RTX PRO 6000 Blackwell Server Edition is deferred.
+    Under D12 FP32 precision parity all methods attack the same deterministic FP32 classifier.
+    In addition, ttba_github/ttba_common.py:83 done_images is permitted to treat status
+    in ("ok", "budget") as completed (L4 resume fix).
 
   D19_oracle_domain_clamp: >-
     (v1.9, user 2026-10-15) Every method must decide adversariality on the exact clamped [0, 1] pixel image
@@ -164,10 +168,8 @@ constants:
   auc_budgets: [500, 1000, 2500, 5000, 10000]
   auc_definition: "per-image mean of log(pix_l2) over auc_budgets (L2); mean of the metric over auc_budgets (LPIPS, DISTS, SSIM)"
   n_main: 200
-  rows: "1-200 of splits/{imagenet/ttba_github,places365,robust}/{arch}_{mode}.csv (targeted: the first 200 pairs)"
+  rows: "1-200 of splits/{imagenet/ttba_github,robust}/{arch}_{mode}.csv (targeted: the first 200 pairs)"
   victims: {vgg19: vgg19-dcbb9e9d.pth, resnet50: resnet50-11ad3fa6.pth, vit_b_32: vit_b_32-d86f8d99.pth,
-            resnet50_places365: resnet50_places365.pth.tar,
-            densenet161_places365: densenet161_places365.pth.tar,
             Salman2020Do_R50: Salman2020Do_R50.pt}
   modes: [non_targeted, targeted]
   split_sha256:   # ImageNet: prereg_build38.txt lines 56-61; E10/E11: C2b report section 2 (D10)
@@ -177,10 +179,6 @@ constants:
     vgg19_targeted: cf0a8efb783de12f8f4f130137ca4b756c1fe048bb23fae5b366b0f1d49a3360
     vit_b_32_non_targeted: a5f152ec215aaac4efc266b863dad3841c7c6f5ff6aed651d973a213095959db
     vit_b_32_targeted: c5eee382244c0beddb10bdec40a19e9d2bd57ee47a54cd61ab10b11937337a7b
-    resnet50_places365_non_targeted: 351bc50f594f7ddcf7746cf7769ffc3ea5329271b150d762099feed4bf60012f
-    resnet50_places365_targeted: 70bd3d5c5989df6829b39a310a59203d6a5ee760f7481a5b213a2df49107eaaa
-    densenet161_places365_non_targeted: 89252849771532358f422f0046f47b91c391429c77731993881946780166a547
-    densenet161_places365_targeted: 51935b7522274cebd361b5b91e4649d18bb8da5af739010670e733b2efc4b790
     Salman2020Do_R50_non_targeted: 1b847d4c3acc858a992a202bbdc6120f525922a1a8a42a0be2c6575a480778a7
     Salman2020Do_R50_targeted: 2985ebc400ea2f292077f6c84dc809ef6591629bbd81e606b0c429a8c062d00a
   engine_sha256_prefix: 835f1933d9e5
@@ -226,7 +224,7 @@ artefacts:   # required for EVERY (method, victim, mode) cell of the main study;
     must_contain: [git_commit_or_repo_commit, engine_sha256 (ours), split_csv_sha256, victim_weight_file, torch, cuda, gpu_name, budget, checkpoints]
   run_manifest:
     file: "<out>/<mode>/run_manifest.json (baselines; lgc-baselines F1-F12)"
-  disk_estimate: "~0.48 GB per (method, victim, mode); main 24 cells ~11.5 GB + E10 12 cells ~5.8 GB + E11 6 cells ~2.9 GB = ~20 GB plus x0.npy; B4b/B5 must show >= 25 GB free"
+  disk_estimate: "~0.48 GB per (method, victim, mode); main 24 cells ~11.5 GB + E11 6 cells ~2.9 GB = ~14.4 GB plus x0.npy; B4b/B5 must show >= 20 GB free"
 
 invariants:   # each is a check in check_contract.py; id -> severity
   I01_all_checkpoints: {severity: FAIL, rule: "every (image, method) has exactly the 8 budgets of constants.checkpoints (found = 0 rows count)"}
@@ -276,6 +274,7 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     inputs: {source: adv_store+metrics_csv, budgets: [1000, 10000], methods: main+ours, cells: "all6 (3 images each)"}
   E8_low_query_table:
     status: REQUIRED
+    note: "Derived from E1-E7 runs (all 8 checkpoints recorded per D1); no additional runs required."
     content: "found rate, ASR at RMSE 0.1 / 0.05 / 0.01, median pix_l2 and median LPIPS-vgg at 100 / 200 / 500 / 1000"
     inputs: {source: [per_checkpoint, metrics_csv], budgets: [100, 200, 500, 1000], methods: main+ours, cells: all6}
   E9_ablation_table:
@@ -287,7 +286,7 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     content: "EGC with a PVR-E / TtBA step in the A-block vs EGC"
     inputs: {source: "the run that produced 1.001 NT / 1.003 T: locate CSV + sha256, else CUT"}
   E10_places365:
-    status: REQUIRED
+    status: CUT
     content: "cross-dataset generalization on Places365-Standard val_256 (365 classes); per-victim x per-mode
               tables (E1-E8 format) for resnet50_places365 and densenet161_places365"
     inputs:
@@ -310,8 +309,9 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
       sources:
         Salman2020Do_R50: "RobustBench Linf (NeurIPS 2020), 64.02% clean / 34.96% robust"
   E12_low_query_breadth:
-    status: CONDITIONAL
-    inputs: {mode: non_targeted, budget: 1000, extra_victims: "to be named", n: 200}
+    status: CUT
+    reason: "Data available in E11 (all 8 checkpoints recorded per D1). No separate item required."
+    note: "E11's budget-1000 rows provide the low-query robust-model data." 
   E13_cost_table:
     status: REQUIRED
     content: "seconds per image (sequential runs, same GPU), queries; decoder JVPs per image ONLY if the runner records them (else that column is omitted and the text does not claim it)"
@@ -330,5 +330,5 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     inputs: {source: none}
   E17_cgba_official_appendix:
     status: REQUIRED
-    content: "CGBA D8-only variant (official code with the D8 count fix, no acos clip) next to the D11 fix: share of images with the NaN event (= share on which the unmodified code raises its assertion) and median pix_l2 at 2000 / 5000 / 10000; rows 1-30 of every CGBA NT cell (main + E10/E11)"
+    content: "CGBA D8-only variant (official code with the D8 count fix, no acos clip) next to the D11 fix: share of images with the NaN event (= share on which the unmodified code raises its assertion) and median pix_l2 at 2000 / 5000 / 10000; rows 1-30 of every CGBA NT cell (main + E11)"
     inputs: {source: "Results/appendix_cgba_d8only_<arch>/non_targeted (method id CGBA_D8only; not a main-study cell, outside the checker roots; path + sha256 recorded in reports/E17_sources.md)", n: 30}
