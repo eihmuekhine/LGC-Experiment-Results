@@ -1,0 +1,49 @@
+Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B4e2 (close B4e on the study GPU). GPU ON.
+Worktree /root/autodl-tmp/LGC_frozen, contract v1.8 (print its sha256). The human saved this prompt as
+reports/raw/B4e2/prompt.txt; print its sha256. EXECUTE step by step. Do not start B5.
+Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official clones, the contract or prereg files.
+Allowed: adapters/run_cgba.py (T6 only), ttba_github/ttba_common.py (T5 only), tools/eval/check_contract.py and
+tools/eval/tests_contract/* (T7 only), adapters/diag/*, reports/*. Tee the stdout/stderr of every GPU command to
+reports/raw/B4e2/<step>.log.
+
+STUDY_GPU = "NVIDIA GeForce RTX 5090"
+RESUME_FIX_APPROVED = yes
+export OMP_NUM_THREADS=8 for every command of this phase (it becomes the B5 value).
+
+T0 Environment: nvidia-smi (name, driver, CUDA), torch.cuda.get_device_name(0), get_device_capability(0),
+ multi_processor_count, torch.__version__, lscpu model name, OMP_NUM_THREADS. Device name != STUDY_GPU: STOP before
+ any GPU run.
+T1 Frozen engine B0' on STUDY_GPU: ttba_github/run_frame_b1.sh, resnet50 NT rows 1-3, three out_dirs:
+ (A) the 6 registered budgets without --save_adv; (A2) A repeated; (B) the 8 contract budgets with --save_adv.
+ A == A2 bitwise (found, state_query, pix_l2 at every budget); A == B at the 6 registered budgets. Any difference: STOP.
+ If STUDY_GPU is the RTX 5090, also compare B with Results/b4_smoke_egc_resnet50 (IDENTICAL or the first diverging
+ image/budget; information only).
+T2 Final smoke set on STUDY_GPU (rows 1-3, D12 flags) into fresh roots Results/b4e2_smoke_<method>_<arch>:
+ - LGC_RC_EGC: all 12 cells (main via run_frame_b1.sh, E10/E11 via run_frame_b1_generic.py; one out_dir per (arch, mode)).
+ - Baselines: if every env file under Results/b4e_smoke_* records STUDY_GPU, re-run only the 12 TtBA cells (their env
+   files lack the D12 precision block); otherwise all 30 baseline cells (TtBA, CGBA/CGBA_H --cgba_variant fixed,
+   ARS_OPT; E10/E11 TtBA, CGBA/CGBA_H).
+ Write reports/B4e2_smoke_roots.txt: the exact roots of the final smoke reference (EGC + every baseline cell, one GPU).
+T3 Gates on exactly that list: check_contract.py --stage smoke --n 3 --report /tmp/b4e2_gate.md -> exit 0 (one GPU name
+ in I10); python tools/eval/human_preflight.py --roots $(cat reports/B4e2_smoke_roots.txt) --out
+ reports/human_preflight_b4e2 -> FLAG lines = 0; stall 0, nonfinite_queries 0, errors 0 in every cell. Paste section 1
+ and the FLAG count.
+T4 Row-split invariance (needed to split a cell across GPUs in B5): for LGC_RC_EGC resnet50 NT and TtBA resnet50 NT, run
+ rows 2-3 alone into a throwaway dir; compare with rows 2-3 of T2 (found, state_query, pix_l2, npz delta). Report
+ IDENTICAL or the first difference, and quote how each runner seeds per image (file:line). Do not fix anything.
+T5 (only if RESUME_FIX_APPROVED = yes) ttba_github/ttba_common.py:83 done_images: an image with ANY row in runs_*.csv is
+ done, whatever its status (contract D6: failures are never re-run selectively). Sandbox unit test (ok, budget and
+ error rows skipped; a missing image runs). Fresh-run invariance: EGC resnet50 NT row 1 and TtBA resnet50 NT row 1 into
+ new dirs -> IDENTICAL to T2.
+T6 CGBA clip-event counter (observation only; adapters/run_cgba.py fixed override): per image, count the calls in which
+ the acos argument at proposed_attack.py:182 lies outside [-1, 1] before the clamp; write clip_events_182 to runs_*.csv
+ for CGBA/CGBA_H. Update adapters/diag/diag_b4e_t1_clip_source.py so it asserts that the clamp is the only
+ value-changing edit. Re-run CGBA resnet50 NT rows 1-3 into a throwaway dir: numerics IDENTICAL to T2; print the counts.
+T7 tools/eval/check_contract.py rewrites the tracked reports/contract_status.md even when --report points elsewhere.
+ Write the status file next to --report (<report stem>_status.md) unless --status_out is given. tests_contract all
+ PASS (add one test for this), selftest_evalkit 20/20.
+T8 Cost on STUDY_GPU (s/img from T2; B4e for cells not re-run): GPU-h per cell = 200 x s/img / 3600; totals main,
+ E10/E11, E17; makespan for N = 4, 8, 12 GPUs, longest cell first, one process per GPU (row splitting only if T4 is
+ IDENTICAL).
+Write reports/B4e2_close.md (skill lgc-preflight §5, with "Deviations from the prompt"); commit code, report and
+reports/raw/B4e2/*. STOP.

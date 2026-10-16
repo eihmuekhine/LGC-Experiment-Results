@@ -1,0 +1,6 @@
+arch,mode,image,method,queries,total_queries,nonfinite_queries,status,wall_time_s,error,success_eps,x0_pred_ok,seed_mode
+kat_linear,targeted,kat_3.png,TtBA,10000,9930,0,budget,15.65,,1,1,per_image
+kat_linear,targeted,kat_11.png,TtBA,10000,9914,0,budget,15.11,,1,1,per_image
+kat_linear,targeted,kat_19.png,TtBA,10000,9945,0,budget,15.04,,0,1,per_image
+kat_linear,targeted,kat_25.png,TtBA,10000,9914,0,budget,15.13,,1,1,per_image
+kat_linear,targeted,kat_31.png,TtBA,10000,9913,0,budget,15.11,,1,1,per_image

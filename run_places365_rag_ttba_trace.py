@@ -1,0 +1,1415 @@
+
+import argparse
+import csv
+import json
+import os
+
+import lpips
+import numpy as np
+import torch
+import torchvision.transforms as transforms
+from PIL import Image
+from torchmetrics.functional import (
+    structural_similarity_index_measure as ssim_fn,
+)
+
+from models import builder
+
+from attacks.rag_ttba_trace import (
+    RAGTtBATraceAttack,
+)
+
+# Reuse the already validated Places365/model/split helpers.
+from run_places365_rag_ttba_pgr import (
+    device,
+    set_seed,
+    load_places365_model,
+    LatentModelWrapper,
+    build_target_seed_hardlabel,
+    prepare_strict_splits,
+)
+
+
+def save_method_outputs(
+    out_dir,
+    rows,
+    checkpoints,
+    thresholds,
+):
+    os.makedirs(
+        out_dir,
+        exist_ok=True,
+    )
+
+    n = len(
+        rows
+    )
+    c = len(
+        checkpoints
+    )
+
+    def stack_float(
+        key,
+    ):
+        if n == 0:
+            return np.empty(
+                (
+                    0,
+                    c,
+                ),
+                dtype=np.float64,
+            )
+
+        return np.stack(
+            [
+                row[
+                    key
+                ]
+                for row
+                in rows
+            ],
+            axis=0,
+        ).astype(
+            np.float64
+        )
+
+    def stack_int(
+        key,
+    ):
+        if n == 0:
+            return np.empty(
+                (
+                    0,
+                    c,
+                ),
+                dtype=np.int64,
+            )
+
+        return np.stack(
+            [
+                row[
+                    key
+                ]
+                for row
+                in rows
+            ],
+            axis=0,
+        ).astype(
+            np.int64
+        )
+
+    arrays = {
+        "checkpoints": np.asarray(
+            checkpoints,
+            dtype=np.int64,
+        ),
+        "state_query": stack_int(
+            "state_query"
+        ),
+        "l2_lat": stack_float(
+            "l2_lat"
+        ),
+        "l2_pix": stack_float(
+            "l2_pix"
+        ),
+        "ssim": stack_float(
+            "ssim"
+        ),
+        "lpips": stack_float(
+            "lpips"
+        ),
+        "asr": stack_float(
+            "asr"
+        ),
+        "best_query": np.asarray(
+            [
+                row[
+                    "best_query"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "budget_consumed": np.asarray(
+            [
+                row[
+                    "budget_consumed"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "final_l2_lat": np.asarray(
+            [
+                row[
+                    "final_l2_lat"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.float64,
+        ),
+        "final_l2_pix": np.asarray(
+            [
+                row[
+                    "final_l2_pix"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.float64,
+        ),
+        "final_ssim": np.asarray(
+            [
+                row[
+                    "final_ssim"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.float64,
+        ),
+        "final_lpips": np.asarray(
+            [
+                row[
+                    "final_lpips"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.float64,
+        ),
+        "q_init": np.asarray(
+            [
+                row[
+                    "q_init"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "q_normal": np.asarray(
+            [
+                row[
+                    "q_normal"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "q_bridge": np.asarray(
+            [
+                row[
+                    "q_bridge"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "q_boundary": np.asarray(
+            [
+                row[
+                    "q_boundary"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "trace_iterations": np.asarray(
+            [
+                row[
+                    "trace_iterations"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "trace_nonbase_selected": np.asarray(
+            [
+                row[
+                    "trace_nonbase_selected"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "trace_total_bridge_queries": np.asarray(
+            [
+                row[
+                    "trace_total_bridge_queries"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+        "trace_total_verified_adv": np.asarray(
+            [
+                row[
+                    "trace_total_verified_adv"
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        ),
+    }
+
+    for threshold in thresholds:
+        safe = str(
+            threshold
+        ).replace(
+            ".",
+            "p",
+        )
+
+        arrays[
+            f"q_to_l2_{safe}"
+        ] = np.asarray(
+            [
+                row[
+                    "thresholds"
+                ][
+                    float(
+                        threshold
+                    )
+                ]
+                for row
+                in rows
+            ],
+            dtype=np.int64,
+        )
+
+    np.savez(
+        os.path.join(
+            out_dir,
+            "metrics_numeric.npz",
+        ),
+        **arrays,
+    )
+
+    with open(
+        os.path.join(
+            out_dir,
+            "checkpoint_summary.csv",
+        ),
+        "w",
+        newline="",
+    ) as f:
+        writer = csv.writer(
+            f
+        )
+
+        writer.writerow(
+            [
+                "sample_index",
+                "checkpoint",
+                "state_query",
+                "l2_lat",
+                "l2_pix",
+                "ssim",
+                "lpips",
+                "asr",
+            ]
+        )
+
+        for i, row in enumerate(
+            rows
+        ):
+            for j, cp in enumerate(
+                checkpoints
+            ):
+                writer.writerow(
+                    [
+                        i,
+                        cp,
+                        int(
+                            row[
+                                "state_query"
+                            ][
+                                j
+                            ]
+                        ),
+                        float(
+                            row[
+                                "l2_lat"
+                            ][
+                                j
+                            ]
+                        ),
+                        float(
+                            row[
+                                "l2_pix"
+                            ][
+                                j
+                            ]
+                        ),
+                        float(
+                            row[
+                                "ssim"
+                            ][
+                                j
+                            ]
+                        ),
+                        float(
+                            row[
+                                "lpips"
+                            ][
+                                j
+                            ]
+                        ),
+                        float(
+                            row[
+                                "asr"
+                            ][
+                                j
+                            ]
+                        ),
+                    ]
+                )
+
+
+def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--mode",
+        choices=[
+            "targeted",
+            "non_targeted",
+        ],
+        required=True,
+    )
+
+    parser.add_argument(
+        "--target_archs",
+        nargs="+",
+        default=[
+            "resnet50"
+        ],
+    )
+
+    parser.add_argument(
+        "--attack_methods",
+        nargs="+",
+        default=[
+            "RAG_TTBA_BASE",
+            "RAG_TTBA_TRACE",
+        ],
+    )
+
+    parser.add_argument(
+        "--ae_checkpoint",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--base_dir",
+        default="./data/Places365",
+    )
+
+    parser.add_argument(
+        "--num_samples",
+        type=int,
+        default=1,
+    )
+
+    parser.add_argument(
+        "--max_queries",
+        type=int,
+        default=2000,
+    )
+
+    parser.add_argument(
+        "--query_checkpoints",
+        nargs="+",
+        type=int,
+        default=[
+            500,
+            1000,
+            2000,
+        ],
+    )
+
+    parser.add_argument(
+        "--l2_thresholds",
+        nargs="+",
+        type=float,
+        default=[
+            10.0,
+            5.0,
+            3.0,
+            2.5,
+            2.0,
+        ],
+    )
+
+    parser.add_argument(
+        "--iterations",
+        type=int,
+        default=1000,
+    )
+
+    parser.add_argument(
+        "--initial_query",
+        type=int,
+        default=30,
+    )
+
+    parser.add_argument(
+        "--sigma",
+        type=float,
+        default=0.0002,
+    )
+
+    parser.add_argument(
+        "--tol",
+        type=float,
+        default=0.0001,
+    )
+
+    parser.add_argument(
+        "--ttba_bridge_tol",
+        type=float,
+        default=0.001,
+    )
+
+    parser.add_argument(
+        "--update_query_reserve",
+        type=int,
+        default=18,
+    )
+
+    parser.add_argument(
+        "--trace_min_free_gain",
+        type=float,
+        default=0.0,
+        help=(
+            "Minimum query-free RAG L2 gain required before TRACE selects "
+            "a reused bridge point instead of standard BASE k_app. "
+            "Default 0.0 means any strictly better free score can be selected."
+        ),
+    )
+
+    parser.add_argument(
+        "--target_seed_max_queries",
+        type=int,
+        default=80,
+    )
+
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=992,
+    )
+
+    parser.add_argument(
+        "--verbose",
+        choices=[
+            "Yes",
+            "No",
+        ],
+        default="No",
+    )
+
+    args = parser.parse_args()
+
+    bad = sorted(
+        set(
+            args.attack_methods
+        )
+        - RAGTtBATraceAttack.SUPPORTED_TRACE
+    )
+
+    if bad:
+        raise ValueError(
+            f"Unsupported methods: {bad}. "
+            f"Supported="
+            f"{sorted(RAGTtBATraceAttack.SUPPORTED_TRACE)}"
+        )
+
+    set_seed(
+        args.seed
+    )
+
+    image_dir = os.path.join(
+        args.base_dir,
+        "images",
+    )
+
+    labels_path = os.path.join(
+        args.base_dir,
+        "adv_test_labels.txt",
+    )
+
+    img2label = {}
+
+    with open(
+        labels_path,
+        "r",
+    ) as f:
+        for line in f:
+            parts = (
+                line.strip().split()
+            )
+
+            if len(
+                parts
+            ) >= 2:
+                img2label[
+                    parts[
+                        0
+                    ]
+                ] = int(
+                    parts[
+                        1
+                    ]
+                )
+
+    mean = [
+        0.485,
+        0.456,
+        0.406,
+    ]
+
+    std = [
+        0.229,
+        0.224,
+        0.225,
+    ]
+
+    mean_t = torch.tensor(
+        mean
+    ).view(
+        1,
+        3,
+        1,
+        1,
+    ).to(
+        device
+    )
+
+    std_t = torch.tensor(
+        std
+    ).view(
+        1,
+        3,
+        1,
+        1,
+    ).to(
+        device
+    )
+
+    class MockArgs:
+        arch = "vgg16"
+        parallel = 0
+        gpu = 0
+
+    ae_model = builder.BuildAutoEncoder(
+        MockArgs()
+    )
+
+    checkpoint = torch.load(
+        args.ae_checkpoint,
+        map_location=device,
+    )
+
+    state_dict = (
+        checkpoint[
+            "state_dict"
+        ]
+        if "state_dict"
+        in checkpoint
+        else checkpoint
+    )
+
+    aligned = {
+        (
+            "module."
+            + key.replace(
+                "module.",
+                "",
+            )
+        ): value
+        for key, value
+        in state_dict.items()
+    }
+
+    ae_model.load_state_dict(
+        aligned
+    )
+
+    ae_model = ae_model.to(
+        device
+    ).eval()
+
+    if isinstance(
+        ae_model,
+        torch.nn.DataParallel,
+    ):
+        encoder = (
+            ae_model.module.encoder
+        )
+        decoder = (
+            ae_model.module.decoder
+        )
+    else:
+        encoder = (
+            ae_model.encoder
+        )
+        decoder = (
+            ae_model.decoder
+        )
+
+    loss_fn_vgg = lpips.LPIPS(
+        net="vgg"
+    ).to(
+        device
+    )
+
+    resize = transforms.Resize(
+        (
+            224,
+            224,
+        )
+    )
+
+    to_tensor = transforms.ToTensor()
+
+    def load_rgb(
+        path,
+    ):
+        return to_tensor(
+            resize(
+                Image.open(
+                    path
+                ).convert(
+                    "RGB"
+                )
+            )
+        ).unsqueeze(
+            0
+        ).to(
+            device
+        )
+
+    for arch in args.target_archs:
+        print(
+            "\n"
+            + "=" * 90
+        )
+
+        print(
+            "RAG-TtBA QUERY-REUSED TRACE — "
+            f"{arch.upper()} — "
+            f"{args.mode.upper()}"
+        )
+
+        print(
+            "=" * 90
+        )
+
+        classifier = load_places365_model(
+            arch,
+            device,
+        )
+
+        wrapper = LatentModelWrapper(
+            decoder,
+            classifier,
+            mean,
+            std,
+        ).to(
+            device
+        ).eval()
+
+        pairs = prepare_strict_splits(
+            args,
+            arch,
+            image_dir,
+            img2label,
+            classifier,
+            mean_t,
+            std_t,
+        )
+
+        rows_by_method = {
+            method: []
+            for method
+            in args.attack_methods
+        }
+
+        for sample_index, pair in enumerate(
+            pairs
+        ):
+            (
+                source_name,
+                source_label,
+                target_name,
+                target_label,
+            ) = pair
+
+            x_source = load_rgb(
+                os.path.join(
+                    image_dir,
+                    source_name,
+                )
+            )
+
+            with torch.no_grad():
+                z_source = encoder(
+                    x_source
+                )
+
+                x_rec_source = decoder(
+                    z_source
+                )
+
+            wrapper.set_reference_images(
+                x_source,
+                x_rec_source,
+            )
+
+            target_seed = None
+            target_seed_queries = 0
+
+            if args.mode == "targeted":
+                x_target = load_rgb(
+                    os.path.join(
+                        image_dir,
+                        target_name,
+                    )
+                )
+
+                set_seed(
+                    args.seed
+                    + sample_index
+                )
+
+                (
+                    target_seed,
+                    target_seed_queries,
+                ) = build_target_seed_hardlabel(
+                    encoder=encoder,
+                    decoder=decoder,
+                    wrapper=wrapper,
+                    x_source=x_source,
+                    x_target=x_target,
+                    target_label=target_label,
+                    max_queries=args.target_seed_max_queries,
+                )
+
+                if target_seed is None:
+                    print(
+                        f"[!] Skip {source_name}: "
+                        "hard-label target seed failed."
+                    )
+                    continue
+
+            print(
+                f"\n[{sample_index + 1}/"
+                f"{len(pairs)}] "
+                f"{source_name}"
+            )
+
+            for method in args.attack_methods:
+                print(
+                    f"\n --- {method} ---"
+                )
+
+                # Exactly the same initial randomness for BASE and TRACE.
+                set_seed(
+                    args.seed
+                    + sample_index
+                )
+
+                attack = RAGTtBATraceAttack(
+                    model=wrapper,
+                    z_source=z_source,
+                    x_orig=x_source,
+                    source_label=source_label,
+                    loss_fn_vgg=loss_fn_vgg,
+                    ssim_fn=ssim_fn,
+                    attack_method=method,
+                    target_seed=target_seed,
+                    target_label=target_label,
+                    iteration=args.iterations,
+                    initial_query=args.initial_query,
+                    tol=args.tol,
+                    sigma=args.sigma,
+                    seed=(
+                        args.seed
+                        + sample_index
+                    ),
+                    query_checkpoints=args.query_checkpoints,
+                    max_queries=args.max_queries,
+                    verbose=args.verbose,
+                    initial_query_offset=target_seed_queries,
+                    ttba_bridge_tol=args.ttba_bridge_tol,
+                    update_query_reserve=args.update_query_reserve,
+                    trace_min_free_gain=args.trace_min_free_gain,
+                    l2_thresholds=args.l2_thresholds,
+                )
+
+                result = attack.attack()
+
+                if (
+                    not result[
+                        "success"
+                    ]
+                    or result[
+                        "final"
+                    ] is None
+                ):
+                    print(
+                        "   [FAIL] attack initialization failed."
+                    )
+                    continue
+
+                final = result[
+                    "final"
+                ]
+
+                qb = result[
+                    "query_breakdown"
+                ]
+
+                cp = result[
+                    "checkpoints"
+                ]
+
+                ts = result.get(
+                    "trace_summary",
+                    {},
+                )
+
+                print(
+                    f"   BEST Q={final['query']} "
+                    f"(used={final['budget_consumed']}) "
+                    f"PixL2={final['l2_pix']:.4f} "
+                    f"LatL2={final['l2_lat']:.4f} "
+                    f"SSIM={final['ssim']:.5f} "
+                    f"LPIPS={final['lpips']:.5f}"
+                )
+
+                print(
+                    "   Q: "
+                    f"init={qb.get('init', 0)} "
+                    f"normal={qb.get('normal', 0)} "
+                    f"bridge={qb.get('bridge', 0)} "
+                    f"boundary={qb.get('boundary', 0)}"
+                )
+
+                if method == "RAG_TTBA_TRACE":
+                    print(
+                        "   TRACE: "
+                        f"iterations={ts.get('iterations', 0)} "
+                        f"nonbaseSelected="
+                        f"{ts.get('nonbase_selected', 0)} "
+                        f"bridgeQ="
+                        f"{ts.get('total_bridge_queries', 0)} "
+                        f"verifiedAdv="
+                        f"{ts.get('total_verified_adv', 0)}"
+                    )
+
+                rows_by_method[
+                    method
+                ].append(
+                    {
+                        "state_query": cp[
+                            "state_query"
+                        ],
+                        "l2_lat": cp[
+                            "l2_lat"
+                        ],
+                        "l2_pix": cp[
+                            "l2_pix"
+                        ],
+                        "ssim": cp[
+                            "ssim"
+                        ],
+                        "lpips": cp[
+                            "lpips"
+                        ],
+                        "asr": cp[
+                            "asr"
+                        ],
+                        "best_query": int(
+                            final[
+                                "query"
+                            ]
+                        ),
+                        "budget_consumed": int(
+                            final[
+                                "budget_consumed"
+                            ]
+                        ),
+                        "final_l2_lat": float(
+                            final[
+                                "l2_lat"
+                            ]
+                        ),
+                        "final_l2_pix": float(
+                            final[
+                                "l2_pix"
+                            ]
+                        ),
+                        "final_ssim": float(
+                            final[
+                                "ssim"
+                            ]
+                        ),
+                        "final_lpips": float(
+                            final[
+                                "lpips"
+                            ]
+                        ),
+                        "q_init": int(
+                            qb.get(
+                                "init",
+                                0,
+                            )
+                        ),
+                        "q_normal": int(
+                            qb.get(
+                                "normal",
+                                0,
+                            )
+                        ),
+                        "q_bridge": int(
+                            qb.get(
+                                "bridge",
+                                0,
+                            )
+                        ),
+                        "q_boundary": int(
+                            qb.get(
+                                "boundary",
+                                0,
+                            )
+                        ),
+                        "trace_iterations": int(
+                            ts.get(
+                                "iterations",
+                                0,
+                            )
+                        ),
+                        "trace_nonbase_selected": int(
+                            ts.get(
+                                "nonbase_selected",
+                                0,
+                            )
+                        ),
+                        "trace_total_bridge_queries": int(
+                            ts.get(
+                                "total_bridge_queries",
+                                0,
+                            )
+                        ),
+                        "trace_total_verified_adv": int(
+                            ts.get(
+                                "total_verified_adv",
+                                0,
+                            )
+                        ),
+                        "thresholds": result[
+                            "thresholds"
+                        ],
+                        "diagnostics": result[
+                            "diagnostics"
+                        ],
+                    }
+                )
+
+        root = os.path.join(
+            "Results",
+            "RAG_TTBA_TRACE",
+            args.mode,
+            arch,
+        )
+
+        os.makedirs(
+            root,
+            exist_ok=True,
+        )
+
+        summary_path = os.path.join(
+            root,
+            "final_summary.csv",
+        )
+
+        threshold_path = os.path.join(
+            root,
+            "threshold_summary.csv",
+        )
+
+        with open(
+            summary_path,
+            "w",
+            newline="",
+        ) as fs, open(
+            threshold_path,
+            "w",
+            newline="",
+        ) as ft:
+            sw = csv.writer(
+                fs
+            )
+
+            tw = csv.writer(
+                ft
+            )
+
+            sw.writerow(
+                [
+                    "method",
+                    "n",
+                    "median_best_query",
+                    "median_budget_consumed",
+                    "median_final_l2_lat",
+                    "median_final_l2_pix",
+                    "mean_final_ssim",
+                    "mean_final_lpips",
+                    "sum_q_init",
+                    "sum_q_normal",
+                    "sum_q_bridge",
+                    "sum_q_boundary",
+                    "sum_trace_iterations",
+                    "sum_trace_nonbase_selected",
+                    "sum_trace_verified_adv",
+                ]
+            )
+
+            tw.writerow(
+                [
+                    "method",
+                    "l2_threshold",
+                    "hit_count",
+                    "hit_rate",
+                    "median_query_among_hits",
+                ]
+            )
+
+            print(
+                "\n"
+                + "=" * 90
+            )
+
+            print(
+                "QUERY-REUSED TRACE ABLATION SUMMARY"
+            )
+
+            print(
+                "=" * 90
+            )
+
+            for method in args.attack_methods:
+                rows = rows_by_method[
+                    method
+                ]
+
+                if not rows:
+                    continue
+
+                method_dir = os.path.join(
+                    root,
+                    method,
+                )
+
+                save_method_outputs(
+                    method_dir,
+                    rows,
+                    args.query_checkpoints,
+                    args.l2_thresholds,
+                )
+
+                with open(
+                    os.path.join(
+                        method_dir,
+                        "diagnostics.json",
+                    ),
+                    "w",
+                ) as f:
+                    json.dump(
+                        [
+                            row[
+                                "diagnostics"
+                            ]
+                            for row
+                            in rows
+                        ],
+                        f,
+                        indent=2,
+                    )
+
+                pix = np.asarray(
+                    [
+                        row[
+                            "final_l2_pix"
+                        ]
+                        for row
+                        in rows
+                    ],
+                    dtype=float,
+                )
+
+                lat = np.asarray(
+                    [
+                        row[
+                            "final_l2_lat"
+                        ]
+                        for row
+                        in rows
+                    ],
+                    dtype=float,
+                )
+
+                ssim_arr = np.asarray(
+                    [
+                        row[
+                            "final_ssim"
+                        ]
+                        for row
+                        in rows
+                    ],
+                    dtype=float,
+                )
+
+                lpips_arr = np.asarray(
+                    [
+                        row[
+                            "final_lpips"
+                        ]
+                        for row
+                        in rows
+                    ],
+                    dtype=float,
+                )
+
+                best_q = np.asarray(
+                    [
+                        row[
+                            "best_query"
+                        ]
+                        for row
+                        in rows
+                    ],
+                    dtype=float,
+                )
+
+                consumed = np.asarray(
+                    [
+                        row[
+                            "budget_consumed"
+                        ]
+                        for row
+                        in rows
+                    ],
+                    dtype=float,
+                )
+
+                q_init = int(
+                    sum(
+                        row[
+                            "q_init"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                q_normal = int(
+                    sum(
+                        row[
+                            "q_normal"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                q_bridge = int(
+                    sum(
+                        row[
+                            "q_bridge"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                q_boundary = int(
+                    sum(
+                        row[
+                            "q_boundary"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                trace_iterations = int(
+                    sum(
+                        row[
+                            "trace_iterations"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                trace_nonbase = int(
+                    sum(
+                        row[
+                            "trace_nonbase_selected"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                trace_verified = int(
+                    sum(
+                        row[
+                            "trace_total_verified_adv"
+                        ]
+                        for row
+                        in rows
+                    )
+                )
+
+                print(
+                    f"{method:<18} "
+                    f"PixL2med={np.median(pix):.4f} "
+                    f"LatL2med={np.median(lat):.4f} "
+                    f"SSIM={np.mean(ssim_arr):.5f} "
+                    f"LPIPS={np.mean(lpips_arr):.5f} "
+                    f"Qbridge={q_bridge} "
+                    f"TracePick={trace_nonbase}/"
+                    f"{trace_iterations}"
+                )
+
+                sw.writerow(
+                    [
+                        method,
+                        len(
+                            rows
+                        ),
+                        float(
+                            np.median(
+                                best_q
+                            )
+                        ),
+                        float(
+                            np.median(
+                                consumed
+                            )
+                        ),
+                        float(
+                            np.median(
+                                lat
+                            )
+                        ),
+                        float(
+                            np.median(
+                                pix
+                            )
+                        ),
+                        float(
+                            np.mean(
+                                ssim_arr
+                            )
+                        ),
+                        float(
+                            np.mean(
+                                lpips_arr
+                            )
+                        ),
+                        q_init,
+                        q_normal,
+                        q_bridge,
+                        q_boundary,
+                        trace_iterations,
+                        trace_nonbase,
+                        trace_verified,
+                    ]
+                )
+
+                for threshold in args.l2_thresholds:
+                    hits = [
+                        row[
+                            "thresholds"
+                        ][
+                            float(
+                                threshold
+                            )
+                        ]
+                        for row
+                        in rows
+                    ]
+
+                    valid = [
+                        q
+                        for q
+                        in hits
+                        if q >= 0
+                    ]
+
+                    tw.writerow(
+                        [
+                            method,
+                            float(
+                                threshold
+                            ),
+                            len(
+                                valid
+                            ),
+                            (
+                                len(
+                                    valid
+                                )
+                                / len(
+                                    rows
+                                )
+                                if rows
+                                else 0.0
+                            ),
+                            (
+                                float(
+                                    np.median(
+                                        valid
+                                    )
+                                )
+                                if valid
+                                else -1.0
+                            ),
+                        ]
+                    )
+
+        print(
+            f"\n[*] Summary: "
+            f"{summary_path}"
+        )
+
+        print(
+            f"[*] Thresholds: "
+            f"{threshold_path}"
+        )
+
+        del wrapper
+        del classifier
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+
+if __name__ == "__main__":
+    main()

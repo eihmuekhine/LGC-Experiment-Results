@@ -1,0 +1,41 @@
+Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B4h (oracle domain + E8 tool). GPU ON.
+Worktree /root/autodl-tmp/LGC_frozen, contract v1.8 (print sha256). Print the sha256 of reports/raw/B4h/prompt.txt.
+STUDY_GPU = "NVIDIA GeForce RTX 5090" (STOP if different). export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 for every command.
+Do not start B5. Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official clones, the contract, prereg.
+Allowed: adapters/run_arsopt.py (T3 only), adapters/_common.py (T2, T4 only), adapters/diag/*,
+tools/eval/make_low_query_table.py + tools/eval/tests_lowq/*, reports/*. Read docs/LESSONS.md first (skill §7).
+Tee every GPU command to reports/raw/B4h/<step>.log. Any FAIL: STOP bundle (skill §7); do not work around it.
+
+T1 Measure before any change (evaluation-only, uncounted; study GPU, D12 flags) on the roots in
+ reports/B4e2_smoke_roots.txt. Write adapters/diag/domain_consistency.py --roots <dirs> --out <csv>. For every
+ (method, cell, image, contract checkpoint) with found = 1: d = float32(stored float16 delta); for s in
+ {1, 1 + 2^-9, 1 + 2^-6} evaluate the victim on clamp(x0 + s*d, 0, 1). Adversarial = the victim's decision (NT:
+ argmax != y; T: argmax == t). Record the margin m (NT: l_y - max_{j!=y} l_j; T: max_{j!=t} l_j - l_t). Class per row:
+ C adversarial at s = 1; Q9 not at s = 1 but at s = 1 + 2^-9; Q6 first adversarial at s = 1 + 2^-6; X otherwise.
+ Rows to reports/raw/B4h/t1_rows.csv; table per (method, cell): rows, C, Q9, Q6, X, median and max m(s = 1) over
+ non-C rows, adv_uint8 = 1. Q9/Q6 are float16-storage effects (||fl16(d) - d|| <= 2^-11 ||d||), not defects.
+ X > 0 for ARS_OPT is the expected pre-fix measurement (no STOP). X > 0 for any other method: STOP bundle (E-OTHER)
+ before T3.
+T2 Observation-only counter oob_queries in the shared guard: per image, the number of victim queries whose PIXEL-space
+ input (before any clamp; for normalised-space methods map back with the un-normalisation) has a coordinate < -1e-6 or
+ > 1 + 1e-6. Written to every runs_*.csv (all adapters). Unit test.
+T3 Fix (contract D19, pending user approval in v1.9; apply now on the branch): run_arsopt.py passes C.ClampedVictim(victim)
+ to the tracker, as run_ttba_v2.py does. Quote the official ARS-OPT model wrapper and attack loop (file:line) and state
+ whether the official pipeline clamps queries; record oracle_domain = "clamp01" in env_*.json / run_manifest.json of
+ every adapter.
+T4 C.raw_net(victim) raises ValueError when the victim exposes neither .m nor .net (no silent fallback). Re-run the
+ B4f T6 raw-net check on all 6 victims (diff must be 0).
+T5 KAT regression with the victim UNclamped (as specified; the domain is the adapters' job; keep the smooth candidates
+ and the .m plumbing): re-run T1 of B4g for every method. (a)-(d) must PASS. Expected: every method bitwise IDENTICAL to
+ the B4g T1 run (the clamp moved from the victim to the ARS_OPT wrapper); any difference -> report which method queries
+ out of range (oob_queries).
+T6 ARS_OPT smoke re-run (6 main cells, rows 1-3) into Results/b4h_smoke_ARS_OPT_<arch>; compare with the B4e2 ARS_OPT
+ roots (IDENTICAL or first difference + oob_queries); replace the ARS_OPT roots in reports/B4e2_smoke_roots.txt;
+ human_preflight FLAG lines 0; check_contract --stage smoke exit 0 on the updated list.
+ Also run adapters/diag/domain_consistency.py on the new ARS_OPT roots: X = 0 in every cell (gate).
+T7 tools/eval/make_low_query_table.py: E8 exactly as in the contract (found rate; ASR at RMSE 0.1 / 0.05 / 0.01 with
+ RMSE = pix_l2 / sqrt(3*224*224); median pix_l2; median LPIPS-vgg; at 100/200/500/1000; n printed; ours first);
+ tests (synthetic CSV with known answers); run on generated/smoke_canary -> generated/smoke_canary/tab_lowq_*.tex.
+T8 Correct reports/B4f_audit.md T6 (ARS_OPT row) and reports/B4g_kat_canary.md deviation 2 with an "Erratum
+ (B4h)" note; do not rewrite history otherwise.
+Write reports/B4h_oracle_domain.md (skill §5 + Deviations + STOP bundles if any); commit. STOP.

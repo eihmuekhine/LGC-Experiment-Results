@@ -1,0 +1,32 @@
+Load skills lgc-preflight, lgc-baselines, lgc-reviewer-eval, and lgc-paper-contract.
+Phase B4h-Close: complete the remaining tasks of Phase B4h (T2 oob_queries counter, T4 raw_net strictness, T7 make_low_query_table.py E8 tool + tests, T8 errata + final B4h_oracle_domain.md report).
+GPU ON (STUDY_GPU = "NVIDIA GeForce RTX 5090"). Worktree /root/autodl-tmp/LGC_frozen, HEAD 2d7cde4 (print HEAD and contract v1.9 sha256 first; expect fc04498315dec51b0f663568d76a7804d46f63aa57eb2950a2126d157451ca32).
+export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 for every command.
+EXECUTE step by step; do NOT re-run the 18 smoke cells or KAT (already completed in 5258b3a and listed in reports/B4e2_smoke_roots.txt). Do not start B5.
+
+Never edit lgc_bench/*, run_benchmark_33b.py, ttba_github/run_frame_b1.sh, official clones, the contract, or prereg.
+Allowed edits: adapters/_common.py, adapters/run_ttba_v2.py (only if needed to write oob_queries to runs_TtBA.csv), adapters/tests/*, adapters/diag/*, tools/eval/make_low_query_table.py + tools/eval/tests_lowq/*, reports/*.
+
+T2 — Observation-only counter `oob_queries` in the shared guard:
+  - In `adapters/_common.py` (`NonfiniteGuard` / `_GuardedHardLabelTracker`), add a per-image counter `oob_queries`: the number of victim queries (counted per image in the batch, before any clamp) whose PIXEL-space input has any coordinate < -1e-6 or > 1 + 1e-6.
+  - Note on coordinate space: when the tracker's `to_pixel` is `to_pixel_unnormalize` (or when the wrapped model is `ClampedVictimNormalized`), map the raw input `xb` to pixel space WITHOUT clamping (`xb * sd + mu`) to check `< -1e-6` or `> 1 + 1e-6`; otherwise check `xb` directly in pixel space before `ClampedVictim` clamps it (so out-of-box probes are still observed even though `ClampedVictim` / `ClampedVictimNormalized` clamps them for the decision).
+  - Add `"oob_queries"` to `RUN_FIELDS` in `adapters/_common.py` (and `adapters/run_ttba_v2.py` if applicable) so future runs write `oob_queries` per image to `runs_*.csv`.
+  - Add a CPU unit test in `adapters/tests/test_g1_clamped_victim.py` verifying `oob_queries` counts both pixel-space (`ClampedVictim`) and normalised-space (`ClampedVictimNormalized`) out-of-bounds queries accurately while in-range queries give 0.
+
+T4 — Strict `C.raw_net(victim)` + B4f T6 raw-net check:
+  - In `adapters/_common.py`, update `raw_net(victim)` so that if `victim` exposes neither `.m`, `.net`, nor a `Sequential` starting with `"normalize"`, it raises `ValueError(f"raw_net: victim {type(victim).__name__} exposes neither .m, .net, nor Sequential.normalize")` instead of silently returning `victim` unchanged. (If any unit test passes a dummy victim to `run_cgba.make_tracker`, expose `.m = dummy_raw` on that dummy in the test so `test_g1_adapters.py` still passes.)
+  - Re-run the B4f T6 raw-net check (`adapters/diag/diag_t6_rawnet.py` or `diag_b4f_t6_domain.py`) across all 6 victims and save log to `reports/raw/B4h/t4_rawnet.log` (diff must be 0).
+
+T7 — E8 low-query table tool (`tools/eval/make_low_query_table.py` + `tools/eval/tests_lowq/test_lowq.py`):
+  - Implement `tools/eval/make_low_query_table.py` for paper element `E8_low_query_table` exactly per `contract/paper_contract.yaml`:
+    * Budgets: `100, 200, 500, 1000`.
+    * Metrics per method at each budget: found rate, ASR at RMSE thresholds `0.1, 0.05, 0.01` where `RMSE = pix_l2 / sqrt(3 * 224 * 224)` (an image with `found == 0` or `adv_flag == 0` counts as failure / L2 = inf per D6), median `pix_l2` (over found rows), and median `lpips_vgg` (from metrics CSV).
+    * Print `n`, order methods with ours (`LGC_RC_EGC`) first, direction-aware bolding.
+  - Implement CPU unit tests in `tools/eval/tests_lowq/test_lowq.py` on synthetic CSVs with known exact answers (must exit 0, ALL PASS).
+  - Re-run `eval_metrics_offline.py` on the updated 24 smoke roots (`$(cat reports/B4e2_smoke_roots.txt)`) into `generated/smoke_canary/metrics.csv` (so the 9 new D19-fixed roots are reflected), then run `make_low_query_table.py` to produce `generated/smoke_canary/tab_lowq_<arch>_<mode>.tex`.
+  - Also run `human_preflight.py --roots $(cat reports/B4e2_smoke_roots.txt) --out reports/human_preflight_b4h` and report FLAG count.
+
+T8 — Errata & Final Report:
+  - Add an "Erratum (B4h)" note to `reports/B4f_audit.md` (T6 ARS_OPT / CGBA oracle-domain rows) and `reports/B4g_kat_canary.md` (deviation 2 & L23 caveat), without rewriting history.
+  - Write `reports/B4h_oracle_domain.md` consolidating T1–T8 (referencing `reports/B4h_t3_fix_and_gate.md`), including sha256 table of all created/changed files, GPU minutes, and active LESSONS.
+  - Re-run `selftest_evalkit.py`, `test_contract.py`, `test_g1_clamped_victim.py`, `test_g1_adapters.py`, and `test_lowq.py` (all must PASS). Commit and STOP.

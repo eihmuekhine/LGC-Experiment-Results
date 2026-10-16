@@ -1,0 +1,13 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Perceptual metrics at 10000 queries (mean), densenet161\_places365, targeted.}
+\begin{tabular}{lcccccc}
+\toprule
+Method & SSIM $\uparrow$ & MS-SSIM $\uparrow$ & FSIM $\uparrow$ & LPIPS$_{\mathrm{alex}}$ $\downarrow$ & LPIPS$_{\mathrm{vgg}}$ $\downarrow$ & DISTS $\downarrow$ \\
+\midrule
+LGC\_RC\_EGC & \textbf{0.9845} & \textbf{0.9850} & 0.9842 & \textbf{0.0200} & \textbf{0.0460} & \textbf{0.0537} \\
+TtBA & 0.9686 & 0.9793 & \textbf{0.9890} & 0.0524 & 0.0927 & 0.0785 \\
+CGBA\_H & 0.9673 & 0.9783 & 0.9886 & 0.0547 & 0.0940 & 0.0771 \\
+\bottomrule
+\end{tabular}
+\end{table}

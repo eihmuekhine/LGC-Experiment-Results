@@ -1,0 +1,15 @@
+torch 2.7.1+cu128
+cuda 12.8
+NVIDIA GeForce RTX 5090
+835f1933d9e571070e952aedafc5a50b9948717168115ea60b5433277006c28a  lgc_bench/engine.py
+b9edc9dd5d9558c343b6334dda332677c1484cde6421fb6511ea4122f3cf3a05  /root/autodl-tmp/LGC_frozen/splits/kat/kat_linear_targeted.csv
+checkpoints 100 200 500 1000 2000 2500 5000 10000
+budget 10000
+backend.cuda_matmul_allow_tf32 False
+backend.cudnn_allow_tf32 False
+backend.cudnn_deterministic True
+backend.cudnn_benchmark False
+backend.float32_matmul_precision highest
+victim_weight_file kat_linear_seed0
+victim_weight_sha256 80b610a5d81518e4b0857b999a506830051f6b05edd00b86447212e8c1a51f97
+ADV_STORE_DTYPE float16 ADV_STORE_BUDGETS unset

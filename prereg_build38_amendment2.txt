@@ -1,0 +1,98 @@
+Build 38 - Amendment 2 (2026-10-11).
+Committed as prereg_build38_amendment2.txt and tagged build38-amend2, BEFORE any n = 200 result
+(EGC or baseline) was opened. Coding agents never edit this file.
+
+0. Status of Build 38 (n = 1000).
+   - Stopped on 2026-10-11, at 1000 images per cell (n=1000 full run was not reached; partial).
+   - Partial results were not inspected (only wall-time and log files were read).
+   - Code checks before this amendment: B3 fidelity and B4 smoke ran on rows 1-3 (ResNet-50 / all victims).
+     Only the fidelity ratios, query counts and timings were read (confirmed). Their outputs are not reused.
+
+1. Reason.
+   - Compute budget: n = 200 per (victim, mode).
+   - Official baseline code on the same rows (fair comparison).
+   - Perceptual quality is the primary endpoint of the new manuscript.
+   prereg_build38.txt stays binding wherever this amendment does not change it.
+
+2. Data. Unchanged protocol (prereg sections 3-4).
+   - Evaluation set per victim and mode: rows 1-200 of splits/imagenet/ttba_github/{arch}_{mode}.csv. Targeted: the
+     first 200 source-target pairs.
+   - sha256 of the files: prereg lines 56-62. Pool-list hash: 0d480e34b1a62985c0d51fe78d51731b886fd91e83b3e7bc4e8ea9834e209f71.
+   - Dev / selection / confirmation images (seeds 992, 2027, 3141, 2718) are KEPT (prereg section 7).
+     - Rows affected in rows 1-200: NT 6 / 4 / 2, T 7 / 6 / 4 (VGG19 / ResNet-50 / ViT-B/32).
+     - Every claim is recomputed without these rows (descriptive sensitivity analysis).
+   - The permutation is per victim (official main.py). There are no shared images across all three victims.
+
+3. Victims. Unchanged: vgg19-dcbb9e9d, resnet50-11ad3fa6 (IMAGENET1K_V2), vit_b_32-d86f8d99.
+   - Pre-processing: Resize(256) -> CenterCrop(224) for all victims.
+   - Optional breadth, NT only: none.
+
+4. Methods (all on the same rows, same victims, same budget, decision-only access, every query counted).
+   - LGC_RC_EGC: frozen. Engine sha256 835f1933d9e5..., tag build38-prereg.
+   - Official TtBA ea6d1649: exact main.py RNG, through adapters/run_ttba_v2.py (tracker + adversarial store only).
+   - CGBA (NT) / CGBA-H (T): github.com/Farhamdur/CGBA commit 73d3e9c94423b1503053258494a54ad4d2892efa.
+   - ARS-OPT, prior-free mode only: github.com/machanic/hard_label_attacks commit ab71cb88058ad0ca778e0048e5cf1b60921bb673.
+     Surrogate-free mode exists (B1); kept.
+   - Default ImageNet hyper-parameters, each with its source file:line (reports/B1_sources.md). Nothing is tuned.
+   - Fidelity gate before main runs: adapter / official L2 ratio within [0.90, 1.10] at 1k / 5k / 10k (rows 1-3,
+     ResNet-50).
+
+   Baseline scope (contract v1.3, D7): HSJA and Sign_OPT are not run. They are excluded by scope,
+   not by results; the decision precedes any n=200 result. HSJA published numbers may appear only
+   in the E2 dagger block, unpaired; Sign_OPT is cited in related work only. Neither is ever used
+   in a claim, a statistic, or a ratio with our results. The P2 claim family is
+   {TtBA, CGBA(NT), CGBA-H(T), ARS_OPT}.
+   - Cited, unpaired: TtBA paper Table 1 (n = 1000).
+
+5. Budget. 10,000 queries.
+   - Checkpoints 100 / 200 / 500 / 1k / 2k / 2.5k / 5k / 10k, all recorded and all stored (contract v1.3).
+     - 100 and 200 are added to the registered list for the low-query analysis. They are descriptive only and
+       observation-only (item 8).
+     - AUC is unchanged (500 / 1k / 2.5k / 5k / 10k).
+   - Checkpoint convention (contract D2):
+     - baselines: best adversarial among all queries <= B (decision-only tracker), carried forward, never back-filled;
+     - LGC-EGC: engine state at B.
+     The asymmetry can only favour the baselines. The TtBA adapter also records the official iterate.
+   - The CSV target image is the targeted start for every method.
+
+6. Metrics. Computed offline from the stored adversarial images (advstore + eval_metrics_offline.py), one
+   implementation for all methods.
+   - Primary (perceptual): LPIPS-vgg (prereg network), LPIPS-alex (guards against the VGG16-AE / LPIPS-vgg overlap), DISTS.
+   - Secondary: SSIM. The EGC gate uses SSIM >= 0.99; this circularity is disclosed.
+   - Descriptive: float pixel L2, MS-SSIM, PSNR.
+   - Perceptual ASR(q) = mean 1[adv_float AND LPIPS-vgg <= tau_L AND SSIM >= tau_S].
+     - NT: (tau_L, tau_S) = (0.05, 0.99).
+     - T: (0.3, 0.75).
+   - AUC = per-image mean over budgets 500 / 1k / 2.5k / 5k / 10k (log for L2, linear for LPIPS / DISTS).
+
+7. Claims (paired, n <= 200 per cell; paired geometric-mean ratio or mean difference; image bootstrap B = 10000;
+   one-sided Wilcoxon; Holm within each family).
+   - prereg section 6 claims (T1, T2, N1, P1 vs official TtBA): unchanged.
+   - New family P2 (Holm over baselines x victims x modes):
+     LPIPS-vgg AUC delta (EGC - baseline) < 0, upper 95% bound < 0, for baseline in
+     {TtBA, CGBA(NT), CGBA-H(T), ARS_OPT}.
+   - Supporting (CI only, not in a Holm family): the same as P2 for LPIPS-alex and DISTS; perceptual ASR AUC.
+   - Failure policy: a failed claim is reported and dropped. The method is never changed.
+
+8. Deviation (evaluation-only).
+   - run_benchmark_33b.py gets --save_adv (apply_advstore_patch.py, 5 inserted lines). Its prereg sha256 b8bd8b72...
+     becomes 9c62820e5fafbac7e8c3f2cf3a688e3e6e7c53f3c5fc7f709ef5f34d17861873.
+   - The checkpoint list grows from 500..10k to 100..10k (8 budgets).
+   - Bit-identity was shown on 1 image: registered command (6 checkpoints, no store) vs paper command (8 checkpoints
+     + store), compared on the 6 registered budgets: 2026-10-11, result BIT-IDENTICAL.
+   - No query and no RNG draw is added.
+
+9. Environment. One GPU type and torch build for every n = 200 run.
+   - GPU: RTX 5090 D, driver 595.71.05.
+   - torch: 2.7.1+cu128 / torchvision 0.22.1+cu128.
+   - Processes run sequentially. Wall time is descriptive only.
+
+10. No result-dependent stopping. Every cell of every method is completed (or its failures are listed) before any
+    analysis.
+
+11. Paper contract. contract/paper_contract.yaml version 1.3, status FROZEN,
+    sha256 a949886a16fdd472ec7e13233bacfcc0c2446a01f38242b9390a9cc41894697d.
+    - It fixes the paper elements E1-E16 and their data.
+    - CONDITIONAL elements (E9b-E12) are reported only if complete; otherwise they are cut.
+
+Registered 2026-10-11, commit b568f41, tag build38-amend2.

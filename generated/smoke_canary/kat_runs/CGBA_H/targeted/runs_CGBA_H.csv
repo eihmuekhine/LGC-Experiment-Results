@@ -1,0 +1,6 @@
+arch,mode,image,method,queries,nonfinite_queries,status,wall_time_s,error,clip_events_182
+kat_linear,targeted,kat_3,CGBA_H,10000,0,budget,17.42,,0
+kat_linear,targeted,kat_11,CGBA_H,10000,0,budget,17.16,,0
+kat_linear,targeted,kat_19,CGBA_H,10000,0,budget,17.5,,0
+kat_linear,targeted,kat_25,CGBA_H,10000,0,budget,17.54,,0
+kat_linear,targeted,kat_31,CGBA_H,10000,0,budget,17.68,,0

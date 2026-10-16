@@ -1,0 +1,6 @@
+dataset,arch,mode,image,method,space,status,total_queries,iterations,wall_time_s,final_state_query,error
+kat,kat_linear,non_targeted,kat_3.png,LGC_RC_EGC,latent_ra,ok,9976,60,18.91,9976,
+kat,kat_linear,non_targeted,kat_11.png,LGC_RC_EGC,latent_ra,ok,9975,60,15.96,9975,
+kat,kat_linear,non_targeted,kat_19.png,LGC_RC_EGC,latent_ra,ok,9976,60,16.4,9976,
+kat,kat_linear,non_targeted,kat_25.png,LGC_RC_EGC,latent_ra,ok,9975,60,16.36,9975,
+kat,kat_linear,non_targeted,kat_31.png,LGC_RC_EGC,latent_ra,ok,9975,60,16.39,9975,

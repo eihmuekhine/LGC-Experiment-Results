@@ -1,0 +1,13 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Paired comparison at 10000 queries, Salman2020Do\_R50, non\_targeted.}
+\begin{tabular}{lccccc}
+\toprule
+LGC\_RC\_EGC vs. & $\ell_2$ ratio & $\Delta$ LPIPS$_{\mathrm{alex}}$ & $\Delta$ LPIPS$_{\mathrm{vgg}}$ & $\Delta$ DISTS & $\Delta$ SSIM \\
+\midrule
+TtBA & 0.483 [0.137, 0.949] (3/0) & -0.0600 [-0.1609, -0.0002] (3/0) & -0.0917 [-0.2445, -0.0006] (3/0) & -0.0691 [-0.1891, -0.0010] (3/0) & 0.0717 [0.0001, 0.1992] (3/0) \\
+CGBA & 0.512 [0.169, 0.900] (3/0) & -0.0445 [-0.1182, -0.0001] (3/0) & -0.0799 [-0.2062, -0.0005] (3/0) & -0.0654 [-0.1557, -0.0003] (3/0) & 0.0683 [0.0001, 0.1840] (3/0) \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Paired over common images; 95\% bootstrap CI; $^{*}$ Holm-corrected two-sided Wilcoxon $p<0.05$; (wins/losses) for ours.}
+\end{table*}

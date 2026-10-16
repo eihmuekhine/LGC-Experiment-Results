@@ -1,0 +1,43 @@
+Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B4e2 follow-up: address the
+reports/raw/B4e2/checker_review.md findings. GPU ON (study GPU = RTX 5090). Worktree
+/root/autodl-tmp/LGC_frozen, contract v1.8. Save this prompt as reports/raw/B4e2/prompt_followup.txt
+and print its sha256. EXECUTE step by step. Do not start B5.
+Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official clones, the contract or prereg.
+Allowed: adapters/run_cgba.py (F1 only), adapters/diag/*, reports/*.
+
+F1 (fix the T6 resume-misalignment): _write_clip_events merges _CLIP_EVENTS by row index; on a
+resumed CGBA/CGBA_H run done images are skipped without appending, so counts land on wrong rows.
+Fix the merge so counts attach to the correct images: snapshot the image stems already present in
+runs_<method>.csv before C.run, then assign _CLIP_EVENTS entries to the NEW rows only, in processing
+order (pre-existing rows' clip_events_182 untouched). Keep column name and observation-only semantics.
+Verify:
+ (a) fresh re-run CGBA resnet50 NT rows 1-3 into a throwaway dir -> per_checkpoint numerics IDENTICAL
+     to Results/b4e2_smoke_cgba_resnet50 (24/24 rows, 24 npz delta bit-equal), clip_events_182 = 0,0,0;
+ (b) CPU sandbox test under adapters/diag/: build a runs_CGBA.csv with one row (image A, status ok, no
+     clip_events_182), then merge counts for two new images (B,C); assert A untouched and B,C get the
+     right counts.
+Do not change the counter semantics, the diag assertion, or any attack code.
+
+F2 (reports/B4e2_close.md edits only):
+ (i) T6: replace "Printed counts: ..." with the exact evidence path
+     Results/b4e2_t6_cgba_resnet50/non_targeted/runs_CGBA.csv (values 0/0/0); or print the counts in
+     the log.
+ (ii) Deviations: note that adapters/_common.py:421-425 done_images still filters status in
+      (ok, budget) for CGBA/ARS_OPT/CGBA_D8only, while T5 fixed ttba_github/ttba_common.py:83; the
+      two resume policies diverge and the binding policy for B5 is a user decision (contract v1.9).
+ (iii) Copy /tmp/b4e2_gate.md to reports/raw/B4e2/T3_gate.md and commit it; commit
+       reports/human_preflight_b4e2.md (FLAG = 7) or its section 1 + FLAG count.
+ (iv) §5: add sha256 of every reports/raw/B4e2/ log; state the report is committed at the new HEAD
+      (not e9ff7da).
+ (v) Note that CGBA_D8only's clip_events_182 is constant-0 by design (fixed-only counter); the E17
+     NaN-share measurement is a separate B4g/B5 item.
+
+F3 (re-verify): python adapters/diag/diag_b4e_t1_clip_source.py -> PASS;
+ python adapters/diag/diag_b4e_t5_done_images.py -> PASS;
+ python tools/eval/tests_contract/test_contract.py -> ALL PASS;
+ python tools/eval/selftest_evalkit.py -> ALL PASS (20/20);
+ check_contract --stage smoke --split_dir splits/imagenet/ttba_github splits/places365 splits/robust
+   --roots $(cat reports/B4e2_smoke_roots.txt) --report /tmp/b4e2_followup_gate.md -> exit 0.
+
+Write reports/B4e2_followup.md (skill lgc-preflight §5) with a findings table (fixed / deferred /
+evidence). Commit code, report, reports/raw/B4e2/*. STOP.

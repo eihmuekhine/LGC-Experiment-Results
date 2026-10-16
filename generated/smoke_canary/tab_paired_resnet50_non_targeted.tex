@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Paired comparison at 10000 queries, resnet50, non\_targeted.}
+\begin{tabular}{lccccc}
+\toprule
+LGC\_RC\_EGC vs. & $\ell_2$ ratio & $\Delta$ LPIPS$_{\mathrm{alex}}$ & $\Delta$ LPIPS$_{\mathrm{vgg}}$ & $\Delta$ DISTS & $\Delta$ SSIM \\
+\midrule
+TtBA & 1.700 [0.871, 6.178] (2/1) & -0.0021 [-0.0379, 0.0317] (1/2) & -0.0059 [-0.0595, 0.0421] (2/1) & 0.0124 [-0.0542, 0.0913] (1/2) & -0.0007 [-0.0312, 0.0291] (2/1) \\
+CGBA & 0.575 [0.058, 2.233] (1/2) & -0.0228 [-0.0422, 0.0054] (2/1) & -0.0640 [-0.1283, 0.0141] (2/1) & -0.0213 [-0.0783, 0.0139] (1/2) & 0.0265 [-0.0038, 0.0613] (2/1) \\
+ARS\_OPT & 0.636 [0.192, 2.097] (2/1) & -0.1119 [-0.3491, 0.0133] (1/2) & -0.0808 [-0.2163, 0.0001] (2/1) & -0.0402 [-0.1608, 0.0391] (1/2) & 0.2083 [0.0010, 0.5494] (3/0) \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Paired over common images; 95\% bootstrap CI; $^{*}$ Holm-corrected two-sided Wilcoxon $p<0.05$; (wins/losses) for ours.}
+\end{table*}

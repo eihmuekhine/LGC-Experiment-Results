@@ -1,0 +1,39 @@
+B4d SPEC (reconstructed by the lead analyst on 2026-10-13 from the B4c review that defined B4d; the original prompt
+text was not archived. For this calibration, this file IS the spec.)
+
+Phase B4d (diagnostics before B5). Worktree LGC_frozen, contract v1.7. Do not start B5. Never edit lgc_bench/*,
+run_benchmark_33b.py, run_frame_b1.sh, official clones, the contract or prereg files.
+Allowed: adapters/diag/*, tools/eval/g5_check.py + tests, tools/eval/check_contract.py + tests,
+ttba_github/run_frame_b1_generic.py (guards/env only), ttba_github/ttba_table1.json (commit only).
+Report: reports/B4d_preflight.md (environment block, one section per T-item with commands and raw tables,
+"Deviations from the prompt", sha256 of changed files, GPU minutes). Raw outputs under reports/raw/B4d/.
+
+T1 Precision parity. For every runner (frozen EGC runner run_frame_b1.sh -> run_benchmark_33b.py, generic EGC runner
+   run_frame_b1_generic.py, adapters run_ttba_v2.py (ImageNet path and E10/E11 path), run_cgba.py, run_arsopt.py) print
+   torch.backends.cuda.matmul.allow_tf32, torch.backends.cudnn.allow_tf32, torch.backends.cudnn.deterministic,
+   torch.backends.cudnn.benchmark, torch.get_float32_matmul_precision() as they are when the victim is queried, and
+   where each is set (file:line). Report every place a runner disables TF32 and whether that is required for
+   reproducibility. All methods must query the same classifier; any difference between runners is a finding for the
+   user to decide, not for the agent to dismiss.
+T2 TtBA DataParallel. Grep the official TtBA clone for DataParallel (file:line); profile the per-query victim forward
+   on resnet50 NT row 1 (median over the first 200 queries and over all); explain the measured s/img versus the
+   historical estimate; propose an unwrap only if it is bitwise identical.
+T3 Concurrency neutrality. (a) Identity: run one already-completed image solo and the same image inside a concurrent
+   pair (TtBA resnet50 NT + LGC_RC_EGC resnet50 NT, OMP_NUM_THREADS=8); found, state_query, pix_l2 and npz delta must
+   be identical. (b) Throughput: run the pair for >= 5 images per process and report the throughput gain of running
+   both processes together versus running them solo; the pair is allowed in B5 only if the gain is >= 1.6x.
+   (c) Confirm cudnn.benchmark == False in every runner. GPU budget about 5 min.
+T4 CGBA stall diagnosis. (a) Scan every CGBA/CGBA_H smoke cell: pix_l2 at 1k/2k/5k/10k, stalled := pix_l2@2000 ==
+   pix_l2@10000. (b) Trace one stalled image with a verbatim copy of the official boundary-walk and BSSP functions
+   plus read-only logging (theta_t; per candidate psi_i, r_i = ||x_q - x_s|| / ||x_b - x_s|| versus cos(psi_i), clip
+   displacement, label, tracker best before/after; cap fired; BSSP distance ratio). (c) Run the unmodified official
+   code (no D8 count fix) on the stalled images and report where and how it fails. (d) grep the TtBA repository for any
+   CGBA code. (e) Cross-check with the CGBA implementation in machanic/hard_label_attacks on the same victim, images,
+   tracker and flags (cross-check only, never reported as CGBA). (f) D11 verdict (a)/(b)/(c) per contract v1.7.
+T5 ttba_table1.json. Commit it into the worktree ("B4d: register ttba_table1.json"); verify the 72 cells used by G5
+   (CGBA NT, CGBA-H T, TtBA NT/T x resnet50/vgg19/vit_b_32 x 2k/5k/10k x mean/median) against the source within 0.01.
+T6 G5 gate tool tools/eval/g5_check.py (+ tests). Per cell at 2000/5000/10000: TtBA: median of pix_l2_iter (the
+   official iterate, contract D2) versus the published TtBA Table 1 median; CGBA/CGBA_H: paired difficulty-adjusted
+   ratio rho_B = [median_i L_CGBA(B) / median_i L_TtBA(B)] / [published median CGBA(B) / published median TtBA(B)] on
+   images completed by both methods. Paired bootstrap over images (10000 resamples), 95 % CI; PASS iff the CI
+   intersects [0.5, 2] at every B. Unit tests for a PASS case, a FAIL case and image pairing.

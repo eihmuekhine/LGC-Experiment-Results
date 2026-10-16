@@ -1,0 +1,13 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Mean (median) pixel $\ell_2$ vs. query budget, resnet50\_places365, targeted.}
+\begin{tabular}{lcccccccc}
+\toprule
+Method & 100 & 200 & 500 & 1k & 2k & 2500 & 5k & 10k \\
+\midrule
+LGC\_RC\_EGC & 78.23 (81.72) & \textbf{69.60 (72.36)} & \textbf{58.90 (59.99)} & \textbf{50.29 (51.45)} & \textbf{40.75 (40.95)} & \textbf{37.31 (39.04)} & \textbf{26.81 (30.68)} & \textbf{15.91 (15.10)} \\
+TtBA & \textbf{76.34 (76.22)} & 72.90 (74.05) & 66.12 (69.27) & 54.41 (54.85) & 45.35 (47.16) & 42.61 (45.71) & 31.58 (30.69) & 19.99 (16.53) \\
+CGBA\_H & 76.50 (75.12) & 73.18 (73.99) & 60.63 (63.51) & 55.65 (57.30) & 45.97 (46.74) & 42.09 (43.40) & 30.24 (29.56) & 19.85 (17.06) \\
+\bottomrule
+\end{tabular}
+\end{table}

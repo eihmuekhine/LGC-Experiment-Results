@@ -1,0 +1,51 @@
+{
+ "method": "CGBA_H",
+ "arch": "kat_linear",
+ "mode": "targeted",
+ "split_csv": "/root/autodl-tmp/LGC_frozen/splits/kat/kat_linear_targeted.csv",
+ "split_csv_sha256": "b9edc9dd5d9558c343b6334dda332677c1484cde6421fb6511ea4122f3cf3a05",
+ "victim_weight_file": "kat_linear_seed0",
+ "victim_weight_sha256": "80b610a5d81518e4b0857b999a506830051f6b05edd00b86447212e8c1a51f97",
+ "repo": "/root/autodl-tmp/baselines/CGBA",
+ "repo_commit": "73d3e9c94423b1503053258494a54ad4d2892efa",
+ "adapter_sha256": "7596d79806ffc27ddd78a998b784cba0d79822ba7aec436b402b32051ae33487",
+ "tracker_sha256": "d5ca5098cffbb7d77639d1e62308ede2ad583983f053d0339deecb640e02da89",
+ "contract_sha256": "fc04498315dec51b0f663568d76a7804d46f63aa57eb2950a2126d157451ca32",
+ "hyper_parameters": {
+  "dim_reduc_factor": 4,
+  "iteration": 93,
+  "initial_query": 30,
+  "tol": 0.0001,
+  "sigma": 0.0002,
+  "verbose_control": "No",
+  "attack_method": "CGBA_H"
+ },
+ "hyper_parameter_sources": {
+  "dim_reduc_factor": "Non_targeted_attack.py:33 / Targeted_attack.py:31",
+  "iteration": "Non_targeted_attack.py:30 / Targeted_attack.py:33",
+  "initial_query": "proposed_attack.py:15 (class default 30)",
+  "tol": "proposed_attack.py:15 (class default 1e-4)",
+  "sigma": "proposed_attack.py:15 (class default 2e-4)",
+  "mean/std": "Non_targeted_attack.py:35-36 / Targeted_attack.py:36-37 (ImageNet)",
+  "attack_method": "go_to_boundary_CGBA proposed_attack.py:151 (NT) / go_to_boundary_CGBA_H :131 (T)",
+  "grad_estimator_batch_size": "proposed_attack.py:32 (class default 40)",
+  "verbose_control": "print-only; set 'No' to reduce log noise (allowed logging change)"
+ },
+ "torch": "2.7.1+cu128",
+ "cuda": "12.8",
+ "gpu_name": "NVIDIA GeForce RTX 5090",
+ "budget": 10000,
+ "checkpoints": [
+  100,
+  200,
+  500,
+  1000,
+  2000,
+  2500,
+  5000,
+  10000
+ ],
+ "cgba_variant": "fixed",
+ "paper_faithful_fix": "clip acos arg, proposed_attack.py:182, D11_outcome",
+ "oracle_domain": "clamp_normalized"
+}

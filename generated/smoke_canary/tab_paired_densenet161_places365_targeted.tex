@@ -1,0 +1,13 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Paired comparison at 10000 queries, densenet161\_places365, targeted.}
+\begin{tabular}{lccccc}
+\toprule
+LGC\_RC\_EGC vs. & $\ell_2$ ratio & $\Delta$ LPIPS$_{\mathrm{alex}}$ & $\Delta$ LPIPS$_{\mathrm{vgg}}$ & $\Delta$ DISTS & $\Delta$ SSIM \\
+\midrule
+TtBA & 0.966 [0.747, 1.166] (1/2) & -0.0324 [-0.0685, -0.0066] (3/0) & -0.0467 [-0.0867, -0.0145] (3/0) & -0.0248 [-0.0290, -0.0182] (3/0) & 0.0160 [0.0012, 0.0328] (3/0) \\
+CGBA\_H & 0.902 [0.703, 1.061] (2/1) & -0.0347 [-0.0698, -0.0084] (3/0) & -0.0480 [-0.0883, -0.0148] (3/0) & -0.0233 [-0.0292, -0.0147] (3/0) & 0.0172 [0.0012, 0.0353] (3/0) \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Paired over common images; 95\% bootstrap CI; $^{*}$ Holm-corrected two-sided Wilcoxon $p<0.05$; (wins/losses) for ours.}
+\end{table*}

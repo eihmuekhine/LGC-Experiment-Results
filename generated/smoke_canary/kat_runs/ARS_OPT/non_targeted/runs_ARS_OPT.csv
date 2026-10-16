@@ -1,0 +1,6 @@
+arch,mode,image,method,queries,nonfinite_queries,status,wall_time_s,error
+kat_linear,non_targeted,kat_3,ARS_OPT,10000,0,budget,23.53,
+kat_linear,non_targeted,kat_11,ARS_OPT,10000,0,budget,23.21,
+kat_linear,non_targeted,kat_19,ARS_OPT,10000,0,budget,23.2,
+kat_linear,non_targeted,kat_25,ARS_OPT,10000,0,budget,22.93,
+kat_linear,non_targeted,kat_31,ARS_OPT,10000,0,budget,22.94,

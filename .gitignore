@@ -1,0 +1,58 @@
+data/
+Results/
+checkpoints/
+splits/
+*.npz
+*.log
+__pycache__/
+Untitled Folder/
+# .gitignore for the LGC-Experiment-Results push (copy/merge into LGC_frozen/.gitignore before pushing)
+#
+# Goal: push "all information and files, current final results and so on" EXCEPT datasets and .pth/.pt weight
+# files (per H's explicit instruction), AND never commit secrets or API keys (standing project security rule,
+# independent of what H asked for this repo).
+
+# --- Model weights (explicitly excluded by H) ---
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+checkpoints/
+pretrained/
+weights/
+
+# --- Datasets (explicitly excluded by H) ---
+# Adjust these to match your actual dataset layout on AutoDL if it differs.
+datasets/
+data/
+ILSVRC*/
+imagenet*/
+places365*/
+*.JPEG
+# Only ignore top-level/raw image dumps, not small figure PNGs produced by make_tables_figures.py.
+# If your dataset images are .png/.jpg instead of .JPEG, add explicit dataset-folder paths above rather than
+# blanket-ignoring *.png / *.jpg (that would also hide result figures).
+
+# --- Secrets / API keys (NEVER commit these — standing project rule, not optional) ---
+.env
+.env.*
+kaggle.json
+*.key
+*_key.json
+secrets/
+**/opencode.json.bak
+# If any provider token or key is hardcoded in a config file you plan to commit, remove it by hand before
+# pushing — this .gitignore only catches files by name, not secrets embedded inside an otherwise-tracked file.
+
+# --- Large raw per-query evidence (keep the text reports + a sha256 manifest instead; see push script) ---
+# Per the project's own practice for B5 evidence (human_checks_b5 stage 2 C2.3): commit a manifest of these,
+# not the binaries themselves. Comment this out if you specifically want the raw npz traces in the repo.
+generated/smoke_canary/kat_runs/*.npz
+Results/**/*.npz
+
+# --- Standard hygiene ---
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+*.log.tmp

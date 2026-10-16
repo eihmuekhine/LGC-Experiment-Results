@@ -1,0 +1,33 @@
+Load skill lgc-preflight. Phase B4h-T1a (triage addendum to the T1 STOP bundle; read-only, no fix). GPU ON.
+Worktree /root/autodl-tmp/LGC_frozen, HEAD must still be 3f9bcb444b8a8dbd1d47ac51200cbba4b0a7b85f (STOP if not).
+STUDY_GPU = "NVIDIA GeForce RTX 5090". export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8. Allowed: adapters/diag/*
+(read and run only; domain_consistency.py may be extended, not changed in its classification rule), reports/*.
+Do NOT touch adapters/run_cgba.py, adapters/run_arsopt.py, adapters/_common.py, lgc_bench/*, the contract. Do NOT
+start T2-T8 of the B4h prompt and do NOT clear the existing STOP bundle.
+
+A1 Budget-stratified persistence. For every (method, cell, image) that has X at ANY checkpoint in
+ reports/raw/B4h/t1_rows.csv: print its class at EVERY checkpoint of that image (100/200/500/1000/2000/2500/5000/10000).
+ Table: method | cell | image | class@100 ... class@10000. State explicitly, for each flagged row, whether the same
+ image reaches class C by budget 10000 (i.e. the X is resolved by the final checkpoint) or remains X/Q9/Q6 there.
+A2 Full-population X rate at low budgets. For CGBA and LGC_RC_EGC separately: among ALL found=1 rows (not just the
+ 6 already flagged) at checkpoints 100/200/500/1000, what fraction are C vs Q9/Q6 vs X? (The 6 flagged rows may be
+ the whole population or a sample; report the true rate, not just the flagged examples.) This directly bounds any
+ bias the E8 tool (T7) would inherit if run before a fix.
+A3 CGBA oracle-domain evidence (quoting only, no edit). In the adapter and official CGBA code actually executed:
+ (a) the file:line where the attack/tracker decides "adversarial" (the raw-net call whose argmax or logits gate the
+ boundary search / best-so-far update); (b) the tensor space of that call's input (pixel [0,1] or ImageNet-normalised);
+ (c) the file:line where any clamp(., 0, 1) or to_pixel/unnormalise conversion happens, and whether it occurs BEFORE
+ or AFTER the decision in (a); (d) the file:line that writes the stored `best`/`pix` used for pix_l2 and the npz.
+ Conclusion requested, with evidence only (no fix): does CGBA's recorded "found/best" correspond to the SAME image
+ that is stored and scored, always, or only outside some known edge case? Compare explicitly against how B4g T1's own
+ KAT distinguished CGBA ("CGBA clips in-loop") from ARS_OPT ("tracker computes lab on raw xb, stores pix clamped") —
+ if the KAT's CGBA path differs from the real_victim CGBA path (e.g. --cgba_variant fixed vs the KAT's linear victim
+ wrapper), say so explicitly; this would mean the KAT did not exercise the code path that produced the X rows.
+A4 LGC_RC_EGC evidence (quoting only, no edit). Where in lgc_bench (READ ONLY; do not propose touching it) the
+ per-checkpoint `found` flag is computed (float32, in-engine) and where adv_store serialises the delta to float16.
+ For the 2 flagged images, report the float32 in-engine margin at the SAME checkpoint recorded internally (not
+ reconstructed from the npz) if obtainable read-only, to settle whether the float32 state truly had positive margin
+ toward the target or the `found=1` flag itself was already marginal/wrong before serialisation.
+Write reports/raw/B4h/t1a_triage.md: A1 table, A2 rates (with 95% CI if n permits), A3 evidence quotes + conclusion,
+A4 evidence + the two margins. Do not write to reports/stop/ again (this is a sub-report of the existing STOP).
+Do not commit. STOP.

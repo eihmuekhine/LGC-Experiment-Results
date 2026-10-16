@@ -1,0 +1,247 @@
+# Paper <-> experiment contract for LGC-EGC (TMM / PR). BINDING, versioned.
+# One source of truth: every number, table and figure of the paper must be listed in paper_elements, and every
+# input it needs must be listed in artefacts. The checker (tools/eval/check_contract.py) enforces both.
+# Change rule:
+#   - Only the user changes this file.
+#   - Every change gets a new `version`, a line in `changelog`, and a commit.
+#   - After tag build38-amend2, a change is also a reported deviation.
+#   - Coding agents never edit it.
+version: "1.5"
+date: "2026-10-12"
+status: "FROZEN (2026-10-12, v1.5). Decisions D1-D9 confirmed by the user; the v1.5 sha256 is recorded in amendment 2 deviation D9."
+changelog:
+  - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
+  - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
+  - "1.2 2026-10-11 user: Sign_OPT has no targeted mode (attack/Sign_OPT.py:370); methods.Sign_OPT.modes -> [non_targeted]"
+  - "1.3 2026-10-11 user: HSJA and Sign_OPT removed from the run roster (D7: scope + compute, decided before any n = 200 result); cited only; E5, E16 and disk estimate updated"
+  - "1.4 2026-10-11 user: D8 CGBA accounting fix (faithful model + boundary-walk query-count fix, B3b T2/T3; trajectory bit-identical; disclosed)"
+  - "1.5 2026-10-12 user: E10 (Places365) and E11 (RobustBench R50) promoted to REQUIRED, both modes, n = 200 (D9); reduced roster for E10/E11; D5, disk and cost updated"
+
+decisions:   # D-items resolved here; the user confirms or edits before FROZEN
+  D1_budgets: >-
+    (v1.1, user 2026-10-10)
+    Every run records and stores ALL eight checkpoints: 100 200 500 1000 2000 2500 5000 10000.
+    Roles:
+      - 100 / 200 / 500 / 1000: low-query regime (E8; OPOQA-style table);
+      - 2000 / 5000 / 10000: TtBA Table 1 format (E2);
+      - 2500: CGBA alignment;
+      - every checkpoint: curves (E4, E5).
+    AUC stays the registered one, over 500 1000 2500 5000 10000; 100, 200 and 2000 are descriptive only.
+    Checkpoints are observation-only in the engine (_fill_crossed / carry-forward). B0 proves this on the frozen tag:
+    the 6 registered budgets must be bit-identical with and without the extra 100 / 200.
+    If an attack's initialisation is not finished at 100 or 200, that row has found = 0 (no back-fill).
+  D2_checkpoint_convention: >-
+    Baselines (incl. TtBA via adapters/run_ttba_v2.py): best adversarial (min pixel L2) among all queries with index
+    <= B, from the decision-only HardLabelTracker.
+    LGC-EGC: the engine state at B (last completed iteration with q <= B).
+    The baseline convention is never less favourable to the baseline than its own iterate, so the asymmetry can only
+    favour the baselines. It is disclosed.
+    The TtBA adapter also records the official iterate (pix_l2_iter) for the G3/G5 comparison with TtBA Table 1.
+  D3_perceptual_asr: "ASR_perc uses LPIPS-vgg; NT (tau_L, tau_S) = (0.05, 0.99), T (0.3, 0.75); adversarial = adv_float"
+  D4_ablations: >-
+    Main-protocol ablations are NOT run. The ablation table uses existing confirm_37 data only (ResNet-50 V1, seed
+    2718, n = 100, metrics pix_l2 / ssim / lpips-vgg; no stored images, so no DISTS / LPIPS-alex). It is labelled with
+    that protocol.
+    Rows: EGC, LGC_RC (no ambient block), EGCI (circle metric), HT1000 (naive switch).
+    The operator-substitution row (PVR-E step in the A-block) is included only if its source CSV is found and
+    hashed (E9b).
+  D5_conditional_sections: >-
+    E12 (low-query breadth table) remains CONDITIONAL: it is written only if its runs are approved
+    after the B4/B4b cost table and pass the same artefact checks; otherwise the section is cut
+    (no legacy numbers). E10 (Places365) and E11 (AT robust) were promoted to REQUIRED by D9 (v1.5).
+  D6_failures: >-
+    An image with status error, or not adversarial at B, counts as a failure for ASR (L2 = inf).
+    Paired statistics use images where both methods are adversarial at B, and print the count excluded.
+    Failures are never re-run selectively; an interrupted run is resumed only for images without a completed row.
+
+  D7_baseline_scope: >-
+    (v1.3, user 2026-10-11) HSJA and Sign_OPT are not run. Reason: scope (the comparison is
+    restricted to recent prior-free decision-based attacks with official code: TtBA, ARS-OPT,
+    CGBA / CGBA-H) and compute; Sign_OPT is also untargeted-only (attack/Sign_OPT.py:370).
+    Decided before any n = 200 result was opened, not on B3 numbers (B3 HSJA / Sign-OPT numbers
+    are unvalidated and never reported). Their published numbers may appear only in the E2
+    dagger block (if ttba_table1.json contains them), never in E1, E3-E8, a statistic or a
+    ratio with our results. adapters/run_hsja.py and run_signopt.py are kept for a possible
+    descriptive appendix run during revision.
+
+  D8_cgba_accounting_fix: >-
+    (v1.4, user 2026-10-11) run_cgba.py uses (a) _faithful_model -- the normalised tensor goes straight
+    into the raw un-normalised ResNet-50 exactly as the official drivers, removing the old
+    UnnormalizeVictim float32 double-normalisation round-trip (B3b T2: a 2.384e-07 error flips a
+    decision and diverges the trajectory; ratio reached 0.68/1.17); and (b) a PatchedProposedAttack
+    subclass that corrects the official boundary-walk query count (proposed_attack.py:145/:165
+    off-by-one at the 40-iteration cap: num_calls==40 after only 39 is_adversarial calls), which
+    otherwise trips assert self.all_queries == q_num (proposed_attack.py:252) on non_targeted images.
+    The returned boundary point is unchanged; B3b T3 proves the trajectory is bit-identical up to and
+    past the crash point. Disclosed in the paper as "accounting fix, trajectory unchanged".
+
+  D9_extra_datasets: >-
+    (v1.5, user 2026-10-12) E10 (Places365) and E11 (AT robust) are REQUIRED, both modes, n = 200.
+    E10 victims: resnet50_places365, densenet161_places365 (official MIT Places365, ImageNet
+    normalisation). E11 victim: Salman2020Do_R50 (RobustBench, Linf, 64.02% clean / 34.96% robust,
+    loaded via robustbench.utils.load_model). E10/E11 use the reduced roster
+    {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)} to control cost (ARS_OPT is already shown on the main
+    ImageNet study). Decided before any n = 200 result was opened on these datasets.
+
+constants:
+  budget: 10000
+  checkpoints: [100, 200, 500, 1000, 2000, 2500, 5000, 10000]
+  registered_checkpoints: [500, 1000, 2000, 2500, 5000, 10000]   # prereg / build 38 command; used by the B0 bit-identity test
+  auc_budgets: [500, 1000, 2500, 5000, 10000]
+  auc_definition: "per-image mean of log(pix_l2) over auc_budgets (L2); mean of the metric over auc_budgets (LPIPS, DISTS, SSIM)"
+  n_main: 200
+  rows: "1-200 of splits/imagenet/ttba_github/{arch}_{mode}.csv (targeted: the first 200 pairs)"
+  victims: {vgg19: vgg19-dcbb9e9d.pth, resnet50: resnet50-11ad3fa6.pth, vit_b_32: vit_b_32-d86f8d99.pth}
+  modes: [non_targeted, targeted]
+  split_sha256:   # prereg_build38.txt lines 56-61
+    resnet50_non_targeted: e08a069e932e5162963794c5d1469a7554efb0641470f443d8337be9f12a6142
+    resnet50_targeted: 550ec796e485b601aadbd8953a085a9466273bc8778311b5840a6e76e69caa34
+    vgg19_non_targeted: 1e811637c264029425121870a88781a57ee67f2745fea16649e1ea03306671d9
+    vgg19_targeted: cf0a8efb783de12f8f4f130137ca4b756c1fe048bb23fae5b366b0f1d49a3360
+    vit_b_32_non_targeted: a5f152ec215aaac4efc266b863dad3841c7c6f5ff6aed651d973a213095959db
+    vit_b_32_targeted: c5eee382244c0beddb10bdec40a19e9d2bd57ee47a54cd61ab10b11937337a7b
+  engine_sha256_prefix: 835f1933d9e5
+  dev_overlap_rows_1_200: {vgg19: {non_targeted: 6, targeted: 7}, resnet50: {non_targeted: 4, targeted: 6}, vit_b_32: {non_targeted: 2, targeted: 4}}
+  asr_l2: {non_targeted: 2.5, targeted: 12.0}
+  asr_rmse: [0.1, 0.05, 0.01]          # RMSE = pix_l2 / sqrt(3*224*224); low-query table at 500 and 1000
+  asr_perc: {lpips_net: vgg, non_targeted: {tau_L: 0.05, tau_S: 0.99}, targeted: {tau_L: 0.3, tau_S: 0.75}}
+  stats: {bootstrap_B: 10000, ci: 0.95, test: wilcoxon_signed_rank, claims_sided: one, descriptive_sided: two, multiplicity: holm}
+  adv_store: {dtype: float16, ADV_STORE_BUDGETS: "must be UNSET (store every checkpoint)"}
+  metrics_offline: [l2, linf, psnr, ssim, ms_ssim, lpips_alex, lpips_vgg, dists, fsim]
+  metric_roles: {primary: [lpips_vgg, lpips_alex, dists], secondary: [ssim], descriptive: [l2, ms_ssim, psnr, linf, fsim]}
+
+methods:   # id = the `method` value written in every output file
+  LGC_RC_EGC: {role: ours, modes: [non_targeted, targeted], producer: "ttba_github/run_frame_b1.sh (--split_csv, --save_adv)", convention: engine_state}
+  TtBA:       {role: main, modes: [non_targeted, targeted], producer: adapters/run_ttba_v2.py, convention: tracker_best, extra_columns: [pix_l2_iter]}
+  CGBA:       {role: main, modes: [non_targeted], producer: adapters/run_cgba.py, convention: tracker_best}
+  CGBA_H:     {role: main, modes: [targeted], producer: adapters/run_cgba.py, convention: tracker_best}
+  ARS_OPT:    {role: main, modes: [non_targeted, targeted], producer: adapters/run_arsopt.py, convention: tracker_best, condition: "prior-free mode exists (B1); else status CUT and listed in the threat-model table"}
+
+cited_methods:   # never run, no artefacts; E2 dagger block only (D7)
+  HSJA: {source: ttba_github/ttba_table1.json, element: E2_l2_table_ttba_format,
+         block: dagger, condition: "rows present for that victim/mode/budget; else related work only"}
+  Sign_OPT: {source: ttba_github/ttba_table1.json, element: E2_l2_table_ttba_format,
+             block: dagger, condition: "as HSJA"}
+
+artefacts:   # required for EVERY (method, victim, mode) cell of the main study; {n} = n_main
+  per_checkpoint:
+    file_glob: "<out>/<mode>/per_checkpoint*.csv"
+    required_columns: [arch, mode, image, method, budget, found, state_query, pix_l2]
+    recommended_columns: [pix_linf, adv_float, adv_uint8, ssim, lpips, source_label, target_label]
+    rows_per_cell: "{n} x 8 (one per image and checkpoint, found = 0 rows included), none duplicated"
+  runs:
+    file_glob: "<out>/<mode>/runs*.csv"
+    required_columns: [image, method, status, wall_time_s]
+    rows_per_cell: "{n}"
+  adv_store:
+    x0: "<out>/<mode>/adv_store/<arch>/<image>/x0.npy (float32, shape (3,224,224), values in [0,1])"
+    npz: "<out>/<mode>/adv_store/<arch>/<image>/<method>_Q<budget>.npz for every checkpoint with found = 1"
+    npz_keys: [delta, budget, state_query, adv_flag, l2, linf, method, image, arch, mode]
+    forbidden: "<out>/<mode>/adv_store/x0_mismatch.csv"
+  env:
+    files: ["<out>/env_frame.txt (ours)", "<out>/<mode>/env_<method>.json (baselines)"]
+    must_contain: [git_commit_or_repo_commit, engine_sha256 (ours), split_csv_sha256, victim_weight_file, torch, cuda, gpu_name, budget, checkpoints]
+  run_manifest:
+    file: "<out>/<mode>/run_manifest.json (baselines; lgc-baselines F1-F12)"
+  disk_estimate: "~0.48 GB per (method, victim, mode); main 24 cells ~11.5 GB + E10 12 cells ~5.8 GB + E11 6 cells ~2.9 GB = ~20 GB plus x0.npy; B4b/B5 must show >= 25 GB free"
+
+invariants:   # each is a check in check_contract.py; id -> severity
+  I01_all_checkpoints: {severity: FAIL, rule: "every (image, method) has exactly the 8 budgets of constants.checkpoints (found = 0 rows count)"}
+  I02_image_set: {severity: FAIL, rule: "the image set of every cell equals the sources of rows 1-200 of the split CSV, in any order; no extra image"}
+  I03_target_pairs: {severity: FAIL, rule: "targeted: target_label (if present) equals the split CSV target_label of that source"}
+  I04_query_budget: {severity: FAIL, rule: "state_query <= budget for every row; runs total queries <= 10000"}
+  I05_npz_present: {severity: FAIL, rule: "an npz exists for every row with found = 1; its keys include npz_keys; budget and method match the file name"}
+  I06_l2_consistency: {severity: FAIL, rule: "|npz l2 - pix_l2| / pix_l2 < 1e-3, and |npz l2 - ||delta||_2 recomputed| / l2 < 1e-3"}
+  I07_x0_identity: {severity: FAIL, rule: "no x0_mismatch.csv; x0.npy shape (3,224,224), finite, in [0,1]"}
+  I08_monotone: {severity: FAIL_for_tracker_best / WARN_for_engine_state, rule: "pix_l2 is non-increasing in budget for every (image, method) with found = 1"}
+  I09_found_targeted: {severity: WARN, rule: "targeted rows have found = 1 from the first budget after the start is verified; report per method the share of found = 0 at 100 and 200 (both modes)"}
+  I10_env_lock: {severity: FAIL, rule: "split sha256 = constants.split_sha256; engine sha prefix; one GPU name and torch version across all cells"}
+  I11_adv_store_env: {severity: FAIL, rule: "ADV_STORE_BUDGETS unset and dtype float16 recorded in env"}
+  I12_no_legacy: {severity: FAIL, rule: "no input path contains Images_without95%, Without95%, v2_submitted or legacy npz results"}
+  I13_metrics_complete: {severity: FAIL, rule: "metrics CSV has one row per stored npz, every column of constants.metrics_offline finite, l2_relerr < 1e-3"}
+  I14_elements_complete: {severity: FAIL, rule: "every REQUIRED paper element has all its inputs; every CONDITIONAL element is either complete or marked CUT"}
+  I15_macros: {severity: FAIL, rule: "every \\Num macro used in paper/v3 is defined in generated/numbers.tex and traced in summary_*.json; no '??' left"}
+
+paper_elements:   # E-id: what the paper shows -> exactly what data it needs
+  E1_main_perceptual_table:
+    status: REQUIRED
+    content: "per victim x mode: methods x {LPIPS-vgg, LPIPS-alex, DISTS, SSIM, L2} mean (median) at 10000"
+    inputs: {source: metrics_csv, budgets: [10000], methods: main+ours, cells: all6}
+  E2_l2_table_ttba_format:
+    status: REQUIRED
+    content: "mean (median) pix_l2 at 2000 / 5000 / 10000 and ASR at L2 <= 2.5 (NT) / 12 (T), 10000; cited TtBA Table 1 rows in a separate dagger block"
+    inputs: {source: per_checkpoint, budgets: [2000, 5000, 10000], methods: main+ours, cells: all6, external: ttba_github/ttba_table1.json}
+  E3_paired_stats_table:
+    status: REQUIRED
+    content: "ours vs each baseline: LPIPS-vgg AUC delta, DISTS AUC delta, L2 AUC ratio, L2@10k ratio [95% CI], Holm star, W/L; n printed"
+    inputs: {source: [metrics_csv, per_checkpoint], budgets: "auc_budgets + [10000]", methods: main+ours, cells: all6}
+  E4_asr_perc:
+    status: REQUIRED
+    content: "table of ASR_perc at 1000 / 10000 + curve over all 8 checkpoints + ASR vs threshold sweep (LPIPS, SSIM) at 10000"
+    inputs: {source: metrics_csv, budgets: checkpoints, methods: main+ours, cells: all6}
+  E5_curves:
+    status: REQUIRED
+    content: "median (IQR) pix_l2 and LPIPS-vgg vs queries at the 8 checkpoints (log-x 100..10000), same resolution for every method (traces not used)"
+    inputs: {source: [per_checkpoint, metrics_csv], budgets: checkpoints, methods: main+ours, cells: all6}
+  E6_pareto:
+    status: REQUIRED
+    content: "per-image (L2, LPIPS-vgg) at 10000, ours vs each baseline, small multiples"
+    inputs: {source: metrics_csv, budgets: [10000], methods: main+ours, cells: all6}
+  E7_comparison_grid:
+    status: REQUIRED
+    content: "clean | each method's adversarial | 0.5 + amp * delta with one amplification per row; metric values under each image; rule-based image choice saved in a caption file"
+    inputs: {source: adv_store+metrics_csv, budgets: [1000, 10000], methods: main+ours, cells: "all6 (3 images each)"}
+  E8_low_query_table:
+    status: REQUIRED
+    content: "found rate, ASR at RMSE 0.1 / 0.05 / 0.01, median pix_l2 and median LPIPS-vgg at 100 / 200 / 500 / 1000"
+    inputs: {source: [per_checkpoint, metrics_csv], budgets: [100, 200, 500, 1000], methods: main+ours, cells: all6}
+  E9_ablation_table:
+    status: REQUIRED
+    content: "confirm_37 rows (D4), labelled 'ResNet-50 V1, seed 2718, n = 100'; pix_l2 AUC and 10k ratio, SSIM, LPIPS-vgg"
+    inputs: {source: "confirm_37 result CSVs (path + sha256 recorded in reports/E9_sources.md)", metrics: [pix_l2, ssim, lpips]}
+  E9b_operator_substitution:
+    status: CONDITIONAL
+    content: "EGC with a PVR-E / TtBA step in the A-block vs EGC"
+    inputs: {source: "the run that produced 1.001 NT / 1.003 T: locate CSV + sha256, else CUT"}
+  E10_places365:
+    status: REQUIRED
+    content: "cross-dataset generalization on Places365-Standard val_256 (365 classes); per-victim x per-mode
+              tables (E1-E8 format) for resnet50_places365 and densenet161_places365"
+    inputs:
+      victims: [resnet50_places365, densenet161_places365]
+      modes: [non_targeted, targeted]
+      n: 200
+      methods: [LGC_RC_EGC, TtBA, CGBA, CGBA_H]
+      sources:
+        resnet50_places365: "http://places2.csail.mit.edu/models_places365/resnet50_places365.pth.tar"
+        densenet161_places365: "http://places2.csail.mit.edu/models_places365/densenet161_places365.pth.tar"
+        data: "http://data.csail.mit.edu/places/places365/val_256.tar"
+  E11_robust_model:
+    status: REQUIRED
+    content: "robustness against an adversarially trained ResNet-50 (RobustBench); per-mode tables (E1-E8 format)"
+    inputs:
+      victims: [Salman2020Do_R50]
+      modes: [non_targeted, targeted]
+      n: 200
+      methods: [LGC_RC_EGC, TtBA, CGBA, CGBA_H]
+      sources:
+        Salman2020Do_R50: "RobustBench Linf (NeurIPS 2020), 64.02% clean / 34.96% robust"
+  E12_low_query_breadth:
+    status: CONDITIONAL
+    inputs: {mode: non_targeted, budget: 1000, extra_victims: "to be named", n: 200}
+  E13_cost_table:
+    status: REQUIRED
+    content: "seconds per image (sequential runs, same GPU), queries; decoder JVPs per image ONLY if the runner records them (else that column is omitted and the text does not claim it)"
+    inputs: {source: runs, cells: all6}
+  E14_selection_and_sensitivity:
+    status: REQUIRED
+    content: "protocol facts from reports/P2_selection_audit.md; every E3 claim recomputed without dev-overlap rows; class-balanced variant (descriptive)"
+    inputs: {source: [P2 report, metrics_csv, per_checkpoint, overlap_dev_seeds.json]}
+  E15_fairness_provenance_table:
+    status: REQUIRED
+    content: "generated/tables/fairness.tex from env/manifest files (lgc-baselines B7)"
+    inputs: {source: [env, run_manifest]}
+  E16_threat_model_table:
+    status: REQUIRED
+    content: "text-only table (no numbers from runs): (a) methods excluded by the threat model (surrogates / priors) and why; (b) methods excluded by scope (HSJA, Sign_OPT; cited only, D7)"
+    inputs: {source: none}

@@ -1,0 +1,7 @@
+Thu Oct  8 07:02:17 CST 2026
+NVIDIA GeForce RTX 5090, 595.71.05
+torch 2.7.1+cu128 tv 0.22.1+cu128
+ttba_commit ea6d1649fccda0eb8392c9171e43cc9e0974acf9
+lgc_commit: see git tag build38-prereg
+LPIPS_NET=vgg
+confirm_ttba_sha256 0ced361f9b5ef8ac  (AUC = 500/1k/2.5k/5k/10k, patched before data)

@@ -1,0 +1,38 @@
+Load skills lgc-preflight, lgc-baselines, lgc-reviewer-eval and lgc-paper-contract. Phase B4f (audit). Mostly CPU;
+GPU only where stated. Worktree /root/autodl-tmp/LGC_frozen, contract v1.8 (print sha256).
+Study GPU note: The study GPU in reports/B4e2_close.md is NVIDIA GeForce RTX 5090. If RTX 5090 is currently occupied and an RTX 6000 / RTX PRO 6000 is attached, you are explicitly authorized to run the T3 and T6 audit forward passes on the RTX 6000 under D12 flags (do NOT stop for the GPU name difference; record the host GPU in Deviations).
+The human saved this prompt as reports/raw/B4f/prompt.txt; print its sha256.
+EXECUTE step by step. Do not start B5. Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official
+clones, the contract or prereg files. Allowed: adapters/diag/*, adapters/_common.py (env recording only, T7),
+ttba_github/run_frame_b1_generic.py (env recording only, T7), reports/*. Raw outputs go to reports/raw/B4f/.
+
+T1 Loader audit (L1). For each dataset (ImageNet ttba_github, Places365, RobustBench pool) quote the single function
+ that turns a file into x0 (file:line): decoder, resize, crop, ToTensor, dtype. Then grep every adapter, wrapper,
+ runner and official clone path that is executed for: Resize, resize, interpolate, CenterCrop, transforms, ToTensor,
+ PIL.Image.open, read_image. Table: hit | file:line | executed for which method | before or after x0 is produced.
+ Any resize/crop applied after x0 is produced = FAIL.
+T2 Normalisation constants. For each of the 6 victims print mean/std used inside the victim wrapper (file:line) and the
+ values from weights.transforms() / the Places365 or RobustBench source; must be equal.
+T3 x0 identity and pairs. Run python tools/eval/human_preflight.py --roots $(cat reports/B4e2_smoke_roots.txt) --out
+ reports/raw/B4f/human_preflight (paste section 2). For every split CSV (12 files) rows 1-200: re-verify on the GPU
+ with the D12 flags that the source is classified as source_label and (targeted) the target as target_label,
+ target_label != source_label, no duplicate sources. Table per file: n, wrong source, wrong target, same-label, dups.
+T4 Hyper-parameter audit (L2/L3). Write adapters/diag/hparam_audit.py that, for each method x mode, lists EVERY argument
+ the adapter passes to the official code and every official default it relies on: name | adapter value | adapter
+ file:line | official default value | official file:line | layer (L2 or L3) | DIFFERS? | L3 reason. Read the
+ official values from the clones (not from memory, not from READMEs). Output reports/B4f_hparam_audit.md.
+T5 Oracle and query audit. For each method: (a) every place the official code evaluates the victim (file:line), and
+ proof that it reaches the victim only through the tracker; (b) every termination / early-stop / iteration-cap
+ condition (file:line) and how the adapter neutralises it (L3) or why it cannot fire before the budget; (c) every
+ evaluation-only victim call made by the adapter (file:line) and proof the attack cannot see its result; (d) from the
+ B4e2 smoke runs: per cell, images with queries == 10000, < 10000 (with status), > 10000; (e) official counter vs
+ tracker count per cell with the documented offsets.
+T6 Domain and clipping. Per method: attack space (pixel or normalised), lower/upper bounds used (file:line), where
+ clamping happens (file:line), to_pixel map; for normalised-space methods print d_n/d_p for 3 stored points (must lie
+ in [1/sd_max, 1/sd_min] = [4.37, 4.46]); max|victim(x0) - raw_net((x0 - mu)/sd)| for all 6 victims (must be 0).
+T7 Env recording. Every adapter env_*.json and the generic EGC runner's env_frame.txt must record
+ backend.cuda_matmul_allow_tf32, backend.cudnn_allow_tf32, backend.cudnn_deterministic, backend.cudnn_benchmark,
+ backend.float32_matmul_precision read from torch at run time (skill lgc-preflight §4). For run_frame_b1.sh (frozen)
+ show where config_single.json records "tf32=... deterministic=..." instead. Re-run human_preflight section 1.
+
+Write reports/B4f_audit.md (skill lgc-preflight §5, with "Deviations from the prompt"), commit diag scripts + allowed T7 edits + reports + reports/raw/B4f/*. STOP.
