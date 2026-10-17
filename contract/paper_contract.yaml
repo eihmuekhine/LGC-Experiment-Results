@@ -276,7 +276,7 @@ paper_elements:   # E-id: what the paper shows -> exactly what data it needs
     content: "EGC with a PVR-E / TtBA step in the A-block vs EGC"
     inputs: {source: "the run that produced 1.001 NT / 1.003 T: locate CSV + sha256, else CUT"}
   E10_places365:
-    status: CUT
+    status: REQUIRED
     content: "cross-dataset generalization on Places365-Standard val_256 (365 classes); per-victim x per-mode
               tables (E1-E8 format) for resnet50_places365 and densenet161_places365"
     inputs:
