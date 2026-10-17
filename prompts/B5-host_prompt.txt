@@ -33,3 +33,5 @@ T6 (contract v1.9-rev4, E11) ARS_OPT on RobustBench Salman2020Do_R50 for every E
 Write reports/B5_host_probe.md with the verdict HOST-IDENTICAL (T2 and T3 all IDENTICAL) or HOST-DIFFERENT (list the
 first divergences), plus the T1, T5 and T6 verdicts. Commit the report, reports/raw/B5-host/ and
 reports/B4e2_smoke_roots.txt (not the Results/b5host_* dirs). STOP.
+
+T7 Places365 specific probe: For both Places365 victims (resnet50_places365, densenet161_places365), run a 3-image smoke (rows 1-3) for both modes. Check domain_consistency X=0 and bitwise identity (found, state_query, pix_l2, npz sha256) against the B4e2 smoke roots. If not bitwise identical, report the first divergence. (This is needed because the host probe must cover all main-study datasets, not just ImageNet).
