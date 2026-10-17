@@ -55,8 +55,7 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     hashed (E9b).
   D5_conditional_sections: >-
     (v1.9-rev3, user 2026-10-16) No conditional sections remain. E8 is a DERIVED view of E1-E7
-    (no additional runs; all 8 checkpoints recorded per D1). E12 CUT (data available in E11's
-    budget-1000 rows). E10 (Places365) CUT (ImageNet-only scope). E11 (RobustBench R50) REQUIRED.
+    (no additional runs; all 8 checkpoints recorded per D1). E12 CUT (data available in E11's budget-1000 rows). E10 (Places365) REQUIRED. E11 (RobustBench R50) REQUIRED.
   D6_failures: >-
     An image with status error, or not adversarial at B, counts as a failure for ASR (L2 = inf).
     Paired statistics use images where both methods are adversarial at B, and print the count excluded.

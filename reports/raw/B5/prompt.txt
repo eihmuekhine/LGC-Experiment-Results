@@ -10,10 +10,10 @@ T0 Environment check: nvidia-smi (must show 8 GPUs, RTX 5090), torch.cuda.get_de
 Any GPU != RTX 5090: STOP (L03).
 Run adapters/diag/domain_consistency.py on a small smoke first: X = 0 required.
 
-T1 Job list (~84.5 GPU-h total):
+T1 Job list (~90+ GPU-h total):
 - Main 24 cells: 3 victims (resnet50, vgg19, vit_b_32) x 2 modes (NT, T) x 4 methods (LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T), ARS_OPT), n=200.
 - E10 16 cells: 2 victims (resnet50_places365, densenet161_places365) x 2 modes x 4 methods, n=200.
-- E11 6 cells: Salman2020Do_R50 x 2 modes x 4 methods, n=200.
+- E11 8 cells: Salman2020Do_R50 x 2 modes x 4 methods, n=200.
 - E17 4 cells: CGBA_D8only NT x 30 images (3 main + E11).
 
 T2 Launch protocol:
