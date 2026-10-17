@@ -3,6 +3,7 @@ GPU ON. Worktree /root/autodl-tmp/LGC_frozen, contract v1.9-rev5 (print its sha2
 sha256 of reports/raw/B5-host/prompt.txt. export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 for every command.
 Do not start B5. Edit nothing except adapters/diag/* and reports/*. Read docs/LESSONS.md first (L03, L22, L23).
 Tee every GPU command to reports/raw/B5-host/<step>.log. Any unexpected result: STOP bundle (skill §7).
+Use tools/eval/compare_roots.py for every IDENTICAL / DIFFERENT verdict below and paste its last 3 lines.
 
 T0 Host fingerprint: hostname, nvidia-smi (name, driver, CUDA, VRAM, GPU count), torch.cuda.get_device_name(0),
  capability, SM count, torch.__version__, torch.version.cuda, torch.backends.cudnn.version(), lscpu model name.
@@ -18,11 +19,17 @@ T3 The same comparison for TtBA, CGBA (--cgba_variant fixed) and ARS_OPT on resn
  adapters (D19 domains), into Results/b5host_<method>_resnet50, against the matching roots of
  reports/B4e2_smoke_roots.txt. Report oob_queries; run adapters/diag/domain_consistency.py on the new roots (X = 0).
 T4 s/img on this host for the four methods next to the reference roots' s/img.
-T5 Per-GPU identity (if multi-GPU): for every visible GPU index i, run LGC_RC_EGC and TtBA on resnet50 NT row 1 with
- CUDA_VISIBLE_DEVICES=i into Results/b5host_gpu<i>_<method>; all GPUs bitwise IDENTICAL to GPU 0 (found, state_query,
- pix_l2, npz sha256). Also print nproc, free -g and the OMP setting; nproc < 8 x (number of GPUs) is a finding.
-T6 ARS_OPT on Salman2020Do_R50 (correctness check): For every E11 mode, run rows 1-3. Check queries = 10000,
- domain_consistency X = 0, human_preflight FLAG 0.
+
+T5 Per-GPU concurrency identity: For every visible GPU index i, launch LGC_RC_EGC and TtBA on resnet50 NT row 1
+ with CUDA_VISIBLE_DEVICES=i at the same time into Results/b5host_gpu<i>_<method>; all GPUs bitwise IDENTICAL to GPU 0
+ (found, state_query, pix_l2, npz sha256). Table: GPU index | s/img under concurrency | solo s/img from T4 | ratio.
+ Also print nproc, free -g and the OMP setting; nproc < 8 x (number of GPUs) is a finding.
+
+T6 ARS_OPT on Salman2020Do_R50 (correctness check): For every E11 mode, run rows 1-3.
+ Quote the victim construction (file:line) and state whether it is the same code path as the other E11 methods.
+ Report per-checkpoint found/pix_l2. Report oob_queries and s/img.
+ Check queries = 10000, domain_consistency X = 0, human_preflight FLAG 0.
+ Append the root to reports/B4e2_smoke_roots.txt and re-run check_contract --stage smoke (exit 0).
 
 T7 Places365 specific probes:
 T7a ImageNet-victims on Places365: For both Places365 victims (resnet50_places365, densenet161_places365), run a
@@ -33,5 +40,5 @@ T7b ARS_OPT on Places365 (correctness only, no bitwise reference): For both Plac
  (rows 1-3) for both modes using ARS_OPT. Check domain_consistency X=0, found/pix_l2 sanity. Append the new ARS_OPT
  root paths to reports/B4e2_smoke_roots.txt.
 
-Write reports/B5_host_probe.md with the verdict HOST-IDENTICAL (T2, T3, T7a all IDENTICAL) or HOST-DIFFERENT (list the
+Write reports/B5_host_probe.md with the verdict HOST-IDENTICAL (T2, T3, T5, T7a all IDENTICAL) or HOST-DIFFERENT (list the
 first divergences). Commit the report and reports/raw/B5-host/ (not the Results/b5host_* dirs). STOP.
