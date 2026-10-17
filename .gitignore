@@ -6,3 +6,10 @@ splits/
 *.log
 __pycache__/
 Untitled Folder/
+
+# Added for B5 cleanup
+*.bak
+*.bak_*
+.ipynb_checkpoints/
+update_contract.py
+logs_frame/
