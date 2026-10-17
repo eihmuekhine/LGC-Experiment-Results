@@ -1,5 +1,5 @@
 Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B5 (confirmatory run).
-GPU ON, 8 x RTX 5090. One process per GPU, OMP_NUM_THREADS=8.
+GPU ON, 5 x RTX 5090. One process per GPU, OMP_NUM_THREADS=8.
 Worktree /root/autodl-tmp/LGC_frozen, contract v1.9-rev5 (print its sha256 and git rev-parse HEAD).
 Print the sha256 of reports/raw/B5/prompt.txt.
 EXECUTE step by step. Do not stop or restart the AutoDL instance during the run.

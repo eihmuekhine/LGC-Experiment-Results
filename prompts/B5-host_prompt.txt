@@ -23,7 +23,7 @@ T4 s/img on this host for the four methods next to the reference roots' s/img.
 T5 Per-GPU concurrency identity: For every visible GPU index i, launch LGC_RC_EGC and TtBA on resnet50 NT row 1
  with CUDA_VISIBLE_DEVICES=i at the same time into Results/b5host_gpu<i>_<method>; all GPUs bitwise IDENTICAL to GPU 0
  (found, state_query, pix_l2, npz sha256). Table: GPU index | s/img under concurrency | solo s/img from T4 | ratio.
- Also print nproc, free -g and the OMP setting; nproc < 8 x (number of GPUs) is a finding.
+ Also print nproc, free -g and the OMP setting; nproc < 8 x 5 is a finding (need at least 40 CPU cores).
 
 T6 ARS_OPT on Salman2020Do_R50 (correctness check): For every E11 mode, run rows 1-3.
  Quote the victim construction (file:line) and state whether it is the same code path as the other E11 methods.
