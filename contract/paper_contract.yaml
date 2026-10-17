@@ -83,8 +83,7 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     (v1.5, user 2026-10-12; revised v1.9-rev2, 2026-10-16) E11 (RobustBench Salman2020Do_R50,
     Linf, 64.02% clean / 34.96% robust, loaded via robustbench.utils.load_model) is REQUIRED,
     both modes, n = 200. E10 (Places365) is CUT — ImageNet-only scope (v1.9-rev2). E11 uses the
-    reduced roster {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T)} to control cost (ARS_OPT is already
-    shown on the main ImageNet study). Decided before any n = 200 result was opened.
+    roster {LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T), ARS_OPT} (ARS_OPT added on 2026-10-16 per H decision; same modes and n as the other E11 methods; oracle domain clamp01 per D19; ARS_OPT not in G5). Decided before any n = 200 result was opened.
   D10_e11_registration: >-
     (v1.6, user 2026-10-12; revised v1.9-rev2, 2026-10-16) Register the E11 split sha256 and victim
     weight files in constants; ours uses one out_dir per (victim, mode) so NT and T never share
