@@ -1,0 +1,35 @@
+Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B5 (confirmatory run).
+GPU ON, 8 x RTX 5090. One process per GPU, OMP_NUM_THREADS=8.
+Worktree /root/autodl-tmp/LGC_frozen, contract v1.9-rev4 (print its sha256 and git rev-parse HEAD).
+Print the sha256 of reports/raw/B5/prompt.txt.
+EXECUTE step by step. Do not stop or restart the AutoDL instance during the run.
+Never edit lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official clones, the contract or prereg files.
+Allowed: adapters/*, tools/eval/*, reports/*, generated/*.
+
+T0 Environment check: nvidia-smi (must show 8 GPUs, RTX 5090), torch.cuda.get_device_name(0), OMP_NUM_THREADS.
+Any GPU != RTX 5090: STOP (L03).
+Run adapters/diag/domain_consistency.py on a small smoke first: X = 0 required.
+
+T1 Job list (55.55 GPU-h total):
+- Main 24 cells: 3 victims (resnet50, vgg19, vit_b_32) x 2 modes (NT, T) x 4 methods (LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T), ARS_OPT), n=200.
+- E11 6 cells: Salman2020Do_R50 x 2 modes x 4 methods (LGC_RC_EGC, TtBA, CGBA(NT)/CGBA_H(T), ARS_OPT), n=200.
+- E17 4 cells: CGBA_D8only NT x 30 images (3 main + E11).
+
+T2 Launch protocol:
+- Use tmux. Run one process per GPU (CUDA_VISIBLE_DEVICES=i).
+- Longest-processing-time-first scheduling. Split cells by rows only if B4e2 T4 was IDENTICAL (it was).
+- E13 timing: rows 1-10 of every cell run solo (no other attack process).
+- Log stdout/stderr of every GPU command to reports/raw/B5/<cell>.log.
+
+T3 In-run gates:
+- Partial checker every 10 images per cell: check_contract.py --stage partial.
+- G5 at n=30 for TtBA, CGBA, CGBA_H cells (tools/eval/g5_check.py). PASS if CI intersects [0.5, 2].
+- domain_consistency.py X=0 on every ARS_OPT / CGBA / CGBA_H cell.
+- On any FAIL: STOP bundle (skill §7). Do not tune.
+
+T4 Artifacts:
+- Results/b5_main_<method>_<arch>/ and Results/b5_e11_<method>_Salman2020Do_R50/.
+- generated/ (tables, figures, metrics.csv).
+- reports/B5_close.md (skill §5 format: environment, per-cell queries vs budget, G5 verdicts, domain_consistency X=0, deviations).
+
+Write reports/B5_close.md. Commit code, report, and reports/raw/B5/*. STOP.
