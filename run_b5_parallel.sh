@@ -348,12 +348,17 @@ cat /tmp/b5_cells.txt | parallel -j 5 --joblog $LOG_DIR/parallel.log --eta '
         fi
     fi
 
-    # ၅။ Domain Consistency
-    if [[ "$CELL" == *"ARS_OPT"* || "$CELL" == *"CGBA"* ]]; then
-        python adapters/diag/domain_consistency.py --roots Results/b5_${CELL} > $LOG_DIR/${CELL}_domain.log 2>&1
-        if [ $? -ne 0 ]; then
-            echo "❌ DOMAIN X>0 in $CELL. STOPPING."
-            echo "STOP: Domain X>0" > reports/stop/B5_${CELL}_domain.md
+    # ၅။ Domain Consistency (ARS_OPT / CGBA / CGBA_H / LGC_RC_EGC)
+    # X>0 = STOP (post-D19-fix rule; E-OTHER).
+    if [[ "$CELL" == *"ARS_OPT"* || "$CELL" == *"CGBA"* || "$CELL" == *"LGC_RC_EGC"* ]]; then
+        python adapters/diag/domain_consistency.py \
+            --roots "Results/b5_${CELL}" \
+            --out "$LOG_DIR/${CELL}_domain.csv" > "$LOG_DIR/${CELL}_domain.log" 2>&1
+        DOMAIN_EXIT=$?
+        X_COUNT=$(tr -d '\r' < "$LOG_DIR/${CELL}_domain.csv" 2>/dev/null | awk -F',' 'NR>1 && $8=="X"' | wc -l)
+        if [ "$DOMAIN_EXIT" -ne 0 ] || [ "$X_COUNT" -gt 0 ]; then
+            echo "❌ DOMAIN FAILED in $CELL (X=$X_COUNT, exit=$DOMAIN_EXIT). STOPPING."
+            echo "STOP: domain_consistency X=$X_COUNT (exit=$DOMAIN_EXIT)" > reports/stop/B5_${CELL}_domain.md
             exit 1
         fi
     fi
