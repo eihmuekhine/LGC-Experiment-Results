@@ -308,4 +308,3 @@ images under concurrency), T6 ≈ 4 min (6 images) + gates ≈ 2 min, T7a ≈ 27
 | 2026-10-18 | Results/ junk-dir cleanup (.ipynb_checkpoints) | H (authorized) | Removed at 09:37 |
 | 2026-10-18 | run_b5_parallel.sh edit (commit 1170dc1) | H (authorized) | Thread config at 09:54 |
 | 2026-10-18 | run_b5_parallel.sh OMP=1->8 (revert 1170dc1) | H (authorized) | Real nproc=208; OMP=8 x 5 = 40 threads << 125 quota; prompt.txt consistency |
-| 2026-10-18 | run_b5_parallel.sh OMP=1->8 (revert 1170dc1) | H (authorized) | Real nproc=208; OMP=8 x 5 = 40 threads << 125 quota; prompt.txt consistency |
