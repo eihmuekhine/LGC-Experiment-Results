@@ -47,3 +47,17 @@ Run T0b smoke on post-D19-fix roots only (b4h_t3_smoke_* + b5host_*).
 If X=0 there, pre-fix X>0 is an artifact of pre-fix data, and B5
 (which generates fresh post-fix data) should be safe to launch.
 Requires H decision.
+
+## Post-fix smoke result (follow-up)
+- Roots: b4h_t3_smoke_* + b5host_* only (12 roots)
+- X count: 0
+- EXIT: 0
+- Message: "[+] no X>0 for any method (ARS_OPT and CGBA/CGBA_H both clamp correctly)"
+
+## ⚠️ Limitation (important)
+Post-fix roots contain ONLY CGBA/CGBA_H and ARS_OPT.
+LGC_RC_EGC has NO post-D19-fix data in the current roots.
+Therefore this smoke does NOT directly test the method that showed X>0.
+The X=0 result supports H1 (pre-fix artifact) only indirectly.
+A definitive test requires fresh LGC_RC_EGC data generated under the
+current post-D19-fix code path — i.e., the B5 run itself.
