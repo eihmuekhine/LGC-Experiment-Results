@@ -15,7 +15,7 @@ divergences in pix_l2; within-host reproducibility confirmed.
 3. nproc/cpu.max investigation (real=208, OMP=8 chosen) — H authorized
 4. Results/ junk-dir cleanup (.ipynb_checkpoints) — H authorized
 5. run_b5_parallel.sh edit (commit 1170dc1) — H authorized
-6. run_b5_parallel.sh OMP=1->8 revert (revert 1170dc1) — H authorized
+6. run_b5_parallel.sh OMP=1->8 revert — H authorized
 7. B6/P5 stage policy (Option 1: B5-host roots only) — see reports/B6_policy.md
 8. Premature tag attempt b5-go-2026-10-18 before signoff (deleted locally, never pushed)
 
