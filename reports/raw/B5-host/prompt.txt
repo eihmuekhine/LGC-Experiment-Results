@@ -1,0 +1,44 @@
+Load skills lgc-preflight, lgc-baselines, lgc-paper-contract. Phase B5-host (host identity probe before the b5-go tag).
+GPU ON. Worktree /root/autodl-tmp/LGC_frozen, contract v1.9-rev5 (print its sha256 and `git rev-parse HEAD`). Print the
+sha256 of reports/raw/B5-host/prompt.txt. export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 for every command.
+Do not start B5. Edit nothing except adapters/diag/* and reports/*. Read docs/LESSONS.md first (L03, L22, L23).
+Tee every GPU command to reports/raw/B5-host/<step>.log. Any unexpected result: STOP bundle (skill §7).
+Use tools/eval/compare_roots.py for every IDENTICAL / DIFFERENT verdict below and paste its last 3 lines.
+
+T0 Host fingerprint: hostname, nvidia-smi (name, driver, CUDA, VRAM, GPU count), torch.cuda.get_device_name(0),
+ capability, SM count, torch.__version__, torch.version.cuda, torch.backends.cudnn.version(), lscpu model name.
+ Table for every root in reports/B4e2_smoke_roots.txt: root | GPU name | driver | cudnn | torch, read from its
+ env/config files ("not recorded" if absent).
+T1 B0' on this host: ttba_github/run_frame_b1.sh, resnet50 NT rows 1-3, three out_dirs under Results/b5host_*:
+ (A) the 6 registered budgets without --save_adv; (A2) A repeated; (B) the 8 contract budgets with --save_adv.
+ A == A2 bitwise (found, state_query, pix_l2, every budget); A == B at the 6 registered budgets. Any difference: STOP.
+T2 Cross-host identity (information; decides whether hosts may be pooled): compare B with the LGC_RC_EGC resnet50 NT root
+ of reports/B4e2_smoke_roots.txt (found, state_query, pix_l2 per checkpoint, sha256 of every npz delta): IDENTICAL or
+ the first diverging (image, budget).
+T3 The same comparison for TtBA, CGBA (--cgba_variant fixed) and ARS_OPT on resnet50 NT rows 1-3 with the current
+ adapters (D19 domains), into Results/b5host_<method>_resnet50, against the matching roots of
+ reports/B4e2_smoke_roots.txt. Report oob_queries; run adapters/diag/domain_consistency.py on the new roots (X = 0).
+T4 s/img on this host for the four methods next to the reference roots' s/img.
+
+T5 Per-GPU concurrency identity: For every visible GPU index i, launch LGC_RC_EGC and TtBA on resnet50 NT row 1
+ with CUDA_VISIBLE_DEVICES=i at the same time into Results/b5host_gpu<i>_<method>; all GPUs bitwise IDENTICAL to GPU 0
+ (found, state_query, pix_l2, npz sha256). Table: GPU index | s/img under concurrency | solo s/img from T4 | ratio.
+ Also print nproc, free -g and the OMP setting; nproc < 8 x 5 is a finding (need at least 40 CPU cores).
+
+T6 ARS_OPT on Salman2020Do_R50 (correctness check): For every E11 mode, run rows 1-3.
+ Quote the victim construction (file:line) and state whether it is the same code path as the other E11 methods.
+ Report per-checkpoint found/pix_l2. Report oob_queries and s/img.
+ Check queries = 10000, domain_consistency X = 0, human_preflight FLAG 0.
+ Append the root to reports/B4e2_smoke_roots.txt and re-run check_contract --stage smoke (exit 0).
+
+T7 Places365 specific probes:
+T7a ImageNet-victims on Places365: For both Places365 victims (resnet50_places365, densenet161_places365), run a
+ 3-image smoke (rows 1-3) for both modes using LGC_RC_EGC, TtBA, CGBA/CGBA_H. Check bitwise identity (found,
+ state_query, pix_l2, npz sha256) against the B4e2 smoke roots. Check domain_consistency X=0. If not bitwise
+ identical, report the first divergence.
+T7b ARS_OPT on Places365 (correctness only, no bitwise reference): For both Places365 victims, run a 3-image smoke
+ (rows 1-3) for both modes using ARS_OPT. Check domain_consistency X=0, found/pix_l2 sanity. Append the new ARS_OPT
+ root paths to reports/B4e2_smoke_roots.txt.
+
+Write reports/B5_host_probe.md with the verdict HOST-IDENTICAL (T2, T3, T5, T7a all IDENTICAL) or HOST-DIFFERENT (list the
+first divergences). Commit the report and reports/raw/B5-host/ (not the Results/b5host_* dirs). STOP.
