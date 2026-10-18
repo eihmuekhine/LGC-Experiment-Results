@@ -25,7 +25,7 @@ T2 Launch protocol:
 T3 In-run gates:
 - Partial checker every 10 images per cell: check_contract.py --stage partial.
 - G5 at n=30 for TtBA, CGBA, CGBA_H cells. PASS if CI intersects [0.5, 2].
-- domain_consistency.py X=0 on every ARS_OPT / CGBA / CGBA_H cell.
+- domain_consistency.py X=0 on every ARS_OPT / CGBA / CGBA_H / LGC_RC_EGC cell.
 - On any FAIL: STOP bundle (skill §7). Do not tune.
 
 T4 Artifacts:
