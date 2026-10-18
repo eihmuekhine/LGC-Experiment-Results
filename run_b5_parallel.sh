@@ -69,8 +69,8 @@ cat /tmp/b5_cells.txt | parallel -j 5 --joblog $LOG_DIR/parallel.log --eta '
     CELL={}
     GPU_ID=$(( ({%} - 1) % 5 ))
     export CUDA_VISIBLE_DEVICES=$GPU_ID
-    export OMP_NUM_THREADS=1
-    export MKL_NUM_THREADS=1
+    export OMP_NUM_THREADS=8
+    export MKL_NUM_THREADS=8
 
     echo "🚀 Starting $CELL on GPU $GPU_ID"
 
