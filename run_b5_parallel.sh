@@ -35,6 +35,12 @@ if [ -z "${NGPU:-}" ]; then echo "[!] NGPU is required (integer >= 1)" >&2; exit
 case "$NGPU" in ''|*[!0-9]*) echo "[!] NGPU must be an integer >= 1" >&2; exit 2;; esac
 if [ "$NGPU" -lt 1 ]; then echo "[!] NGPU must be >= 1" >&2; exit 2; fi
 
+attack_running() {
+  # True while an attack process runs: the START of its command line is "python" followed by one of the
+  # five attack entry points.  Anchored so that editors, grep or log viewers never block a resume.
+  ps -eo args= 2>/dev/null | grep -Eq '^python[[:space:]]+(run_benchmark_33b\.py|adapters/run_ttba_v2\.py|adapters/run_cgba\.py|adapters/run_arsopt\.py|ttba_github/run_frame_b1_generic\.py)'
+}
+
 # -------------------------------------------------------------------------------------------------- 2. env guard (T1c)
 TORCH=$(python -c 'import torch; print(torch.__version__)' 2>/dev/null || echo "NONE")
 TV=$(python -c 'import torchvision; print(torchvision.__version__)' 2>/dev/null || echo "NONE")
@@ -57,13 +63,21 @@ if [ "$DRY_RUN" -eq 0 ] && [ -z "${TMUX:-}" ]; then
 fi
 
 # -------------------------------------------------------------------------------------------------- 4. queue + fresh-directory (T1e, T1f)
-python tools/eval/b5_gate_cell.py --print_order --results_root "$RESULTS_ROOT" > /tmp/b5_order.txt
+ORDER_FILE=$(mktemp)
+CELLS_FILE=$(mktemp)
+trap 'rm -f "$ORDER_FILE" "$CELLS_FILE"' EXIT
+python tools/eval/b5_gate_cell.py --print_order --results_root "$RESULTS_ROOT" > "$ORDER_FILE"
 
 if [ -n "$RESUME_CELL" ]; then
-  RESUME_OUTDIR=$(awk -F'\t' -v c="$RESUME_CELL" '$1==c{print $2}' /tmp/b5_order.txt)
+  RESUME_OUTDIR=$(awk -F'\t' -v c="$RESUME_CELL" '$1==c{print $2}' "$ORDER_FILE")
   [ -n "$RESUME_OUTDIR" ] || { echo "[!] unknown cell: $RESUME_CELL" >&2; exit 2; }
-  printf '%s\t%s\n' "$RESUME_CELL" "$RESUME_OUTDIR" > /tmp/b5_cells.txt
+  printf '%s\t%s\n' "$RESUME_CELL" "$RESUME_OUTDIR" > "$CELLS_FILE"
   echo "[resume] running only $RESUME_CELL -> $RESUME_OUTDIR"
+  # a resume always gets GPU 0: refuse while another attack process runs (match the START of its command line).
+  if attack_running; then
+    echo "[!] an attack process is already running; refusing --resume (GPU 0 contention)" >&2
+    exit 2
+  fi
   # error-row check reads the status/error columns with the csv module, never grep ',error,'.
   if python tools/eval/b5_gate_cell.py --print_errors --root "$RESUME_OUTDIR"; then
     echo "[resume] no error rows; proceeding"
@@ -79,9 +93,9 @@ else
         echo "[!] output directory already exists: $O (cell $C); refusing. Use --resume $C or a fresh RESULTS_ROOT." >&2
         exit 2
       fi
-    done < /tmp/b5_order.txt
+    done < "$ORDER_FILE"
   fi
-  cp /tmp/b5_order.txt /tmp/b5_cells.txt
+  cp "$ORDER_FILE" "$CELLS_FILE"
 fi
 
 # -------------------------------------------------------------------------------------------------- 5. NGPU match (T1a)
@@ -132,6 +146,11 @@ stop_bundle() {
   local TS; TS=$(date +%Y%m%d-%H%M)
   mkdir -p reports/stop
   local P="reports/stop/B5a2_${CELL}_${TS}.md"
+  local N=2
+  while [ -e "$P" ]; do
+    P="reports/stop/B5a2_${CELL}_${TS}_${N}.md"
+    N=$((N + 1))
+  done
   local NROWS=0
   if [ -n "$OUT" ] && [ -d "$OUT" ]; then
     NROWS=$(find "$OUT" -type f -name 'runs*.csv' -print0 2>/dev/null \
@@ -437,7 +456,9 @@ run_cell() {
   local rc=$?
   if [ "$rc" -ne 0 ]; then
     local CODE=E-OTHER
-    if grep -qiE 'CUDA|out of memory|Killed' "$LOG_DIR/${CELL}.log"; then CODE=E-INFRA; fi
+    if [ "$rc" -ge 128 ] || grep -qE 'CUDA out of memory|CUDA error|cudaError|out of memory|No space left on device|Killed' "$LOG_DIR/${CELL}.log"; then
+      CODE=E-INFRA
+    fi
     stop_bundle "$CELL" "$CODE" "attack exit status $rc (see last 50 log lines)" "$LOG_DIR/${CELL}.log" "$OUT"
     echo "[cell $CELL] attack FAILED rc=$rc -> STOP ($CODE)"
     return 1
@@ -465,7 +486,7 @@ if [ "$DRY_RUN" -eq 1 ]; then
     echo "# outdir: $OUT"
     echo "# gates: $(describe_gates "$CELL")"
     run_attack "$CELL" "$OUT"
-  done < /tmp/b5_cells.txt
+  done < "$CELLS_FILE"
   echo
   echo "[dry_run] queue (LPT, E17 last) with expected hours:"
   command python tools/eval/b5_gate_cell.py --print_queue --results_root "$RESULTS_ROOT"
@@ -473,6 +494,11 @@ if [ "$DRY_RUN" -eq 1 ]; then
 fi
 
 # -------------------------------------------------------------------------------------------------- launch (T1a/T1k)
+if [ -n "$RESUME_CELL" ]; then
+  JOBLOG="$LOG_DIR/parallel_resume_${RESUME_CELL}_$(date +%Y%m%d-%H%M%S).log"
+else
+  JOBLOG="$LOG_DIR/parallel.log"
+fi
 mkdir -p "$LOG_DIR" reports/stop
 probe_gpu
 
@@ -496,27 +522,31 @@ echo "[launch] env: GPU=${GPU_NAME:-?} driver=${DRIVER:-?} torch=${TORCH:-?} cuD
 echo "[launch] ordered queue (LPT, E17 last) with expected hours:"
 python tools/eval/b5_gate_cell.py --print_queue --results_root "$RESULTS_ROOT"
 echo "[launch] ordered queue (cell -> outdir):"
-cat /tmp/b5_cells.txt
+cat "$CELLS_FILE"
 
 export NGPU RESULTS_ROOT LOG_DIR OMP_NUM_THREADS MKL_NUM_THREADS \
        GPU_NAME DRIVER TORCH CUDNN TF32_MM TF32_CUDNN CUDNN_DET CUDNN_BENCH CONTRACT_SHA
 export -f run_cell run_attack stop_bundle describe_gates
 
 set +e
-cat /tmp/b5_cells.txt | parallel -j "$NGPU" --joblog "$LOG_DIR/parallel.log" --eta \
+cat "$CELLS_FILE" | parallel -j "$NGPU" --joblog "$JOBLOG" --eta \
   'run_cell {} {%}'
 PARALLEL_RC=$?
 set -e
 
 # -------------------------------------------------------------------------------------------------- summary (T1k)
 echo
-echo "[summary] from $LOG_DIR/parallel.log:"
+echo "[summary] from $JOBLOG:"
 NFAIL=0
-if [ -f "$LOG_DIR/parallel.log" ]; then
-  awk 'NR==1{print; next} {n++; if($7 != "0" || $8 != "0") fail++} END{printf "jobs=%d  nonzero_or_signalled=%d\n", n, fail+0}' "$LOG_DIR/parallel.log"
-  echo "per-job exit column (Seq Exitval Signal Command):"
-  awk 'NR>1{print $1, $7, $8, $9}' "$LOG_DIR/parallel.log"
-  NFAIL=$(awk 'NR>1 && ($7 != "0" || $8 != "0"){c++} END{print c+0}' "$LOG_DIR/parallel.log")
+if [ -f "$JOBLOG" ]; then
+  awk 'NR==1{print; next} {n++; if($7 != "0" || $8 != "0") fail++} END{printf "jobs=%d  nonzero_or_signalled=%d\n", n, fail+0}' "$JOBLOG"
+  echo "per-job exit column (Seq Exitval Signal cell):"
+  awk -F'\t' 'NR>1 {
+    cell = $9
+    sub(/^run_cell ./, "", cell)
+    print $1, $7, $8, cell
+  }' "$JOBLOG"
+  NFAIL=$(awk 'NR>1 && ($7 != "0" || $8 != "0"){c++} END{print c+0}' "$JOBLOG")
   NFAIL=${NFAIL:-0}
 fi
 if [ "$NFAIL" -ne 0 ] || [ "$PARALLEL_RC" -ne 0 ]; then

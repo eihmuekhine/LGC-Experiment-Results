@@ -1,0 +1,38 @@
+#!/bin/bash
+# simulation stub (tests_b5/sim): fakes the torch / torchvision / cuDNN version queries and every attack process;
+# everything else runs on the real interpreter ($SIM_REAL_PY). Never used outside run_sim.sh.
+RP="${SIM_REAL_PY:?SIM_REAL_PY not set}"
+if [ "${1:-}" = "-c" ]; then
+  case "${2:-}" in
+    *torchvision*) echo "0.22.1+cu128"; exit 0 ;;
+    *cudnn*) echo "90701"; exit 0 ;;
+    *torch.__version__*) echo "2.7.1+cu128"; exit 0 ;;
+  esac
+fi
+case "${1:-}" in
+  run_benchmark_33b.py|adapters/run_*.py|ttba_github/run_frame_b1_generic.py)
+    OUT=""; prev=""
+    for a in "$@"; do [ "$prev" = "--out_dir" ] && OUT="$a"; prev="$a"; done
+    echo "start $(date +%s.%N) gpu=${CUDA_VISIBLE_DEVICES:-unset} omp=${OMP_NUM_THREADS:-unset} out=$OUT" >> "$SIM_TRACE"
+    echo "using device cuda:0 (simulated attack)"
+    sleep "${SIM_SLEEP:-0.3}"
+    mkdir -p "$OUT/sim"
+    printf 'image,status,error,nonfinite_queries,wall_time_s\nimg1,budget,,0,1.0\n' > "$OUT/sim/runs_sim.csv"
+    echo "end $(date +%s.%N) gpu=${CUDA_VISIBLE_DEVICES:-unset} out=$OUT" >> "$SIM_TRACE"
+    mode=""
+    IFS=',' read -ra specs <<< "${SIM_FAIL_SPEC:-}"
+    for s in "${specs[@]}"; do
+      [ -n "$s" ] || continue
+      case "$OUT" in */"${s%%:*}") mode="${s#*:}" ;; esac
+    done
+    case "$mode" in
+      value) echo "Traceback (most recent call last):"; echo "ValueError: simulated adapter failure"; exit 1 ;;
+      oom) echo "RuntimeError: CUDA out of memory. Tried to allocate 2.00 GiB (simulated)"; exit 1 ;;
+      kill) kill -9 $$ ;;
+    esac
+    exit 0 ;;
+  tools/eval/b5_gate_cell.py)
+    case "${2:-}" in --print_*) exec "$RP" "$@" ;; esac
+    echo "[gate-sim] ${2:-} gpu=${CUDA_VISIBLE_DEVICES:-unset}"; exit 0 ;;
+esac
+exec "$RP" "$@"

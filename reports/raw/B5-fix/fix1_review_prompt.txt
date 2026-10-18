@@ -1,0 +1,52 @@
+Load skills lgc-preflight (section 6, review mode) and lgc-paper-contract. Phase B5-fix review after fix round 1.
+If this session already contains the author's work, say so in the first line and stop: that is not an independent review.
+This is a FULL review of the phase, not a diff review: the post-review edits committed in e8f20b9 were never reviewed,
+and fix round 1 changed the launcher, the gate tool and the monitor again (LESSONS L26, L27).
+Read in this order: reports/raw/B5-fix/prompt.txt; reports/raw/B5-fix/fix1_prompt.txt;
+reports/raw/B5-fix/checker_review_before_fix1.md (the first review); git status --short;
+git diff d2fcbd0 e8f20b9 --stat; git diff e8f20b9 -- run_b5_parallel.sh tools/eval/b5_gate_cell.py tools/eval/b5_monitor.py;
+tools/eval/tests_b5/sim/*; tools/eval/g5_check.py; adapters/run_cgba.py (where it writes); contract D13, D14, D16, D19,
+E17 and the v1.9-rev7 changelog line; reports/raw/B5-fix/*; only then reports/B5_fix.md.
+CPU only (CUDA_VISIBLE_DEVICES="" on every command). The container may have 0.5 CPU: give long commands a bash-tool
+timeout of up to 900000 ms. Edit nothing except reports/raw/B5-fix/checker_review.md; never write under Results/; never
+run git checkout, reset, stash, add or commit; run check_contract.py only with --report /tmp/<name>.md
+--status_out /tmp/<name>_status.md.
+PASS/FAIL per criterion with your own evidence (rerun the cheap commands yourself):
+ C1 F1-F10: spot-check three verdicts yourself against git show d2fcbd0:run_b5_parallel.sh; the rest may cite the first
+    review.
+ C2 Attack commands: for NGPU = 1, 8 and 10, `NGPU=$N bash run_b5_parallel.sh --dry_run 2>/dev/null | grep '^python ' |
+    sha256sum` gives 9b24fb045d3f1481fea39fb14105ba00d38c035a797115e6640af77378b669b6; the 52 commands equal c20cc349's
+    except the 4 E17 --out_dir values (rerun tools/eval/tests_b5/test_gates_monitor.py, check [4]).
+ C3 G5: CLI exactly as g5_check.py's argparse; TtBA/CGBA pairing same victim and mode; scope main TtBA, CGBA, CGBA_H only;
+    "tool check only" and a missing TtBA root are PENDING, never PASS; exit 1 and exit 2 stop the cell.
+ C4 Domain: X counted by the column named class; stop only for ARS_OPT, CGBA, CGBA_H; a missing domain CSV is E-OTHER;
+    rerun the counter on reports/raw/B5/t0b_smoke.csv (4 X rows).
+ C5 Guards: NGPU required and matched to nvidia-smi -L; GPU slot < NGPU for NGPU = 1, 8, 10; OMP formula; environment
+    guard (env_build38.txt torch/tv, cuDNN 90701, exit 3); tmux refusal; fresh-directory rule; LPT order and its source.
+ C6 STOP bundles: seven skill §7 fields in every writer (launcher, gate tool, monitor); field 4 filled inside parallel
+    workers; field 3 carries the attack log lines; no bundle overwrites another; E-INFRA only for an exit status >= 128
+    or the messages listed in fix1_prompt.txt R2.
+ C7 Monitor: CPU-only and read-only on RESULTS_ROOT (no write/append open, remove, rename or shutil there; no kill or
+    signal); at most one bundle per (cell, code) across passes; early G5 copy = first 30 images in runs_*.csv row order;
+    PENDING cells re-evaluated.
+ C8 Resume: its own joblog; parallel.log untouched; refused on error rows; refused while an attack process runs, and
+    not blocked by other processes: copy the pgrep pattern from run_b5_parallel.sh and test it yourself with
+    `bash -c 'exec -a "python adapters/run_cgba.py --review" sleep 30' &` (must match) and
+    `bash -c 'exec -a "less adapters/run_cgba.py" sleep 30' &` (must not match); kill both afterwards.
+ C9 Harness: tools/eval/tests_b5/sim/* byte-identical to the kit (sha256 in /root/autodl-tmp/b5a2_kit_v2_1/SHA256SUMS);
+    rerun `bash tools/eval/tests_b5/sim/run_sim.sh` yourself: ALL PASS (21 PASS, 0 FAIL).
+ C10 Scope: git diff e8f20b9 changes only what R1-R7 of fix1_prompt.txt allow; no attack command, queue order, gate rule
+    or threshold changed; reports/B5_fix.md sections before "Fix round 1" changed only as R7 allows.
+ C11 Every test in reports/B5_fix.md, including the "Fix round 1" section, reproduces when you rerun it.
+ C12 Every claim in reports/B5_fix.md that the evidence does not support (each one becomes a recall entry).
+Your own commands follow X1-X3 of fix1_prompt.txt (real outputs, foreground only, in order).
+Compare reports/raw/B5-fix/agent_log.md with the "Fix round 1" section: list up to 10 values there that no logged
+command and no file under reports/raw/B5-fix/ shows; check that the section ends with the RESULT block and that its
+sha256 values match your own.
+Recall entries (kit v2, adapted from arXiv:2610.12176 App. I), one per FAIL and per unsupported claim:
+ R<k> | criterion | BLOCKER (wrong result or broken rule) / MAJOR (incomplete or unverifiable) / MINOR | evidence
+ (file:line, or command + output line) | scope (the only files or functions the author may change for it) |
+ acceptance (one command and the output that proves the fix)
+Write reports/raw/B5-fix/checker_review.md: criteria table, recall entries, and as the last line exactly one of
+"VERDICT: PASS" (no entries), "VERDICT: PASS-WITH-NOTES" (MINOR entries only) or "VERDICT: FAIL" (any BLOCKER or MAJOR).
+No rewrites, no praise. STOP.

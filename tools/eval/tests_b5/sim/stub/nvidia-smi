@@ -1,0 +1,11 @@
+#!/bin/bash
+# simulation stub (tests_b5/sim): SIM_NGPU fake RTX 5090 GPUs
+N=${SIM_NGPU:-4}
+if [ "${1:-}" = "-L" ]; then
+  for i in $(seq 0 $((N - 1))); do echo "GPU $i: NVIDIA GeForce RTX 5090 (UUID: GPU-sim-$i)"; done; exit 0
+fi
+case "$*" in
+  *driver_version*) for i in $(seq 1 "$N"); do echo "580.105.08"; done ;;
+  *name*) for i in $(seq 1 "$N"); do echo "NVIDIA GeForce RTX 5090"; done ;;
+esac
+exit 0

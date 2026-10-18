@@ -243,6 +243,10 @@ def write_stop_bundle(cell: str, code: str, signature: str, evidence: str, scope
     d = os.path.join(REPO_ROOT, "reports", "stop")
     os.makedirs(d, exist_ok=True)
     path = os.path.join(d, f"B5a2_{cell}_{ts}.md")
+    n = 2
+    while os.path.exists(path):
+        path = os.path.join(d, f"B5a2_{cell}_{ts}_{n}.md")
+        n += 1
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(f"# STOP {cell}\n\n"
                  f"1. code: {code}\n"
@@ -327,7 +331,7 @@ def gate_domain(cell: Cell, root: str, gates_dir: str):
     x = count_x(csv_out)
     stop = cell.method in ("ARS_OPT", "CGBA", "CGBA_H")
     if x < 0:
-        return {"gate": "domain", "verdict": "FAIL", "code": "E-INFRA",
+        return {"gate": "domain", "verdict": "FAIL", "code": "E-OTHER",
                 "detail": f"domain_consistency did not produce a CSV (exit={p.returncode})", "x": -1}
     if stop and x > 0:
         return {"gate": "domain", "verdict": "FAIL", "code": "E-OTHER",
@@ -381,7 +385,17 @@ def run_gates(cell: Cell, root: str, ttba_root: str, log_dir: str, only: str) ->
     for r in stopping:
         code = r.get("code") or "E-OTHER"
         sig = f"{r['gate']} {r['verdict']}: {r.get('detail')}"
-        write_stop_bundle(cell.name, code, sig, sig,
+        evidence = sig
+        attack_log = os.path.join(log_dir, f"{cell.name}.log")
+        if os.path.exists(attack_log):
+            try:
+                with open(attack_log, encoding="utf-8", errors="replace") as fh:
+                    tail = fh.read().splitlines()[-50:]
+            except OSError:
+                tail = []
+            evidence = (sig + "\n\n(last 50 lines of " + attack_log + ")\n```\n"
+                        + "\n".join(tail) + "\n```")
+        write_stop_bundle(cell.name, code, sig, evidence,
                           f"cell {cell.name} ({cell.arch}/{cell.mode}/{cell.method}); "
                           f"{count_rows(root)} rows completed")
     return 1 if stopping else 0

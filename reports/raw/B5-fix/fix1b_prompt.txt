@@ -1,0 +1,55 @@
+1: Load skills lgc-preflight, lgc-paper-contract. Phase B5-fix, fix round 1b (scoped follow-up to fix round 1,
+2: STOP reports/stop/B5-fix_fix1_20261019-0631.md, code E-SPEC). H reviewed and authorized this single scoped edit.
+3: CPU only: start no GPU process. Worktree /root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7.
+4: Print git rev-parse HEAD (must be 6d36c0e0053578ed29b67eef0f4d3be3a74a55c6, unchanged since fix round 1; else
+5: STOP E-SPEC and report the diff). git status --short must show only files fix round 1 already created or
+6: changed (run_b5_parallel.sh, tools/eval/b5_gate_cell.py, tools/eval/b5_monitor.py, reports/B5_fix.md,
+7: tools/eval/tests_b5/sim/*, reports/raw/B5-fix/*, reports/stop/*); anything else present: STOP (E-SPEC).
+8:
+9: Context: fix round 1 (R1-R7) is complete and verified (run_sim.sh 21 PASS/0 FAIL, --dry_run sha256 stable
+10: across NGPU=1/8/10, run_tests.sh PASS=9 FAIL=0). The sole blocker: test_gates_monitor.py fails 6/8 on a
+11: byte-identity check. STOP bundle root cause: tools/eval/tests_b5/test_gates_monitor.py's _gen_old_commands()
+12: reads `git show HEAD:run_b5_parallel.sh` and slices it with line ranges meant for the pre-launcher-v2 file
+13: (c20cc349); since HEAD is the v2 launcher, zero "old" commands are extracted (old=0). The function must read
+14: the original pre-v2 launcher from its own frozen commit, not HEAD.
+15:
+16: Scope: the ONLY permitted edit is inside test_gates_monitor.py's reference-commit resolution for the "old"
+17: launcher: replace its use of HEAD with the fixed commit bb7fa0d. Confirm first:
+18:   git cat-file -e bb7fa0d^{commit} && git show bb7fa0d:run_b5_parallel.sh | head -1
+19:   (must succeed and print a shebang/header line; else STOP E-SPEC).
+20: Do not touch run_b5_parallel.sh, tools/eval/b5_gate_cell.py, tools/eval/b5_monitor.py, or any other test
+21: file. Do not change any line-range constant, threshold, or other logic in test_gates_monitor.py.
+22:
+23: Step 0: sed -n '95,130p' tools/eval/tests_b5/test_gates_monitor.py and show the exact current line(s)
+24:   calling `git show HEAD:...`. More than one such occurrence, or a pattern not matching the above: STOP
+25:   (E-SPEC) and report exactly what you found -- do not guess.
+26: Step 1: Make the single textual substitution (HEAD -> bb7fa0d) only at the confirmed line(s), by exact
+27:   string match (not a blind sed by line number).
+28: Step 2 (verify, each command foreground, in order):
+29:   CUDA_VISIBLE_DEVICES="" python tools/eval/tests_b5/test_gates_monitor.py
+30:     -> ALL PASS (8/8); else STOP (E-SPEC) with the full output -- do not attempt a second edit.
+31:   bash -n run_b5_parallel.sh -> OK
+32:   bash tools/eval/tests_b5/sim/run_sim.sh -> 21 PASS, 0 FAIL (ALL PASS), unchanged from fix round 1
+33:   for N in 1 8 10; do NGPU=$N bash run_b5_parallel.sh --dry_run 2>/dev/null | grep '^python ' | sha256sum; done
+34:     -> 9b24fb045d3f1481fea39fb14105ba00d38c035a797115e6640af77378b669b6 three times
+35:   CUDA_VISIBLE_DEVICES="" bash tools/eval/tests_b5/run_tests.sh -> SUMMARY: PASS=9 FAIL=0
+36:   git diff --stat e8f20b9 -- . ':!reports' -> same files as fix round 1 PLUS
+37:     tools/eval/tests_b5/test_gates_monitor.py (new this round, intentional)
+38:
+39: Execution rules (as fix round 1): X1 run every command for real. X2 foreground only, no background process.
+40: X3 one edit, then verify in the order above. X4 a check still failing after one more attempt for the same
+41: cause ends this round: STOP bundle (skill section 7). X5 log every command in reports/raw/B5-fix/agent_log.md
+42: (append, do not overwrite fix round 1's rows). X6 append to reports/B5_fix.md a section "## 13. Fix round 1b"
+43: with the before/after line, the verification outputs, sha256 of test_gates_monitor.py and the updated
+44: report, and this block (each value copied from a command output):
+45:   RESULT
+46:   phase: B5-fix fix1b
+47:   head: <git rev-parse HEAD>
+48:   contract_sha256: <sha256>
+49:   prompt_sha256: <sha256 of reports/raw/B5-fix/fix1b_prompt.txt>
+50:   tasks: test_gates_monitor=PASS|FAIL|STOP
+51:   files: <path sha256, one per changed or new file>
+52:   deviations: none | <count> (listed in the section)
+53:   stop_bundles: none | <paths>
+54:   verdict: READY-FOR-REVIEW | STOPPED
+55: No git add, commit, stash or tag (H commits after the review). STOP.

@@ -1,0 +1,25 @@
+[sim] workdir /tmp/b5sim.yvVPmR (launcher sha256 50d8941c6201196d...)
+PASS S0 dry-run: the 52 attack commands and their order equal e8f20b9
+PASS S1a launcher exit 1 when a job fails (got 1)
+PASS S1b joblog has 52 jobs (got 52)
+PASS S1c one attack process per GPU at any time, 4 GPUs used (max_concurrent gpus_used = 1 4)
+PASS S1d a Python exception is E-OTHER, not E-INFRA
+PASS S1e "CUDA out of memory" is E-INFRA
+PASS S1f a killed attack (SIGKILL, rc 137) is E-INFRA
+PASS S1g STOP field 4 carries GPU name, torch and the contract sha256
+PASS S1h STOP field 3 carries the attack log lines
+PASS S1i the joblog summary names the failed cells
+PASS S2 a second launch into existing output directories is refused with exit 2 (got 2)
+PASS S3a resume of a failed cell exits 0 (got 0)
+PASS S3b resume leaves the main joblog parallel.log unchanged
+PASS S3c resume writes its own joblog parallel_resume_main_ARS_OPT_vgg19_T_<time>.log
+PASS S4 resume is refused with exit 2 while another attack process runs (got 2)
+PASS S5 resume of a cell with an error row is refused with exit 1 (got 1)
+PASS S6a a failing gate exits 1 and writes a STOP bundle (got 1)
+PASS S6b gate STOP field 3 carries the last attack log lines
+PASS S6c a gate tool that writes no output is E-OTHER, not E-INFRA
+PASS S6d two stopping gates of one cell are both kept (partial and domain), no bundle overwritten
+PASS S7 two monitor passes over one persistent error row write one STOP bundle (got 1)
+
+[sim] 21 PASS, 0 FAIL (outputs kept in /tmp/b5sim.yvVPmR)
+ALL PASS

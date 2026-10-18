@@ -198,7 +198,7 @@ def load_state(log_dir):
     if os.path.exists(p):
         with open(p, encoding="utf-8") as fh:
             return json.load(fh)
-    return {"partial": {}, "g5": {}}
+    return {"partial": {}, "g5": {}, "stops": []}
 
 
 def save_state(log_dir, state):
@@ -306,7 +306,8 @@ def one_pass(results_root, log_dir, cell_filter=None, root_override=None, ttba_o
 
     ts = time.strftime("%Y%m%d-%H%M")
     _write_status(log_dir, ts, table, g5_results, stops)
-    _write_stops(stops)
+    _write_stops(stops, state.setdefault("stops", []))
+    save_state(log_dir, state)
 
     # exit code: 1 if any stop fired (informative only; the monitor is never the killer)
     return 1 if stops else 0
@@ -340,14 +341,17 @@ def _write_status(log_dir, ts, table, g5_results, stops):
     return path
 
 
-def _write_stops(stops):
+def _write_stops(stops, fired):
     seen = set()
     for name, code, sig, detail in stops:
-        key = (name, code, sig)
-        if key in seen:
+        key = [name, code]
+        if key in fired:
             continue
-        seen.add(key)
+        if tuple(key) in seen:
+            continue
+        seen.add(tuple(key))
         G.write_stop_bundle(name, code, sig, detail, f"cell {name}")
+        fired.append(key)
 
 
 # -------------------------------------------------------------------------------------------------- main

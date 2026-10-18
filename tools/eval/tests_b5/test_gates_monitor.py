@@ -108,7 +108,7 @@ def _gen_new_commands():
 
 
 def _gen_old_commands():
-    old = subprocess.run(["git", "-C", REPO, "show", "HEAD:run_b5_parallel.sh"],
+    old = subprocess.run(["git", "-C", REPO, "show", "bb7fa0d:run_b5_parallel.sh"],
                          capture_output=True, text=True).stdout.splitlines()
     cells_lines = old[9:63]          # CELLS=( ... ) (1-based lines 10..63)
     case_lines = old[94:327]         # case patterns (1-based lines 95..327)

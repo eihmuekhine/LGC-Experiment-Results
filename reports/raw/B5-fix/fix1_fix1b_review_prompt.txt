@@ -1,0 +1,44 @@
+1: Load skills lgc-preflight, lgc-paper-contract. Phase B5-fix, review of fix round 1 (R1-R7) + fix round 1b
+2: (test_gates_monitor.py reference-commit pin), reviewed together because both sit as uncommitted changes on
+3: HEAD 6d36c0e0053578ed29b67eef0f4d3be3a74a55c6, branch paper-runs, contract v1.9-rev7. CPU only, no GPU process.
+4:
+5: First line of your report: state whether this session has seen any of the author's work before (it must not
+6: have). If it has, say so and stop -- that is not an independent review.
+7:
+8: Read, in this order, before anything else:
+9:   1. reports/raw/B5-fix/fix1_prompt.txt and reports/raw/B5-fix/fix1b_prompt.txt (the specs/acceptance criteria)
+10:   2. git diff e8f20b9 -- . ':!reports'   (the full working-tree diff against the pre-fix baseline; HEAD's
+11:      only committed change over e8f20b9 is docs/LESSONS.md -- confirm this with git diff --stat e8f20b9..HEAD)
+12:   3. the raw evidence under reports/raw/B5-fix/*  (fix1_sim_before.txt, fix1_sim_after.txt, agent_log.md)
+13:   4. only then: reports/B5_fix.md sections "## 12. Fix round 1" and "## 13. Fix round 1b" (the author's claims)
+14:
+15: For each of R1-R7 and the test_gates_monitor.py pin, give PASS/FAIL with YOUR OWN re-run evidence (rerun the
+16: cheap commands yourself, do not trust the report's numbers):
+17:   bash -n run_b5_parallel.sh
+18:   bash tools/eval/tests_b5/sim/run_sim.sh   (expect 21 PASS, 0 FAIL)
+19:   for N in 1 8 10; do NGPU=$N bash run_b5_parallel.sh --dry_run 2>/dev/null | grep '^python ' | sha256sum; done
+20:     (expect 9b24fb045d3f1481fea39fb14105ba00d38c035a797115e6640af77378b669b6 three times)
+21:   CUDA_VISIBLE_DEVICES="" bash tools/eval/tests_b5/run_tests.sh   (expect PASS=9 FAIL=0)
+22:   CUDA_VISIBLE_DEVICES="" python tools/eval/tests_b5/test_gates_monitor.py   (expect ALL PASS; note the
+23:     author's report says 9/9, not the original prompt's stale 8/8 -- verify this count discrepancy is
+24:     explained by an early-return short-circuit in the pre-fix path, not a hidden behavior change)
+25:
+26: Specifically scrutinize (these are the two judgment calls the author made; confirm or reject each with
+27: evidence, do not just accept the author's reasoning):
+28:   a. That pinning test_gates_monitor.py's "old"-launcher reference from HEAD to the fixed commit bb7fa0d is
+29:      correct and does not mask any real difference between the current launcher and its intended behavior
+30:      (cross-check against the --dry_run sha256 identity, which is the independent, stronger proof).
+31:   b. That R1-R7's edits stayed within their stated scope (no attack command, queue order, gate rule or
+32:      threshold changed) -- confirm via the git diff line-by-line, not via the author's file:line summary alone.
+33:
+34: List every claim in reports/B5_fix.md sections 12-13 that your own evidence does not support.
+35:
+36: Never edit any file except your own review file. Never run git checkout/reset/commit/add/stash/tag. Run
+37: tools/eval/check_contract.py only with --report /tmp/<name>.md if you run it at all (optional; not required
+38: for this review).
+39:
+40: Write reports/raw/B5-fix/fix1_fix1b_review.md: environment block (HEAD, contract sha256, prompt hash), a
+41: PASS/FAIL table (one row per R1-R7 entry + the test_gates_monitor.py pin), the two judgment-call findings (a/b
+42: above) with evidence, any unsupported claims found, and a final verdict line:
+43:   REVIEW_VERDICT: PASS | PASS-WITH-NOTES | FAIL
+44: STOP.

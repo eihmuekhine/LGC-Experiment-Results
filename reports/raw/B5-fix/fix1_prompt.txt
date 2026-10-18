@@ -1,0 +1,94 @@
+Load skills lgc-preflight, lgc-paper-contract (and lgc-baselines if installed). Phase B5-fix, fix round 1 of at most 2.
+CPU only: start no GPU process. Worktree /root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7.
+Print git rev-parse HEAD. HEAD must be e8f20b9 itself, or a descendant of e8f20b9 whose only difference
+(git diff e8f20b9..HEAD --stat) touches docs/LESSONS.md (e.g. the LESSONS L26-L27 commit from kit v2.1 Step 1);
+if HEAD differs from e8f20b9 in any other file, STOP (E-SPEC). git status --short | grep -v '^??' must print
+nothing; else STOP (E-SPEC) also. Then print the sha256 of contract/paper_contract.yaml, run_b5_parallel.sh,
+tools/eval/b5_gate_cell.py, tools/eval/b5_monitor.py and reports/raw/B5-fix/fix1_prompt.txt. Read reports/raw/B5-fix/prompt.txt (its rules and
+allowed edits stay in force), reports/raw/B5-fix/checker_review.md and docs/LESSONS.md; list the active ids that apply
+(at least L10 L14 L24 L25 L26 L27).
+
+Context: e8f20b9 holds launcher v2. R's review passed every criterion except C6; the C6 fix and further edits (exit 1,
+guarded probes, resume error check) were made after the review and committed without a second review. The lead analyst
+ran e8f20b9 end-to-end in a CPU simulation (GNU parallel, 4 fake GPUs, stub attacks, a temporary copy of the files):
+one attack process per GPU, LPT order, 52 jobs, STOP field 4 and exit 1 all work; 9 checks fail. The simulation is
+the harness below; at e8f20b9 it prints 12 PASS and 9 FAIL (S1d S1i S3b S3c S4 S6b S6c S6d S7).
+
+Speed: in no-GPU mode this container has 0.5 CPU (cpu.max 50000 100000); one torch import takes 30-60 s and run_sim.sh
+takes up to about 10 minutes. Give such commands a bash-tool timeout of 900000 ms; if the tool cannot wait that long,
+STOP (E-SPEC) with the command line (H runs it in tmux and gives you the output file).
+
+Step 0. Copy the harness unchanged and run it before any edit:
+  mkdir -p tools/eval/tests_b5/sim
+  cp -r /root/autodl-tmp/b5a2_kit_v2_1/tests_b5_sim/. tools/eval/tests_b5/sim/
+  sha256sum tools/eval/tests_b5/sim/run_sim.sh tools/eval/tests_b5/sim/stub/python tools/eval/tests_b5/sim/stub/nvidia-smi
+    (each must equal its line in /root/autodl-tmp/b5a2_kit_v2_1/SHA256SUMS)
+  bash tools/eval/tests_b5/sim/run_sim.sh > reports/raw/B5-fix/fix1_sim_before.txt 2>&1; tail -26 reports/raw/B5-fix/fix1_sim_before.txt
+  Any other PASS/FAIL pattern than the one above: STOP (E-SPEC) and report both lists. Never edit the harness or stubs.
+
+Fix only these entries; change nothing outside their scope (no attack command, no queue order, no gate rule, no
+threshold):
+ R1 run_b5_parallel.sh --resume. (a) Write its joblog to $LOG_DIR/parallel_resume_<cell>_<YYYYmmdd-HHMMSS>.log and leave
+    $LOG_DIR/parallel.log untouched (GNU parallel --joblog truncates an existing file); the summary reads the joblog that
+    was used. (b) Refuse with exit 2 while an attack process runs (a resume always gets GPU 0): match the START of the
+    process command line, python followed by run_benchmark_33b.py, adapters/run_ttba_v2.py, adapters/run_cgba.py,
+    adapters/run_arsopt.py or ttba_github/run_frame_b1_generic.py, so that editors, grep or log viewers never block it.
+    Scope: the resume block, the parallel call, the summary. Acceptance: S3a S3b S3c S4 PASS.
+ R2 STOP code. run_b5_parallel.sh `grep -qiE 'CUDA|out of memory|Killed'` labels nearly every failure E-INFRA because
+    ordinary logs contain "cuda" (a simulated ValueError became E-INFRA). New rule: E-INFRA if the attack exit status is
+    >= 128 (killed by a signal) or the log matches, case-sensitively, one of: CUDA out of memory, CUDA error, cudaError,
+    out of memory, No space left on device, Killed; otherwise E-OTHER. In tools/eval/b5_gate_cell.py gate_domain, a
+    missing domain CSV is E-OTHER (a failing tool is not infrastructure). Acceptance: S1d S1e S1f S6c PASS.
+ R3 STOP bundles never overwrite each other: stop_bundle (launcher) and write_stop_bundle (b5_gate_cell.py) append _2,
+    _3, ... before .md when the file name exists (two stopping gates in one minute lost the first bundle).
+    Acceptance: S6d PASS.
+ R4 Gate STOP bundles (b5_gate_cell.py run_gates): field 3 = the signature plus the last 50 lines of
+    <log_dir>/<cell>.log (the attack log) when that file exists (skill §7 field 3). Acceptance: S6b PASS.
+ R5 tools/eval/b5_monitor.py writes at most one STOP bundle per (cell, code) across passes (R's review item 10): keep the
+    fired keys in <log_dir>/monitor/state.json; every status file still lists every open condition. Acceptance: S7 PASS.
+ R6 Joblog summary: print the cell name of each job (the joblog Command field holds "run_cell '<cell><TAB><outdir>'
+    <slot>"), not "run_cell"; replace the fixed /tmp/b5_order.txt and /tmp/b5_cells.txt by mktemp files removed on exit.
+    Acceptance: S1i PASS; S0 and S2 still PASS.
+ R7 reports/B5_fix.md only: §7 says "16/16 PASS (bash 9/9 + python 9/9)" for a 16-row table; state what the 16 rows and
+    the 9 + 9 checks are. §8: label NGPU = 8 / 10 as lower bounds max(longest cell, total / NGPU) and add the lead
+    analyst's LPT list-scheduling range (8: 13.1-18.2 h; 10: 10.7-14.8 h; concurrency factor 1.00-1.39). No other edit
+    of the earlier sections.
+
+After the fixes (each in the foreground, in this order):
+  bash -n run_b5_parallel.sh
+  bash tools/eval/tests_b5/sim/run_sim.sh > reports/raw/B5-fix/fix1_sim_after.txt 2>&1; tail -26 reports/raw/B5-fix/fix1_sim_after.txt
+    -> "ALL PASS" (21 PASS, 0 FAIL)
+  for N in 1 8 10; do NGPU=$N bash run_b5_parallel.sh --dry_run 2>/dev/null | grep '^python ' | sha256sum; done
+    -> 9b24fb045d3f1481fea39fb14105ba00d38c035a797115e6640af77378b669b6 three times (attack commands and order unchanged)
+  CUDA_VISIBLE_DEVICES="" bash tools/eval/tests_b5/run_tests.sh   (rewrites its own evidence under reports/raw/B5-fix/;
+    intended in this round) -> the same PASS count as in reports/B5_fix.md §7
+  CUDA_VISIBLE_DEVICES="" python tools/eval/tests_b5/test_gates_monitor.py -> ALL PASS
+  git diff --stat e8f20b9 -- . ':!reports'   -> only run_b5_parallel.sh, tools/eval/b5_gate_cell.py,
+    tools/eval/b5_monitor.py and the new tools/eval/tests_b5/sim/* (untracked: list them with git status --short)
+
+Execution rules (kit v2, adapted from arXiv:2610.12176 App. B.3; docs/LESSONS.md L24, L26). They add to the rules
+above and never relax them.
+ X1 Run every command for real; copy every value from its output. Never write a value you did not see.
+ X2 Foreground only (your own commands, not the code you write): each command returns only after everything it
+    started has ended (several processes in one command followed by `wait`, or GNU parallel, are allowed). No nohup,
+    setsid, disown, tmux or screen; no process left running; no loop that re-reads an unchanged log. A command that
+    would run longer than 30 minutes: do not start it; STOP (E-SPEC) with its exact command line (H runs it in tmux).
+ X3 One entry at a time, in the order R1-R7. After each, rerun run_sim.sh and read the result before the next entry.
+ X4 A check that still fails after two fix attempts for the same cause ends the round: STOP bundle (skill §7) with
+    both attempts. Never widen the allowed edits to make a check pass.
+ X5 Log every command in reports/raw/B5-fix/agent_log.md, one row each: time | entry | command | exit status | output
+    file or first output line.
+ X6 Append to reports/B5_fix.md a section "Fix round 1": per entry the change (file:line before -> after), the
+    acceptance output lines, deviations from this prompt, the sha256 of every changed or new file, and this block,
+    each value copied from a command output:
+      RESULT
+      phase: B5-fix fix1
+      head: <git rev-parse HEAD>
+      contract_sha256: <sha256>
+      prompt_sha256: <sha256 of reports/raw/B5-fix/fix1_prompt.txt>
+      tasks: <R1..R7=PASS|FAIL|STOP, space-separated>
+      files: <"path sha256", one line per created or changed file>
+      deviations: none | <count> (listed in the section)
+      stop_bundles: none | <paths>
+      verdict: READY-FOR-REVIEW | STOPPED
+No git add, commit, stash or tag (H commits after the review). STOP.
