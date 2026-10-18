@@ -1,0 +1,31 @@
+[*] GPU NVIDIA GeForce RTX 5090  D12 matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| method | cell (arch/mode) | rows | C | Q9 | Q6 | X | median m(s=1) non-C | max m(s=1) non-C | adv_uint8==1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| CGBA | resnet50/non_targeted | 24 | 19 | 5 | 0 | 0 | 0.000237 | 0.000605 | 13 |
+| CGBA_H | resnet50/targeted | 24 | 17 | 7 | 0 | 0 | 0.000251 | 0.000977 | 8 |
+| CGBA | vgg19/non_targeted | 24 | 24 | 0 | 0 | 0 | nan | nan | 4 |
+| CGBA_H | vgg19/targeted | 24 | 16 | 8 | 0 | 0 | 0.000489 | 0.0019 | 13 |
+| CGBA | vit_b_32/non_targeted | 24 | 23 | 1 | 0 | 0 | 4.15e-05 | 4.15e-05 | 13 |
+| CGBA_H | vit_b_32/targeted | 24 | 22 | 2 | 0 | 0 | 0.000162 | 0.000287 | 17 |
+| CGBA | resnet50_places365/non_targeted | 24 | 23 | 1 | 0 | 0 | 8.77e-05 | 8.77e-05 | 6 |
+| CGBA_H | resnet50_places365/targeted | 24 | 17 | 7 | 0 | 0 | 0.000263 | 0.000676 | 11 |
+| CGBA | densenet161_places365/non_targeted | 24 | 21 | 3 | 0 | 0 | 3.43e-05 | 7.25e-05 | 13 |
+| CGBA_H | densenet161_places365/targeted | 24 | 23 | 1 | 0 | 0 | 0.000163 | 0.000163 | 14 |
+| CGBA | Salman2020Do_R50/non_targeted | 24 | 16 | 8 | 0 | 0 | 5.96e-05 | 0.000147 | 14 |
+| CGBA_H | Salman2020Do_R50/targeted | 24 | 15 | 9 | 0 | 0 | 6.96e-05 | 0.000301 | 13 |
+| ARS_OPT | resnet50/non_targeted | 24 | 15 | 9 | 0 | 0 | 0.000455 | 0.00272 | 11 |
+| ARS_OPT | resnet50/targeted | 24 | 11 | 13 | 0 | 0 | 0.000244 | 0.00121 | 12 |
+| ARS_OPT | vgg19/non_targeted | 24 | 23 | 1 | 0 | 0 | 2.29e-05 | 2.29e-05 | 10 |
+| ARS_OPT | vgg19/targeted | 24 | 15 | 9 | 0 | 0 | 0.000303 | 0.00269 | 11 |
+| ARS_OPT | vit_b_32/non_targeted | 24 | 15 | 9 | 0 | 0 | 0.000212 | 0.00119 | 14 |
+| ARS_OPT | vit_b_32/targeted | 24 | 17 | 7 | 0 | 0 | 9.06e-05 | 0.000396 | 8 |
+| ARS_OPT | Salman2020Do_R50/non_targeted | 24 | 17 | 7 | 0 | 0 | 7.82e-05 | 0.000158 | 12 |
+| ARS_OPT | Salman2020Do_R50/targeted | 24 | 13 | 11 | 0 | 0 | 0.000174 | 0.000405 | 6 |
+| ARS_OPT | resnet50_places365/non_targeted | 24 | 19 | 5 | 0 | 0 | 0.000176 | 0.00044 | 10 |
+| ARS_OPT | resnet50_places365/targeted | 24 | 13 | 11 | 0 | 0 | 0.000667 | 0.00129 | 12 |
+| ARS_OPT | densenet161_places365/non_targeted | 24 | 19 | 5 | 0 | 0 | 6.48e-05 | 0.00018 | 10 |
+| ARS_OPT | densenet161_places365/targeted | 24 | 14 | 10 | 0 | 0 | 0.000218 | 0.000844 | 12 |
+
+[*] wrote reports/raw/B5/t0b_postfix_smoke.csv (576 rows)
+[+] no X>0 for any method (ARS_OPT and CGBA/CGBA_H both clamp correctly)
