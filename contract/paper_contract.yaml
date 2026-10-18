@@ -6,10 +6,11 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.9-rev5"
+version: "1.9-rev6"
 date: "2026-10-15"
-status: "FROZEN (2026-10-17, v1.9-rev5). Decisions D1-D20 confirmed by the user; D19 oracle-domain clamp extended to both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized)."
+status: "FROZEN (2026-10-17, v1.9-rev6). Decisions D1-D20 confirmed by the user; D19 oracle-domain clamp extended to both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized)."
 changelog:
+  - "1.9-rev6 2026-10-18 user: restore the four Places365 split_sha256 constants (removed in rev2/3 ImageNet-only edits; E10 REQUIRED since rev5). No scope change."
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
   - "1.2 2026-10-11 user: Sign_OPT has no targeted mode (attack/Sign_OPT.py:370); methods.Sign_OPT.modes -> [non_targeted]"
@@ -173,6 +174,10 @@ constants:
     vgg19_targeted: cf0a8efb783de12f8f4f130137ca4b756c1fe048bb23fae5b366b0f1d49a3360
     vit_b_32_non_targeted: a5f152ec215aaac4efc266b863dad3841c7c6f5ff6aed651d973a213095959db
     vit_b_32_targeted: c5eee382244c0beddb10bdec40a19e9d2bd57ee47a54cd61ab10b11937337a7b
+    resnet50_places365_non_targeted: 351bc50f594f7ddcf7746cf7769ffc3ea5329271b150d762099feed4bf60012f
+    resnet50_places365_targeted: 70bd3d5c5989df6829b39a310a59203d6a5ee760f7481a5b213a2df49107eaaa
+    densenet161_places365_non_targeted: 89252849771532358f422f0046f47b91c391429c77731993881946780166a547
+    densenet161_places365_targeted: 51935b7522274cebd361b5b91e4649d18bb8da5af739010670e733b2efc4b790
     Salman2020Do_R50_non_targeted: 1b847d4c3acc858a992a202bbdc6120f525922a1a8a42a0be2c6575a480778a7
     Salman2020Do_R50_targeted: 2985ebc400ea2f292077f6c84dc809ef6591629bbd81e606b0c429a8c062d00a
   engine_sha256_prefix: 835f1933d9e5
