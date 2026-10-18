@@ -297,3 +297,14 @@ images under concurrency), T6 ≈ 4 min (6 images) + gates ≈ 2 min, T7a ≈ 27
    Places365 split constants (a rev2/3 cleanup regression), two old roots contain `.ipynb_checkpoints` junk, and the
    new roots record torch 2.8.0 — the last being exactly the HOST-DIFFERENT finding. STOP bundle written; B5 not
    started.
+
+## Deviations (post-report)
+
+| Date | Deviation | Authorization | Notes |
+|------|-----------|---------------|-------|
+| 2026-10-18 | Contract rev6 edit (commit 173e73a) | H (Decision Point 2) | Restored 4 Places365 split_sha256 constants |
+| 2026-10-18 | prompt.txt update (rev5->rev6, OMP=8) | H | sha256=2eb8698e3ac874196b518386c310702add8be63509689ceae2300ec89b905afb |
+| 2026-10-18 | nproc/cpu.max investigation | H | Real nproc=208 (OMP artifact gave 8); cpu.max=125 cores; OMP=8 chosen (40 threads << 125 quota) |
+| 2026-10-18 | Results/ junk-dir cleanup (.ipynb_checkpoints) | H (authorized) | Removed at 09:37 |
+| 2026-10-18 | run_b5_parallel.sh edit (commit 1170dc1) | H (authorized) | Thread config at 09:54 |
+| 2026-10-18 | run_b5_parallel.sh OMP=1->8 (revert 1170dc1) | H (authorized) | Real nproc=208; OMP=8 x 5 = 40 threads << 125 quota; prompt.txt consistency |
