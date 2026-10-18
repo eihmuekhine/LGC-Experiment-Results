@@ -13,3 +13,23 @@ Untitled Folder/
 .ipynb_checkpoints/
 update_contract.py
 logs_frame/
+# Weights, data, cache (never commit)
+cache/
+checkpoints/
+models/imagenet/
+models/places365/
+generated/smoke_canary/
+
+# Tool/config artifacts
+.opencode/
+opencode.json
+
+# Large archives
+*.zip
+
+# Scratch notes (if not project-relevant)
+1019.md
+808.md
+935.md
+Night1.md
+places.md
