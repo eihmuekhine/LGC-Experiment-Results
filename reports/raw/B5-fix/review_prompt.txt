@@ -1,0 +1,26 @@
+Load skills lgc-preflight (section 6, review mode) and lgc-paper-contract. Phase B5-fix review.
+If this session already contains the author's work, say so in the first line and stop: that is not an independent review.
+Read in this order: reports/raw/B5-fix/prompt.txt; git status --short; git diff HEAD -- run_b5_parallel.sh and the
+new files tools/eval/b5_gate_cell.py, tools/eval/b5_monitor.py, tools/eval/tests_b5/*; tools/eval/g5_check.py;
+adapters/run_cgba.py (where it writes); contract D13, D14, D16, D19, E17 and the v1.9-rev7 changelog line;
+reports/raw/B5-fix/*; only then reports/B5_fix.md.
+CPU only (CUDA_VISIBLE_DEVICES="" on every command). Edit nothing except reports/raw/B5-fix/checker_review.md; never
+write under Results/; never run git checkout, reset, stash, add or commit; run check_contract.py only with
+--report /tmp/<name>.md --status_out /tmp/<name>_status.md.
+PASS/FAIL per criterion with your own evidence (rerun the cheap commands yourself):
+ C1 F1-F10 verdicts match your own reading of the old script (git show HEAD:run_b5_parallel.sh).
+ C2 Attack commands: rerun --dry_run for the old and the new script; the 52 commands are byte-identical except the E17
+    output directory, which matches contract E17 and where adapters/run_cgba.py writes.
+ C3 G5: CLI exactly as g5_check.py's argparse; TtBA/CGBA pairing uses the same victim and mode; scope = main TtBA, CGBA,
+    CGBA_H only; "tool check only" and a missing TtBA root are PENDING, never PASS; exit 1 and exit 2 stop the cell.
+ C4 Domain: X counted by the column named class; stopping only for ARS_OPT, CGBA, CGBA_H; rerun the counter on
+    reports/raw/B5/t0b_smoke.csv (4 X rows).
+ C5 Guards: NGPU required and checked; GPU slot < NGPU for NGPU = 1, 8, 10; OMP formula; environment guard reads
+    env_build38.txt and requires cuDNN 90701; tmux refusal; fresh-directory rule; --resume scope; LPT order and its
+    source numbers.
+ C6 Attack exit status checked; every STOP bundle has the seven skill section 7 fields.
+ C7 b5_monitor.py is CPU-only and read-only on RESULTS_ROOT (no write/append open, remove, rename or shutil there; no
+    kill or signal); the early G5 copy holds the first 30 images in runs_*.csv row order; PENDING cells re-evaluated.
+ C8 Every test in reports/B5_fix.md reproduces when you rerun it.
+ C9 Every claim in reports/B5_fix.md that the evidence does not support: one line each, file:line, one-line fix.
+Write reports/raw/B5-fix/checker_review.md: criteria table, unsupported claims, verdict. No rewrites, no praise. STOP.

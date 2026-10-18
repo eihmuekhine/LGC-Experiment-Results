@@ -1,0 +1,90 @@
+Load skills lgc-preflight, lgc-paper-contract (and lgc-baselines if installed). Phase B5-fix: rebuild the B5 launcher
+for B5 attempt 2 (one host, N GPUs, N >= 1). CPU only: start no GPU process in this phase.
+Worktree /root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7. Print the contract version line,
+git rev-parse HEAD and the sha256 of contract/paper_contract.yaml, run_b5_parallel.sh, reports/raw/B5/prompt.txt and
+reports/raw/B5-fix/prompt.txt. Read AGENTS.md and docs/LESSONS.md; list the active LESSONS ids that apply.
+
+Context: B5 attempt 1 (5 x RTX 5090, another instance, torch 2.8.0) ended before any cell finished
+(reports/b5_attempt1/ABANDONED.md); its data are not on this instance. This instance has the pre-registered stack
+(torch 2.7.1+cu128 / torchvision 0.22.1+cu128 / cuDNN 90701). The lead analyst reports these defects in
+run_b5_parallel.sh (sha256 c20cc34990e9ed2c...): F1 line 343 calls g5_check.py with --roots and --n, but the tool
+requires --arch --mode --ttba_root (argparse exit 2 for every TtBA/CGBA cell); F2 that exit skips the D19 domain check
+for every CGBA cell; F3 line 353 puts LGC_RC_EGC under the X=0 stop rule; F4 E10/E11 victims are not in
+ttba_github/ttba_table1.json, so G5 cannot be computed for them; F5 the partial checker and G5 run once after the cell,
+not "every 10 images" / "after the first 30 images"; F6 line 79 greps ",error,", which matches the TtBA header; F7 E17
+is written to Results/b5_e17_* and gated, while contract E17 gives Results/appendix_cgba_d8only_<arch>/non_targeted,
+outside the checker roots; F8 the attack's exit status is never checked; F9 stop files are one line, not skill §7
+bundles; F10 -j 5 and % 5 are hard-coded. First confirm each against the code: CONFIRMED / REFUTED with file:line.
+
+Decisions in force (contract v1.9-rev7; quote the rev7 notes in D13, D14 and D19). If anything below conflicts with
+the contract, STOP and ask:
+ H1 domain_consistency: X > 0 stops the cell only for ARS_OPT, CGBA, CGBA_H (D19). For LGC_RC_EGC and CGBA_D8only it is
+    run and the X count recorded; it never stops a cell.
+ H3 G5 only for main (ImageNet) TtBA, CGBA (NT) and CGBA_H (T) cells; E10/E11: "G5 n/a (no published reference)";
+    E17: n/a.
+ H4 E17: output directory Results/appendix_cgba_d8only_<arch>, so that the data land in .../non_targeted (verify
+    where adapters/run_cgba.py writes, file:line); no partial, G5 or domain stop; nonfinite_queries recorded.
+ H5 E13: "solo" = no other attack process on the same GPU (D14).
+
+Allowed edits: run_b5_parallel.sh; new files tools/eval/b5_gate_cell.py, tools/eval/b5_monitor.py,
+tools/eval/tests_b5/*; reports/raw/B5-fix/*; reports/B5_fix.md. Never edit lgc_bench/*, run_benchmark_33b.py,
+adapters/*, existing tools/eval/* files, ttba_github/*, official clones, the contract, prereg files or AGENTS.md.
+Never write under Results/ (tests use RESULTS_ROOT under /tmp). No git add, commit, stash or tag (H commits after
+review).
+
+T1 Launcher v2 (run_b5_parallel.sh):
+ a. NGPU is a required environment variable (integer >= 1). Unless --dry_run, it must equal `nvidia-smi -L | wc -l`,
+    else exit with a message. parallel -j "$NGPU"; GPU_ID=$(( ({%} - 1) % NGPU )): one attack process per GPU.
+ b. Threads: Q = quota / period from /sys/fs/cgroup/cpu.max (if "max": `env -u OMP_NUM_THREADS -u OMP_THREAD_LIMIT
+    nproc`); OMP_NUM_THREADS = MKL_NUM_THREADS = max(1, min(8, floor(Q / NGPU))). Print Q, NGPU and the value.
+ c. Environment guard: print torch, torchvision and cuDNN versions; refuse (exit 3) unless torch and torchvision
+    equal the values on the "torch ... tv ..." line of env_build38.txt (path overridable by ENV_FILE) and cuDNN is
+    90701. --dry_run prints them without refusing.
+ d. Refuse to start outside tmux ([ -n "$TMUX" ]), except --dry_run.
+ e. RESULTS_ROOT (default Results) and LOG_DIR (default reports/raw/B5a2). Fresh-directory rule: refuse to start if
+    any output directory of the queue already exists. --resume <cell> (E-INFRA path, skill §7, at most 2 attempts per
+    cell) lifts the rule for that cell only and runs only that cell; its error-row check reads the status / error
+    columns with the csv module, never grep ",error,".
+ f. Queue order: longest expected cell first (LPT). Expected hours = n x s/img / 3600 from the T5 table of
+    reports/B4e_preflight.md; cells missing there (ARS_OPT on E10/E11): the method's resnet50 value, densenet161 x 1.6,
+    marked ASSUMED. E17 last. Print the ordered queue with hours and source.
+ g. The 52 attack command lines must stay byte-identical to c20cc349 after variable expansion, except the E17 output
+    directory (H4). Show the diff of the --dry_run commands, old vs new.
+ h. After the attack: if its exit status != 0, write a skill §7 STOP bundle reports/stop/B5a2_<cell>_<YYYYmmdd-HHMM>.md
+    (code E-INFRA if the cell log shows CUDA, out of memory or Killed, else E-OTHER; last 50 log lines) and exit 1
+    without gates.
+ i. Gates: tools/eval/b5_gate_cell.py <cell> (also usable by hand; --root and --ttba_root overrides for tests). Every
+    gate runs and is recorded even if an earlier one failed; the job exits 1 if any stopping gate failed; one line per
+    cell in $LOG_DIR/gates/summary.csv:
+    - partial: check_contract.py --stage partial --roots <root> --report $LOG_DIR/gates/<cell>_partial.md
+      --status_out $LOG_DIR/gates/<cell>_status.md (L11). Not for E17.
+    - G5 (H3): g5_check.py --arch <arch> --mode <non_targeted|targeted> --ttba_root <root of the main TtBA cell of the
+      same victim and mode> and, for CGBA / CGBA_H cells, --cgba_root <the cell's root>. Exit 1 = FAIL (stop, E-G5);
+      exit 2 = FLAG (stop, E-OTHER, quote the FLAG line); exit 0 with "VERDICT: PASS" = PASS; exit 0 with "tool check
+      only" (fewer than 30 common images, e.g. the TtBA partner is still running) = PENDING, never PASS; a missing
+      TtBA root = PENDING, never PASS. b5_monitor.py re-evaluates PENDING cells.
+    - domain (H1): adapters/diag/domain_consistency.py --roots <root> --out $LOG_DIR/gates/<cell>_domain.csv on the
+      job's own GPU; count rows whose column "class" == "X" (by column name). Stop only for ARS_OPT, CGBA, CGBA_H.
+    - STOP bundles: the seven skill §7 fields.
+ j. --dry_run prints, per cell: command, GPU slot formula, output directory and gates; runs nothing.
+ k. At the end print a summary from the joblog (inside the parallel template set -e does not apply).
+T2 tools/eval/b5_monitor.py (CPU only: sets CUDA_VISIBLE_DEVICES="" for itself and every subprocess; read-only on
+ RESULTS_ROOT; same RESULTS_ROOT and LOG_DIR defaults and the same cell list as the launcher): every --interval minutes (default 10), for each running or finished cell: rows by status column, error
+ rows, nonfinite sum, median wall_time_s; partial checker each time a cell gains 10 completed images (report under
+ $LOG_DIR/monitor/); G5 once the cell has 30 completed images (CGBA: 30 completed by both methods) on a copy of only
+ the files g5_check reads (<root>/<mode>/per_checkpoint_<stem>.csv, see g5_check.py _load_ck) restricted to the first
+ 30 images in runs_*.csv row order, under $LOG_DIR/monitor/g5early/; re-evaluation of every G5 PENDING cell. FAIL,
+ error rows, or nonfinite > 0 in a CGBA / CGBA_H cell: STOP bundle (E-G5 / E-OTHER / E-NAN). Never kill, signal or
+ edit anything. One status table per pass: $LOG_DIR/monitor/status_<YYYYmmdd-HHMM>.md.
+T3 Tests (CPU; outputs under reports/raw/B5-fix/): bash -n; --dry_run with NGPU=1, 8 and 10 (52 unique commands,
+ unique output directories, E17 paths per H4, the T1g diff, GPU slot of every job < NGPU); b5_gate_cell.py on
+ Results/b4e2_smoke_ttba_resnet50 with Results/b4h_t3_smoke_CGBA_resnet50 (G5 must print "tool check only" ->
+ PENDING), on Results/b4e2_smoke_ttba_resnet50_places365 (must give "G5 n/a"), and with a missing TtBA root (PENDING);
+ the domain counter on reports/raw/B5/t0b_smoke.csv (4 X rows of 1152); one b5_monitor.py pass over the B4e2 smoke
+ roots; the fresh-directory refusal (RESULTS_ROOT under /tmp with one existing directory); the tmux refusal (TMUX
+ unset); the NGPU mismatch refusal; the environment guard (ENV_FILE pointing to a /tmp copy with another torch version
+ must refuse; the real file must pass on this instance). Then python tools/eval/selftest_evalkit.py (AGENTS.md rule
+ 8); if it runs out of memory on this no-GPU instance (L19), record that and do not retry.
+Report reports/B5_fix.md (runbook §5): LESSONS ids; F1-F10 verdicts; diff summary; test table PASS/FAIL; the ordered
+queue with expected hours and source; predicted wall-clock for NGPU = 1, 8 and 10 from that queue; deviations from
+this prompt; sha256 of every changed or new file; five-line summary. STOP.

@@ -1,0 +1,54 @@
+| # | cell | scope | method | arch | mode | n | s/img | source | expected h | outdir |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | e10_TtBA_densenet161_places365_NT | e10 | TtBA | densenet161_places365 | non_targeted | 200 | 118.3 | T5 (reports/B4e_preflight.md) | 6.5722 | Results/b5_e10_TtBA_densenet161_places365_NT |
+| 2 | e10_TtBA_densenet161_places365_T | e10 | TtBA | densenet161_places365 | targeted | 200 | 118.0 | T5 (reports/B4e_preflight.md) | 6.5556 | Results/b5_e10_TtBA_densenet161_places365_T |
+| 3 | main_TtBA_vgg19_T | main | TtBA | vgg19 | targeted | 200 | 62.9 | T5 (reports/B4e_preflight.md) | 3.4944 | Results/b5_main_TtBA_vgg19_T |
+| 4 | main_TtBA_vgg19_NT | main | TtBA | vgg19 | non_targeted | 200 | 60.6 | T5 (reports/B4e_preflight.md) | 3.3667 | Results/b5_main_TtBA_vgg19_NT |
+| 5 | main_TtBA_resnet50_NT | main | TtBA | resnet50 | non_targeted | 200 | 54.8 | T5 (reports/B4e_preflight.md) | 3.0444 | Results/b5_main_TtBA_resnet50_NT |
+| 6 | main_TtBA_resnet50_T | main | TtBA | resnet50 | targeted | 200 | 54.1 | T5 (reports/B4e_preflight.md) | 3.0056 | Results/b5_main_TtBA_resnet50_T |
+| 7 | e10_ARS_OPT_densenet161_places365_NT | e10 | ARS_OPT | densenet161_places365 | non_targeted | 200 | 52.16 | ASSUMED (resnet50 value x 1.6) | 2.8978 | Results/b5_e10_ARS_OPT_densenet161_places365_NT |
+| 8 | e10_TtBA_resnet50_places365_NT | e10 | TtBA | resnet50_places365 | non_targeted | 200 | 48.8 | T5 (reports/B4e_preflight.md) | 2.7111 | Results/b5_e10_TtBA_resnet50_places365_NT |
+| 9 | e10_TtBA_resnet50_places365_T | e10 | TtBA | resnet50_places365 | targeted | 200 | 48.3 | T5 (reports/B4e_preflight.md) | 2.6833 | Results/b5_e10_TtBA_resnet50_places365_T |
+| 10 | e11_TtBA_Salman2020Do_R50_T | e11 | TtBA | Salman2020Do_R50 | targeted | 200 | 48.3 | T5 (reports/B4e_preflight.md) | 2.6833 | Results/b5_e11_TtBA_Salman2020Do_R50_T |
+| 11 | e11_TtBA_Salman2020Do_R50_NT | e11 | TtBA | Salman2020Do_R50 | non_targeted | 200 | 48.0 | T5 (reports/B4e_preflight.md) | 2.6667 | Results/b5_e11_TtBA_Salman2020Do_R50_NT |
+| 12 | e10_ARS_OPT_densenet161_places365_T | e10 | ARS_OPT | densenet161_places365 | targeted | 200 | 47.2 | ASSUMED (resnet50 value x 1.6) | 2.6222 | Results/b5_e10_ARS_OPT_densenet161_places365_T |
+| 13 | main_TtBA_vit_b_32_NT | main | TtBA | vit_b_32 | non_targeted | 200 | 41.7 | T5 (reports/B4e_preflight.md) | 2.3167 | Results/b5_main_TtBA_vit_b_32_NT |
+| 14 | main_TtBA_vit_b_32_T | main | TtBA | vit_b_32 | targeted | 200 | 40.6 | T5 (reports/B4e_preflight.md) | 2.2556 | Results/b5_main_TtBA_vit_b_32_T |
+| 15 | e10_CGBA_H_densenet161_places365_T | e10 | CGBA_H | densenet161_places365 | targeted | 200 | 38.6 | T5 (reports/B4e_preflight.md) | 2.1444 | Results/b5_e10_CGBA_H_densenet161_places365_T |
+| 16 | e10_CGBA_densenet161_places365_NT | e10 | CGBA | densenet161_places365 | non_targeted | 200 | 36.9 | T5 (reports/B4e_preflight.md) | 2.0500 | Results/b5_e10_CGBA_densenet161_places365_NT |
+| 17 | main_ARS_OPT_vgg19_T | main | ARS_OPT | vgg19 | targeted | 200 | 35.4 | T5 (reports/B4e_preflight.md) | 1.9667 | Results/b5_main_ARS_OPT_vgg19_T |
+| 18 | main_ARS_OPT_vgg19_NT | main | ARS_OPT | vgg19 | non_targeted | 200 | 35.3 | T5 (reports/B4e_preflight.md) | 1.9611 | Results/b5_main_ARS_OPT_vgg19_NT |
+| 19 | e10_LGC_RC_EGC_densenet161_places365_T | e10 | LGC_RC_EGC | densenet161_places365 | targeted | 200 | 34.5 | T5 (reports/B4e_preflight.md) | 1.9167 | Results/b5_e10_LGC_RC_EGC_densenet161_places365_T |
+| 20 | e10_LGC_RC_EGC_densenet161_places365_NT | e10 | LGC_RC_EGC | densenet161_places365 | non_targeted | 200 | 32.8 | T5 (reports/B4e_preflight.md) | 1.8222 | Results/b5_e10_LGC_RC_EGC_densenet161_places365_NT |
+| 21 | main_ARS_OPT_resnet50_NT | main | ARS_OPT | resnet50 | non_targeted | 200 | 32.6 | T5 (reports/B4e_preflight.md) | 1.8111 | Results/b5_main_ARS_OPT_resnet50_NT |
+| 22 | e10_ARS_OPT_resnet50_places365_NT | e10 | ARS_OPT | resnet50_places365 | non_targeted | 200 | 32.6 | ASSUMED (resnet50 value) | 1.8111 | Results/b5_e10_ARS_OPT_resnet50_places365_NT |
+| 23 | e11_ARS_OPT_Salman2020Do_R50_NT | e11 | ARS_OPT | Salman2020Do_R50 | non_targeted | 200 | 32.6 | ASSUMED (resnet50 value) | 1.8111 | Results/b5_e11_ARS_OPT_Salman2020Do_R50_NT |
+| 24 | main_ARS_OPT_resnet50_T | main | ARS_OPT | resnet50 | targeted | 200 | 29.5 | T5 (reports/B4e_preflight.md) | 1.6389 | Results/b5_main_ARS_OPT_resnet50_T |
+| 25 | e10_ARS_OPT_resnet50_places365_T | e10 | ARS_OPT | resnet50_places365 | targeted | 200 | 29.5 | ASSUMED (resnet50 value) | 1.6389 | Results/b5_e10_ARS_OPT_resnet50_places365_T |
+| 26 | e11_ARS_OPT_Salman2020Do_R50_T | e11 | ARS_OPT | Salman2020Do_R50 | targeted | 200 | 29.5 | ASSUMED (resnet50 value) | 1.6389 | Results/b5_e11_ARS_OPT_Salman2020Do_R50_T |
+| 27 | main_LGC_RC_EGC_vgg19_T | main | LGC_RC_EGC | vgg19 | targeted | 200 | 29.2 | T5 (reports/B4e_preflight.md) | 1.6222 | Results/b5_main_LGC_RC_EGC_vgg19_T |
+| 28 | main_ARS_OPT_vit_b_32_T | main | ARS_OPT | vit_b_32 | targeted | 200 | 28.1 | T5 (reports/B4e_preflight.md) | 1.5611 | Results/b5_main_ARS_OPT_vit_b_32_T |
+| 29 | main_ARS_OPT_vit_b_32_NT | main | ARS_OPT | vit_b_32 | non_targeted | 200 | 27.8 | T5 (reports/B4e_preflight.md) | 1.5444 | Results/b5_main_ARS_OPT_vit_b_32_NT |
+| 30 | main_CGBA_H_vgg19_T | main | CGBA_H | vgg19 | targeted | 200 | 27.4 | T5 (reports/B4e_preflight.md) | 1.5222 | Results/b5_main_CGBA_H_vgg19_T |
+| 31 | main_CGBA_vgg19_NT | main | CGBA | vgg19 | non_targeted | 200 | 27.1 | T5 (reports/B4e_preflight.md) | 1.5056 | Results/b5_main_CGBA_vgg19_NT |
+| 32 | main_LGC_RC_EGC_vgg19_NT | main | LGC_RC_EGC | vgg19 | non_targeted | 200 | 24.8 | T5 (reports/B4e_preflight.md) | 1.3778 | Results/b5_main_LGC_RC_EGC_vgg19_NT |
+| 33 | main_LGC_RC_EGC_resnet50_T | main | LGC_RC_EGC | resnet50 | targeted | 200 | 24.7 | T5 (reports/B4e_preflight.md) | 1.3722 | Results/b5_main_LGC_RC_EGC_resnet50_T |
+| 34 | e10_LGC_RC_EGC_resnet50_places365_T | e10 | LGC_RC_EGC | resnet50_places365 | targeted | 200 | 24.4 | T5 (reports/B4e_preflight.md) | 1.3556 | Results/b5_e10_LGC_RC_EGC_resnet50_places365_T |
+| 35 | e11_LGC_RC_EGC_Salman2020Do_R50_T | e11 | LGC_RC_EGC | Salman2020Do_R50 | targeted | 200 | 24.4 | T5 (reports/B4e_preflight.md) | 1.3556 | Results/b5_e11_LGC_RC_EGC_Salman2020Do_R50_T |
+| 36 | main_CGBA_H_resnet50_T | main | CGBA_H | resnet50 | targeted | 200 | 24.3 | T5 (reports/B4e_preflight.md) | 1.3500 | Results/b5_main_CGBA_H_resnet50_T |
+| 37 | main_LGC_RC_EGC_vit_b_32_T | main | LGC_RC_EGC | vit_b_32 | targeted | 200 | 23.8 | T5 (reports/B4e_preflight.md) | 1.3222 | Results/b5_main_LGC_RC_EGC_vit_b_32_T |
+| 38 | e10_CGBA_H_resnet50_places365_T | e10 | CGBA_H | resnet50_places365 | targeted | 200 | 23.5 | T5 (reports/B4e_preflight.md) | 1.3056 | Results/b5_e10_CGBA_H_resnet50_places365_T |
+| 39 | e11_CGBA_H_Salman2020Do_R50_T | e11 | CGBA_H | Salman2020Do_R50 | targeted | 200 | 23.5 | T5 (reports/B4e_preflight.md) | 1.3056 | Results/b5_e11_CGBA_H_Salman2020Do_R50_T |
+| 40 | main_CGBA_resnet50_NT | main | CGBA | resnet50 | non_targeted | 200 | 23.2 | T5 (reports/B4e_preflight.md) | 1.2889 | Results/b5_main_CGBA_resnet50_NT |
+| 41 | main_CGBA_vit_b_32_NT | main | CGBA | vit_b_32 | non_targeted | 200 | 23.1 | T5 (reports/B4e_preflight.md) | 1.2833 | Results/b5_main_CGBA_vit_b_32_NT |
+| 42 | main_LGC_RC_EGC_resnet50_NT | main | LGC_RC_EGC | resnet50 | non_targeted | 200 | 22.9 | T5 (reports/B4e_preflight.md) | 1.2722 | Results/b5_main_LGC_RC_EGC_resnet50_NT |
+| 43 | e10_CGBA_resnet50_places365_NT | e10 | CGBA | resnet50_places365 | non_targeted | 200 | 22.5 | T5 (reports/B4e_preflight.md) | 1.2500 | Results/b5_e10_CGBA_resnet50_places365_NT |
+| 44 | main_CGBA_H_vit_b_32_T | main | CGBA_H | vit_b_32 | targeted | 200 | 22.2 | T5 (reports/B4e_preflight.md) | 1.2333 | Results/b5_main_CGBA_H_vit_b_32_T |
+| 45 | e11_LGC_RC_EGC_Salman2020Do_R50_NT | e11 | LGC_RC_EGC | Salman2020Do_R50 | non_targeted | 200 | 22.1 | T5 (reports/B4e_preflight.md) | 1.2278 | Results/b5_e11_LGC_RC_EGC_Salman2020Do_R50_NT |
+| 46 | e11_CGBA_Salman2020Do_R50_NT | e11 | CGBA | Salman2020Do_R50 | non_targeted | 200 | 21.8 | T5 (reports/B4e_preflight.md) | 1.2111 | Results/b5_e11_CGBA_Salman2020Do_R50_NT |
+| 47 | e10_LGC_RC_EGC_resnet50_places365_NT | e10 | LGC_RC_EGC | resnet50_places365 | non_targeted | 200 | 21.7 | T5 (reports/B4e_preflight.md) | 1.2056 | Results/b5_e10_LGC_RC_EGC_resnet50_places365_NT |
+| 48 | main_LGC_RC_EGC_vit_b_32_NT | main | LGC_RC_EGC | vit_b_32 | non_targeted | 200 | 21.5 | T5 (reports/B4e_preflight.md) | 1.1944 | Results/b5_main_LGC_RC_EGC_vit_b_32_NT |
+| 49 | e17_CGBA_D8only_resnet50_NT | e17 | CGBA_D8only | resnet50 | non_targeted | 30 | 23.2 | T5 (reports/B4e_preflight.md) | 0.1933 | Results/appendix_cgba_d8only_resnet50 |
+| 50 | e17_CGBA_D8only_vgg19_NT | e17 | CGBA_D8only | vgg19 | non_targeted | 30 | 27.1 | T5 (reports/B4e_preflight.md) | 0.2258 | Results/appendix_cgba_d8only_vgg19 |
+| 51 | e17_CGBA_D8only_vit_b_32_NT | e17 | CGBA_D8only | vit_b_32 | non_targeted | 30 | 23.1 | T5 (reports/B4e_preflight.md) | 0.1925 | Results/appendix_cgba_d8only_vit_b_32 |
+| 52 | e17_CGBA_D8only_Salman2020Do_R50_NT | e17 | CGBA_D8only | Salman2020Do_R50 | non_targeted | 30 | 21.8 | T5 (reports/B4e_preflight.md) | 0.1817 | Results/appendix_cgba_d8only_Salman2020Do_R50 |

@@ -1,0 +1,17 @@
+# B5-fix T1g: 52 attack commands, old (c20cc349, OUT=Results/b5_<cell>) vs new (H4 E17 appendix dir)
+# old cells=52 new cells=52
+
+=== e17_CGBA_D8only_Salman2020Do_R50_NT ===
+OLD: python adapters/run_cgba.py --arch Salman2020Do_R50 --mode non_targeted --split_csv splits/robust/Salman2020Do_R50_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/b5_e17_CGBA_D8only_Salman2020Do_R50_NT --limit 30 --cgba_variant d8only
+NEW: python adapters/run_cgba.py --arch Salman2020Do_R50 --mode non_targeted --split_csv splits/robust/Salman2020Do_R50_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/appendix_cgba_d8only_Salman2020Do_R50 --limit 30 --cgba_variant d8only
+=== e17_CGBA_D8only_resnet50_NT ===
+OLD: python adapters/run_cgba.py --arch resnet50 --mode non_targeted --split_csv splits/imagenet/ttba_github/resnet50_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/b5_e17_CGBA_D8only_resnet50_NT --limit 30 --cgba_variant d8only
+NEW: python adapters/run_cgba.py --arch resnet50 --mode non_targeted --split_csv splits/imagenet/ttba_github/resnet50_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/appendix_cgba_d8only_resnet50 --limit 30 --cgba_variant d8only
+=== e17_CGBA_D8only_vgg19_NT ===
+OLD: python adapters/run_cgba.py --arch vgg19 --mode non_targeted --split_csv splits/imagenet/ttba_github/vgg19_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/b5_e17_CGBA_D8only_vgg19_NT --limit 30 --cgba_variant d8only
+NEW: python adapters/run_cgba.py --arch vgg19 --mode non_targeted --split_csv splits/imagenet/ttba_github/vgg19_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/appendix_cgba_d8only_vgg19 --limit 30 --cgba_variant d8only
+=== e17_CGBA_D8only_vit_b_32_NT ===
+OLD: python adapters/run_cgba.py --arch vit_b_32 --mode non_targeted --split_csv splits/imagenet/ttba_github/vit_b_32_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/b5_e17_CGBA_D8only_vit_b_32_NT --limit 30 --cgba_variant d8only
+NEW: python adapters/run_cgba.py --arch vit_b_32 --mode non_targeted --split_csv splits/imagenet/ttba_github/vit_b_32_non_targeted.csv --repo /root/autodl-tmp/baselines/CGBA --out_dir Results/appendix_cgba_d8only_vit_b_32 --limit 30 --cgba_variant d8only
+
+Total differing cells: 4 / 52 (all E17, only --out_dir)
