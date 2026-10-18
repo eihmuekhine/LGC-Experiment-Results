@@ -1,0 +1,16 @@
+# T0 Environment Record — B5 (rev3: domain gate fixed)
+Date: 2026-10-18T11:46:27+08:00
+HEAD: 999567a2f4fdb9a4cb6420c1842608cfb7e6199d
+tag: 999567a2f4fdb9a4cb6420c1842608cfb7e6199d
+contract sha256: 8c3327f0096a386debd3551a23e36a0c804abc39ac07f3e63de5d9c8293971a4
+prompt.txt sha256: 1fb343b4d0c9803655e35762867882a8dcd61020eee2e7aa9ae41a1bc381ea94
+run_b5_parallel.sh sha256: c20cc34990e9ed2cf5fb1c8a18a79517d67617ba98884c13425461e3c21d17d2
+OMP=8 MKL=8
+real nproc: 208
+cpu.max: 12500000 100000
+index, name, memory.total [MiB]
+0, NVIDIA GeForce RTX 5090, 32607 MiB
+1, NVIDIA GeForce RTX 5090, 32607 MiB
+2, NVIDIA GeForce RTX 5090, 32607 MiB
+3, NVIDIA GeForce RTX 5090, 32607 MiB
+4, NVIDIA GeForce RTX 5090, 32607 MiB
