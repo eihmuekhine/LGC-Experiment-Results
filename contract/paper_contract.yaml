@@ -6,10 +6,11 @@
 #   - Every change gets a new `version`, a line in `changelog`, and a commit.
 #   - After tag build38-amend2, a change is also a reported deviation.
 #   - Coding agents never edit it.
-version: "1.9-rev6"
-date: "2026-10-15"
-status: "FROZEN (2026-10-17, v1.9-rev6). Decisions D1-D20 confirmed by the user; D19 oracle-domain clamp extended to both ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized)."
+version: "1.9-rev7"
+date: "2026-10-18"
+status: "FROZEN (2026-10-18, v1.9-rev7). Decisions D1-D20 confirmed by the user; D19 oracle-domain clamp for ARS_OPT (clamp01) and CGBA/CGBA_H (clamp_normalized); rev7 notes in D13, D14, D16, D19."
 changelog:
+  - "1.9-rev7 2026-10-18 user: decided before any B5 cell completed (B5 attempt 1 stopped with 0 cells completed). D13: G5 only for main-study ImageNet cells (no published reference for the E10/E11 victims); D14: solo = no other attack process on the same GPU; D16: attempt-1 / attempt-2 software stack note; D19: LGC_RC_EGC domain_consistency X is reported, not a stop rule. No threshold or severity changed."
   - "1.9-rev6 2026-10-18 user: restore the four Places365 split_sha256 constants (removed in rev2/3 ImageNet-only edits; E10 REQUIRED since rev5). No scope change."
   - "1.0 2026-10-10 first version; reconciles experiment_framework, final/low-cost plans, reviewer-eval s6-7, manuscript s7"
   - "1.1 2026-10-10 user: checkpoints 100 200 500 1k 2k 2.5k 5k 10k (8); E4/E5/E8, I01, I09, disk updated; AUC unchanged"
@@ -125,17 +126,29 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
     95 % paired bootstrap CI (10000 resamples); PASS if the CI intersects [0.5, 2] at every B in
     {2000, 5000, 10000}; FAIL stops that cell for investigation (no tuning). Runs with n < 30 (smoke) are tool
     checks only, never a gate.
+    (v1.9-rev7, user 2026-10-18) G5 applies to the main-study (ImageNet: resnet50, vgg19, vit_b_32)
+    TtBA / CGBA / CGBA_H cells only. ttba_github/ttba_table1.json has no entry for the E10 / E11 victims,
+    so G5 cannot be computed there and is recorded as n/a. E17 (CGBA_D8only) is outside G5. A CGBA /
+    CGBA_H cell is checked against the TtBA cell of the same victim and mode on their common images.
   D14_b5_concurrency: >-
     (v1.8, user 2026-10-13) One attack process per GPU. Exception: two TtBA processes (different cells) may share
     the GPU if B4e T4 shows bitwise identity with solo runs and weighted speedup
     S = sum_p (solo s/img_p / concurrent s/img_p) >= 1.6 for that victim. Rows 1-10 of every cell run solo;
     E13 uses solo rows only.
+    (v1.9-rev7, user 2026-10-18) "Solo" means no other attack process on the same GPU. The host-level
+    concurrency slowdown measured by the host probe (T5) is reported next to E13.
   D16_study_gpu_migration: >-
     (v1.9-rev1, user 2026-10-16) Study GPU confirmed as NVIDIA GeForce RTX 5090
     (driver 595.71.05); the migration to RTX PRO 6000 Blackwell Server Edition is deferred.
     Under D12 FP32 precision parity all methods attack the same deterministic FP32 classifier.
     In addition, ttba_github/ttba_common.py:83 done_images is permitted to treat status
     in ("ok", "budget") as completed (L4 resume fix).
+    (v1.9-rev7, user 2026-10-18) B5 attempt 1 (5 x RTX 5090, launched 2026-10-18 11:47, stopped before any
+    cell completed) ran on torch 2.8.0+cu128 / torchvision 0.23.0+cu128 / cuDNN 91002 in a fresh container,
+    a deviation from env_build38.txt; its outputs are never used (reports/b5_attempt1/ABANDONED.md).
+    B5 attempt 2 runs on the pre-registered stack, torch 2.7.1+cu128 / torchvision 0.22.1+cu128, with
+    cuDNN 90701, the stack recorded in every pre-B5 smoke root (B4e2, B4h-T3, KAT). The driver of the
+    attempt-2 host is recorded at T0 (env_build38.txt: 595.71.05; B4e2 and attempt-1 hosts: 580.105.08).
   D19_oracle_domain_clamp: >-
     (v1.9, user 2026-10-15) Every method must decide adversariality on the exact clamped [0, 1] pixel image
     that is stored and scored. Two oracle-domain defects were identified and fixed:
@@ -149,6 +162,12 @@ decisions:   # D-items resolved here; the user confirms or edits before FROZEN
           recorded in env_CGBA*.json and run_manifest.json as oracle_domain = "clamp_normalized".
     Both fixes alter what the search itself queries whenever a probe leaves range, requiring a full re-run
     of all affected ARS_OPT and CGBA / CGBA_H cells.
+    (v1.9-rev7, user 2026-10-18) LGC_RC_EGC decides in float32 and stores a float16 delta. On images
+    within about 1e-4 to 1e-3 logit margin of the decision boundary the stored reconstruction can fall on
+    the clean side at an intermediate budget (B4h-T1a). For LGC_RC_EGC the domain_consistency X count is
+    therefore reported per cell and in E8, not used as a stop rule; ASR uses the float32 adv_flag
+    (tools/eval/eval_metrics_offline.py:152). For ARS_OPT, CGBA and CGBA_H, X > 0 stops the cell.
+    CGBA_D8only (E17) is outside the checker roots; its X count is reported.
   D20_e18_status: >-
     (v1.9-rev3, user 2026-10-16) E18 was listed in docs/PREFLIGHT_RUNBOOK.md:189 as a planned
     v1.9 decision item ("decisions on E18, main-protocol ablation and same-prior control"),
