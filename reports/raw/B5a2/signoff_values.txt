@@ -1,0 +1,122 @@
+== TMUX
+$ echo "$TMUX"
+/tmp/tmux-0/default,1888,1
+(NOT empty)
+
+== KIT
+$ sha256sum -c SHA256SUMS (in /root/autodl-tmp/b5a2_kit_v2_1)  -- last 3 lines of output:
+./tests_b5_sim/stub/nvidia-smi: OK
+./tests_b5_sim/stub/python: OK
+./tools/opencode_guard.py: OK
+(all 14 files OK; exit 0)
+
+== S1
+$ sha256sum contract/paper_contract.yaml
+ce101e334a787b78f26c0fef4c5480110b9e84d8dbe0981d3087be7c90e3747c  contract/paper_contract.yaml
+
+== S2
+$ git log --oneline -1 -- reports/b5_attempt1/ABANDONED.md
+bb7fa0d contract v1.9-rev7 (D13/D14/D16/D19 notes, H edit); B5 attempt-1 note; LESSONS L24-L25
+
+== S3
+$ sha256sum run_b5_parallel.sh
+50d8941c6201196d4f8a4700d5bc13d305552b78fc1140ed6fa2b65d92a640fb  run_b5_parallel.sh
+
+$ grep -n 'REVIEW_VERDICT' reports/raw/B5-fix/fix1_fix1b_review.md
+122:REVIEW_VERDICT: PASS-WITH-NOTES
+
+$ bash tools/eval/tests_b5/sim/run_sim.sh 2>&1 | tail -3
+[sim] 21 PASS, 0 FAIL (outputs kept in /tmp/b5sim.oANPri)
+ALL PASS
+
+== S4
+$ grep -n 'VERDICT' reports/raw/B5h2/checker_review.md | tail -2
+23:| T8 | PASS | PASS | My CPU rerun of two of the six cells, `--gate partial` and `--gate g5` only, `--log_dir /tmp/opencode/b5h2_review_gates`: (a) `main_CGBA_resnet50_NT --root Results/b5h2_CGBA_resnet50 --ttba_root Results/b5h2_TtBA_resnet50` → `[gate] partial: PASS (ok) exit=0`; `--gate g5` → CGBA rho 0.983/0.966/1.234 with identical CIs, `VERDICT: tool check only (n=3 < 30; not a gate)`, `[gate] g5: PENDING (pending) … -> PENDING`, exit 0 — byte-identical numbers to the author's `T8_gate_main_CGBA_resnet50_NT.log`; (b) `main_TtBA_resnet50_NT --root Results/b5h2_TtBA_resnet50` → partial PASS exit 0; g5 ratio(med) 1.659/1.594/1.372 identical CIs → PENDING exit 0 — byte-identical to `T8_gate_main_TtBA_resnet50_NT.log`. G5 is never PASS (PENDING tool-check-only or n/a), as required. `ls reports/stop/ \| grep B5a2` → nothing (no B5a2 STOP files). The author's 6-cell `summary.csv` (partial PASS ×6, g5 PENDING ×2 / N/A ×4, domain PASS X=0 ×5 / SKIP ×1, stop=0) is consistent with the six `T8_gate_*.log` files. |
+60:VERDICT: PASS-WITH-NOTES
+
+$ grep -n 'Verdict' reports/B5h2_host_probe.md reports/B5h2n5_host_probe.md | head -4
+reports/B5h2_host_probe.md:3:Status: **COMPLETE**. Verdict: **HOST-IDENTICAL** — T2, T3 and T7a all bitwise IDENTICAL to the B4e2/B4h-t3
+reports/B5h2_host_probe.md:84:targeted-mode rows (B ran non_targeted only). **Verdict: IDENTICAL — hosts may be pooled bitwise for LGC_RC_EGC
+reports/B5h2_host_probe.md:508:Verdict line: **HOST-IDENTICAL** — T2, T3 and T7a all IDENTICAL (bitwise, every method / victim / mode on the
+reports/B5h2n5_host_probe.md:3:Status: **COMPLETE**. Verdict: **HOST-IDENTICAL** — T2, T3 (all three methods, domain X = 0) and T5 (all 5 GPUs
+
+== S5
+$ python -c "import torch, torchvision; print(torch.__version__, torchvision.__version__, torch.backends.cudnn.version())"
+2.7.1+cu128 0.22.1+cu128 90701
+
+== S6
+$ nvidia-smi -L
+GPU 0: NVIDIA GeForce RTX 5090 (UUID: GPU-dda96881-189b-60f8-b6a8-e1b0f948c7c7)
+GPU 1: NVIDIA GeForce RTX 5090 (UUID: GPU-ebff2eba-21fe-06c3-a908-3af10cd58fef)
+GPU 2: NVIDIA GeForce RTX 5090 (UUID: GPU-e16d8796-6b10-7a37-23fe-f2546158a60d)
+GPU 3: NVIDIA GeForce RTX 5090 (UUID: GPU-01ee3cdc-d416-8646-e697-a03678f1ac86)
+GPU 4: NVIDIA GeForce RTX 5090 (UUID: GPU-d70ef86a-bf28-cc23-4b19-ee0948757a87)
+
+$ nvidia-smi --query-gpu=driver_version --format=csv,noheader | sort -u
+595.71.05
+
+== S7
+$ df -h /root/autodl-tmp
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0         50G  4.0G   47G   8% /root/autodl-tmp
+
+== S8
+$ ls -d Results/b5_* Results/appendix_cgba_d8only_* reports/stop/B5a2_* 2>/dev/null | wc -l
+0
+
+== S9
+$ NGPU=5 bash run_b5_parallel.sh --dry_run > /tmp/dry.txt 2>&1  (exit=0)
+
+First 3 lines of /tmp/dry.txt:
+[env] torch=2.7.1+cu128 (expected 2.7.1+cu128)  torchvision=0.22.1+cu128 (expected 0.22.1+cu128)  cuDNN=90701 (expected 90701)
+[threads] Q=80.0 NGPU=5 -> OMP_NUM_THREADS=MKL_NUM_THREADS=8
+[dry_run] NGPU=5 RESULTS_ROOT=Results LOG_DIR=reports/raw/B5a2 (no GPU process started)
+
+$ grep -c '^# cell:' /tmp/dry.txt
+52
+
+$ grep -o 'job slot [0-9]* of [0-9]*' /tmp/dry.txt | sort -u
+job slot 1 of 5
+job slot 2 of 5
+job slot 3 of 5
+job slot 4 of 5
+job slot 5 of 5
+
+$ awk '/expected h/{f=1} f' /tmp/dry.txt | tail -n +3 | awk -F'|' '{s+=$11} END{print "sum expected h =", s}'
+sum expected h = 99.5467
+
+== S10
+$ sha256sum reports/raw/B5-fix/prompt.txt reports/raw/B5h2/prompt.txt reports/raw/B5a2/prompt.txt reports/raw/B5a2/close_prompt.txt reports/raw/B5a2/close_review_prompt.txt
+8520cf03a8657bc81ab18c03f84ca6d807307c53607efd3bdda9fbda1dd61be8  reports/raw/B5-fix/prompt.txt
+0be547fb96096f968d817ca6af47c7f9d3c42520c6edc3a4f1cd9a7c6def2395  reports/raw/B5h2/prompt.txt
+8d7671fe3bd17298c61862a6109849cdcca15c63b8b9768ba7119c60247cf018  reports/raw/B5a2/prompt.txt
+e0f23a639706c6b075eb1893bf038c5c832761dce7e6b260fdc3433cd0d8ed83  reports/raw/B5a2/close_prompt.txt
+99213b6e45fc9d5afe46eabb587a90222b824327abc77226f8f92e185ec73ba8  reports/raw/B5a2/close_review_prompt.txt
+
+== S11
+$ git status --short | grep -v '^??'
+(nothing)
+
+== EXTRA
+$ sha256sum /root/miniconda3/lib/python3.12/site-packages/sitecustomize.py
+d0161cad705ad8b7cbdd82650fda548452065f099c04e4759617126142178458  /root/miniconda3/lib/python3.12/site-packages/sitecustomize.py
+
+$ git rev-parse HEAD
+60cc82b8677838b6a9834c4ee4d34d8dd03d8c5c
+
+$ git status --short | head -20
+?? 1140NN.md
+?? 140NN.md
+?? 1509N.md
+?? 1518N.md
+?? 1641N.md
+?? 216NN.md
+?? 245NN.md
+?? 248NNreviewer.md
+?? 312NN.md
+?? 325NN.md
+?? 414NN.md
+?? 430NN.md
+?? 509NN.md
+?? reports/HUMAN_SIGNOFF_B5_attempt2.md
+?? reports/raw/B5a2/

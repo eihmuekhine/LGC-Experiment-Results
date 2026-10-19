@@ -1,0 +1,16 @@
+Phase B5a2 (B5 attempt 2, confirmatory run). Executed by H in tmux, not by an agent.
+Contract v1.9-rev7 (sha256 ce101e334a787b78f26c0fef4c5480110b9e84d8dbe0981d3087be7c90e3747c).
+Launcher run_b5_parallel.sh = launcher v2 after fix round 1 (sha256 as recorded in reports/B5_fix.md "Fix round 1",
+reviewed in reports/raw/B5-fix/checker_review.md; tools/eval/tests_b5/sim/run_sim.sh ALL PASS). Host probe: reports/B5h2_host_probe.md and its review.
+Environment: torch 2.7.1+cu128 / torchvision 0.22.1+cu128 / cuDNN 90701 (env_build38.txt); NGPU x the study GPU of
+contract D16 (same name on every GPU) on one host; one attack process per GPU (D14).
+Job list: 52 cells (main 24, E10 16, E11 8, E17 4); n = 200 (E17: 30); budget 10000; checkpoints from the contract.
+Launch: inside tmux session b5a2, `NGPU=<N> bash run_b5_parallel.sh`; monitor in tmux session b5mon,
+`python tools/eval/b5_monitor.py --interval 10`.
+Gates per cell (launcher v2, contract rev7): partial checker; G5 for main TtBA / CGBA / CGBA_H only (PENDING until 30
+common images, never PASS by default); domain_consistency X = 0 stops ARS_OPT / CGBA / CGBA_H cells; X reported for
+LGC_RC_EGC and CGBA_D8only.
+Any STOP bundle: decision point 3 (H with L). Only E-INFRA may be resumed (--resume <cell>, at most 2 attempts), only
+after the main run has ended (a resume uses GPU 0; the launcher refuses it while an attack process runs). Never re-run single images (D6). Never stop the
+instance, edit code or run git checkout during the run.
+Close: reports/raw/B5a2/close_prompt.txt (agent), then reports/raw/B5a2/close_review_prompt.txt (reviewer).

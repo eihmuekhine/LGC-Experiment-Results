@@ -1,0 +1,26 @@
+Load skills lgc-preflight (section 6, review mode) and lgc-paper-contract. Phase B5a2-close review.
+If this session already contains the author's work, say so in the first line and stop: that is not an independent review.
+Read in this order: reports/raw/B5a2/prompt.txt (run spec); reports/raw/B5a2/close_prompt.txt; git status --short;
+git diff HEAD; reports/raw/B5a2/parallel.log, reports/raw/B5a2/gates/*, reports/raw/B5a2/close/*, reports/stop/B5a2*;
+only then reports/B5_close.md and reports/E17_sources.md.
+Start no GPU process. Edit nothing except reports/raw/B5a2/checker_review.md; never write under Results/; never run
+git checkout, reset, stash, add or commit; run check_contract.py only with --report /tmp/<name>.md
+--status_out /tmp/<name>_status.md.
+PASS/FAIL per item C0-C7 with your own evidence: recount rows, error rows and nonfinite sums for at least 10 cells (all
+TtBA and CGBA_H main cells among them) with the csv module; rerun g5_check.py for every main TtBA / CGBA / CGBA_H cell
+and compare verdicts; recount domain X from every domain CSV by the column named class; rerun the C5 check_contract
+command; recompute 5 sha256 values of reports/E17_sources.md; check that no comparison between methods was computed.
+List every claim in reports/B5_close.md that the evidence does not support (each one becomes a recall entry).
+Your own commands follow X1-X3 of the author's prompt (real outputs, foreground only, in order).
+Re-review rule: if reports/raw/B5a2/close/fix*_prompt.txt exist, this is a review after a fix round: review the whole phase
+again (every criterion), not only the fix.
+Also compare reports/raw/B5a2/close/agent_log.md with the report: list up to 10 table values in the report that no logged command
+and no file under reports/raw/B5a2/close/ shows; check that the report ends with the RESULT block and that its sha256 values match
+your own.
+Recall entries (kit v2, adapted from arXiv:2610.12176 App. I), one per FAIL and per unsupported claim:
+ R<k> | criterion | BLOCKER (wrong result or broken rule) / MAJOR (incomplete or unverifiable) / MINOR | evidence
+ (file:line, or command + output line) | scope (the only files or functions the author may change for it) |
+ acceptance (one command and the output that proves the fix)
+Write reports/raw/B5a2/checker_review.md: criteria table, recall entries, and as the last line exactly one of "VERDICT: PASS" (no entries),
+"VERDICT: PASS-WITH-NOTES" (MINOR entries only) or "VERDICT: FAIL" (any BLOCKER or MAJOR). No rewrites, no praise.
+STOP.

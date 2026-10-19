@@ -1,0 +1,52 @@
+Load skills lgc-preflight, lgc-paper-contract (and lgc-baselines if installed). Phase B5a2-close: completeness and gate
+record of B5 attempt 2 after every job has ended. GPU ON (used only where a step says so).
+Worktree /root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7. Print git describe --tags, git rev-parse
+HEAD and the sha256 of contract/paper_contract.yaml, run_b5_parallel.sh and reports/raw/B5a2/close_prompt.txt. Read
+reports/raw/B5a2/prompt.txt (run spec) and docs/LESSONS.md; list the active ids that apply.
+Rules: everything under Results/ is read-only (never edit, move or delete); never re-run an attack or a single image
+(D6); edit nothing except reports/*; run check_contract.py only with --report and --status_out under
+reports/raw/B5a2/close/; compute no comparison between methods (no medians across methods, ASR tables or figures:
+that is phase B6); one GPU process per GPU; any unexpected result: STOP bundle
+reports/stop/B5a2-close_<YYYYmmdd-HHMM>.md (skill §7); no git add, commit, stash or tag.
+C0 No attack process is running (pgrep -af "run_b5_parallel|parallel -j|run_benchmark|run_ttba|run_cgba|run_arsopt");
+ reports/raw/B5a2/parallel.log has 52 job lines (plus any --resume runs, listed separately).
+C1 Table, 52 rows: cell | joblog Exitval | rows by status (csv module) | error rows | nonfinite sum | gates from
+ reports/raw/B5a2/gates/summary.csv (partial, G5, domain X) | STOP bundles of the cell. State whether every cell reached
+ its n (200; E17 30).
+C2 G5 at n = 200 for the main TtBA / CGBA / CGBA_H cells with tools/eval/g5_check.py (CPU); quote each verdict; list any
+ cell still PENDING.
+C3 For every cell without a domain CSV under reports/raw/B5a2/gates/, run adapters/diag/domain_consistency.py now (GPU,
+ one process per GPU) into reports/raw/B5a2/close/<cell>_domain.csv; count X by the column named class; stop rule only
+ for ARS_OPT, CGBA, CGBA_H (rev7 D19); report the counts for LGC_RC_EGC and CGBA_D8only.
+C4 python tools/eval/human_preflight.py --roots <all 52 output directories> --out reports/human_preflight_b5a2
+ --require_host: FLAG lines (0, or each explained); one host and one driver.
+C5 check_contract.py --stage partial over the 48 main / E10 / E11 roots: exit code and every FAIL line.
+C6 reports/E17_sources.md: path and sha256 of every file under the four
+ Results/appendix_cgba_d8only_<arch>/non_targeted directories (contract E17).
+C7 Lessons: one docs/LESSONS.md row (draft, in the report only) per new defect found during the run, or "none".
+Execution rules (kit v2, adapted from arXiv:2610.12176 App. B.3; docs/LESSONS.md L24, L26). They add to the rules
+above and never relax them.
+ X1 Run every command for real; copy every value from its output. Never write a value you did not see.
+ X2 Foreground only (your own commands, not the code you write): each command returns only after everything it
+    started has ended (several processes in one command followed by `wait`, or GNU parallel, are allowed). No nohup,
+    setsid, disown, tmux or screen; no process left running; no loop that re-reads an unchanged log. A command that
+    would run longer than 30 minutes: do not start it; STOP (E-SPEC) with its exact command line (H runs it in tmux).
+ X3 One task at a time, in the order given. Run the task's own check and read its output before the next task.
+ X4 A check that still fails after two fix attempts for the same cause ends the task: STOP bundle (skill §7) with
+    both attempts. Never widen the allowed edits to make a check pass.
+ X5 Log every command in reports/raw/B5a2/close/agent_log.md, one row each: time | task | command | exit status | output file or
+    first output line.
+ X6 End the report with this block, each value copied from a command output:
+      RESULT
+      phase: B5a2-close
+      head: <git rev-parse HEAD>
+      contract_sha256: <sha256>
+      prompt_sha256: <sha256 of the prompt file you executed>
+      tasks: <task=PASS|FAIL|STOP|n/a for every task, space-separated>
+      files: <"path sha256", one line per created or changed file>
+      deviations: none | <count> (listed in the report)
+      stop_bundles: none | <paths>
+      verdict: READY-FOR-REVIEW | STOPPED
+Report reports/B5_close.md (runbook §5): C0-C7, every STOP bundle of the run and the H decision on it (quoted from the
+bundle or the commit), deviations, sha256 of every created file, five-line summary, the RESULT block
+of X6. STOP.
