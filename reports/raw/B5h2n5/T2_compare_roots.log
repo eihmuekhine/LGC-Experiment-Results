@@ -1,0 +1,20 @@
+04:57
+# compare_roots
+A = Results/b4e2_smoke_LGC_RC_EGC_resnet50
+B = Results/b5h2n5_B_resnet50
+
+checkpoint keys: shared 24, only in A 24, only in B 0
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 100)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 200)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 500)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 1000)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 2000)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 2500)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 5000)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00007450', 10000)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00015433', 100)
+  only in A: ('targeted', 'resnet50', 'LGC_RC_EGC', 'ILSVRC2012_val_00015433', 200)
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 24, only in B 0; differences: 0
+VERDICT: IDENTICAL
+rc=0

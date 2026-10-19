@@ -1,0 +1,15 @@
+04:55
+--- driver ---
+595.71.05
+--- cpu.max ---
+8000000 100000
+--- nproc (env -u OMP) ---
+128
+--- free -g ---
+               total        used        free      shared  buff/cache   available
+Mem:             754          39         372           0         342         709
+Swap:              0           0           0
+--- df -h /root/autodl-tmp ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0         50G  3.9G   47G   8% /root/autodl-tmp
+TMUX=/tmp/tmux-0/default,1888,0

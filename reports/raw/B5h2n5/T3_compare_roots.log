@@ -1,0 +1,13 @@
+05:02
+=== TtBA vs b4e2_smoke_ttba_resnet50 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 24, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== CGBA vs b4h_t3_smoke_CGBA_resnet50 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 24, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== ARS_OPT vs b4h_t3_smoke_ARS_OPT_resnet50 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 24, only in B 0; differences: 0
+VERDICT: IDENTICAL

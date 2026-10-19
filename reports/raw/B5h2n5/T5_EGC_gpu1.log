@@ -1,0 +1,35 @@
+[*] importing torch / torchvision (first run after install can take 1-2 min) ...
+[*] device=cuda | torch=2.7.1+cu128 | gpu=NVIDIA GeForce RTX 5090 (31 GB) | tf32=False deterministic=True | shard 1/1
+[*] methods: ['LGC_RC_EGC']
+[*] autoencoder vgg16 loaded from checkpoints/vgg16_imagenet.pth
+
+==========================================================================================
+ IMAGENET | RESNET50 | NON_TARGETED
+==========================================================================================
+[*] victim resnet50: official TtBA weights resnet50-11ad3fa6.pth from /root/autodl-tmp/TtBA/model
+[*] protocol split splits/imagenet/ttba_github/resnet50_non_targeted.csv (ttba_github:imagenet-resnet50:targeted0, weights resnet50-11ad3fa6.pth): 1 rows
+
+[1/1] ILSVRC2012_val_00007450.JPEG -> ANY WRONG CLASS
+[*] image loader: official TtBA repo pre-processing (mean |x - data loader| on the first image 0.0000)
+   LGC_RC_EGC Q= 9975 | pixL2@10000=14.4036 SSIM=0.9593 LPIPS=0.0945 adv float/uint8/repaired=1/0/1 | 24.8s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9589)
+   [time] 0.4 min for 1 images on resnet50; ~0.0 min left on this arch (this shard)
+
+=== resnet50 @ budget 10000 (sorted by median pixel L2) ===
+    arch     method  budget  n      ASR  ASR_uint8_raw  ASR_uint8_repaired  pixL2_mean  pixL2_median  SSIM_mean  LPIPS_mean
+resnet50 LGC_RC_EGC   10000  1 100.0000         0.0000            100.0000     14.4036       14.4036     0.9593      0.0945
+
+=== query breakdown (% of queries) ===
+            q_init_%  q_boundary_%  q_normal_%  q_update_%  iterations  wall_time_s  mean_sign_share  one_sided_pct  mean_n_probes
+method                                                                                                                            
+LGC_RC_EGC       0.0           0.2        90.5         9.3        60.0         24.8              0.4            0.0          152.9
+
+=== progress: finished runs per arch x method ===
+status               ok
+arch     method        
+resnet50 LGC_RC_EGC   1
+
+[*] analysis written:
+    summary                  Results/b5h2n5_gpu1_LGC_RC_EGC/non_targeted/analysis/summary.csv
+    paired                   Results/b5h2n5_gpu1_LGC_RC_EGC/non_targeted/analysis/paired_vs_LGC.csv
+    threshold_asr            Results/b5h2n5_gpu1_LGC_RC_EGC/non_targeted/analysis/threshold_asr.csv
+    query_breakdown          Results/b5h2n5_gpu1_LGC_RC_EGC/non_targeted/analysis/query_breakdown.csv

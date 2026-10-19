@@ -1,0 +1,5 @@
+04:56
+[*] checkpoints (contract): 100 200 500 1000 2000 2500 5000 10000
+[*] resnet50 non_targeted  EGC 76 s  TtBA 0 s  Tue Oct 20 04:57:27 CST 2026
+DONE
+rc=0

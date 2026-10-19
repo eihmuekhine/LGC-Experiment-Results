@@ -1,0 +1,20 @@
+Phase B5h2n5 (host re-qualification after the instance changed from 1 GPU to 5 GPUs) at /root/autodl-tmp/LGC_frozen, NGPU=5.
+Read AGENTS.md, docs/LESSONS.md, reports/B5h2_host_probe.md (1-GPU probe: HOST-IDENTICAL, reviewer PASS-WITH-NOTES) and
+reports/raw/B5pre2/B5h2_prompt_staged.txt (the N=5 version of the B5h2 prompt; its task texts and rules X1-X6 apply).
+Archive the exact prompt you are executing as reports/raw/B5h2n5/prompt.txt and print its sha256.
+
+Execute ONLY T0, T2, T3, T5 and T5b of the staged prompt. T1, T4, T6, T7a, T8 are NOT repeated (done on this data disk).
+Path substitutions: every output root Results/b5h2_* becomes Results/b5h2n5_*; raw files go to reports/raw/B5h2n5/
+(H already saved nvidia_smi_L.txt and nvidia_smi_query.txt there); the report is reports/B5h2n5_host_probe.md.
+Compare against the same reference roots as the 1-GPU probe (b4e2_smoke_* / b4h_t3_smoke_*), GPU 0 for T2/T3, and use
+tools/eval/compare_roots.py for every IDENTICAL/DIFFERENT verdict (paste its last 3 lines).
+T0: every GPU name must equal the D16 study GPU (otherwise STOP E-ENV); record the driver (H's saved files show 595.71.05 on this
+instance; the 1-GPU probe and all reference roots were made at 580.105.08, env_build38.txt says 595.71.05) as a finding only;
+torch/torchvision/cuDNN 2.7.1+cu128 / 0.22.1+cu128 / 90701; cpu.max quota Q (80 expected).
+T5: 5 GPUs concurrently, each IDENTICAL to GPU 0; T5b: only if the launcher's [threads] value is below 8, otherwise "T5b n/a".
+Verdict HOST-IDENTICAL if T2, T3, T5 (and T5b if run) are all IDENTICAL, else HOST-DIFFERENT with the first divergence per comparison.
+
+Rules: X1-X6 as in the staged prompt (real outputs only, exact HH:MM in agent_log.md, never overwrite a log, no invented sha256);
+edit nothing except reports/*; no installs; no git add/commit/tag; any single command longer than 30 minutes: STOP E-SPEC with the
+exact command; any unexpected result: STOP bundle reports/stop/B5h2n5_<step>_<YYYYmmdd-HHMM>.md. End with the RESULT block and the
+report's own sha256 in the closing message, then STOP.

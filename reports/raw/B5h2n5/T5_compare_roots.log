@@ -1,0 +1,33 @@
+05:05
+=== EGC gpu1 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== TtBA gpu1 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== EGC gpu2 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== TtBA gpu2 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== EGC gpu3 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== TtBA gpu3 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== EGC gpu4 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== TtBA gpu4 vs gpu0 ===
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 8, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL

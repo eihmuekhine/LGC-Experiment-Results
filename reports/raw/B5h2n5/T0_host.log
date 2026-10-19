@@ -1,0 +1,22 @@
+04:55
+--- nvidia-smi -L ---
+GPU 0: NVIDIA GeForce RTX 5090 (UUID: GPU-dda96881-189b-60f8-b6a8-e1b0f948c7c7)
+GPU 1: NVIDIA GeForce RTX 5090 (UUID: GPU-ebff2eba-21fe-06c3-a908-3af10cd58fef)
+GPU 2: NVIDIA GeForce RTX 5090 (UUID: GPU-e16d8796-6b10-7a37-23fe-f2546158a60d)
+GPU 3: NVIDIA GeForce RTX 5090 (UUID: GPU-01ee3cdc-d416-8646-e697-a03678f1ac86)
+GPU 4: NVIDIA GeForce RTX 5090 (UUID: GPU-d70ef86a-bf28-cc23-4b19-ee0948757a87)
+rc=0
+--- torch device names + versions ---
+torch 2.7.1+cu128 tv 0.22.1+cu128 cudnn 90701 cuda 12.8
+0 NVIDIA GeForce RTX 5090 cap 12 0 sm 170 mem_MiB 32110
+1 NVIDIA GeForce RTX 5090 cap 12 0 sm 170 mem_MiB 32110
+2 NVIDIA GeForce RTX 5090 cap 12 0 sm 170 mem_MiB 32110
+3 NVIDIA GeForce RTX 5090 cap 12 0 sm 170 mem_MiB 32110
+4 NVIDIA GeForce RTX 5090 cap 12 0 sm 170 mem_MiB 32110
+device_count 5
+--- D12 flags as adapters/_common.py sets them ---
+matmul_tf32 False
+cudnn_tf32 False
+deterministic True
+benchmark False
+float32_matmul_precision highest

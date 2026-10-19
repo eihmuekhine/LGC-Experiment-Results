@@ -1,0 +1,4 @@
+05:02
+TtBA [('ILSVRC2012_val_00007450.JPEG', '8435', '0', 'budget'), ('ILSVRC2012_val_00015433.JPEG', '8546', '0', 'budget'), ('ILSVRC2012_val_00025151.JPEG', '8457', '0', 'budget')]
+CGBA [('ILSVRC2012_val_00007450', '9800', '0', 'budget'), ('ILSVRC2012_val_00015433', '9369', '0', 'budget'), ('ILSVRC2012_val_00025151', '9828', '0', 'budget')]
+ARS_OPT [('ILSVRC2012_val_00007450', '10000', '0', 'budget'), ('ILSVRC2012_val_00015433', '10000', '0', 'budget'), ('ILSVRC2012_val_00025151', '10000', '0', 'budget')]

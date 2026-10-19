@@ -1,0 +1,22 @@
+04:55
+[env] torch=2.7.1+cu128 (expected 2.7.1+cu128)  torchvision=0.22.1+cu128 (expected 0.22.1+cu128)  cuDNN=90701 (expected 90701)
+[threads] Q=80.0 NGPU=5 -> OMP_NUM_THREADS=MKL_NUM_THREADS=8
+[dry_run] NGPU=5 RESULTS_ROOT=Results LOG_DIR=reports/raw/B5a2 (no GPU process started)
+# cell: e10_TtBA_densenet161_places365_NT
+# gpu_slot: 0   (formula GPU_ID=$(( ({%} - 1) % NGPU )); job slot 1 of 5)
+# outdir: Results/b5_e10_TtBA_densenet161_places365_NT
+# gates: partial=check_contract --stage partial; g5=G5 n/a (no published reference); domain=n/a
+python adapters/run_ttba_v2.py --ttba_repo /root/autodl-tmp/TtBA --arch densenet161_places365 --targeted 0 --split_csv splits/places365/densenet161_places365_non_targeted.csv --out_dir Results/b5_e10_TtBA_densenet161_places365_NT --limit 200
+# cell: e10_TtBA_densenet161_places365_T
+# gpu_slot: 1   (formula GPU_ID=$(( ({%} - 1) % NGPU )); job slot 2 of 5)
+# outdir: Results/b5_e10_TtBA_densenet161_places365_T
+# gates: partial=check_contract --stage partial; g5=G5 n/a (no published reference); domain=n/a
+python adapters/run_ttba_v2.py --ttba_repo /root/autodl-tmp/TtBA --arch densenet161_places365 --targeted 1 --split_csv splits/places365/densenet161_places365_targeted.csv --out_dir Results/b5_e10_TtBA_densenet161_places365_T --limit 200
+# cell: main_TtBA_vgg19_T
+# gpu_slot: 2   (formula GPU_ID=$(( ({%} - 1) % NGPU )); job slot 3 of 5)
+# outdir: Results/b5_main_TtBA_vgg19_T
+# gates: partial=check_contract --stage partial; g5=g5_check (main study); domain=n/a
+python adapters/run_ttba_v2.py --ttba_repo /root/autodl-tmp/TtBA --dataset imagenet-vgg --targeted 1 --split_csv splits/imagenet/ttba_github/vgg19_targeted.csv --out_dir Results/b5_main_TtBA_vgg19_T --limit 200
+# cell: main_TtBA_vgg19_NT
+# gpu_slot: 3   (formula GPU_ID=$(( ({%} - 1) % NGPU )); job slot 4 of 5)
+# outdir: Results/b5_main_TtBA_vgg19_NT

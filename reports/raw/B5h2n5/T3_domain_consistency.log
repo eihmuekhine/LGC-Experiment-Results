@@ -1,0 +1,11 @@
+05:03
+[*] GPU NVIDIA GeForce RTX 5090  D12 matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| method | cell (arch/mode) | rows | C | Q9 | Q6 | X | median m(s=1) non-C | max m(s=1) non-C | adv_uint8==1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| CGBA | resnet50/non_targeted | 24 | 19 | 5 | 0 | 0 | 0.000251 | 0.000603 | 13 |
+| ARS_OPT | resnet50/non_targeted | 24 | 15 | 9 | 0 | 0 | 0.000452 | 0.00272 | 11 |
+
+[*] wrote reports/raw/B5h2n5/t3_domain_consistency.csv (48 rows)
+[+] no X>0 for any method (ARS_OPT and CGBA/CGBA_H both clamp correctly)
+rc=0
