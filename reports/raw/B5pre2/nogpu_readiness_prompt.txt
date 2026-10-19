@@ -1,0 +1,51 @@
+GPU OFF (no GPU attached to this container right now). CPU ONLY. Do not call nvidia-smi, do not touch
+anything under Results/, do not run any attack code. Worktree /root/autodl-tmp/LGC_frozen. First: git log
+--oneline -1 (expect 56ba0625... or a descendant); print it.
+Never edit: lgc_bench/*, run_benchmark_33b.py, run_frame_b1.sh, official clones, contract/paper_contract.yaml,
+prereg files, docs/LESSONS.md. Allowed writes: reports/raw/B5pre2/*, .opencode/* (guard only, Step 2).
+Execution rules: real command outputs only, foreground only (no nohup/tmux/background), one step at a time,
+log every command to reports/raw/B5pre2/agent_log.md, end with a RESULT block.
+export CUDA_VISIBLE_DEVICES=""   for every python command below.
+
+Step 0 — facts: git log --oneline -1; sha256sum contract/paper_contract.yaml; opencode --version;
+ls .opencode/skills; df -h /root/autodl-tmp; python -c "import torch,torchvision;
+print(torch.__version__, torchvision.__version__)"; git status --short.
+
+Step 1 — CPU simulation harness: bash tools/eval/tests_b5/sim/run_sim.sh ; paste the full pass/fail table.
+Any FAIL: STOP (E-SPEC), do not continue to Step 3/4.
+
+Step 2 — OpenCode guard: if .opencode/opencode.json has no deny rules yet, run
+python $(find /root/autodl-tmp -iname opencode_guard.py | head -1) --write ; then, in a separate note (do not
+execute here, just confirm the rule text is present), paste the appended deny block.
+
+Step 3 — contract checker: python tools/eval/tests_contract/test_contract.py | tail -3 ; expect ALL PASS (21/21).
+
+Step 4 — dry-run identity, for N in 1 5 8 10: NGPU=$N bash run_b5_parallel.sh --dry_run | grep '^python ' |
+sha256sum ; all four must equal 9b24fb045d3f1481fea39fb14105ba00d38c035a797115e6640af77378b669b6. Any
+mismatch: STOP (E-SPEC), paste the diverging NGPU and its hash.
+
+Step 5 — real 5-GPU queue (informational, prints only, runs nothing): NGPU=5 python tools/eval/b5_gate_cell.py
+--print_queue ; paste the full ordered queue and any predicted-hours line verbatim.
+
+Step 6 — pre-stage B5h2 kit v2.1 prompt for N=5 (do NOT run opencode on it yet):
+N=5; sed "s/<N>/$N/g" /root/autodl-tmp/b5a2_kit_v2_1/prompts/B5h2_prompt.txt > reports/raw/B5pre2/B5h2_prompt_staged.txt
+(adjust the source path if b5a2_kit_v2_1 lives elsewhere -- find it with
+find /root/autodl-tmp -iname 'B5h2_prompt.txt'); grep -c '<N>' reports/raw/B5pre2/B5h2_prompt_staged.txt (expect 0);
+sha256sum reports/raw/B5pre2/B5h2_prompt_staged.txt.
+
+Write reports/raw/B5pre2/nogpu_readiness.md: every step's raw output, PASS/FAIL per step, deviations, sha256 of
+any file you wrote.
+
+RESULT
+phase: B5-pre2 no-GPU readiness
+head: <git HEAD>
+sim_harness: <PASS n/21 | FAIL, which check>
+contract_check: <ALL PASS 21/21 | FAIL>
+dry_run_identity: <MATCH all N | mismatch at N=..>
+queue_ngpu5: <predicted hours, or "see report">
+guard: <applied | already present | FAILED>
+b5h2_staged: <sha256, or "not found, path: ...">
+deviations: <list or none>
+stop_bundles: <list or none>
+verdict: READY-FOR-GPU | STOPPED
+STOP.

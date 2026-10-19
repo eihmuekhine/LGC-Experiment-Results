@@ -1,0 +1,77 @@
+Load skills lgc-preflight, lgc-paper-contract (and lgc-baselines if installed). Phase B5h2: host probe for B5 attempt 2.
+GPU ON, NGPU=5. Worktree /root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7. Print git rev-parse HEAD
+and the sha256 of contract/paper_contract.yaml, run_b5_parallel.sh and reports/raw/B5h2/prompt.txt. Read
+docs/LESSONS.md; list the active ids that apply (at least L03 L04 L06 L21 L23 L24 L26 L27). Read
+prompts/B5-host_prompt.txt: T1-T7a below refer to its steps.
+Rules: export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 for every GPU command except T5b; one attack process per GPU (D14); tee every
+GPU command to reports/raw/B5h2/<step>.log; new result roots only under Results/b5h2_*; do not start B5 and do not
+create any Results/b5_* or Results/appendix_cgba_d8only_* directory; edit nothing except reports/* (the two root lists
+of T6 included); any unexpected result: STOP bundle reports/stop/B5h2_<step>_<YYYYmmdd-HHMM>.md (skill §7); use
+tools/eval/compare_roots.py for every IDENTICAL / DIFFERENT verdict and paste its last 3 lines; run check_contract.py
+only with --report and --status_out under reports/raw/B5h2/; no git add, commit, stash or tag (H commits).
+
+T0 Host fingerprint: hostname; nvidia-smi -L (count must equal NGPU; every name must equal the study GPU of contract
+ D16, "NVIDIA GeForce RTX 5090" unless a later D16 note names another; any other name, e.g. "NVIDIA GeForce RTX
+ 5090 D": STOP E-ENV before any GPU run, H decides) and the driver; torch / torchvision / cuDNN (must be 2.7.1+cu128 / 0.22.1+cu128 / 90701, else STOP E-ENV); the TF32 and
+ cudnn.deterministic flags as the runners set them (D12); /sys/fs/cgroup/cpu.max and
+ `env -u OMP_NUM_THREADS -u OMP_THREAD_LIMIT nproc` (a CPU quota below 8 x NGPU is a finding); free -g;
+ df -h /root/autodl-tmp (less than 30 GB free: STOP E-INFRA). `echo "TMUX=$TMUX"` (non-empty: OpenCode was started inside
+ tmux session probe; never start tmux yourself); `NGPU=5 bash run_b5_parallel.sh --dry_run`; paste the guard lines and the first 3 queued cells.
+T1 B0' determinism on this host, as T1 of prompts/B5-host_prompt.txt, into Results/b5h2_A, Results/b5h2_A2 and
+ Results/b5h2_B. Any difference: STOP.
+T2 Cross-host identity (information): compare Results/b5h2_B with Results/b4e2_smoke_LGC_RC_EGC_resnet50, as T2 of
+ the old prompt: IDENTICAL or the first diverging (image, budget).
+T3 TtBA, CGBA (--cgba_variant fixed) and ARS_OPT on resnet50 NT rows 1-3 into Results/b5h2_<method>_resnet50; compare
+ with Results/b4e2_smoke_ttba_resnet50, Results/b4h_t3_smoke_CGBA_resnet50 and Results/b4h_t3_smoke_ARS_OPT_resnet50.
+ Report oob_queries; run adapters/diag/domain_consistency.py on the new CGBA and ARS_OPT roots (X = 0 by the column
+ named class).
+T4 s/img of the four methods on this host next to the reference roots' s/img.
+T5 Only if NGPU > 1: per-GPU identity as T5 of the old prompt, every GPU against GPU 0, at most one attack process
+ per GPU at any time. If NGPU = 1, write "T5 n/a (one GPU)".
+T5b Threads: read the [threads] line of the T0 dry run. If OMP_NUM_THREADS < 8 there, rerun the T1 (B) run and the T3
+ TtBA run with OMP_NUM_THREADS=MKL_NUM_THREADS=<that value> into Results/b5h2_omp<value>_B and
+ Results/b5h2_omp<value>_TtBA_resnet50 and compare each with its OMP = 8 root (IDENTICAL required; DIFFERENT: STOP
+ E-ENV). If the value is 8, write "T5b n/a (launcher threads = 8)".
+T6 ARS_OPT on Salman2020Do_R50 and on resnet50_places365 and densenet161_places365 (both modes each), rows 1-3, into
+ Results/b5h2_ARS_OPT_<victim>: queries = 10000, domain_consistency X = 0, human_preflight FLAG 0, per checkpoint
+ found / pix_l2. Then in reports/B4e2_smoke_roots.txt and reports/B5_postfix_roots.txt replace the three
+ Results/b5host_ARS_OPT_* lines (attempt-1 host, torch 2.8.0, not on this instance) by the three new roots; show the
+ diff. Run check_contract.py --stage smoke over every root of reports/B4e2_smoke_roots.txt (exit 0 required; quote
+ every FAIL line).
+T7a As T7a of the old prompt (LGC_RC_EGC, TtBA, CGBA / CGBA_H on both Places365 victims, both modes, rows 1-3) into
+ Results/b5h2_*; compare with the matching roots of reports/B4e2_smoke_roots.txt (CGBA: the b4h_t3 roots);
+ domain_consistency X = 0 for CGBA / CGBA_H.
+T8 Gate end-to-end (the launcher's own gate tool on real GPU outputs; attempt 1 lost every TtBA/CGBA cell to an untested
+ gate CLI): with --log_dir reports/raw/B5h2/gates_e2e and --root (and --ttba_root where named) pointing at roots you
+ created above, run `python tools/eval/b5_gate_cell.py <cell> --root <root>` for main_LGC_RC_EGC_resnet50_NT (T1 B root),
+ main_TtBA_resnet50_NT, main_CGBA_resnet50_NT (--ttba_root = the T3 TtBA root), main_ARS_OPT_resnet50_NT,
+ e10_CGBA_H_resnet50_places365_T (a T7a root) and e11_ARS_OPT_Salman2020Do_R50_NT (T6 root). Required: exit 0 for each;
+ partial PASS; G5 PENDING ("tool check only", 3 images) or n/a, never PASS; domain X = 0 for CGBA / CGBA_H / ARS_OPT and
+ the X count recorded for LGC_RC_EGC. Paste reports/raw/B5h2/gates_e2e/gates/summary.csv. Any reports/stop/B5a2_* file
+ these runs write belongs to the probe, not to B5: list it (H moves it before the sign-off). Any failure: STOP E-OTHER.
+Execution rules (kit v2, adapted from arXiv:2610.12176 App. B.3; docs/LESSONS.md L24, L26). They add to the rules
+above and never relax them.
+ X1 Run every command for real; copy every value from its output. Never write a value you did not see.
+ X2 Foreground only (your own commands, not the code you write): each command returns only after everything it
+    started has ended (several processes in one command followed by `wait`, or GNU parallel, are allowed). No nohup,
+    setsid, disown, tmux or screen; no process left running; no loop that re-reads an unchanged log. A command that
+    would run longer than 30 minutes: do not start it; STOP (E-SPEC) with its exact command line (H runs it in tmux).
+ X3 One task at a time, in the order given. Run the task's own check and read its output before the next task.
+ X4 A check that still fails after two fix attempts for the same cause ends the task: STOP bundle (skill §7) with
+    both attempts. Never widen the allowed edits to make a check pass.
+ X5 Log every command in reports/raw/B5h2/agent_log.md, one row each: time | task | command | exit status | output file or
+    first output line.
+ X6 End the report with this block, each value copied from a command output:
+      RESULT
+      phase: B5h2
+      head: <git rev-parse HEAD>
+      contract_sha256: <sha256>
+      prompt_sha256: <sha256 of the prompt file you executed>
+      tasks: <task=PASS|FAIL|STOP|n/a for every task, space-separated>
+      files: <"path sha256", one line per created or changed file>
+      deviations: none | <count> (listed in the report)
+      stop_bundles: none | <paths>
+      verdict: READY-FOR-REVIEW | STOPPED
+Verdict line: HOST-IDENTICAL (T2, T3, T7a, T5b if run and, if NGPU > 1, T5 all IDENTICAL; T8 PASS) or HOST-DIFFERENT (first divergence of
+each comparison). Write reports/B5h2_host_probe.md (runbook §5: environment block, one section per task with raw
+tables and verdicts, deviations, sha256 of every created or changed file, GPU minutes, five-line summary, the RESULT block of X6). STOP.
