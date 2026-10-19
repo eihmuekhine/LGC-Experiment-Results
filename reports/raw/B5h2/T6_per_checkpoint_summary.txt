@@ -1,0 +1,150 @@
+== Results/b5h2_ARS_OPT_Salman2020Do_R50/non_targeted
+  ILSVRC2012_val_00010608  b=  100 found=1 pix_l2=33.344692
+  ILSVRC2012_val_00010608  b=  200 found=1 pix_l2=32.241077
+  ILSVRC2012_val_00010608  b=  500 found=1 pix_l2=32.240818
+  ILSVRC2012_val_00010608  b= 1000 found=1 pix_l2=27.042761
+  ILSVRC2012_val_00010608  b= 2000 found=1 pix_l2=21.683901
+  ILSVRC2012_val_00010608  b= 2500 found=1 pix_l2=19.971556
+  ILSVRC2012_val_00010608  b= 5000 found=1 pix_l2=15.592440
+  ILSVRC2012_val_00010608  b=10000 found=1 pix_l2=13.028959
+  ILSVRC2012_val_00046453  b=  100 found=1 pix_l2=34.446369
+  ILSVRC2012_val_00046453  b=  200 found=1 pix_l2=34.338707
+  ILSVRC2012_val_00046453  b=  500 found=1 pix_l2=33.631176
+  ILSVRC2012_val_00046453  b= 1000 found=1 pix_l2=27.712711
+  ILSVRC2012_val_00046453  b= 2000 found=1 pix_l2=22.843203
+  ILSVRC2012_val_00046453  b= 2500 found=1 pix_l2=21.361101
+  ILSVRC2012_val_00046453  b= 5000 found=1 pix_l2=17.443991
+  ILSVRC2012_val_00046453  b=10000 found=1 pix_l2=15.318589
+  ILSVRC2012_val_00024509  b=  100 found=1 pix_l2=6.005383
+  ILSVRC2012_val_00024509  b=  200 found=1 pix_l2=6.005383
+  ILSVRC2012_val_00024509  b=  500 found=1 pix_l2=4.870916
+  ILSVRC2012_val_00024509  b= 1000 found=1 pix_l2=3.372750
+  ILSVRC2012_val_00024509  b= 2000 found=1 pix_l2=1.796014
+  ILSVRC2012_val_00024509  b= 2500 found=1 pix_l2=1.566491
+  ILSVRC2012_val_00024509  b= 5000 found=1 pix_l2=1.113478
+  ILSVRC2012_val_00024509  b=10000 found=1 pix_l2=0.842405
+== Results/b5h2_ARS_OPT_Salman2020Do_R50/targeted
+  ILSVRC2012_val_00010608  b=  100 found=1 pix_l2=99.459282
+  ILSVRC2012_val_00010608  b=  200 found=1 pix_l2=99.459282
+  ILSVRC2012_val_00010608  b=  500 found=1 pix_l2=77.792580
+  ILSVRC2012_val_00010608  b= 1000 found=1 pix_l2=76.854347
+  ILSVRC2012_val_00010608  b= 2000 found=1 pix_l2=75.433105
+  ILSVRC2012_val_00010608  b= 2500 found=1 pix_l2=75.052986
+  ILSVRC2012_val_00010608  b= 5000 found=1 pix_l2=72.947983
+  ILSVRC2012_val_00010608  b=10000 found=1 pix_l2=69.431328
+  ILSVRC2012_val_00046453  b=  100 found=1 pix_l2=119.194839
+  ILSVRC2012_val_00046453  b=  200 found=1 pix_l2=119.194839
+  ILSVRC2012_val_00046453  b=  500 found=1 pix_l2=114.179878
+  ILSVRC2012_val_00046453  b= 1000 found=1 pix_l2=110.697075
+  ILSVRC2012_val_00046453  b= 2000 found=1 pix_l2=108.145996
+  ILSVRC2012_val_00046453  b= 2500 found=1 pix_l2=106.954117
+  ILSVRC2012_val_00046453  b= 5000 found=1 pix_l2=100.867477
+  ILSVRC2012_val_00046453  b=10000 found=1 pix_l2=89.484467
+  ILSVRC2012_val_00024509  b=  100 found=1 pix_l2=135.471832
+  ILSVRC2012_val_00024509  b=  200 found=1 pix_l2=135.471832
+  ILSVRC2012_val_00024509  b=  500 found=1 pix_l2=124.152046
+  ILSVRC2012_val_00024509  b= 1000 found=1 pix_l2=121.469604
+  ILSVRC2012_val_00024509  b= 2000 found=1 pix_l2=115.209435
+  ILSVRC2012_val_00024509  b= 2500 found=1 pix_l2=111.892281
+  ILSVRC2012_val_00024509  b= 5000 found=1 pix_l2=102.740189
+  ILSVRC2012_val_00024509  b=10000 found=1 pix_l2=82.281891
+== Results/b5h2_ARS_OPT_resnet50_places365/non_targeted
+  Places365_val_00002172   b=  100 found=1 pix_l2=49.816532
+  Places365_val_00002172   b=  200 found=1 pix_l2=49.204899
+  Places365_val_00002172   b=  500 found=1 pix_l2=47.826981
+  Places365_val_00002172   b= 1000 found=1 pix_l2=36.524208
+  Places365_val_00002172   b= 2000 found=1 pix_l2=27.240637
+  Places365_val_00002172   b= 2500 found=1 pix_l2=24.656176
+  Places365_val_00002172   b= 5000 found=1 pix_l2=18.112307
+  Places365_val_00002172   b=10000 found=1 pix_l2=11.373825
+  Places365_val_00023888   b=  100 found=1 pix_l2=39.239689
+  Places365_val_00023888   b=  200 found=1 pix_l2=37.931194
+  Places365_val_00023888   b=  500 found=1 pix_l2=37.930771
+  Places365_val_00023888   b= 1000 found=1 pix_l2=28.815460
+  Places365_val_00023888   b= 2000 found=1 pix_l2=21.150675
+  Places365_val_00023888   b= 2500 found=1 pix_l2=19.364336
+  Places365_val_00023888   b= 5000 found=1 pix_l2=12.148005
+  Places365_val_00023888   b=10000 found=1 pix_l2=7.177472
+  Places365_val_00004317   b=  100 found=1 pix_l2=7.172235
+  Places365_val_00004317   b=  200 found=1 pix_l2=6.544064
+  Places365_val_00004317   b=  500 found=1 pix_l2=6.543427
+  Places365_val_00004317   b= 1000 found=1 pix_l2=3.062197
+  Places365_val_00004317   b= 2000 found=1 pix_l2=1.434986
+  Places365_val_00004317   b= 2500 found=1 pix_l2=1.201114
+  Places365_val_00004317   b= 5000 found=1 pix_l2=0.802003
+  Places365_val_00004317   b=10000 found=1 pix_l2=0.580240
+== Results/b5h2_ARS_OPT_resnet50_places365/targeted
+  Places365_val_00002172   b=  100 found=1 pix_l2=74.843491
+  Places365_val_00002172   b=  200 found=1 pix_l2=74.843491
+  Places365_val_00002172   b=  500 found=1 pix_l2=73.779999
+  Places365_val_00002172   b= 1000 found=1 pix_l2=69.905434
+  Places365_val_00002172   b= 2000 found=1 pix_l2=64.567390
+  Places365_val_00002172   b= 2500 found=1 pix_l2=61.426186
+  Places365_val_00002172   b= 5000 found=1 pix_l2=52.675488
+  Places365_val_00002172   b=10000 found=1 pix_l2=40.435055
+  Places365_val_00023888   b=  100 found=1 pix_l2=76.916153
+  Places365_val_00023888   b=  200 found=1 pix_l2=76.916145
+  Places365_val_00023888   b=  500 found=1 pix_l2=74.870819
+  Places365_val_00023888   b= 1000 found=1 pix_l2=66.006500
+  Places365_val_00023888   b= 2000 found=1 pix_l2=58.432938
+  Places365_val_00023888   b= 2500 found=1 pix_l2=54.426811
+  Places365_val_00023888   b= 5000 found=1 pix_l2=40.119690
+  Places365_val_00023888   b=10000 found=1 pix_l2=27.547689
+  Places365_val_00004317   b=  100 found=1 pix_l2=89.024551
+  Places365_val_00004317   b=  200 found=1 pix_l2=89.024551
+  Places365_val_00004317   b=  500 found=1 pix_l2=83.120132
+  Places365_val_00004317   b= 1000 found=1 pix_l2=68.498459
+  Places365_val_00004317   b= 2000 found=1 pix_l2=54.408787
+  Places365_val_00004317   b= 2500 found=1 pix_l2=50.771461
+  Places365_val_00004317   b= 5000 found=1 pix_l2=40.756287
+  Places365_val_00004317   b=10000 found=1 pix_l2=30.049971
+== Results/b5h2_ARS_OPT_densenet161_places365/non_targeted
+  Places365_val_00002172   b=  100 found=1 pix_l2=40.251266
+  Places365_val_00002172   b=  200 found=1 pix_l2=38.382961
+  Places365_val_00002172   b=  500 found=1 pix_l2=38.382496
+  Places365_val_00002172   b= 1000 found=1 pix_l2=27.306864
+  Places365_val_00002172   b= 2000 found=1 pix_l2=17.134439
+  Places365_val_00002172   b= 2500 found=1 pix_l2=14.001145
+  Places365_val_00002172   b= 5000 found=1 pix_l2=8.057031
+  Places365_val_00002172   b=10000 found=1 pix_l2=5.063626
+  Places365_val_00023888   b=  100 found=1 pix_l2=44.120903
+  Places365_val_00023888   b=  200 found=1 pix_l2=42.066132
+  Places365_val_00023888   b=  500 found=1 pix_l2=42.065685
+  Places365_val_00023888   b= 1000 found=1 pix_l2=27.576967
+  Places365_val_00023888   b= 2000 found=1 pix_l2=20.888939
+  Places365_val_00023888   b= 2500 found=1 pix_l2=18.586927
+  Places365_val_00023888   b= 5000 found=1 pix_l2=11.574775
+  Places365_val_00023888   b=10000 found=1 pix_l2=6.313108
+  Places365_val_00004317   b=  100 found=1 pix_l2=13.319084
+  Places365_val_00004317   b=  200 found=1 pix_l2=13.319084
+  Places365_val_00004317   b=  500 found=1 pix_l2=12.995272
+  Places365_val_00004317   b= 1000 found=1 pix_l2=7.771199
+  Places365_val_00004317   b= 2000 found=1 pix_l2=3.967112
+  Places365_val_00004317   b= 2500 found=1 pix_l2=3.272393
+  Places365_val_00004317   b= 5000 found=1 pix_l2=1.795805
+  Places365_val_00004317   b=10000 found=1 pix_l2=1.210177
+== Results/b5h2_ARS_OPT_densenet161_places365/targeted
+  Places365_val_00002172   b=  100 found=1 pix_l2=78.510773
+  Places365_val_00002172   b=  200 found=1 pix_l2=78.510773
+  Places365_val_00002172   b=  500 found=1 pix_l2=60.157143
+  Places365_val_00002172   b= 1000 found=1 pix_l2=42.720196
+  Places365_val_00002172   b= 2000 found=1 pix_l2=33.184032
+  Places365_val_00002172   b= 2500 found=1 pix_l2=28.340769
+  Places365_val_00002172   b= 5000 found=1 pix_l2=17.466909
+  Places365_val_00002172   b=10000 found=1 pix_l2=8.811350
+  Places365_val_00023888   b=  100 found=1 pix_l2=46.074341
+  Places365_val_00023888   b=  200 found=1 pix_l2=46.074341
+  Places365_val_00023888   b=  500 found=1 pix_l2=45.567661
+  Places365_val_00023888   b= 1000 found=1 pix_l2=43.883312
+  Places365_val_00023888   b= 2000 found=1 pix_l2=40.830009
+  Places365_val_00023888   b= 2500 found=1 pix_l2=38.609238
+  Places365_val_00023888   b= 5000 found=1 pix_l2=29.867744
+  Places365_val_00023888   b=10000 found=1 pix_l2=19.929216
+  Places365_val_00004317   b=  100 found=1 pix_l2=44.577930
+  Places365_val_00004317   b=  200 found=1 pix_l2=44.577930
+  Places365_val_00004317   b=  500 found=1 pix_l2=37.354626
+  Places365_val_00004317   b= 1000 found=1 pix_l2=27.960321
+  Places365_val_00004317   b= 2000 found=1 pix_l2=18.794029
+  Places365_val_00004317   b= 2500 found=1 pix_l2=16.671564
+  Places365_val_00004317   b= 5000 found=1 pix_l2=10.493186
+  Places365_val_00004317   b=10000 found=1 pix_l2=5.897661

@@ -1,0 +1,27 @@
+Load skills lgc-preflight (section 6, review mode) and lgc-paper-contract. Phase B5h2 review (host probe, B5 attempt 2).
+If this session already contains the author's work, say so in the first line and stop: that is not an independent review.
+Read in this order: reports/raw/B5h2/prompt.txt; prompts/B5-host_prompt.txt; git status --short; git diff HEAD;
+reports/raw/B5h2/*; only then reports/B5h2_host_probe.md.
+Start no GPU process (compare_roots.py and CSV counts run on CPU). Edit nothing except
+reports/raw/B5h2/checker_review.md; never write under Results/; never run git checkout, reset, stash, add or commit;
+run check_contract.py only with --report /tmp/<name>.md --status_out /tmp/<name>_status.md.
+PASS/FAIL per task T0-T8 with your own evidence (GPU name per contract D16 at T0; T5b when the launcher's
+threads are below 8; T8 rerun yourself for two of its six cells on CPU with --gate partial and --gate g5 only and --log_dir under /tmp): rerun every compare_roots.py comparison yourself and quote its last
+3 lines; recount every domain_consistency X from its CSV by the column named class; rerun the T6 check_contract smoke
+command; check that the root-list edits replace exactly the three Results/b5host_ARS_OPT_* lines and nothing else;
+check the T0 environment lines (torch 2.7.1+cu128, torchvision 0.22.1+cu128, cuDNN 90701, GPU count = NGPU); check the
+verdict line against your own results. List every claim in the report that the evidence does not support
+(each one becomes a recall entry).
+Your own commands follow X1-X3 of the author's prompt (real outputs, foreground only, in order).
+Re-review rule: if reports/raw/B5h2/fix*_prompt.txt exist, this is a review after a fix round: review the whole phase
+again (every criterion), not only the fix.
+Also compare reports/raw/B5h2/agent_log.md with the report: list up to 10 table values in the report that no logged command
+and no file under reports/raw/B5h2/ shows; check that the report ends with the RESULT block and that its sha256 values match
+your own.
+Recall entries (kit v2, adapted from arXiv:2610.12176 App. I), one per FAIL and per unsupported claim:
+ R<k> | criterion | BLOCKER (wrong result or broken rule) / MAJOR (incomplete or unverifiable) / MINOR | evidence
+ (file:line, or command + output line) | scope (the only files or functions the author may change for it) |
+ acceptance (one command and the output that proves the fix)
+Write reports/raw/B5h2/checker_review.md: criteria table, recall entries, and as the last line exactly one of "VERDICT: PASS" (no entries),
+"VERDICT: PASS-WITH-NOTES" (MINOR entries only) or "VERDICT: FAIL" (any BLOCKER or MAJOR). No rewrites, no praise.
+STOP.

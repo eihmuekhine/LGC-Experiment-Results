@@ -1,0 +1,1 @@
+1.0.28 /root/miniconda3/lib/python3.12/site-packages/timm/__init__.py

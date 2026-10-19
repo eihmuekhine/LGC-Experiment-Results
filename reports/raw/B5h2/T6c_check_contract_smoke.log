@@ -1,0 +1,15 @@
+[*] stage=smoke roots=['Results/b4e2_smoke_LGC_RC_EGC_resnet50', 'Results/b4e2_smoke_LGC_RC_EGC_vgg19', 'Results/b4e2_smoke_LGC_RC_EGC_vit_b_32', 'Results/b4e2_smoke_LGC_RC_EGC_resnet50_places365_non_targeted', 'Results/b4e2_smoke_LGC_RC_EGC_resnet50_places365_targeted', 'Results/b4e2_smoke_LGC_RC_EGC_densenet161_places365_non_targeted', 'Results/b4e2_smoke_LGC_RC_EGC_densenet161_places365_targeted', 'Results/b4e2_smoke_LGC_RC_EGC_Salman2020Do_R50_non_targeted', 'Results/b4e2_smoke_LGC_RC_EGC_Salman2020Do_R50_targeted', 'Results/b4e2_smoke_ttba_resnet50', 'Results/b4e2_smoke_ttba_vgg19', 'Results/b4e2_smoke_ttba_vit_b_32', 'Results/b4e2_smoke_ttba_resnet50_places365', 'Results/b4e2_smoke_ttba_densenet161_places365', 'Results/b4e2_smoke_ttba_Salman2020Do_R50', 'Results/b4h_t3_smoke_CGBA_resnet50', 'Results/b4h_t3_smoke_CGBA_vgg19', 'Results/b4h_t3_smoke_CGBA_vit_b_32', 'Results/b4h_t3_smoke_CGBA_resnet50_places365', 'Results/b4h_t3_smoke_CGBA_densenet161_places365', 'Results/b4h_t3_smoke_CGBA_Salman2020Do_R50', 'Results/b4h_t3_smoke_ARS_OPT_resnet50', 'Results/b4h_t3_smoke_ARS_OPT_vgg19', 'Results/b4h_t3_smoke_ARS_OPT_vit_b_32', 'Results/b5h2_ARS_OPT_Salman2020Do_R50', 'Results/b5h2_ARS_OPT_resnet50_places365', 'Results/b5h2_ARS_OPT_densenet161_places365']
+    PASS  I01   (FAIL)  count=0
+    PASS  I02   (FAIL)  count=0
+    PASS  I03   (FAIL)  count=0
+    PASS  I04   (FAIL)  count=0
+    PASS  I05   (FAIL)  count=0
+    PASS  I06   (FAIL)  count=0
+    PASS  I07   (FAIL)  count=0
+    PASS  I08   (FAIL)  count=0
+    PASS  I09   (WARN)  count=0
+    PASS  I10   (FAIL)  count=0
+    PASS  I11   (FAIL)  count=0
+    PASS  I12   (FAIL)  count=0
+    PASS  DISK  (FAIL)  count=0
+[*] report: reports/raw/B5h2/T6c_contract_smoke.md; exit code 0

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/LGC_frozen/adapters/run_arsopt.py", line 144, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/adapters/run_arsopt.py", line 139, in main
+    return C.run(METHOD, __doc__, params, HYPER_SOURCES, make_tracker, run_official, os.path.abspath(__file__),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/adapters/_common.py", line 693, in run
+    victim = load_victim_any(args.arch, args.device, args.ckpt_dir)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/adapters/_common.py", line 170, in load_victim_any
+    return build_robust_victim(device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/adapters/_common.py", line 227, in build_robust_victim
+    import robustbench.utils as rbu
+  File "/root/miniconda3/lib/python3.12/site-packages/robustbench/__init__.py", line 1, in <module>
+    from .data import load_cifar10
+  File "/root/miniconda3/lib/python3.12/site-packages/robustbench/data.py", line 7, in <module>
+    import timm
+  File "/root/autodl-tmp/baselines/ARS-OPT/timm/__init__.py", line 3, in <module>
+    from .models import create_model, list_models, list_pretrained, is_model, list_modules, model_entrypoint, \
+  File "/root/autodl-tmp/baselines/ARS-OPT/timm/models/__init__.py", line 1, in <module>
+    from .beit import *
+  File "/root/autodl-tmp/baselines/ARS-OPT/timm/models/beit.py", line 49, in <module>
+    from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
+ModuleNotFoundError: No module named 'timm.data'

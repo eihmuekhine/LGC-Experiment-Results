@@ -1,0 +1,72 @@
+=== 1. LGC_RC_EGC resnet50_places365 NT ===
+# compare_roots
+A = Results/b4e2_smoke_LGC_RC_EGC_resnet50_places365_non_targeted
+B = Results/b5h2_LGC_RC_EGC_resnet50_places365_non_targeted
+
+checkpoint keys: shared 24, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 2. LGC_RC_EGC resnet50_places365 T ===
+# compare_roots
+A = Results/b4e2_smoke_LGC_RC_EGC_resnet50_places365_targeted
+B = Results/b5h2_LGC_RC_EGC_resnet50_places365_targeted
+
+checkpoint keys: shared 24, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 3. LGC_RC_EGC densenet161_places365 NT ===
+# compare_roots
+A = Results/b4e2_smoke_LGC_RC_EGC_densenet161_places365_non_targeted
+B = Results/b5h2_LGC_RC_EGC_densenet161_places365_non_targeted
+
+checkpoint keys: shared 24, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 4. LGC_RC_EGC densenet161_places365 T ===
+# compare_roots
+A = Results/b4e2_smoke_LGC_RC_EGC_densenet161_places365_targeted
+B = Results/b5h2_LGC_RC_EGC_densenet161_places365_targeted
+
+checkpoint keys: shared 24, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 24, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 5. TtBA resnet50_places365 ===
+# compare_roots
+A = Results/b4e2_smoke_ttba_resnet50_places365
+B = Results/b5h2_TtBA_resnet50_places365
+
+checkpoint keys: shared 48, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 48, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 6. TtBA densenet161_places365 ===
+# compare_roots
+A = Results/b4e2_smoke_ttba_densenet161_places365
+B = Results/b5h2_TtBA_densenet161_places365
+
+checkpoint keys: shared 48, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 48, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 7. CGBA/CGBA_H resnet50_places365 ===
+# compare_roots
+A = Results/b4h_t3_smoke_CGBA_resnet50_places365
+B = Results/b5h2_CGBA_resnet50_places365
+
+checkpoint keys: shared 48, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 48, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL
+=== 8. CGBA/CGBA_H densenet161_places365 ===
+# compare_roots
+A = Results/b4h_t3_smoke_CGBA_densenet161_places365
+B = Results/b5h2_CGBA_densenet161_places365
+
+checkpoint keys: shared 48, only in A 0, only in B 0
+checkpoint differences: 0; max |pix_l2 A - B| = 0.000e+00
+npz files: shared 48, only in A 0, only in B 0; differences: 0
+VERDICT: IDENTICAL

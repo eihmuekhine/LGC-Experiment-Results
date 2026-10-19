@@ -1,0 +1,9 @@
+Initial boundary norm 40.93922424316406
+initial query 48
+[1/3] Places365_val_00002172 CGBA q=10000 L2@10000=2.5140578746795654 budget 38.6s
+Initial boundary norm 48.69678497314453
+initial query 53
+[2/3] Places365_val_00023888 CGBA q=10000 L2@10000=2.486746311187744 budget 37.2s
+Initial boundary norm 15.770095825195312
+initial query 31
+[3/3] Places365_val_00004317 CGBA q=10000 L2@10000=0.4792114794254303 budget 35.2s

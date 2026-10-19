@@ -1,0 +1,7 @@
+cell,scope,method,arch,mode,partial,g5,g5_code,domain_x,domain,stop
+main_LGC_RC_EGC_resnet50_NT,main,LGC_RC_EGC,resnet50,non_targeted,PASS,N/A,n/a,0,PASS,0
+main_TtBA_resnet50_NT,main,TtBA,resnet50,non_targeted,PASS,PENDING,pending,,SKIP,0
+main_CGBA_resnet50_NT,main,CGBA,resnet50,non_targeted,PASS,PENDING,pending,0,PASS,0
+main_ARS_OPT_resnet50_NT,main,ARS_OPT,resnet50,non_targeted,PASS,N/A,n/a,0,PASS,0
+e10_CGBA_H_resnet50_places365_T,e10,CGBA_H,resnet50_places365,targeted,PASS,N/A,n/a,0,PASS,0
+e11_ARS_OPT_Salman2020Do_R50_NT,e11,ARS_OPT,Salman2020Do_R50,non_targeted,PASS,N/A,n/a,0,PASS,0

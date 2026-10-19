@@ -1,0 +1,28 @@
+diff --git a/reports/B4e2_smoke_roots.txt b/reports/B4e2_smoke_roots.txt
+index 6f064f0..3ad6382 100644
+--- a/reports/B4e2_smoke_roots.txt
++++ b/reports/B4e2_smoke_roots.txt
+@@ -22,6 +22,6 @@ Results/b4h_t3_smoke_CGBA_Salman2020Do_R50
+ Results/b4h_t3_smoke_ARS_OPT_resnet50
+ Results/b4h_t3_smoke_ARS_OPT_vgg19
+ Results/b4h_t3_smoke_ARS_OPT_vit_b_32
+-Results/b5host_ARS_OPT_Salman2020Do_R50
+-Results/b5host_ARS_OPT_resnet50_places365
+-Results/b5host_ARS_OPT_densenet161_places365
++Results/b5h2_ARS_OPT_Salman2020Do_R50
++Results/b5h2_ARS_OPT_resnet50_places365
++Results/b5h2_ARS_OPT_densenet161_places365
+diff --git a/reports/B5_postfix_roots.txt b/reports/B5_postfix_roots.txt
+index c58ba0f..d417af9 100644
+--- a/reports/B5_postfix_roots.txt
++++ b/reports/B5_postfix_roots.txt
+@@ -7,6 +7,6 @@ Results/b4h_t3_smoke_CGBA_Salman2020Do_R50
+ Results/b4h_t3_smoke_ARS_OPT_resnet50
+ Results/b4h_t3_smoke_ARS_OPT_vgg19
+ Results/b4h_t3_smoke_ARS_OPT_vit_b_32
+-Results/b5host_ARS_OPT_Salman2020Do_R50
+-Results/b5host_ARS_OPT_resnet50_places365
+-Results/b5host_ARS_OPT_densenet161_places365
++Results/b5h2_ARS_OPT_Salman2020Do_R50
++Results/b5h2_ARS_OPT_resnet50_places365
++Results/b5h2_ARS_OPT_densenet161_places365
