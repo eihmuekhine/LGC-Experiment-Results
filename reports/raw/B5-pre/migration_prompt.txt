@@ -1,0 +1,81 @@
+1: Load skills lgc-preflight, lgc-paper-contract. Phase B5-pre, Beijing 5-GPU migration: investigate, transfer,
+2: and verify. CPU only, no GPU process. You run FROM Harbin (this container) and reach Beijing via
+3: `ssh -p 16126 root@connect.bjb2.seetacloud.com` (key trust already set up; must not prompt for a password --
+4: if it does, STOP (E-SPEC) and report, do not type anything).
+5:
+6: Context: LGC_frozen's own git-tracked state is already pushed (HEAD 56ba062, branch paper-runs) and its
+7: untracked project files are listed in reports/raw/B5-pre/transfer_include.txt (verified sha256
+8: b6131a504882282bb57e1220775abc63b66956eb8a52f7073c69a55e977d2eda, ~855M). Separately discovered, NOT yet in
+9: that manifest: (a) /root/autodl-tmp/ttba_mini_flat/images/*.JPEG are symlinks into
+10: /root/autodl-tmp/TtBA/data/imagenet/archive/imagenet-mini/val/ (the shared x0 image set for every victim,
+11: per contract L1); (b) places365 victim checkpoints under /root/autodl-tmp/models/places365/ and
+12: /root/autodl-tmp/LGC_frozen/models/places365/ (105M+93M, confirm whether these are the same file twice or
+13: genuinely separate copies); (c) possibly a torch hub cache for the main-ImageNet victim
+14: (IMAGENET1K_V1, downloaded by torchvision, not stored as a project file) and a RobustBench weight cache
+15: (robustbench.sha256 exists at /root/autodl-tmp/models/ but no .pth was found by an earlier *.pth search).
+16:
+17: Step 0 (investigate, report raw command output for every line, never state MISSING/UNCLEAR without running
+18: the search command first):
+19:   a. grep -c 'models/places365\|ttba_mini_flat\|TtBA/data' reports/raw/B5-pre/transfer_include.txt
+20:      (confirms whether these externals are already in the manifest or genuinely missing)
+21:   b. du -sh /root/autodl-tmp/TtBA/data/imagenet/archive/imagenet-mini/val
+22:   c. diff <(cd /root/autodl-tmp/models/places365 && sha256sum *.pth.tar) \
+23:          <(cd /root/autodl-tmp/LGC_frozen/models/places365 && sha256sum *.pth.tar)
+24:      (empty diff = identical content, safe to transfer once)
+25:   d. ls -la /root/autodl-tmp/LGC_frozen/models/imagenet/ ; find /root/autodl-tmp/LGC_frozen/models/imagenet -type f
+26:   e. find ~/.cache/torch/hub -type f 2>/dev/null | xargs -r du -ch 2>/dev/null | tail -5
+27:   f. find /root/autodl-tmp -iname '*robust*bench*' -o -iname '*salman*' 2>/dev/null | grep -v '.ipynb_checkpoints'
+28:   g. find /root/autodl-tmp/ttba_mini_flat/images -type l ! -path '*.ipynb_checkpoints*' | wc -l
+29:      (must be 3923; if not, STOP (E-SPEC) -- do not guess which images matter)
+30:
+31: Step 1: from Step 0's output, write reports/raw/B5-pre/externals_manifest.txt: one absolute source path per
+32: line, deduplicated, covering exactly what Beijing needs beyond the git clone and transfer_include.txt --
+33: at minimum the imagenet-mini val directory, the ttba_mini_flat symlink directory itself (rsync -l keeps
+34: symlinks as symlinks; since both ends use the identical /root/autodl-tmp/... absolute path, they resolve
+35: correctly on Beijing without edits), one copy of the places365 checkpoints (only one of the two locations
+36: if Step 0c shows they are identical -- prefer /root/autodl-tmp/LGC_frozen/models/places365/, the one the
+37: repo code actually ships with), and the torch hub cache / robustbench weights if Step 0e/0f found any.
+38:   Never include .ipynb_checkpoints, __pycache__, .DS_Store.
+39:
+40: Step 2 (on Beijing, via ssh -- do not touch anything else there):
+41:   ssh -p 16126 root@connect.bjb2.seetacloud.com "mkdir -p /root/autodl-tmp && cd /root/autodl-tmp && \
+42:     git clone -b paper-runs git@github.com:eihmuekhine/LGC-Experiment-Results.git LGC_frozen 2>&1 || \
+43:     (cd LGC_frozen && git fetch origin paper-runs && git reset --hard origin/paper-runs)"
+44:   If this fails with a GitHub auth error, STOP (E-SPEC) and report the exact error -- do not attempt to
+45:   copy any private key or credential to Beijing yourself.
+46:   ssh -p 16126 root@connect.bjb2.seetacloud.com "cd /root/autodl-tmp/LGC_frozen && git log --oneline -1 && git status --short"
+47:     -> expect HEAD 56ba062, clean status.
+48:
+49: Step 3: transfer, each rsync foreground and checked before the next:
+50:   rsync -avzP --files-from=reports/raw/B5-pre/transfer_include.txt -e "ssh -p 16126" \
+51:     /root/autodl-tmp/LGC_frozen/ root@connect.bjb2.seetacloud.com:/root/autodl-tmp/LGC_frozen/
+52:   rsync -avzP -e "ssh -p 16126" reports/raw/B5-pre/ \
+53:     root@connect.bjb2.seetacloud.com:/root/autodl-tmp/LGC_frozen/reports/raw/B5-pre/
+54:   For every absolute path in reports/raw/B5-pre/externals_manifest.txt: rsync -avzP -l -e "ssh -p 16126"
+55:     "<path>" "root@connect.bjb2.seetacloud.com:<same path>" (identical absolute destination; create parent
+56:     dirs with --mkpath or an explicit ssh mkdir -p first).
+57:
+58: Step 4 (verify on Beijing, via ssh):
+59:   while IFS= read -r f; do [ -f "$f" ] || echo "MISSING: $f"; done < reports/raw/B5-pre/transfer_include.txt
+60:     (run this ON Beijing, over ssh, from inside /root/autodl-tmp/LGC_frozen) -> expect no output
+61:   ssh -p 16126 root@connect.bjb2.seetacloud.com "find /root/autodl-tmp/ttba_mini_flat/images -xtype l 2>/dev/null | wc -l"
+62:     -> expect 0 (xtype l = broken symlinks; 0 means every symlink resolves on Beijing too)
+63:   ssh -p 16126 root@connect.bjb2.seetacloud.com "du -sh /root/autodl-tmp/LGC_frozen /root/autodl-tmp/TtBA/data/imagenet/archive/imagenet-mini/val 2>/dev/null"
+64:   ssh -p 16126 root@connect.bjb2.seetacloud.com "nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv"
+65:     (report raw output; do not judge pass/fail against the contract GPU yourself -- that is a human/L decision)
+66:
+67: Execution rules: X1 run every command for real, copy every value. X2 foreground only, no nohup/background;
+68: a single rsync may legitimately run long -- give it a generous timeout, do not background it. X3 one step
+69: at a time, in order. X4 any unexpected prompt (password, host-key confirmation, git merge conflict) is a
+70: STOP (E-SPEC) -- do not answer interactively, do not guess. X5 log every command in
+71: reports/raw/B5-pre/migration_log.md. X6 append to reports/raw/B5-pre/migration_log.md this block:
+72:   RESULT
+73:   phase: B5-pre migration
+74:   head_beijing: <git rev-parse HEAD on Beijing>
+75:   externals: <path -> transferred bytes, one per line>
+76:   verify: transfer_include=<ok|N missing> symlinks=<0 broken|N broken> gpu=<raw nvidia-smi line>
+77:   deviations: none | <count>
+78:   stop_bundles: none | <paths>
+79:   verdict: READY-FOR-B1-PROBE | STOPPED
+80: No git add/commit/push anywhere (H commits; Beijing must not commit at all per L25 single-writer rule).
+81: STOP.
