@@ -1,0 +1,23 @@
+module,top_or_lazy,starting_points,first file:line,installed_on_beijing,version_in_harbin_freeze
+PIL,top,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|run_benchmark_33b.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/_common.py:511,yes,10.3.0
+apex,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py:15,no,
+bidict,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py:12,no,
+functorch,lazy,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py:167,yes,
+glog,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/pars_opt_l2_norm_attack.py:8,no,
+huggingface_hub,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py:34,no,1.29.0
+inplace_abn,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/timm/layers/inplace_abn.py:5,no,
+lpips,lazy,lgc_bench/metrics.py|run_benchmark_33b.py|tools/eval/eval_metrics_offline.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py:29,no,0.1.4
+matplotlib,top,adapters/run_ttba_v2.py|run_benchmark_33b.py,/root/autodl-tmp/TtBA/DataTools.py:11,yes,3.9.0
+numpy,top,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|run_benchmark_33b.py|tools/eval/eval_metrics_offline.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/_common.py:31,yes,2.5.2
+pandas,top,run_benchmark_33b.py,/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py:10,yes,3.0.5
+piq,lazy,tools/eval/eval_metrics_offline.py,/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py:89,no,0.8.0
+robustbench,lazy,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/_common.py:227,no,
+safetensors,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/timm/models/_helpers.py:12,no,0.8.0
+scipy,top,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|run_benchmark_33b.py,/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_rel.py:176,no,1.18.1
+timm,top,adapters/run_cgba.py|adapters/run_ttba_v2.py|run_benchmark_33b.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py:286,no,1.0.28
+torch,top,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|lgc_bench/metrics.py|run_benchmark_33b.py|tools/eval/b5_gate_cell.py|tools/eval/b5_monitor.py|tools/eval/eval_metrics_offline.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/_common.py:40,yes,2.7.1+cu128
+torchmetrics,lazy,adapters/run_ttba_v2.py|lgc_bench/metrics.py|run_benchmark_33b.py|tools/eval/eval_metrics_offline.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/run_ttba_v2.py:73,no,1.9.0
+torchvision,top,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|run_benchmark_33b.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/_common.py:199,yes,0.22.1+cu128
+transformers,top,adapters/run_ttba_v2.py,/root/autodl-tmp/TtBA/dataset.py:14,no,5.16.1
+typing_extensions,top,adapters/run_arsopt.py,/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py:28,yes,4.12.1
+yaml,lazy,adapters/run_arsopt.py|adapters/run_cgba.py|adapters/run_ttba_v2.py|ttba_github/run_frame_b1_generic.py,/root/autodl-tmp/LGC_frozen/adapters/_common.py:108,yes,6.0.1

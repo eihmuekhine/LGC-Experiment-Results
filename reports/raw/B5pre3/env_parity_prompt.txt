@@ -1,0 +1,73 @@
+GPU OFF. CPU ONLY. Worktree /root/autodl-tmp/LGC_frozen. First print this prompt's sha256, then git log --oneline -1.
+Phase: B5-pre3 environment parity (Beijing vs Harbin). Already known: the 5 entry points answer --help with exit 0 (this
+proves top-level imports only); the torch hub cache and the weights are byte-identical to Harbin; a blind AST scan listed
+many MISSING modules, mostly from vendored legacy code (ARS-OPT/timm, foolbox, caffe, ...). Goal: find which missing
+third-party modules are REALLY reachable by the B5 runs (lazy imports inside functions included) and install ONLY those, at
+Harbin's exact versions.
+Rules: never edit a tracked file. No git commands. Never call nvidia-smi. Never write under Results/. Never download data.
+Allowed writes: reports/raw/B5pre3/* . pip installs are allowed ONLY in Step 4, each one asked per AGENTS.md rule 10.
+For every python command: export CUDA_VISIBLE_DEVICES="" PYTHONDONTWRITEBYTECODE=1.
+Log every command and its output to reports/raw/B5pre3/agent_log.md. Foreground only; stop any command longer than 10 minutes.
+This host is in no-GPU mode (0.5 CPU, 2 GB RAM): commands are slow, a timeout is not an error by itself.
+
+Step 1. Parity.
+ 1a. Record: python --version; pip freeze > reports/raw/B5pre3/pip_freeze_beijing.txt ; pip check > reports/raw/B5pre3/pip_check_before.txt 2>&1
+ 1b. reports/raw/B5pre3/pip_freeze_harbin.txt must exist (first line is the Harbin python version). Normalise names (lower case,
+     '_' = '-'). Write reports/raw/B5pre3/parity.csv: package, harbin_version, beijing_version, status
+     (MISSING_ON_BEIJING | VERSION_DIFF | ONLY_ON_BEIJING | SAME). Highlight torch, torchvision, numpy, pillow, scipy, pandas,
+     any nvidia-* and triton.
+Step 2. Reachability.
+ 2a. Write reports/raw/B5pre3/reach.py (this file is allowed). Starting points: run_benchmark_33b.py, adapters/run_ttba_v2.py,
+     adapters/run_cgba.py, adapters/run_arsopt.py, ttba_github/run_frame_b1_generic.py, tools/eval/b5_gate_cell.py,
+     tools/eval/b5_monitor.py, lgc_bench/metrics.py, tools/eval/eval_metrics_offline.py (the last two are class "metrics").
+     Build the static import closure over LOCAL modules. Search roots: the repo root, adapters, ttba_github, tools/eval,
+     /root/autodl-tmp/TtBA, /root/autodl-tmp/baselines/CGBA, /root/autodl-tmp/baselines/ARS-OPT, plus every literal path that the
+     entry files add with sys.path.insert/append. For each third-party import record: top-level (runs when the module is
+     imported, also inside if/try at module level) or lazy (inside a def/method); the starting point(s) that reach it; file:line.
+     Ignore vendored directories that the closure never reaches.
+ 2b. Write reports/raw/B5pre3/reachability.csv: module, top_or_lazy, starting_points, first file:line, installed_on_beijing,
+     version_in_harbin_freeze. Ignore the SyntaxWarning noise from legacy files.
+Step 3. Weights and the template literal.
+ 3a. For each victim (resnet50, vgg19, vit_b_32, resnet50_places365, densenet161_places365, Salman2020Do_R50) and the LGC
+     autoencoder: file:line where the weights are loaded, the file or URL, and whether the file exists locally.
+     Torchvision/torch.hub weights: check ~/.cache/torch/hub/checkpoints. If a weight would be downloaded, only report it.
+ 3b. grep the literal '{arch}_{mode}.csv' in run_b5_parallel.sh and in the adapters: show where it comes from and confirm that all
+     6 expansions under splits/imagenet/ttba_github/ exist.
+ Write reports/raw/B5pre3/weights.md.
+Step 4. Minimal install (the only step that may change the environment).
+ A package may be installed only if ALL hold: (a) it is reachable in reachability.csv (top-level or lazy, not an
+ unreachable vendored file), (b) it is missing on Beijing, (c) it is present in pip_freeze_harbin.txt, (d) it is not torch,
+ torchvision, numpy, triton or an nvidia-* package.
+ Command form: pip install --no-deps <package>==<harbin version>. Ask H for each command (rule 10). After each install:
+ python -c "import <module>"; pip check; if a new missing dependency appears, apply the same four rules to it.
+ A reachable module that is missing on Beijing AND absent from the Harbin freeze: do not install, list it as "not in Harbin".
+ Never run pip install without --no-deps. Never upgrade or downgrade anything already installed.
+Step 5. Post-install verification.
+ 5a. python -c "import torch,torchvision; print(torch.__version__, torchvision.__version__, torch.backends.cudnn.version())"
+     expected 2.7.1+cu128 0.22.1+cu128 90701. Any other value: STOP and report.
+ 5b. pip check > reports/raw/B5pre3/pip_check_after.txt 2>&1 ; show the diff against pip_check_before.txt.
+ 5c. Re-run, with the exact commands recorded in reports/raw/B5pre2/agent_log.md: the sim harness (expect 21/21 PASS), the
+     contract check (expect ALL PASS 21/21), and the dry-run identity for NGPU=1 and NGPU=5 (expect sha256
+     9b24fb045d3f1481fea39fb14105ba00d38c035a797115e6640af77378b669b6 for both).
+ 5d. If lpips is reachable: CPU smoke lpips.LPIPS(net='vgg') on two random 1x3x64x64 tensors. If piq is reachable: CPU smoke of
+     piq.DISTS() on the same tensors. Before each, confirm that the needed file exists in ~/.cache/torch/hub/checkpoints
+     (vgg16-397923af.pth, dists_weights.pt); if a file is absent, skip the smoke and report instead of downloading.
+Step 6. Write reports/raw/B5pre3/env_parity_report.md: raw outputs of Steps 1-5, one table of every reachable-but-missing
+ module with its decision (installed <version> | not in Harbin | other), deviations, sha256 of every file written (use sha256sum).
+ End the report with this block, filled from the evidence:
+RESULT
+phase: B5-pre3 env parity (CPU)
+head: (short hash)
+parity_diff: n packages differ; torch/torchvision/numpy unchanged yes|no
+reachable_missing_before: list or none
+installed: package==version list or none
+not_installed_with_reason: list or none
+victim_weights: all located | gaps: list
+template_literal: explained | unexplained
+torch_after: version string and cudnn
+sim: PASS n/21
+contract: PASS n/21
+dry_run_identity: MATCH N=1,5 | MISMATCH
+lpips_dists_smoke: ok | skipped (reason) | failed (error)
+verdict: READY-FOR-GPU | GAPS-FOUND
+STOP. Do not fix anything beyond Step 4. Do not commit.

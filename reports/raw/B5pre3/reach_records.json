@@ -1,0 +1,4678 @@
+{
+ "PIL": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 271,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 329,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/data.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 511,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 271,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 329,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/DataTools.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 511,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 271,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 329,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 511,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 271,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 329,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/tiny_imagenet.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 511,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 271,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 329,
+    "scope": "lazy",
+    "stmt": "from PIL.Image"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "apex": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from apex.normalization.fused_layer_norm.fused_layer_norm_affine"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "from apex.normalization.fused_layer_norm.fused_rms_norm_affine"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "from apex.normalization.fused_layer_norm.fused_rms_norm"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "bidict": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from bidict.bidict"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "functorch": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py",
+    "line": 167,
+    "scope": "lazy",
+    "stmt": "import functorch"
+   }
+  ],
+  "scopes": [
+   "lazy"
+  ]
+ },
+ "glog": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/pars_opt_l2_norm_attack.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import glog"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "huggingface_hub": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from huggingface_hub.create_repo"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from huggingface_hub.get_hf_file_metadata"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from huggingface_hub.hf_hub_download"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from huggingface_hub.hf_hub_url"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from huggingface_hub.repo_type_and_id_from_hf_id"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from huggingface_hub.upload_folder"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 38,
+    "scope": "top",
+    "stmt": "from huggingface_hub.utils.EntryNotFoundError"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "inplace_abn": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/inplace_abn.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from inplace_abn.functions.inplace_abn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/inplace_abn.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from inplace_abn.functions.inplace_abn_sync"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "lpips": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 29,
+    "scope": "lazy",
+    "stmt": "import lpips"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 29,
+    "scope": "lazy",
+    "stmt": "import lpips"
+   },
+   {
+    "entry": "lgc_bench/metrics.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 29,
+    "scope": "lazy",
+    "stmt": "import lpips"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 81,
+    "scope": "lazy",
+    "stmt": "import lpips"
+   }
+  ],
+  "scopes": [
+   "lazy"
+  ]
+ },
+ "matplotlib": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 223,
+    "scope": "lazy",
+    "stmt": "import matplotlib"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 226,
+    "scope": "lazy",
+    "stmt": "import matplotlib.pyplot"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 227,
+    "scope": "lazy",
+    "stmt": "from matplotlib.ticker.FuncFormatter"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 227,
+    "scope": "lazy",
+    "stmt": "from matplotlib.ticker.NullFormatter"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 327,
+    "scope": "lazy",
+    "stmt": "import matplotlib"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 330,
+    "scope": "lazy",
+    "stmt": "import matplotlib.pyplot"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/DataTools.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import matplotlib.pyplot"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import matplotlib.pyplot"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "numpy": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 54,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/engine.py",
+    "line": 127,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/env.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/geometry.py",
+    "line": 35,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/innov35.py",
+    "line": 30,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/pullback.py",
+    "line": 65,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 54,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/DataTools.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/general_torch_model.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/model.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 54,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/proposed_attack.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/utils.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 54,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/pars_opt_l2_norm_attack.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/blur_pool.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cond_conv2d.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py",
+    "line": 165,
+    "scope": "lazy",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/regnet.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnetv2.py",
+    "line": 497,
+    "scope": "lazy",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py",
+    "line": 746,
+    "scope": "lazy",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/volo.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/utils/dataset_toolkit.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 54,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/engine.py",
+    "line": 127,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/env.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/geometry.py",
+    "line": 35,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/innov35.py",
+    "line": 30,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/pullback.py",
+    "line": 65,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import numpy"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import numpy"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "pandas": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import pandas"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "piq": {
+  "hits": [
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 89,
+    "scope": "lazy",
+    "stmt": "import piq"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 71,
+    "scope": "lazy",
+    "stmt": "import piq"
+   }
+  ],
+  "scopes": [
+   "lazy"
+  ]
+ },
+ "robustbench": {
+  "hits": [
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 227,
+    "scope": "lazy",
+    "stmt": "import robustbench.utils"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 227,
+    "scope": "lazy",
+    "stmt": "import robustbench.utils"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 227,
+    "scope": "lazy",
+    "stmt": "import robustbench.utils"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 227,
+    "scope": "lazy",
+    "stmt": "import robustbench.utils"
+   }
+  ],
+  "scopes": [
+   "lazy"
+  ]
+ },
+ "safetensors": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_helpers.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import safetensors.torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import safetensors.torch"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "scipy": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py",
+    "line": 157,
+    "scope": "lazy",
+    "stmt": "from scipy.stats.wilcoxon"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/DataTools.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from scipy.integrate.quad"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/TtBA.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "from scipy.fftpack.idct"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/proposed_attack.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "from scipy.fftpack.dct"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/proposed_attack.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "from scipy.fftpack.idct"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_rel.py",
+    "line": 176,
+    "scope": "lazy",
+    "stmt": "from scipy.interpolate"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "timm": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 286,
+    "scope": "lazy",
+    "stmt": "import timm"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 286,
+    "scope": "lazy",
+    "stmt": "import timm"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import timm"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 286,
+    "scope": "lazy",
+    "stmt": "import timm"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 286,
+    "scope": "lazy",
+    "stmt": "import timm"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "torch": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/ambient.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 283,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 341,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 355,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 386,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/data.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/engine.py",
+    "line": 128,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/env.py",
+    "line": 32,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/hybrid.py",
+    "line": 30,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/jacobian.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/jacobian.py",
+    "line": 22,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/models.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/models.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/spaces.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/spaces.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/resnet.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/resnet.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/vgg.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/vgg.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/run_benchmark_33b.py",
+    "line": 68,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 40,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 249,
+    "scope": "lazy",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/run_ttba_v2.py",
+    "line": 106,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/run_ttba_v2.py",
+    "line": 281,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 283,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 341,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 355,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 386,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 106,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/DataTools.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/TtBA.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch.optim"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/cifar10_model.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/mnist_model.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/mnist_model.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/general_torch_model.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/general_torch_model.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/model.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/model.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/model.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 40,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 249,
+    "scope": "lazy",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/run_cgba.py",
+    "line": 47,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 283,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 341,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 355,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 386,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 106,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/proposed_attack.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/proposed_attack.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from torch.autograd.Variable"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/baselines/CGBA/utils.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 40,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 249,
+    "scope": "lazy",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/run_arsopt.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 283,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 341,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 355,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 386,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 106,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/pars_opt_l2_norm_attack.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/pars_opt_l2_norm_attack.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/tiny_imagenet.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from torch.utils.data"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_jit.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_jit.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_jit.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_me.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_me.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_me.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/adaptive_avgmax_pool.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/adaptive_avgmax_pool.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/adaptive_avgmax_pool.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/attention_pool2d.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/attention_pool2d.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/blur_pool.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/blur_pool.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/blur_pool.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/bottleneck_attn.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/bottleneck_attn.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/bottleneck_attn.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cbam.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cbam.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cbam.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/classifier.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/classifier.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/classifier.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cond_conv2d.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cond_conv2d.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/cond_conv2d.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/config.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/conv2d_same.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/conv2d_same.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/conv2d_same.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/conv_bn_act.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_attn.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_norm.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/drop.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/drop.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/drop.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/eca.py",
+    "line": 37,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/eca.py",
+    "line": 38,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/evo_norm.py",
+    "line": 28,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/evo_norm.py",
+    "line": 29,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/evo_norm.py",
+    "line": 30,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/filter_response_norm.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/filter_response_norm.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/format.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/gather_excite.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/gather_excite.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/global_context.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/global_context.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/grn.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/grn.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/halo_attn.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/halo_attn.py",
+    "line": 22,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/halo_attn.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/inplace_abn.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/inplace_abn.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/interpolate.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/lambda_layer.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/lambda_layer.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/lambda_layer.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/linear.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/linear.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/linear.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/mixed_conv2d.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/mixed_conv2d.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/mlp.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/non_local_attn.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/non_local_attn.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/non_local_attn.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm_act.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm_act.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm_act.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/padding.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/padding.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_dropout.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_dropout.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pool2d_same.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pool2d_same.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pool2d_same.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_rel.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_rel.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_rel.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_sincos.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_sincos.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/selective_kernel.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/selective_kernel.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/separable_conv.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/space_to_depth.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/space_to_depth.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_attn.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_attn.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_attn.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_batchnorm.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_batchnorm.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/squeeze_excite.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/std_conv.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/std_conv.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/std_conv.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/test_time_pool.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/test_time_pool.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/trace_utils.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "from torch._assert"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/weight_init.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/weight_init.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from torch.nn.init._calculate_fan_in_and_fan_out"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_builder.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_builder.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from torch.hub.load_state_dict_from_url"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_efficientnet_blocks.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_efficientnet_blocks.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_efficientnet_blocks.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_efficientnet_builder.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_features.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_features.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_features.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_features_fx.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_features_fx.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_helpers.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from torch.hub.HASH_REGEX"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from torch.hub.download_url_to_file"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from torch.hub.urlparse"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torch.hub.get_dir"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "from torch.hub._get_torch_home"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_manipulate.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_manipulate.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_manipulate.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_prune.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/beit.py",
+    "line": 44,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/beit.py",
+    "line": 45,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/beit.py",
+    "line": 46,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/beit.py",
+    "line": 47,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/byobnet.py",
+    "line": 36,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/byobnet.py",
+    "line": 37,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/cait.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/cait.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/coat.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/coat.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/coat.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/convit.py",
+    "line": 27,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/convit.py",
+    "line": 28,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/convmixer.py",
+    "line": 4,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/convmixer.py",
+    "line": 5,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/convnext.py",
+    "line": 44,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/convnext.py",
+    "line": 45,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/crossvit.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/crossvit.py",
+    "line": 32,
+    "scope": "top",
+    "stmt": "import torch.hub"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/crossvit.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/cspnet.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/cspnet.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/davit.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/davit.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/davit.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/davit.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "from torch.Tensor"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/deit.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/deit.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/densenet.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/densenet.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/densenet.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/densenet.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/densenet.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from torch.jit.annotations.List"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/dla.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/dla.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/dla.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/dpn.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/dpn.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/dpn.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/edgenext.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/edgenext.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/edgenext.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientformer.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientformer.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientformer_v2.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientformer_v2.py",
+    "line": 22,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientnet.py",
+    "line": 41,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientnet.py",
+    "line": 42,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientnet.py",
+    "line": 43,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientnet.py",
+    "line": 44,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_mit.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_mit.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_mit.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_msra.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_msra.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/eva.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/eva.py",
+    "line": 32,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/eva.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/eva.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/fastvit.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/fastvit.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/focalnet.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/focalnet.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/focalnet.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/gcvit.py",
+    "line": 26,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/gcvit.py",
+    "line": 27,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/gcvit.py",
+    "line": 28,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/ghostnet.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/ghostnet.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/ghostnet.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/hardcorenas.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/hrnet.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/hrnet.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/hrnet.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_next.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_next.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_resnet_v2.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_resnet_v2.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_resnet_v2.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v3.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v3.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v3.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v4.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v4.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/levit.py",
+    "line": 30,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/levit.py",
+    "line": 31,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/maxxvit.py",
+    "line": 43,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/maxxvit.py",
+    "line": 44,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/maxxvit.py",
+    "line": 45,
+    "scope": "top",
+    "stmt": "from torch.jit.Final"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/metaformer.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/metaformer.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/metaformer.py",
+    "line": 35,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/metaformer.py",
+    "line": 36,
+    "scope": "top",
+    "stmt": "from torch.Tensor"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/metaformer.py",
+    "line": 37,
+    "scope": "top",
+    "stmt": "from torch.jit.Final"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mlp_mixer.py",
+    "line": 44,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mlp_mixer.py",
+    "line": 45,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilenetv3.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilenetv3.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilenetv3.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilenetv3.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilevit.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilevit.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilevit.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mvitv2.py",
+    "line": 22,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mvitv2.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/mvitv2.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nasnet.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nasnet.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nasnet.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nest.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nest.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nest.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nfnet.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/nfnet.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pit.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pit.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pnasnet.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pnasnet.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pnasnet.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pvt_v2.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pvt_v2.py",
+    "line": 22,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pvt_v2.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/pvt_v2.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/regnet.py",
+    "line": 32,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/regnet.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/repghost.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/repghost.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/repghost.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/repvit.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/repvit.py",
+    "line": 27,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/res2net.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/res2net.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnest.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnet.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnet.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnet.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnetv2.py",
+    "line": 35,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/resnetv2.py",
+    "line": 36,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/rexnet.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/rexnet.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/selecsls.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/selecsls.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/selecsls.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/senet.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/senet.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/senet.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/sequencer.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/sequencer.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/sknet.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer.py",
+    "line": 22,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer.py",
+    "line": 23,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2_cr.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2_cr.py",
+    "line": 35,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2_cr.py",
+    "line": 36,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2_cr.py",
+    "line": 37,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tiny_vit.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tiny_vit.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tiny_vit.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tnt.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tnt.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tnt.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tresnet.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/tresnet.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/twins.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/twins.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/twins.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vgg.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vgg.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vgg.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/visformer.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/visformer.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py",
+    "line": 32,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py",
+    "line": 33,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py",
+    "line": 34,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py",
+    "line": 35,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py",
+    "line": 36,
+    "scope": "top",
+    "stmt": "from torch.jit.Final"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_hybrid.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_hybrid.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_hybrid.py",
+    "line": 21,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_relpos.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_relpos.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_relpos.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torch.jit.Final"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_relpos.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_sam.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_sam.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_sam.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_sam.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "import torch.utils.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_sam.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "from torch.jit.Final"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/volo.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/volo.py",
+    "line": 26,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/volo.py",
+    "line": 27,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/volo.py",
+    "line": 28,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vovnet.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/vovnet.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xception.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch.jit"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xception.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xception.py",
+    "line": 26,
+    "scope": "top",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xception_aligned.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xception_aligned.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xcit.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xcit.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/xcit.py",
+    "line": 19,
+    "scope": "top",
+    "stmt": "from torch.utils.checkpoint.checkpoint"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/utils/dataset_toolkit.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/utils/dataset_toolkit.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "from torch.nn.functional"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 40,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 249,
+    "scope": "lazy",
+    "stmt": "import torch.nn.functional"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/ambient.py",
+    "line": 18,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 283,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 341,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 355,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 386,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/engine.py",
+    "line": 128,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/env.py",
+    "line": 32,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/models.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/models.py",
+    "line": 16,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py",
+    "line": 24,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py",
+    "line": 25,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/spaces.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/spaces.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/resnet.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/resnet.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/vgg.py",
+    "line": 1,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/models/vgg.py",
+    "line": 2,
+    "scope": "top",
+    "stmt": "import torch.nn"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py",
+    "line": 106,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/ttba_github/run_frame_b1_generic.py",
+    "line": 45,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "tools/eval/b5_gate_cell.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/b5_gate_cell.py",
+    "line": 210,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "tools/eval/b5_monitor.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/b5_gate_cell.py",
+    "line": 210,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "lgc_bench/metrics.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/advstore.py",
+    "line": 32,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 56,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 101,
+    "scope": "lazy",
+    "stmt": "import torch"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 167,
+    "scope": "lazy",
+    "stmt": "import torch"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "torchmetrics": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 18,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.image.structural_similarity_index_measure"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 20,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.structural_similarity_index_measure"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/run_ttba_v2.py",
+    "line": 73,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.structural_similarity_index_measure"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 18,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.image.structural_similarity_index_measure"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 20,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.structural_similarity_index_measure"
+   },
+   {
+    "entry": "lgc_bench/metrics.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 18,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.image.structural_similarity_index_measure"
+   },
+   {
+    "entry": "lgc_bench/metrics.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py",
+    "line": 20,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.structural_similarity_index_measure"
+   },
+   {
+    "entry": "tools/eval/eval_metrics_offline.py",
+    "file": "/root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py",
+    "line": 67,
+    "scope": "lazy",
+    "stmt": "from torchmetrics.functional.structural_similarity_index_measure"
+   }
+  ],
+  "scopes": [
+   "lazy"
+  ]
+ },
+ "torchvision": {
+  "hits": [
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 270,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 284,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 328,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 342,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/data.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/models.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "run_benchmark_33b.py",
+    "file": "/root/autodl-tmp/LGC_frozen/run_benchmark_33b.py",
+    "line": 1442,
+    "scope": "lazy",
+    "stmt": "from torchvision.utils.save_image"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 199,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 510,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 270,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 284,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 328,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 342,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/DataTools.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "from torchvision.utils"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 6,
+    "scope": "top",
+    "stmt": "import torchvision"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 7,
+    "scope": "top",
+    "stmt": "import torchvision.datasets"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 8,
+    "scope": "top",
+    "stmt": "from torchvision.models"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 9,
+    "scope": "top",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 199,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 510,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 270,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 284,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 328,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 342,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 199,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 510,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 270,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 284,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 328,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 342,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torchvision.datasets"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "from torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.CIFAR10"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.CIFAR100"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.MNIST"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.FashionMNIST"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.ImageFolder"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.utils.download_url"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py",
+    "line": 15,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.utils.check_integrity"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 10,
+    "scope": "top",
+    "stmt": "from torchvision.transforms"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.utils.download_url"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 11,
+    "scope": "top",
+    "stmt": "from torchvision.datasets.utils.check_integrity"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py",
+    "line": 13,
+    "scope": "top",
+    "stmt": "import torchvision.datasets"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/dataset/tiny_imagenet.py",
+    "line": 3,
+    "scope": "top",
+    "stmt": "import torchvision.datasets"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm_act.py",
+    "line": 20,
+    "scope": "top",
+    "stmt": "from torchvision.ops.misc.FrozenBatchNorm2d"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_features_fx.py",
+    "line": 12,
+    "scope": "top",
+    "stmt": "from torchvision.models.feature_extraction.create_feature_extractor"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 199,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 510,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 270,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 284,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 328,
+    "scope": "lazy",
+    "stmt": "import torchvision.transforms"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py",
+    "line": 342,
+    "scope": "lazy",
+    "stmt": "import torchvision.models"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/lgc_bench/models.py",
+    "line": 17,
+    "scope": "top",
+    "stmt": "import torchvision.models"
+   }
+  ],
+  "scopes": [
+   "lazy",
+   "top"
+  ]
+ },
+ "transformers": {
+  "hits": [
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from transformers.AutoImageProcessor"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from transformers.AutoModelForImageClassification"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from transformers.AutoModelForImageClassification"
+   },
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/TtBA/dataset.py",
+    "line": 14,
+    "scope": "top",
+    "stmt": "from transformers.AutoFeatureExtractor"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "typing_extensions": {
+  "hits": [
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py",
+    "line": 28,
+    "scope": "top",
+    "stmt": "from typing_extensions.Literal"
+   }
+  ],
+  "scopes": [
+   "top"
+  ]
+ },
+ "yaml": {
+  "hits": [
+   {
+    "entry": "adapters/run_ttba_v2.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 108,
+    "scope": "lazy",
+    "stmt": "import yaml"
+   },
+   {
+    "entry": "adapters/run_cgba.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 108,
+    "scope": "lazy",
+    "stmt": "import yaml"
+   },
+   {
+    "entry": "adapters/run_arsopt.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 108,
+    "scope": "lazy",
+    "stmt": "import yaml"
+   },
+   {
+    "entry": "ttba_github/run_frame_b1_generic.py",
+    "file": "/root/autodl-tmp/LGC_frozen/adapters/_common.py",
+    "line": 108,
+    "scope": "lazy",
+    "stmt": "import yaml"
+   }
+  ],
+  "scopes": [
+   "lazy"
+  ]
+ }
+}

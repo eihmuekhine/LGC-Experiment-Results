@@ -1,0 +1,299 @@
+union closure size: 199 files
+
+### entry: run_benchmark_33b.py  (rounds=3, files=23)
+roots:
+  /root/autodl-tmp/LGC_frozen
+reachable files:
+  /root/autodl-tmp/LGC_frozen/advstore.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/__init__.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/ambient.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/analysis.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/data.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/engine.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/env.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/geometry.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/hybrid.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/innov35.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/jacobian.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/models.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/pullback.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/ramb.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/spaces.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/tracking.py
+  /root/autodl-tmp/LGC_frozen/models/__init__.py
+  /root/autodl-tmp/LGC_frozen/models/resnet.py
+  /root/autodl-tmp/LGC_frozen/models/vgg.py
+  /root/autodl-tmp/LGC_frozen/run_benchmark_33b.py
+
+### entry: adapters/run_ttba_v2.py  (rounds=3, files=16)
+roots:
+  /root/autodl-tmp/TtBA
+  /root/autodl-tmp/LGC_frozen/adapters
+  /root/autodl-tmp/LGC_frozen
+  /root/autodl-tmp/LGC_frozen/tools/eval
+  /root/autodl-tmp/LGC_frozen/ttba_github
+reachable files:
+  /root/autodl-tmp/LGC_frozen/adapters/_common.py
+  /root/autodl-tmp/LGC_frozen/adapters/run_ttba_v2.py
+  /root/autodl-tmp/LGC_frozen/advstore.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/__init__.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/advstore.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py
+  /root/autodl-tmp/LGC_frozen/ttba_github/ttba_common.py
+  /root/autodl-tmp/TtBA/DataTools.py
+  /root/autodl-tmp/TtBA/TtBA.py
+  /root/autodl-tmp/TtBA/arch/Fashion_mnist_model.py
+  /root/autodl-tmp/TtBA/arch/cifar10_model.py
+  /root/autodl-tmp/TtBA/arch/mnist_model.py
+  /root/autodl-tmp/TtBA/dataset.py
+  /root/autodl-tmp/TtBA/general_torch_model.py
+  /root/autodl-tmp/TtBA/model.py
+
+### entry: adapters/run_cgba.py  (rounds=4, files=9)
+roots:
+  /root/autodl-tmp/baselines/CGBA
+  /root/autodl-tmp/LGC_frozen/adapters
+  /root/autodl-tmp/LGC_frozen
+  /root/autodl-tmp/LGC_frozen/tools/eval
+reachable files:
+  /root/autodl-tmp/LGC_frozen/adapters/_common.py
+  /root/autodl-tmp/LGC_frozen/adapters/run_cgba.py
+  /root/autodl-tmp/LGC_frozen/advstore.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/__init__.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/advstore.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py
+  /root/autodl-tmp/baselines/CGBA/proposed_attack.py
+  /root/autodl-tmp/baselines/CGBA/utils.py
+
+### entry: adapters/run_arsopt.py  (rounds=7, files=162)
+roots:
+  /root/autodl-tmp/baselines/ARS-OPT
+  /root/autodl-tmp/LGC_frozen/adapters
+  /root/autodl-tmp/LGC_frozen
+  /root/autodl-tmp/LGC_frozen/tools/eval
+reachable files:
+  /root/autodl-tmp/LGC_frozen/adapters/_common.py
+  /root/autodl-tmp/LGC_frozen/adapters/run_arsopt.py
+  /root/autodl-tmp/LGC_frozen/advstore.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/__init__.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/advstore.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py
+  /root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/__init__.py
+  /root/autodl-tmp/baselines/ARS-OPT/PARS_OPT/pars_opt_l2_norm_attack.py
+  /root/autodl-tmp/baselines/ARS-OPT/config.py
+  /root/autodl-tmp/baselines/ARS-OPT/dataset/__init__.py
+  /root/autodl-tmp/baselines/ARS-OPT/dataset/dataset_loader_maker.py
+  /root/autodl-tmp/baselines/ARS-OPT/dataset/target_class_dataset.py
+  /root/autodl-tmp/baselines/ARS-OPT/dataset/tiny_imagenet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/__init__.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/__init__.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_jit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/activations_me.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/adaptive_avgmax_pool.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/attention_pool2d.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/blur_pool.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/bottleneck_attn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/cbam.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/classifier.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/cond_conv2d.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/config.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/conv2d_same.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/conv_bn_act.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_act.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_attn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_conv2d.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_norm.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/create_norm_act.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/drop.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/eca.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/evo_norm.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/fast_norm.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/filter_response_norm.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/format.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/gather_excite.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/global_context.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/grn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/halo_attn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/helpers.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/inplace_abn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/interpolate.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/lambda_layer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/linear.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/mixed_conv2d.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/mlp.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/non_local_attn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/norm_act.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/padding.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_dropout.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/patch_embed.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/pool2d_same.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_rel.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/pos_embed_sincos.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/selective_kernel.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/separable_conv.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/space_to_depth.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_attn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/split_batchnorm.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/squeeze_excite.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/std_conv.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/test_time_pool.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/trace_utils.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/layers/weight_init.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/__init__.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_builder.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_efficientnet_blocks.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_efficientnet_builder.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_factory.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_features.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_features_fx.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_helpers.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_hub.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_manipulate.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_pretrained.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_prune.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/_registry.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/beit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/byoanet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/byobnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/cait.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/coat.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/convit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/convmixer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/convnext.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/crossvit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/cspnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/davit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/deit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/densenet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/dla.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/dpn.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/edgenext.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientformer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientformer_v2.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_mit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/efficientvit_msra.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/eva.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/fastvit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/focalnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/gcvit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/ghostnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/hardcorenas.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/hrnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_next.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_resnet_v2.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v3.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/inception_v4.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/levit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/maxxvit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/metaformer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/mlp_mixer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilenetv3.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/mobilevit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/mvitv2.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/nasnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/nest.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/nfnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/pit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/pnasnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/pvt_v2.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/regnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/repghost.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/repvit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/res2net.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/resnest.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/resnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/resnetv2.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/rexnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/selecsls.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/senet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/sequencer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/sknet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/swin_transformer_v2_cr.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/tiny_vit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/tnt.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/tresnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/twins.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/vgg.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/visformer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_hybrid.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_relpos.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/vision_transformer_sam.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/volo.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/vovnet.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/xception.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/xception_aligned.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/models/xcit.py
+  /root/autodl-tmp/baselines/ARS-OPT/timm/version.py
+  /root/autodl-tmp/baselines/ARS-OPT/utils/__init__.py
+  /root/autodl-tmp/baselines/ARS-OPT/utils/dataset_toolkit.py
+
+### entry: ttba_github/run_frame_b1_generic.py  (rounds=3, files=22)
+roots:
+  /root/autodl-tmp/LGC_frozen/ttba_github
+  /root/autodl-tmp/LGC_frozen
+  /root/autodl-tmp/LGC_frozen/adapters
+  /root/autodl-tmp/LGC_frozen/tools/eval
+reachable files:
+  /root/autodl-tmp/LGC_frozen/adapters/_common.py
+  /root/autodl-tmp/LGC_frozen/advstore.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/__init__.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/ambient.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/baseline_protocol.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/engine.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/env.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/geometry.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/innov35.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/models.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/pullback.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/ramb.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/samplers.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/spaces.py
+  /root/autodl-tmp/LGC_frozen/lgc_bench/tracking.py
+  /root/autodl-tmp/LGC_frozen/models/__init__.py
+  /root/autodl-tmp/LGC_frozen/models/resnet.py
+  /root/autodl-tmp/LGC_frozen/models/vgg.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/advstore.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/hardlabel_tracker.py
+  /root/autodl-tmp/LGC_frozen/ttba_github/run_frame_b1_generic.py
+
+### entry: tools/eval/b5_gate_cell.py  (rounds=1, files=1)
+roots:
+  /root/autodl-tmp/LGC_frozen/tools/eval
+reachable files:
+  /root/autodl-tmp/LGC_frozen/tools/eval/b5_gate_cell.py
+
+### entry: tools/eval/b5_monitor.py  (rounds=2, files=2)
+roots:
+  /root/autodl-tmp/LGC_frozen/tools/eval
+  /root/autodl-tmp/LGC_frozen
+reachable files:
+  /root/autodl-tmp/LGC_frozen/tools/eval/b5_gate_cell.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/b5_monitor.py
+
+### entry: lgc_bench/metrics.py  (rounds=1, files=1)
+roots:
+  /root/autodl-tmp/LGC_frozen/lgc_bench
+reachable files:
+  /root/autodl-tmp/LGC_frozen/lgc_bench/metrics.py
+
+### entry: tools/eval/eval_metrics_offline.py  (rounds=2, files=2)
+roots:
+  /root/autodl-tmp/LGC_frozen/tools/eval
+reachable files:
+  /root/autodl-tmp/LGC_frozen/tools/eval/advstore.py
+  /root/autodl-tmp/LGC_frozen/tools/eval/eval_metrics_offline.py
+
