@@ -1,0 +1,8 @@
+[*] GPU NVIDIA GeForce RTX 5090  D12 matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| method | cell (arch/mode) | rows | C | Q9 | Q6 | X | median m(s=1) non-C | max m(s=1) non-C | adv_uint8==1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| CGBA_D8only | vit_b_32/non_targeted | 237 | 222 | 14 | 0 | 1 | 0.000116 | 0.000916 | 115 |
+
+[*] wrote reports/raw/B5a2/gates/e17_CGBA_D8only_vit_b_32_NT_domain.csv (237 rows)
+[!] E-OTHER: X > 0 for a method (post-fix: every method must decide on the stored clamped image) -> STOP

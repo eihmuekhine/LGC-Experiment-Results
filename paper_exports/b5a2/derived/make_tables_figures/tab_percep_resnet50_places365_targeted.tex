@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Perceptual metrics at 10000 queries (mean), resnet50\_places365, targeted.}
+\begin{tabular}{lcccccc}
+\toprule
+Method & SSIM $\uparrow$ & MS-SSIM $\uparrow$ & FSIM $\uparrow$ & LPIPS$_{\mathrm{alex}}$ $\downarrow$ & LPIPS$_{\mathrm{vgg}}$ $\downarrow$ & DISTS $\downarrow$ \\
+\midrule
+LGC-EGC (ours) & \textbf{0.9450} & \textbf{0.9632} & \textbf{0.9583} & \textbf{0.0596} & \textbf{0.1126} & \textbf{0.1043} \\
+TtBA & 0.8617 & 0.9162 & 0.9425 & 0.1700 & 0.2269 & 0.1703 \\
+CGBA-H & 0.8816 & 0.9273 & 0.9503 & 0.1405 & 0.2032 & 0.1556 \\
+ARS-OPT & 0.6535 & 0.8842 & 0.8830 & 0.2201 & 0.3067 & 0.2067 \\
+\bottomrule
+\end{tabular}
+\end{table}

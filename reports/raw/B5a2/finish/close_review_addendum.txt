@@ -1,0 +1,11 @@
+L addendum to reports/raw/B5a2/close_review_prompt.txt (B5a2-finish kit v3, 2026-10-22). Criteria unchanged.
+1. G5 key alias (lesson L28). tools/eval/g5_check.py:34 looks up the published key "CGBA_H", but
+   ttba_github/ttba_table1.json names it "CGBA-H"; with the shipped table the tool raises KeyError for every CGBA_H cell.
+   The close (finish_A A2 (iv)) therefore ran g5_check.py for the three main CGBA_H cells with
+   --table1 reports/raw/B5a2/close/g5/ttba_table1_alias.json. Before you rerun those three cells, check with your own
+   script that the alias file differs from ttba_github/ttba_table1.json only by added "CGBA_H" keys whose values equal
+   "CGBA-H" of the same arch; then rerun them with that alias file. A KeyError with the shipped table is the known
+   defect L28, not a G5 FAIL. Rerun the TtBA and CGBA (NT) cells with the shipped table, as the prompt says.
+2. The H decision on every STOP bundle of the run is reports/B5a2_stop_decisions.md (rule fixed before any outcome
+   statistic); check it as part of the bundle criterion.
+3. This review runs unattended: never ask a question. Probe files only under /tmp/b5finish_close_review/.

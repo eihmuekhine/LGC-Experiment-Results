@@ -1,0 +1,52 @@
+Load skills lgc-preflight (section 6, review mode) and lgc-paper-contract. Phase B5a2-finish review (decisions on the
+9 stops, offline-metrics run, export for the paper). If this session already contains the author's work, say so in the
+first line and stop: that is not an independent review. This session runs unattended: never ask a question.
+CPU only: start no GPU process. Edit nothing except reports/raw/B5a2/export/checker_review.md; probe files only under
+/tmp/b5finish_review/. Never write under Results/ or paper_exports/; never run git add, commit, stash, checkout or reset.
+Read in this order: reports/raw/B5a2/finish/finish_A.txt; reports/raw/B5a2/finish/finish_B.txt;
+reports/raw/B5a2/finish/agent_log_A.md and agent_log_B.md; reports/B5a2_stop_decisions.md;
+reports/raw/B5a2/export/* (inventory.md, metrics_commands.sh, metrics_run.log, claims_spec.md, add_*.txt);
+paper_exports/b5a2/COMMANDS.md; only then reports/B5a2_finish_A.md and reports/B5a2_finish_B.md.
+(The Phase 8 close itself is reviewed separately with reports/raw/B5a2/close_review_prompt.txt.)
+
+PASS/FAIL per criterion with your own evidence (rerun the cheap commands yourself):
+ V1 Stop decisions: with your own csv-module script, recompute for each of the 9 cells the classes and the
+    STORAGE/DEFECT/OTHER label of every X row and the cell decision by the rule quoted in finish_A.txt; they equal
+    reports/B5a2_stop_decisions.md. agent_log_A.md shows no outcome metric computed or printed during A1.
+ V1b G5 alias (finish_A A2 (iv)): with your own script, reports/raw/B5a2/close/g5/ttba_table1_alias.json differs from
+    ttba_github/ttba_table1.json only by added "CGBA_H" keys whose values equal "CGBA-H" of the same arch; the C2
+    commands of the three main CGBA_H cells in reports/raw/B5a2/close/agent_log.md used it; rerun one of them yourself
+    and compare the VERDICT line.
+ V2 Metrics run: metrics_commands.sh has 48 lines of the allowed form, one per main/E10/E11 cell of the inventory;
+    one output per line exists; for 5 cells the number of output rows equals the number of stored npz of that cell in
+    the inventory; metrics_run.log has no Traceback or Error.
+ V3 Cell files: for 10 random files under paper_exports/b5a2/cells/ the sha256 equals the source under Results/;
+    no npz; no file > 50 MB; per-directory counts equal the inventory.
+ V4 Derived outputs: rerun two commands of COMMANDS.md with outputs redirected to /tmp/b5finish_review/ (if the tool
+    has an output option) and compare with the committed outputs (byte-equal, or equal numbers for files with a time
+    stamp); the tool sha256 values in COMMANDS.md equal your own. The make_tables_figures.py and make_comparison_grid.py
+    command lines carry exactly the three display-name mappings of finish_B.txt B2; rerun the pdftotext check on every
+    PDF those two tools wrote (each count 0).
+ V5 Claims: compare the claims script line by line with reports/raw/B5a2/export/claims_spec.md (one-sided direction,
+    Wilcoxon signed-rank, Holm within each family, family membership and m, the CI rules, the AUC definition, bootstrap B
+    and seed from the contract); rerun the script into /tmp/b5finish_review/ and compare claims.json; check the key set
+    of every row, null p-values exactly on CI-only rows, decision values, and that excluded_comparisons equals the
+    comparisons of EXCLUDED-FROM-CLAIMS cells. If the script was written after the runs (tools/eval/claims_registered.py),
+    say so; a mismatch with the quoted text is a BLOCKER.
+ V6 E9 and erratum: the E9 search commands reproduce; reports/B1_sources.md changed only by the appended erratum
+    (git diff reports/B1_sources.md shows additions only); the citation fields equal finish_B.txt B6; the quoted
+    file:line passages match the files.
+ V7 Manifest and lists: (cd paper_exports/b5a2 && sha256sum -c MANIFEST.sha256) all OK; no path with autodl-tmp,
+    LGC_frozen or ".."; add_force.txt and add_normal.txt name every required file and no file > 50 MB.
+ V8 Scope: sha256sum -c /root/autodl-tmp/B5a2_manifest_20261021.sha256 | grep -vc ': OK$' prints 0; git status --short
+    shows no tracked change except reports/B1_sources.md (B6, additions only) and reports/E9_sources.md (B4, if it was
+    already tracked), and only paths allowed by finish_A.txt, finish_B.txt and the close prompt; no git write in either
+    agent log.
+ V9 Every claim in the two reports that the evidence does not support (each one becomes a recall entry).
+Recall entries, one per FAIL and per unsupported claim:
+ R<k> | criterion | BLOCKER (wrong result or broken rule) / MAJOR (incomplete or unverifiable) / MINOR | evidence
+ (file:line, or command + output line) | scope (the only files the author may change for it) |
+ acceptance (one command and the output that proves the fix)
+Write reports/raw/B5a2/export/checker_review.md: criteria table, recall entries, and as the last line exactly one of
+"VERDICT: PASS" (no entries), "VERDICT: PASS-WITH-NOTES" (MINOR entries only) or "VERDICT: FAIL" (any BLOCKER or MAJOR).
+No rewrites, no praise. STOP.

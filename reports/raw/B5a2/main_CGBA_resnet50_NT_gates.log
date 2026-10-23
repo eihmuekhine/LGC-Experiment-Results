@@ -1,0 +1,16 @@
+g5_check arch=resnet50 mode=non_targeted table1=/root/autodl-tmp/LGC_frozen/ttba_github/ttba_table1.json n_boot=10000 seed=0
+
+TtBA (median pix_l2_iter vs published median)  n=200
+  @2000: ratio(med)=0.786 95%CI=[0.514,0.947] intersect[0.5,2]=True (our med=5.865 pub med=7.462; ratio(mean)=0.612 descriptive)
+  @5000: ratio(med)=0.756 95%CI=[0.572,0.957] intersect[0.5,2]=True (our med=2.120 pub med=2.804; ratio(mean)=0.549 descriptive)
+  @10000: ratio(med)=0.686 95%CI=[0.541,0.817] intersect[0.5,2]=True (our med=1.167 pub med=1.700; ratio(mean)=0.563 descriptive)
+
+CGBA (rho_B ratio-of-ratios on paired images)  n=200
+  @2000: rho=0.584 95%CI=[0.505,0.728] intersect[0.5,2]=True (rho(mean)=0.727 descriptive)
+  @5000: rho=0.501 95%CI=[0.436,0.598] intersect[0.5,2]=True (rho(mean)=0.645 descriptive)
+  @10000: rho=0.621 95%CI=[0.565,0.707] intersect[0.5,2]=True (rho(mean)=0.585 descriptive)
+
+VERDICT: PASS (all CIs intersect [0.5, 2] at every budget)
+[gate] partial: PASS (ok) exit=0
+[gate] g5: PASS (ok) VERDICT: PASS
+[gate] domain: FAIL (E-OTHER) X=3 > 0 (stop rule for CGBA)

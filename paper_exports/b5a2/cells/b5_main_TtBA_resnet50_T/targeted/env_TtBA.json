@@ -1,0 +1,63 @@
+{
+ "method": "TtBA",
+ "arch": "resnet50",
+ "mode": "targeted",
+ "repo": "/root/autodl-tmp/TtBA",
+ "repo_commit": "ea6d1649fccda0eb8392c9171e43cc9e0974acf9",
+ "params": {
+  "dim_reduc_factor": 4,
+  "tol": 0.0001,
+  "sigma": 0.0003,
+  "initial_query": 30,
+  "iteration": 100
+ },
+ "hyper_parameter_sources": {
+  "dim_reduc_factor": "TtBA.py:19 (Attacker default 4)",
+  "tol": "TtBA.py:20 (default 1e-4)",
+  "sigma": "TtBA.py:20 (default 3e-4)",
+  "initial_query": "TtBA.py:20 (default 30)",
+  "iteration": "TtBA.py:20 (default 100)",
+  "early": "TtBA.py / main.py: early=0 (no success-threshold early stop)",
+  "budget": "contract budget 10000"
+ },
+ "split_csv": "/root/autodl-tmp/LGC_frozen/splits/imagenet/ttba_github/resnet50_targeted.csv",
+ "split_csv_sha256": "550ec796e485b601aadbd8953a085a9466273bc8778311b5840a6e76e69caa34",
+ "victim_weight_file": "resnet50-11ad3fa6.pth",
+ "victim_weight_sha256": "11ad3fa62ca79e40addfd354a8ec4b7c75143b3038b8d2a807fbc68deab379ca",
+ "torch": "2.7.1+cu128",
+ "cuda": "12.8",
+ "gpu": "NVIDIA GeForce RTX 5090",
+ "budget": 10000,
+ "max_queries": 10000,
+ "checkpoints": [
+  100,
+  200,
+  500,
+  1000,
+  2000,
+  2500,
+  5000,
+  10000
+ ],
+ "budgets": [
+  100,
+  200,
+  500,
+  1000,
+  2000,
+  2500,
+  5000,
+  10000
+ ],
+ "precision": {
+  "cuda_matmul_allow_tf32": false,
+  "cudnn_allow_tf32": false,
+  "cudnn_deterministic": true,
+  "cudnn_benchmark": false
+ },
+ "adapter_sha256": "c05876acee65cacda908a0e5e266e6251b7139ee1c21e0f70b85e6147c584fd2",
+ "tracker_sha256": "d5ca5098cffbb7d77639d1e62308ede2ad583983f053d0339deecb640e02da89",
+ "contract_sha256": "ce101e334a787b78f26c0fef4c5480110b9e84d8dbe0981d3087be7c90e3747c",
+ "adv_store_dtype": "float16",
+ "ADV_STORE_BUDGETS": "unset"
+}

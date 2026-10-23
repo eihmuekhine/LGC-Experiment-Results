@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Fairness provenance (E15): one row per method. Every method queries the same FP32 classifier (backend flags below), the same split CSVs and the same victim weight files on one GPU type (NVIDIA GeForce RTX 5090). Decision-only tracker; element-wise query counting.}
+\begin{tabular}{lllllllll}
+\toprule
+Method & GPU & torch & cudnn\_tf32 & deterministic & benchmark & oracle domain & repo commit & adapter sha
+\\
+\midrule
+LGC_RC_EGC & NVIDIA GeForce RTX 5090, NVIDIA GeForce RTX 5090 (31 GB) & 2.7.1+cu128 & False & True & False & -- & -- & -- \\
+TtBA & NVIDIA GeForce RTX 5090 & 2.7.1+cu128 & False & True & False & -- & ea6d1649fccda0eb8392c9171e43cc9e0974acf9 & c05876acee65 \\
+CGBA & NVIDIA GeForce RTX 5090 & 2.7.1+cu128 & False & True & False & clamp_normalized & 73d3e9c94423b1503053258494a54ad4d2892efa & 7596d79806ff \\
+CGBA_H & NVIDIA GeForce RTX 5090 & 2.7.1+cu128 & False & True & False & clamp_normalized & 73d3e9c94423b1503053258494a54ad4d2892efa & 7596d79806ff \\
+ARS_OPT & NVIDIA GeForce RTX 5090 & 2.7.1+cu128 & False & True & False & clamp01 & ab71cb88058ad0ca778e0048e5cf1b60921bb673 & 0f454a78c615 \\
+CGBA_D8only & NVIDIA GeForce RTX 5090 & 2.7.1+cu128 & False & True & False & clamp_normalized & 73d3e9c94423b1503053258494a54ad4d2892efa & 7596d79806ff \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Split CSV sha256 and victim weight sha256 are recorded per cell and match contract constants.split\_sha256 / victims. ADV\_STORE\_BUDGETS is unset (every checkpoint stored).}
+\end{table*}
+

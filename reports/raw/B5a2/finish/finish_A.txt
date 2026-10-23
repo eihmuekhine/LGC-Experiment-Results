@@ -1,0 +1,106 @@
+Load skills lgc-preflight, lgc-paper-contract (and lgc-baselines if installed). Phase B5a2-finish, part A: decisions on
+the 9 domain-gate stops, the Phase 8 close, and the plan of the offline-metrics run. GPU ON (one RTX 5090; used only where
+a step says so). Worktree /root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7.
+This session runs unattended (opencode run): never ask a question. On any doubt, conflict or failed check write a STOP
+bundle (skill section 7) to reports/stop/B5a2-finish_A_<task>.md and end the session with verdict STOPPED.
+
+Rules: everything under Results/ is read-only (never edit, move, delete or create there); never re-run an attack or an
+image (D6); never edit code, the contract, prereg files, AGENTS.md or any prompt; allowed writes: reports/B5a2_stop_decisions.md,
+reports/B5a2_finish_A.md, the files the close prompt allows (reports/*), reports/raw/B5a2/**, reports/stop/B5a2-*,
+and probe files under /tmp/b5finish_probe/. No git add, commit, stash, tag or checkout. One GPU process at a time.
+
+A0 Preconditions. Run and copy every output:
+  date; git describe --tags; git rev-parse HEAD; git status --short | grep -v '^??'
+  sha256sum contract/paper_contract.yaml run_b5_parallel.sh reports/raw/B5a2/finish/finish_A.txt reports/raw/B5a2/close_prompt.txt
+  nvidia-smi -L
+  awk 'NR>1' reports/raw/B5a2/parallel.log | wc -l
+  awk 'NR>1 && $7!=0 {print $1}' reports/raw/B5a2/parallel.log | sort -n | tr '\n' ' '
+  ls reports/stop | grep '^B5a2_'
+Check: HEAD 8cf80567009d7404d5a00f1edcfe5c4a09372f81; no tracked change; contract sha256
+ce101e334a787b78f26c0fef4c5480110b9e84d8dbe0981d3087be7c90e3747c; 52 job lines; Exitval != 0 exactly for seq
+26 28 30 31 36 39 40 41 44; nvidia-smi lists an NVIDIA GeForce RTX 5090. Otherwise STOP.
+
+A1 Decisions on the 9 stopped cells. The decision rule below was fixed by H on 2026-10-22, before any outcome statistic
+of B5 was computed. Apply it mechanically. In this task do not open, compute or print any outcome metric (pix_l2
+summaries, ASR, LPIPS, any comparison between methods).
+  For each cell whose job line has Exitval != 0:
+  - print the first 8 lines of each reports/stop/B5a2_<cell>_*.md; where a cell has two bundles, diff them and state
+    the difference;
+  - read reports/raw/B5a2/gates/<cell>_domain.csv with the csv module (by column name); count rows and the classes
+    C, Q9, Q6, X; print every X row in full (all columns, full precision).
+  Quote from adapters/diag/domain_consistency.py the file:line that defines the margin m and the class rule (expected
+  convention: m > 0 means the victim's decision on that image is NOT adversarial).
+  For each X row print m_s9/m_s1 and m_s6/m_s9 and classify it:
+    STORAGE: 0 < m_s1 < 1e-2 and m_s1 < m_s9 < m_s6
+    DEFECT:  m_s1 >= 0.1 and m_s9 < m_s1
+    OTHER:   anything else
+  Cell decision:
+    INCLUDED              if every X row of the cell is STORAGE;
+    EXCLUDED-FROM-CLAIMS  otherwise. The cell's data are still exported and reported descriptively with the flag
+                          "domain gate failed"; its comparisons leave every confirmatory claim family.
+  Write reports/B5a2_stop_decisions.md: the rule text above verbatim; the line "Rule fixed by H on 2026-10-22 before any
+  outcome statistic was computed."; the sign-convention quote; one table row per X row (cell, image, budget, source,
+  target, m_s1, m_s9, m_s6, ratios, class); one row per cell (cell, method, rows, C, Q9, Q6, X, STORAGE/DEFECT/OTHER
+  counts, decision); the duplicate-bundle finding; and the note that INCLUDED cells are a deviation from the D19 stop
+  rule (decision point 3), to be listed in the close note.
+
+A2 Phase 8 close. Execute reports/raw/B5a2/close_prompt.txt tasks C0-C7 exactly, under its own rules, with three
+additions: (i) its final "STOP." ends only this task: continue with A3 if its RESULT verdict is READY-FOR-REVIEW, else
+end the session with verdict STOPPED; (ii) the H decision for every STOP bundle of the run is
+reports/B5a2_stop_decisions.md (cite it in reports/B5_close.md); (iii) in C2 a G5 verdict FAIL or FLAG for any cell
+ends the session with verdict STOPPED; (iv) G5 key alias (lesson L28, decided 2026-10-22 after attempt 3 stopped at
+C2): tools/eval/g5_check.py:34 looks up the published key "CGBA_H", but ttba_github/ttba_table1.json names it "CGBA-H",
+so the tool raises KeyError for every CGBA_H cell. Never edit the tool. Before C2 write
+reports/raw/B5a2/close/g5/ttba_table1_alias.json: a copy of ttba_github/ttba_table1.json in which, for every arch under
+"table1" that has the key "CGBA-H", the key "CGBA_H" is added with a value equal to that arch's "CGBA-H" value;
+nothing else changes. Check it with a python script and copy the output: every key and value of the shipped table is
+unchanged in the copy; the only added keys are "CGBA_H"; for every arch the "CGBA_H" value equals the "CGBA-H" value;
+print the sha256 of both files. In C2 run g5_check.py for the three main CGBA_H cells with
+--table1 reports/raw/B5a2/close/g5/ttba_table1_alias.json, and for the TtBA and CGBA (NT) cells with the shipped table.
+Write in reports/B5_close.md that the run's g5=FAIL / E-G5 rows of reports/raw/B5a2/gates/summary.csv for the CGBA_H
+cells were a tool crash (KeyError 'CGBA_H'), that the C2 verdicts replace them, and add the lesson draft L28 to C7. Its RESULT block stays in reports/B5_close.md; its agent log is
+reports/raw/B5a2/close/agent_log.md as the close prompt says.
+
+A3 Offline-metrics plan (no metric is computed for the paper in this session).
+  (a) Inventory of the 52 output directories (from parallel.log / the launcher queue): per directory the counts and bytes
+      of runs_*.csv, per_checkpoint_*.csv, *.npz, env_*, run_manifest.json and other files; every non-npz file > 50 MB;
+      whether any offline-metrics CSV already exists. Save as reports/raw/B5a2/export/inventory.md.
+  (b) Read tools/eval/eval_metrics_offline.py: its --help and its argparse block (file:line): inputs, the metrics it
+      computes (LPIPS-vgg, LPIPS-alex, DISTS, SSIM, others), device option, output option, one row per stored npz.
+      If it cannot write its output outside Results/, STOP.
+  (c) Timing probe on ONE main cell, restricted to its first 2 images if the tool supports a limit (else on the smallest
+      E17 directory), output under /tmp/b5finish_probe/; report wall time and output rows; confirm Results/ unchanged
+      (sha256sum -c /root/autodl-tmp/B5a2_manifest_20261021.sha256 | grep -vc ': OK$' prints 0).
+  (d) Write reports/raw/B5a2/export/metrics_commands.sh: one line per cell of main, E10 and E11 (48 cells; no E17),
+      longest cell first, each line exactly of the form
+        python tools/eval/eval_metrics_offline.py <arguments>
+      with no ; & | < > backquote or $ in the line, device cuda:0, output under paper_exports/b5a2/metrics/<directory
+      name>/, the same arguments for every cell except the paths. Comment lines start with #. Predict the total wall
+      time from (c). The orchestrator runs this file after this session and stops on any line of another form.
+
+A4 Report reports/B5a2_finish_A.md: A0-A3 with raw outputs and tables, deviations, sha256 of every created file, a
+five-line summary, and the RESULT block (X6) with phase: B5a2-finish-A and verdict: READY-FOR-METRICS (A0-A3 PASS and
+the close verdict READY-FOR-REVIEW) or STOPPED. STOP.
+
+Execution rules (kit v2). They add to the rules above and never relax them.
+ X1 Run every command for real; copy every value from its output. Never write a value you did not see.
+ X2 Foreground only: each command returns only after everything it started has ended. No nohup, setsid, disown, tmux or
+    screen; no process left running. A command that would run longer than 30 minutes: do not start it; STOP (E-SPEC).
+ X3 One task at a time, in the order given. Run the task's own check and read its output before the next task.
+ X4 A check that still fails after two fix attempts for the same cause ends the session: STOP bundle with both attempts.
+ X5 Log every command in reports/raw/B5a2/finish/agent_log_A.md immediately after it ran, one row each:
+    time | task | command | exit status | output file or first output line. Run each command as
+    <command>; ec=$?; date +%H:%M:%S; echo "exit=$ec" and copy the printed time and exit status. Never write rows later.
+ X6 End the report with this block, each value copied from a command output:
+      RESULT
+      phase: B5a2-finish-A
+      head: <git rev-parse HEAD>
+      contract_sha256: <sha256>
+      prompt_sha256: <sha256 of reports/raw/B5a2/finish/finish_A.txt>
+      tasks: <A0-A3 = PASS|FAIL|STOP>
+      decisions: <cell=INCLUDED|EXCLUDED-FROM-CLAIMS for the 9 cells>
+      close_verdict: <verdict line of reports/B5_close.md>
+      files: <"path sha256", one line per created or changed file>
+      deviations: none | <count> (listed in the report)
+      stop_bundles: none | <paths>
+      verdict: READY-FOR-METRICS | STOPPED

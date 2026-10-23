@@ -1,0 +1,831 @@
+[*] importing torch / torchvision (first run after install can take 1-2 min) ...
+[*] device=cuda | torch=2.7.1+cu128 | gpu=NVIDIA GeForce RTX 5090 (31 GB) | tf32=False deterministic=True | shard 1/1
+[*] methods: ['LGC_RC_EGC']
+[*] autoencoder vgg16 loaded from checkpoints/vgg16_imagenet.pth
+
+==========================================================================================
+ IMAGENET | VIT_B_32 | NON_TARGETED
+==========================================================================================
+[*] victim vit_b_32: official TtBA weights vit_b_32-d86f8d99.pth from /root/autodl-tmp/TtBA/model
+[*] protocol split splits/imagenet/ttba_github/vit_b_32_non_targeted.csv (ttba_github:imagenet-vit:targeted0, weights vit_b_32-d86f8d99.pth): 200 rows
+
+[1/200] ILSVRC2012_val_00024661.JPEG -> ANY WRONG CLASS
+[*] image loader: official TtBA repo pre-processing (mean |x - data loader| on the first image 0.0000)
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2160 SSIM=0.9990 LPIPS=0.0042 adv float/uint8/repaired=1/0/1 | 22.2s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.33 amb-gain=38% gate@1091 kA=- kL=24.0
+   [time] 0.4 min for 1 images on vit_b_32; ~75.2 min left on this arch (this shard)
+
+[2/200] ILSVRC2012_val_00046402.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.1170 SSIM=1.0000 LPIPS=0.0001 adv float/uint8/repaired=1/0/1 | 19.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=13.7 seq=CCCCCCCCCCCCCCCCCCCCCCC | MA amb=62% p-share=1.90 amb-gain=14% gate@1075 kA=12.0 kL=24.0
+   [time] 0.7 min for 2 images on vit_b_32; ~71.4 min left on this arch (this shard)
+
+[3/200] ILSVRC2012_val_00030908.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3799 SSIM=0.9953 LPIPS=0.0906 adv float/uint8/repaired=1/0/1 | 21.9s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=36% p-share=2.29 amb-gain=29% gate@3158 kA=6.0 kL=24.0
+   [time] 1.1 min for 3 images on vit_b_32; ~71.8 min left on this arch (this shard)
+
+[4/200] ILSVRC2012_val_00021417.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3876 SSIM=0.9993 LPIPS=0.0081 adv float/uint8/repaired=1/1/1 | 20.7s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=5.30 amb-gain=53% gate@1480 kA=- kL=24.0
+   [time] 1.4 min for 4 images on vit_b_32; ~70.8 min left on this arch (this shard)
+
+[5/200] ILSVRC2012_val_00038086.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=5.3822 SSIM=0.9892 LPIPS=0.0687 adv float/uint8/repaired=1/1/1 | 23.6s | +1share=0.41 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9892)
+   [time] 1.8 min for 5 images on vit_b_32; ~71.9 min left on this arch (this shard)
+
+[6/200] ILSVRC2012_val_00046481.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.1166 SSIM=0.9982 LPIPS=0.0062 adv float/uint8/repaired=1/0/1 | 20.7s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.90 amb-gain=33% gate@1089 kA=- kL=12.0
+   [time] 2.2 min for 6 images on vit_b_32; ~71.0 min left on this arch (this shard)
+
+[7/200] ILSVRC2012_val_00029074.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.8382 SSIM=0.9936 LPIPS=0.0319 adv float/uint8/repaired=1/1/1 | 21.0s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=2.10 amb-gain=38% gate@1750 kA=- kL=24.0
+   [time] 2.6 min for 7 images on vit_b_32; ~70.4 min left on this arch (this shard)
+
+[8/200] ILSVRC2012_val_00026874.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9970 | pixL2@10000=0.0357 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.0s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=12.5 seq=CCCCCCCCCCCCCCCCC | MA amb=72% p-share=4.02 amb-gain=26% gate@1056 kA=- kL=24.0
+   [time] 2.9 min for 8 images on vit_b_32; ~69.4 min left on this arch (this shard)
+
+[9/200] ILSVRC2012_val_00024288.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8704 SSIM=0.9986 LPIPS=0.0057 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=3.61 amb-gain=43% gate@1088 kA=- kL=24.0
+   [time] 3.2 min for 9 images on vit_b_32; ~68.7 min left on this arch (this shard)
+
+[10/200] ILSVRC2012_val_00038119.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7090 SSIM=0.9990 LPIPS=0.0026 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=3.19 amb-gain=34% gate@1092 kA=- kL=24.0
+   [time] 3.6 min for 10 images on vit_b_32; ~68.1 min left on this arch (this shard)
+
+[11/200] ILSVRC2012_val_00023435.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7687 SSIM=0.9988 LPIPS=0.0073 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.38 amb-gain=30% gate@1091 kA=- kL=24.0
+   [time] 3.9 min for 11 images on vit_b_32; ~67.6 min left on this arch (this shard)
+
+[12/200] ILSVRC2012_val_00047355.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.6333 SSIM=0.9982 LPIPS=0.0031 adv float/uint8/repaired=1/0/1 | 20.7s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=2.70 amb-gain=35% gate@1099 kA=- kL=24.0
+   [time] 4.3 min for 12 images on vit_b_32; ~67.1 min left on this arch (this shard)
+
+[13/200] ILSVRC2012_val_00037471.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2910 SSIM=0.9962 LPIPS=0.0286 adv float/uint8/repaired=1/0/1 | 20.8s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.92 amb-gain=34% gate@1349 kA=- kL=24.0
+   [time] 4.6 min for 13 images on vit_b_32; ~66.7 min left on this arch (this shard)
+
+[14/200] ILSVRC2012_val_00020645.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.7101 SSIM=0.9973 LPIPS=0.0080 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.96 amb-gain=36% gate@1345 kA=- kL=12.0
+   [time] 5.0 min for 14 images on vit_b_32; ~66.3 min left on this arch (this shard)
+
+[15/200] ILSVRC2012_val_00017931.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.6452 SSIM=0.9978 LPIPS=0.0119 adv float/uint8/repaired=1/0/1 | 21.1s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=58% p-share=1.76 amb-gain=24% gate@1094 kA=12.0 kL=12.0
+   [time] 5.3 min for 15 images on vit_b_32; ~66.0 min left on this arch (this shard)
+
+[16/200] ILSVRC2012_val_00037124.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.1893 SSIM=0.9934 LPIPS=0.0215 adv float/uint8/repaired=1/1/1 | 21.0s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.16 amb-gain=35% gate@1473 kA=- kL=24.0
+   [time] 5.7 min for 16 images on vit_b_32; ~65.6 min left on this arch (this shard)
+
+[17/200] ILSVRC2012_val_00013588.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8780 SSIM=0.9989 LPIPS=0.0032 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.49 amb-gain=27% gate@1092 kA=- kL=24.0
+   [time] 6.1 min for 17 images on vit_b_32; ~65.2 min left on this arch (this shard)
+
+[18/200] ILSVRC2012_val_00018930.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7581 SSIM=0.9996 LPIPS=0.0015 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.76 amb-gain=30% gate@1090 kA=- kL=24.0
+   [time] 6.4 min for 18 images on vit_b_32; ~64.7 min left on this arch (this shard)
+
+[19/200] ILSVRC2012_val_00024809.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8449 SSIM=0.9994 LPIPS=0.0043 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.14 amb-gain=41% gate@1086 kA=- kL=24.0
+   [time] 6.7 min for 19 images on vit_b_32; ~64.3 min left on this arch (this shard)
+
+[20/200] ILSVRC2012_val_00037952.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.5607 SSIM=0.9994 LPIPS=0.0017 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.5 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.42 amb-gain=23% gate@1092 kA=12.0 kL=24.0
+   [time] 7.1 min for 20 images on vit_b_32; ~63.8 min left on this arch (this shard)
+
+[21/200] ILSVRC2012_val_00048138.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.5173 SSIM=0.9978 LPIPS=0.0055 adv float/uint8/repaired=1/1/1 | 20.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.32 amb-gain=33% gate@1091 kA=6.0 kL=12.0
+   [time] 7.4 min for 21 images on vit_b_32; ~63.5 min left on this arch (this shard)
+
+[22/200] ILSVRC2012_val_00022007.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.9692 SSIM=0.9965 LPIPS=0.0168 adv float/uint8/repaired=1/0/1 | 21.3s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=54% p-share=2.54 amb-gain=34% gate@2503 kA=- kL=12.0
+   [time] 7.8 min for 22 images on vit_b_32; ~63.2 min left on this arch (this shard)
+
+[23/200] ILSVRC2012_val_00000886.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3758 SSIM=0.9997 LPIPS=0.0016 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=14.7 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.20 amb-gain=35% gate@1077 kA=- kL=24.0
+   [time] 8.2 min for 23 images on vit_b_32; ~62.7 min left on this arch (this shard)
+
+[24/200] ILSVRC2012_val_00023118.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6783 SSIM=0.9995 LPIPS=0.0025 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=3.65 amb-gain=36% gate@1087 kA=- kL=24.0
+   [time] 8.5 min for 24 images on vit_b_32; ~62.3 min left on this arch (this shard)
+
+[25/200] ILSVRC2012_val_00037987.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.6030 SSIM=0.9994 LPIPS=0.0038 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=3.05 amb-gain=32% gate@1089 kA=- kL=24.0
+   [time] 8.8 min for 25 images on vit_b_32; ~61.9 min left on this arch (this shard)
+
+[26/200] ILSVRC2012_val_00011203.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4622 SSIM=0.9996 LPIPS=0.0038 adv float/uint8/repaired=1/0/1 | 20.1s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=14.8 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=2.89 amb-gain=40% gate@1080 kA=- kL=12.0
+   [time] 9.2 min for 26 images on vit_b_32; ~61.5 min left on this arch (this shard)
+
+[27/200] ILSVRC2012_val_00027253.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.5403 SSIM=0.9994 LPIPS=0.0050 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=3.03 amb-gain=29% gate@1091 kA=12.0 kL=24.0
+   [time] 9.5 min for 27 images on vit_b_32; ~61.1 min left on this arch (this shard)
+
+[28/200] ILSVRC2012_val_00030717.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.1473 SSIM=0.9904 LPIPS=0.0227 adv float/uint8/repaired=1/1/1 | 21.2s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=1.70 amb-gain=27% gate@1614 kA=- kL=12.0
+   [time] 9.9 min for 28 images on vit_b_32; ~60.8 min left on this arch (this shard)
+
+[29/200] ILSVRC2012_val_00044833.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=1.0215 SSIM=0.9988 LPIPS=0.0078 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.74 amb-gain=32% gate@1094 kA=- kL=12.0
+   [time] 10.2 min for 29 images on vit_b_32; ~60.4 min left on this arch (this shard)
+
+[30/200] ILSVRC2012_val_00024906.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=5.1857 SSIM=0.9890 LPIPS=0.0377 adv float/uint8/repaired=1/0/1 | 22.6s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=17.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=27% p-share=0.89 amb-gain=12% gate@6039 kA=- kL=24.0
+   [time] 10.6 min for 30 images on vit_b_32; ~60.2 min left on this arch (this shard)
+
+[31/200] ILSVRC2012_val_00023321.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=6.3535 SSIM=0.9876 LPIPS=0.0207 adv float/uint8/repaired=1/0/1 | 23.6s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9875)
+   [time] 11.0 min for 31 images on vit_b_32; ~60.1 min left on this arch (this shard)
+
+[32/200] ILSVRC2012_val_00030280.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.2439 SSIM=0.9936 LPIPS=0.0196 adv float/uint8/repaired=1/1/1 | 21.7s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.5 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=46% p-share=2.04 amb-gain=32% gate@3686 kA=- kL=24.0
+   [time] 11.4 min for 32 images on vit_b_32; ~59.8 min left on this arch (this shard)
+
+[33/200] ILSVRC2012_val_00047073.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.5106 SSIM=0.9948 LPIPS=0.0140 adv float/uint8/repaired=1/1/1 | 21.5s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=54% p-share=1.66 amb-gain=22% gate@2359 kA=- kL=24.0
+   [time] 11.8 min for 33 images on vit_b_32; ~59.5 min left on this arch (this shard)
+
+[34/200] ILSVRC2012_val_00036855.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7352 SSIM=0.9996 LPIPS=0.0016 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=3.05 amb-gain=34% gate@1089 kA=6.0 kL=12.0
+   [time] 12.1 min for 34 images on vit_b_32; ~59.1 min left on this arch (this shard)
+
+[35/200] ILSVRC2012_val_00020919.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.3708 SSIM=0.9862 LPIPS=0.0275 adv float/uint8/repaired=1/0/1 | 21.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=47% p-share=1.79 amb-gain=29% gate@3513 kA=- kL=24.0
+   [time] 12.5 min for 35 images on vit_b_32; ~58.8 min left on this arch (this shard)
+
+[36/200] ILSVRC2012_val_00006509.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.6001 SSIM=0.9984 LPIPS=0.0040 adv float/uint8/repaired=1/1/1 | 20.7s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.51 amb-gain=35% gate@1092 kA=- kL=24.0
+   [time] 12.8 min for 36 images on vit_b_32; ~58.4 min left on this arch (this shard)
+
+[37/200] ILSVRC2012_val_00009662.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.1003 SSIM=1.0000 LPIPS=0.0002 adv float/uint8/repaired=1/0/1 | 19.5s | +1share=0.52 | GTE N=0% B=0% T=0% F=0% upd/it=14.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=67% p-share=4.78 amb-gain=33% gate@1069 kA=6.0 kL=24.0
+   [time] 13.2 min for 37 images on vit_b_32; ~58.0 min left on this arch (this shard)
+
+[38/200] ILSVRC2012_val_00043517.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3196 SSIM=0.9998 LPIPS=0.0027 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=14.5 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.20 amb-gain=29% gate@1074 kA=- kL=24.0
+   [time] 13.5 min for 38 images on vit_b_32; ~57.6 min left on this arch (this shard)
+
+[39/200] ILSVRC2012_val_00035592.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.0982 SSIM=1.0000 LPIPS=0.0001 adv float/uint8/repaired=1/0/1 | 19.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=13.2 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=3.58 amb-gain=24% gate@1067 kA=- kL=24.0
+   [time] 13.8 min for 39 images on vit_b_32; ~57.2 min left on this arch (this shard)
+
+[40/200] ILSVRC2012_val_00018007.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.5213 SSIM=0.9994 LPIPS=0.0027 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.5 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=3.36 amb-gain=33% gate@1088 kA=- kL=24.0
+   [time] 14.2 min for 40 images on vit_b_32; ~56.8 min left on this arch (this shard)
+
+[41/200] ILSVRC2012_val_00038771.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2931 SSIM=0.9971 LPIPS=0.0094 adv float/uint8/repaired=1/0/1 | 20.7s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.81 amb-gain=40% gate@1217 kA=- kL=12.0
+   [time] 14.5 min for 41 images on vit_b_32; ~56.4 min left on this arch (this shard)
+
+[42/200] ILSVRC2012_val_00007208.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.8152 SSIM=0.9953 LPIPS=0.0160 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=1.78 amb-gain=26% gate@1092 kA=12.0 kL=24.0
+   [time] 14.9 min for 42 images on vit_b_32; ~56.1 min left on this arch (this shard)
+
+[43/200] ILSVRC2012_val_00017377.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.1378 SSIM=1.0000 LPIPS=0.0003 adv float/uint8/repaired=1/0/1 | 19.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=13.8 seq=CCCCCCCCCCCCCCCCC | MA amb=72% p-share=5.66 amb-gain=44% gate@1071 kA=- kL=24.0
+   [time] 15.2 min for 43 images on vit_b_32; ~55.7 min left on this arch (this shard)
+
+[44/200] ILSVRC2012_val_00019827.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=4.7091 SSIM=0.9895 LPIPS=0.0570 adv float/uint8/repaired=1/0/1 | 23.5s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=16.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9894)
+   [time] 15.6 min for 44 images on vit_b_32; ~55.5 min left on this arch (this shard)
+
+[45/200] ILSVRC2012_val_00026632.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.1476 SSIM=0.9938 LPIPS=0.0156 adv float/uint8/repaired=1/1/1 | 21.3s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=56% p-share=1.81 amb-gain=28% gate@2500 kA=- kL=24.0
+   [time] 16.0 min for 45 images on vit_b_32; ~55.1 min left on this arch (this shard)
+
+[46/200] ILSVRC2012_val_00020383.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6125 SSIM=0.9995 LPIPS=0.0017 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.3 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=3.28 amb-gain=35% gate@1086 kA=- kL=12.0
+   [time] 16.3 min for 46 images on vit_b_32; ~54.7 min left on this arch (this shard)
+
+[47/200] ILSVRC2012_val_00033203.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=2.0915 SSIM=0.9940 LPIPS=0.0614 adv float/uint8/repaired=1/1/1 | 21.3s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=49% p-share=1.31 amb-gain=22% gate@1095 kA=- kL=24.0
+   [time] 16.7 min for 47 images on vit_b_32; ~54.4 min left on this arch (this shard)
+
+[48/200] ILSVRC2012_val_00029097.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4574 SSIM=0.9996 LPIPS=0.0021 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.5 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=4.75 amb-gain=38% gate@1093 kA=- kL=12.0
+   [time] 17.1 min for 48 images on vit_b_32; ~54.0 min left on this arch (this shard)
+
+[49/200] ILSVRC2012_val_00038905.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6935 SSIM=0.9992 LPIPS=0.0068 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.43 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCCCCC | MA amb=61% p-share=2.45 amb-gain=30% gate@1090 kA=12.0 kL=12.0
+   [time] 17.4 min for 49 images on vit_b_32; ~53.6 min left on this arch (this shard)
+
+[50/200] ILSVRC2012_val_00016336.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2964 SSIM=0.9976 LPIPS=0.0094 adv float/uint8/repaired=1/1/1 | 20.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.91 amb-gain=36% gate@1093 kA=- kL=12.0
+   [time] 17.8 min for 50 images on vit_b_32; ~53.3 min left on this arch (this shard)
+
+[51/200] ILSVRC2012_val_00033282.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.1392 SSIM=0.9890 LPIPS=0.0413 adv float/uint8/repaired=1/0/1 | 22.2s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=17.1 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=39% p-share=1.82 amb-gain=25% gate@3884 kA=- kL=24.0
+   [time] 18.1 min for 51 images on vit_b_32; ~53.0 min left on this arch (this shard)
+
+[52/200] ILSVRC2012_val_00032654.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.9208 SSIM=0.9978 LPIPS=0.0083 adv float/uint8/repaired=1/0/1 | 21.1s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.78 amb-gain=36% gate@1617 kA=- kL=24.0
+   [time] 18.5 min for 52 images on vit_b_32; ~52.6 min left on this arch (this shard)
+
+[53/200] ILSVRC2012_val_00005000.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.0844 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.3s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=13.0 seq=CCCCCCCCCCCCCCCCC | MA amb=72% p-share=3.64 amb-gain=27% gate@1059 kA=- kL=24.0
+   [time] 18.8 min for 53 images on vit_b_32; ~52.2 min left on this arch (this shard)
+
+[54/200] ILSVRC2012_val_00023111.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=5.7875 SSIM=0.9780 LPIPS=0.0370 adv float/uint8/repaired=1/0/1 | 22.0s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=37% p-share=0.86 amb-gain=12% gate@4774 kA=- kL=24.0
+   [time] 19.2 min for 54 images on vit_b_32; ~51.9 min left on this arch (this shard)
+
+[55/200] ILSVRC2012_val_00038109.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.7689 SSIM=0.9946 LPIPS=0.0161 adv float/uint8/repaired=1/1/1 | 21.3s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=58% p-share=1.94 amb-gain=33% gate@1901 kA=- kL=12.0
+   [time] 19.6 min for 55 images on vit_b_32; ~51.6 min left on this arch (this shard)
+
+[56/200] ILSVRC2012_val_00004916.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=1.0221 SSIM=0.9979 LPIPS=0.0127 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.88 amb-gain=36% gate@1216 kA=- kL=24.0
+   [time] 19.9 min for 56 images on vit_b_32; ~51.2 min left on this arch (this shard)
+
+[57/200] ILSVRC2012_val_00006633.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.1239 SSIM=0.9873 LPIPS=0.0383 adv float/uint8/repaired=1/0/1 | 21.9s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=17.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=44% p-share=1.56 amb-gain=23% gate@3880 kA=- kL=12.0
+   [time] 20.3 min for 57 images on vit_b_32; ~50.9 min left on this arch (this shard)
+
+[58/200] ILSVRC2012_val_00024789.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9963 | pixL2@10000=0.3317 SSIM=1.0000 LPIPS=0.0002 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=14.3 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=1.68 amb-gain=18% gate@1070 kA=- kL=24.0
+   [time] 20.6 min for 58 images on vit_b_32; ~50.5 min left on this arch (this shard)
+
+[59/200] ILSVRC2012_val_00007605.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6744 SSIM=0.9995 LPIPS=0.0014 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.71 amb-gain=27% gate@1098 kA=- kL=24.0
+   [time] 21.0 min for 59 images on vit_b_32; ~50.1 min left on this arch (this shard)
+
+[60/200] ILSVRC2012_val_00018302.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4595 SSIM=0.9996 LPIPS=0.0024 adv float/uint8/repaired=1/0/1 | 20.1s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.0 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.11 amb-gain=30% gate@1085 kA=- kL=24.0
+   [time] 21.3 min for 60 images on vit_b_32; ~49.7 min left on this arch (this shard)
+
+[61/200] ILSVRC2012_val_00049204.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.5040 SSIM=0.9996 LPIPS=0.0029 adv float/uint8/repaired=1/0/1 | 20.1s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.1 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=4.03 amb-gain=45% gate@1084 kA=- kL=24.0
+   [time] 21.7 min for 61 images on vit_b_32; ~49.3 min left on this arch (this shard)
+
+[62/200] ILSVRC2012_val_00000497.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.7042 SSIM=0.9807 LPIPS=0.0527 adv float/uint8/repaired=1/1/1 | 23.0s | +1share=0.44 | GTE N=0% B=0% T=0% F=0% upd/it=17.1 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=19% p-share=1.03 amb-gain=13% gate@7347 kA=- kL=12.0
+   [time] 22.0 min for 62 images on vit_b_32; ~49.1 min left on this arch (this shard)
+
+[63/200] ILSVRC2012_val_00035048.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8952 SSIM=0.9978 LPIPS=0.0523 adv float/uint8/repaired=1/0/1 | 20.8s | +1share=0.42 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=2.37 amb-gain=30% gate@1091 kA=12.0 kL=12.0
+   [time] 22.4 min for 63 images on vit_b_32; ~48.7 min left on this arch (this shard)
+
+[64/200] ILSVRC2012_val_00044201.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=2.0300 SSIM=0.9951 LPIPS=0.0338 adv float/uint8/repaired=1/0/1 | 21.3s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=58% p-share=2.37 amb-gain=36% gate@2041 kA=- kL=12.0
+   [time] 22.8 min for 64 images on vit_b_32; ~48.4 min left on this arch (this shard)
+
+[65/200] ILSVRC2012_val_00034087.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.1904 SSIM=1.0000 LPIPS=0.0002 adv float/uint8/repaired=1/0/1 | 19.8s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=14.2 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=67% p-share=2.50 amb-gain=25% gate@1077 kA=- kL=24.0
+   [time] 23.1 min for 65 images on vit_b_32; ~48.0 min left on this arch (this shard)
+
+[66/200] ILSVRC2012_val_00044905.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7818 SSIM=0.9944 LPIPS=0.0122 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=2.60 amb-gain=32% gate@1088 kA=- kL=24.0
+   [time] 23.5 min for 66 images on vit_b_32; ~47.6 min left on this arch (this shard)
+
+[67/200] ILSVRC2012_val_00038169.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.8881 SSIM=0.9891 LPIPS=0.0485 adv float/uint8/repaired=1/0/1 | 22.6s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=25% p-share=0.84 amb-gain=11% gate@4615 kA=- kL=12.0
+   [time] 23.8 min for 67 images on vit_b_32; ~47.3 min left on this arch (this shard)
+
+[68/200] ILSVRC2012_val_00002996.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=2.3688 SSIM=0.9940 LPIPS=0.0275 adv float/uint8/repaired=1/0/1 | 21.3s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=53% p-share=2.12 amb-gain=34% gate@1895 kA=6.0 kL=12.0
+   [time] 24.2 min for 68 images on vit_b_32; ~47.0 min left on this arch (this shard)
+
+[69/200] ILSVRC2012_val_00000436.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.2276 SSIM=1.0000 LPIPS=0.0003 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=14.4 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=2.81 amb-gain=24% gate@1078 kA=- kL=24.0
+   [time] 24.5 min for 69 images on vit_b_32; ~46.6 min left on this arch (this shard)
+
+[70/200] ILSVRC2012_val_00036175.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.4819 SSIM=0.9973 LPIPS=0.0104 adv float/uint8/repaired=1/1/1 | 20.7s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.36 amb-gain=40% gate@1096 kA=- kL=24.0
+   [time] 24.9 min for 70 images on vit_b_32; ~46.2 min left on this arch (this shard)
+
+[71/200] ILSVRC2012_val_00046230.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=7.7342 SSIM=0.9895 LPIPS=0.0130 adv float/uint8/repaired=1/1/1 | 22.9s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=14.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9894)
+   [time] 25.3 min for 71 images on vit_b_32; ~45.9 min left on this arch (this shard)
+
+[72/200] ILSVRC2012_val_00016389.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4484 SSIM=0.9997 LPIPS=0.0017 adv float/uint8/repaired=1/0/1 | 20.1s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=14.9 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.35 amb-gain=37% gate@1083 kA=- kL=24.0
+   [time] 25.6 min for 72 images on vit_b_32; ~45.6 min left on this arch (this shard)
+
+[73/200] ILSVRC2012_val_00045746.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3082 SSIM=0.9958 LPIPS=0.0609 adv float/uint8/repaired=1/0/1 | 21.1s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=2.84 amb-gain=35% gate@1095 kA=12.0 kL=24.0
+   [time] 26.0 min for 73 images on vit_b_32; ~45.2 min left on this arch (this shard)
+
+[74/200] ILSVRC2012_val_00014068.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.1431 SSIM=0.9973 LPIPS=0.0182 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.78 amb-gain=29% gate@1351 kA=- kL=12.0
+   [time] 26.3 min for 74 images on vit_b_32; ~44.8 min left on this arch (this shard)
+
+[75/200] ILSVRC2012_val_00015844.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3728 SSIM=0.9998 LPIPS=0.0010 adv float/uint8/repaired=1/0/1 | 20.1s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=14.9 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.71 amb-gain=36% gate@1081 kA=- kL=24.0
+   [time] 26.7 min for 75 images on vit_b_32; ~44.5 min left on this arch (this shard)
+
+[76/200] ILSVRC2012_val_00004828.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.8950 SSIM=0.9969 LPIPS=0.0102 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.64 amb-gain=32% gate@1097 kA=- kL=12.0
+   [time] 27.0 min for 76 images on vit_b_32; ~44.1 min left on this arch (this shard)
+
+[77/200] ILSVRC2012_val_00026732.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.5500 SSIM=0.9982 LPIPS=0.0106 adv float/uint8/repaired=1/0/1 | 20.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.90 amb-gain=34% gate@1096 kA=- kL=12.0
+   [time] 27.4 min for 77 images on vit_b_32; ~43.8 min left on this arch (this shard)
+
+[78/200] ILSVRC2012_val_00036641.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6095 SSIM=0.9997 LPIPS=0.0008 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.0 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=8.81 amb-gain=50% gate@1608 kA=- kL=24.0
+   [time] 27.7 min for 78 images on vit_b_32; ~43.4 min left on this arch (this shard)
+
+[79/200] ILSVRC2012_val_00023166.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=1.0161 SSIM=0.9991 LPIPS=0.0048 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=3.09 amb-gain=34% gate@1092 kA=- kL=24.0
+   [time] 28.1 min for 79 images on vit_b_32; ~43.0 min left on this arch (this shard)
+
+[80/200] ILSVRC2012_val_00034111.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3489 SSIM=0.9999 LPIPS=0.0003 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=14.7 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.24 amb-gain=23% gate@1078 kA=- kL=12.0
+   [time] 28.4 min for 80 images on vit_b_32; ~42.6 min left on this arch (this shard)
+
+[81/200] ILSVRC2012_val_00014060.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.9023 SSIM=0.9937 LPIPS=0.0263 adv float/uint8/repaired=1/0/1 | 23.0s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=8% p-share=0.33 amb-gain=1% gate@2998 kA=24.0 kL=-
+   [time] 28.8 min for 81 images on vit_b_32; ~42.3 min left on this arch (this shard)
+
+[82/200] ILSVRC2012_val_00030939.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.2433 SSIM=0.9999 LPIPS=0.0001 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=14.5 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.59 amb-gain=21% gate@1080 kA=- kL=24.0
+   [time] 29.2 min for 82 images on vit_b_32; ~42.0 min left on this arch (this shard)
+
+[83/200] ILSVRC2012_val_00045943.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.4019 SSIM=0.9975 LPIPS=0.0122 adv float/uint8/repaired=1/0/1 | 20.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=3.00 amb-gain=35% gate@1220 kA=- kL=12.0
+   [time] 29.5 min for 83 images on vit_b_32; ~41.6 min left on this arch (this shard)
+
+[84/200] ILSVRC2012_val_00037891.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.1428 SSIM=1.0000 LPIPS=0.0001 adv float/uint8/repaired=1/0/1 | 19.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=13.6 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=2.58 amb-gain=21% gate@1066 kA=- kL=24.0
+   [time] 29.9 min for 84 images on vit_b_32; ~41.2 min left on this arch (this shard)
+
+[85/200] ILSVRC2012_val_00004871.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.3763 SSIM=0.9964 LPIPS=0.0059 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=14.4 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=5.76 amb-gain=51% gate@1076 kA=- kL=24.0
+   [time] 30.2 min for 85 images on vit_b_32; ~40.9 min left on this arch (this shard)
+
+[86/200] ILSVRC2012_val_00025316.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3493 SSIM=0.9969 LPIPS=0.0191 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=3.16 amb-gain=38% gate@1613 kA=- kL=12.0
+   [time] 30.6 min for 86 images on vit_b_32; ~40.5 min left on this arch (this shard)
+
+[87/200] ILSVRC2012_val_00027515.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9964 | pixL2@10000=0.3010 SSIM=0.9999 LPIPS=0.0007 adv float/uint8/repaired=1/0/1 | 19.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=14.4 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=2.80 amb-gain=36% gate@1072 kA=- kL=12.0
+   [time] 30.9 min for 87 images on vit_b_32; ~40.1 min left on this arch (this shard)
+
+[88/200] ILSVRC2012_val_00047920.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8335 SSIM=0.9995 LPIPS=0.0027 adv float/uint8/repaired=1/0/1 | 20.7s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=56% p-share=2.45 amb-gain=28% gate@1087 kA=12.0 kL=24.0
+   [time] 31.3 min for 88 images on vit_b_32; ~39.8 min left on this arch (this shard)
+
+[89/200] ILSVRC2012_val_00004637.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4256 SSIM=0.9999 LPIPS=0.0002 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.47 amb-gain=24% gate@1087 kA=- kL=24.0
+   [time] 31.6 min for 89 images on vit_b_32; ~39.4 min left on this arch (this shard)
+
+[90/200] ILSVRC2012_val_00042141.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8658 SSIM=0.9977 LPIPS=0.0092 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.35 amb-gain=31% gate@1087 kA=- kL=12.0
+   [time] 31.9 min for 90 images on vit_b_32; ~39.0 min left on this arch (this shard)
+
+[91/200] ILSVRC2012_val_00030550.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=1.7257 SSIM=0.9971 LPIPS=0.0396 adv float/uint8/repaired=1/0/1 | 22.0s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=27% p-share=1.03 amb-gain=10% gate@1093 kA=12.0 kL=6.0
+   [time] 32.3 min for 91 images on vit_b_32; ~38.7 min left on this arch (this shard)
+
+[92/200] ILSVRC2012_val_00036605.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9969 | pixL2@10000=0.0190 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/0 | 18.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=11.0 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=65% p-share=1.95 amb-gain=13% gate@1040 kA=- kL=24.0
+   [time] 32.7 min for 92 images on vit_b_32; ~38.3 min left on this arch (this shard)
+
+[93/200] ILSVRC2012_val_00000626.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.1414 SSIM=0.9907 LPIPS=0.0230 adv float/uint8/repaired=1/1/1 | 21.6s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=44% p-share=1.34 amb-gain=17% gate@2669 kA=- kL=12.0
+   [time] 33.0 min for 93 images on vit_b_32; ~38.0 min left on this arch (this shard)
+
+[94/200] ILSVRC2012_val_00018530.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.6032 SSIM=0.9977 LPIPS=0.0124 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.5 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.11 amb-gain=29% gate@1098 kA=- kL=12.0
+   [time] 33.4 min for 94 images on vit_b_32; ~37.6 min left on this arch (this shard)
+
+[95/200] ILSVRC2012_val_00034657.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8762 SSIM=0.9984 LPIPS=0.0162 adv float/uint8/repaired=1/0/1 | 20.7s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=58% p-share=2.29 amb-gain=28% gate@1090 kA=- kL=24.0
+   [time] 33.7 min for 95 images on vit_b_32; ~37.3 min left on this arch (this shard)
+
+[96/200] ILSVRC2012_val_00033222.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.8027 SSIM=0.9962 LPIPS=0.0127 adv float/uint8/repaired=1/1/1 | 21.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=54% p-share=2.08 amb-gain=26% gate@2665 kA=- kL=12.0
+   [time] 34.1 min for 96 images on vit_b_32; ~36.9 min left on this arch (this shard)
+
+[97/200] ILSVRC2012_val_00038871.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.4743 SSIM=0.9917 LPIPS=0.0246 adv float/uint8/repaired=1/1/1 | 20.8s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCCCCCC | MA amb=61% p-share=2.58 amb-gain=36% gate@1748 kA=- kL=24.0
+   [time] 34.4 min for 97 images on vit_b_32; ~36.6 min left on this arch (this shard)
+
+[98/200] ILSVRC2012_val_00047207.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3335 SSIM=0.9988 LPIPS=0.0058 adv float/uint8/repaired=1/1/1 | 20.6s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.48 amb-gain=38% gate@1086 kA=- kL=24.0
+   [time] 34.8 min for 98 images on vit_b_32; ~36.2 min left on this arch (this shard)
+
+[99/200] ILSVRC2012_val_00000945.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.7471 SSIM=0.9994 LPIPS=0.0038 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.56 amb-gain=33% gate@1095 kA=- kL=24.0
+   [time] 35.1 min for 99 images on vit_b_32; ~35.9 min left on this arch (this shard)
+
+[100/200] ILSVRC2012_val_00020460.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.5883 SSIM=0.9995 LPIPS=0.0036 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.2 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.28 amb-gain=28% gate@1084 kA=- kL=12.0
+   [time] 35.5 min for 100 images on vit_b_32; ~35.5 min left on this arch (this shard)
+
+[101/200] ILSVRC2012_val_00011129.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.9160 SSIM=0.9978 LPIPS=0.0050 adv float/uint8/repaired=1/1/1 | 20.5s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.49 amb-gain=29% gate@1092 kA=- kL=24.0
+   [time] 35.8 min for 101 images on vit_b_32; ~35.1 min left on this arch (this shard)
+
+[102/200] ILSVRC2012_val_00040884.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3080 SSIM=0.9993 LPIPS=0.0022 adv float/uint8/repaired=1/1/1 | 20.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.5 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=1.69 amb-gain=18% gate@1103 kA=- kL=24.0
+   [time] 36.2 min for 102 images on vit_b_32; ~34.8 min left on this arch (this shard)
+
+[103/200] ILSVRC2012_val_00026095.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4069 SSIM=0.9996 LPIPS=0.0067 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.1 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=4.20 amb-gain=39% gate@1083 kA=- kL=24.0
+   [time] 36.5 min for 103 images on vit_b_32; ~34.4 min left on this arch (this shard)
+
+[104/200] ILSVRC2012_val_00007123.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=4.8781 SSIM=0.9912 LPIPS=0.0296 adv float/uint8/repaired=1/0/1 | 23.4s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=17.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=2% p-share=0.00 amb-gain=0% gate@8952
+   [time] 36.9 min for 104 images on vit_b_32; ~34.1 min left on this arch (this shard)
+
+[105/200] ILSVRC2012_val_00018408.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.4628 SSIM=0.9980 LPIPS=0.0079 adv float/uint8/repaired=1/1/1 | 21.3s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=47% p-share=2.42 amb-gain=27% gate@2192 kA=12.0 kL=12.0
+   [time] 37.3 min for 105 images on vit_b_32; ~33.7 min left on this arch (this shard)
+
+[106/200] ILSVRC2012_val_00006623.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3544 SSIM=0.9977 LPIPS=0.0117 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.61 amb-gain=37% gate@1095 kA=- kL=24.0
+   [time] 37.6 min for 106 images on vit_b_32; ~33.4 min left on this arch (this shard)
+
+[107/200] ILSVRC2012_val_00016905.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.9632 SSIM=0.9993 LPIPS=0.0035 adv float/uint8/repaired=1/1/1 | 20.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.47 amb-gain=30% gate@1088 kA=- kL=24.0
+   [time] 38.0 min for 107 images on vit_b_32; ~33.0 min left on this arch (this shard)
+
+[108/200] ILSVRC2012_val_00026001.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3064 SSIM=0.9998 LPIPS=0.0013 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=15.2 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.12 amb-gain=25% gate@1091 kA=- kL=12.0
+   [time] 38.3 min for 108 images on vit_b_32; ~32.7 min left on this arch (this shard)
+
+[109/200] ILSVRC2012_val_00004165.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.0818 SSIM=0.9975 LPIPS=0.0294 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=56% p-share=2.19 amb-gain=28% gate@1092 kA=12.0 kL=24.0
+   [time] 38.7 min for 109 images on vit_b_32; ~32.3 min left on this arch (this shard)
+
+[110/200] ILSVRC2012_val_00047796.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6699 SSIM=0.9991 LPIPS=0.0090 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=3.31 amb-gain=35% gate@1090 kA=- kL=24.0
+   [time] 39.0 min for 110 images on vit_b_32; ~31.9 min left on this arch (this shard)
+
+[111/200] ILSVRC2012_val_00037149.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.6008 SSIM=0.9967 LPIPS=0.0211 adv float/uint8/repaired=1/1/1 | 21.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=49% p-share=2.26 amb-gain=29% gate@3168 kA=- kL=12.0
+   [time] 39.4 min for 111 images on vit_b_32; ~31.6 min left on this arch (this shard)
+
+[112/200] ILSVRC2012_val_00046636.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2439 SSIM=0.9974 LPIPS=0.0160 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.85 amb-gain=44% gate@1084 kA=- kL=24.0
+   [time] 39.8 min for 112 images on vit_b_32; ~31.2 min left on this arch (this shard)
+
+[113/200] ILSVRC2012_val_00032928.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.0782 SSIM=0.9983 LPIPS=0.0083 adv float/uint8/repaired=1/1/1 | 20.7s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=4.78 amb-gain=46% gate@1092 kA=6.0 kL=12.0
+   [time] 40.1 min for 113 images on vit_b_32; ~30.9 min left on this arch (this shard)
+
+[114/200] ILSVRC2012_val_00028690.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=6.0730 SSIM=0.9775 LPIPS=0.0866 adv float/uint8/repaired=1/0/1 | 23.2s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=17.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=14% p-share=0.72 amb-gain=10% gate@8019 kA=- kL=12.0
+   [time] 40.5 min for 114 images on vit_b_32; ~30.5 min left on this arch (this shard)
+
+[115/200] ILSVRC2012_val_00046589.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.8893 SSIM=0.9997 LPIPS=0.0021 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.37 amb-gain=26% gate@1093 kA=- kL=24.0
+   [time] 40.8 min for 115 images on vit_b_32; ~30.2 min left on this arch (this shard)
+
+[116/200] ILSVRC2012_val_00025492.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3310 SSIM=0.9945 LPIPS=0.0088 adv float/uint8/repaired=1/1/1 | 20.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.37 amb-gain=30% gate@1094 kA=- kL=24.0
+   [time] 41.2 min for 116 images on vit_b_32; ~29.8 min left on this arch (this shard)
+
+[117/200] ILSVRC2012_val_00032459.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.5877 SSIM=0.9982 LPIPS=0.0039 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.69 amb-gain=33% gate@1097 kA=- kL=12.0
+   [time] 41.5 min for 117 images on vit_b_32; ~29.5 min left on this arch (this shard)
+
+[118/200] ILSVRC2012_val_00004683.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.8760 SSIM=0.9992 LPIPS=0.0053 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=4.67 amb-gain=42% gate@1100 kA=- kL=12.0
+   [time] 41.9 min for 118 images on vit_b_32; ~29.1 min left on this arch (this shard)
+
+[119/200] ILSVRC2012_val_00000715.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7257 SSIM=0.9997 LPIPS=0.0010 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.7 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.49 amb-gain=27% gate@1089 kA=12.0 kL=24.0
+   [time] 42.2 min for 119 images on vit_b_32; ~28.8 min left on this arch (this shard)
+
+[120/200] ILSVRC2012_val_00015991.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.7762 SSIM=0.9863 LPIPS=0.0888 adv float/uint8/repaired=1/0/1 | 22.7s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=20% p-share=0.56 amb-gain=6% gate@4247 kA=12.0 kL=12.0
+   [time] 42.6 min for 120 images on vit_b_32; ~28.4 min left on this arch (this shard)
+
+[121/200] ILSVRC2012_val_00005645.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7138 SSIM=0.9996 LPIPS=0.0017 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=3.40 amb-gain=42% gate@1087 kA=- kL=24.0
+   [time] 43.0 min for 121 images on vit_b_32; ~28.1 min left on this arch (this shard)
+
+[122/200] ILSVRC2012_val_00019802.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9970 | pixL2@10000=0.0533 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.3s | +1share=0.53 | GTE N=0% B=0% T=0% F=0% upd/it=13.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=67% p-share=4.16 amb-gain=32% gate@1058 kA=6.0 kL=24.0
+   [time] 43.3 min for 122 images on vit_b_32; ~27.7 min left on this arch (this shard)
+
+[123/200] ILSVRC2012_val_00016228.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3974 SSIM=0.9996 LPIPS=0.0033 adv float/uint8/repaired=1/0/1 | 20.0s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCC | MA amb=73% p-share=4.59 amb-gain=36% gate@1089 kA=- kL=24.0
+   [time] 43.7 min for 123 images on vit_b_32; ~27.3 min left on this arch (this shard)
+
+[124/200] ILSVRC2012_val_00007544.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.0987 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=13.2 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.63 amb-gain=20% gate@1064 kA=- kL=24.0
+   [time] 44.0 min for 124 images on vit_b_32; ~27.0 min left on this arch (this shard)
+
+[125/200] ILSVRC2012_val_00003516.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=1.3544 SSIM=0.9983 LPIPS=0.0067 adv float/uint8/repaired=1/0/1 | 20.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=3.49 amb-gain=39% gate@1614 kA=- kL=24.0
+   [time] 44.3 min for 125 images on vit_b_32; ~26.6 min left on this arch (this shard)
+
+[126/200] ILSVRC2012_val_00033331.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.5126 SSIM=0.9965 LPIPS=0.0196 adv float/uint8/repaired=1/1/1 | 20.8s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=3.04 amb-gain=35% gate@1349 kA=- kL=24.0
+   [time] 44.7 min for 126 images on vit_b_32; ~26.3 min left on this arch (this shard)
+
+[127/200] ILSVRC2012_val_00025060.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.9890 SSIM=0.9979 LPIPS=0.0071 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=5.41 amb-gain=48% gate@1755 kA=- kL=24.0
+   [time] 45.1 min for 127 images on vit_b_32; ~25.9 min left on this arch (this shard)
+
+[128/200] ILSVRC2012_val_00043472.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9960 | pixL2@10000=0.4661 SSIM=0.9993 LPIPS=0.0045 adv float/uint8/repaired=1/0/1 | 20.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=17.5 seq=CCCCCCCCCCCCCCCCCCCCCCC | MA amb=61% p-share=10.21 amb-gain=53% gate@1482 kA=- kL=24.0
+   [time] 45.4 min for 128 images on vit_b_32; ~25.5 min left on this arch (this shard)
+
+[129/200] ILSVRC2012_val_00048073.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=1.0197 SSIM=0.9985 LPIPS=0.0033 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=2.47 amb-gain=36% gate@1088 kA=- kL=24.0
+   [time] 45.8 min for 129 images on vit_b_32; ~25.2 min left on this arch (this shard)
+
+[130/200] ILSVRC2012_val_00027241.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.5846 SSIM=0.9997 LPIPS=0.0011 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=15.3 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.43 amb-gain=36% gate@1091 kA=- kL=12.0
+   [time] 46.1 min for 130 images on vit_b_32; ~24.8 min left on this arch (this shard)
+
+[131/200] ILSVRC2012_val_00045462.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.1170 SSIM=1.0000 LPIPS=0.0004 adv float/uint8/repaired=1/0/1 | 19.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=14.1 seq=CCCCCCCCCCCCCCCCC | MA amb=72% p-share=20.33 amb-gain=58% gate@1090 kA=- kL=24.0
+   [time] 46.4 min for 131 images on vit_b_32; ~24.5 min left on this arch (this shard)
+
+[132/200] ILSVRC2012_val_00008875.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.6553 SSIM=0.9940 LPIPS=0.0203 adv float/uint8/repaired=1/1/1 | 21.6s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=51% p-share=2.45 amb-gain=32% gate@3168 kA=- kL=24.0
+   [time] 46.8 min for 132 images on vit_b_32; ~24.1 min left on this arch (this shard)
+
+[133/200] ILSVRC2012_val_00025056.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.2595 SSIM=0.9952 LPIPS=0.0203 adv float/uint8/repaired=1/0/1 | 21.5s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=53% p-share=1.87 amb-gain=29% gate@2669 kA=- kL=12.0
+   [time] 47.2 min for 133 images on vit_b_32; ~23.8 min left on this arch (this shard)
+
+[134/200] ILSVRC2012_val_00020926.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.9224 SSIM=0.9983 LPIPS=0.0105 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.81 amb-gain=40% gate@1084 kA=- kL=24.0
+   [time] 47.5 min for 134 images on vit_b_32; ~23.4 min left on this arch (this shard)
+
+[135/200] ILSVRC2012_val_00040228.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=5.3517 SSIM=0.9896 LPIPS=0.0235 adv float/uint8/repaired=1/0/1 | 23.6s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=17.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9896)
+   [time] 47.9 min for 135 images on vit_b_32; ~23.1 min left on this arch (this shard)
+
+[136/200] ILSVRC2012_val_00044435.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3950 SSIM=0.9979 LPIPS=0.0105 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=56% p-share=1.91 amb-gain=27% gate@1094 kA=12.0 kL=24.0
+   [time] 48.3 min for 136 images on vit_b_32; ~22.7 min left on this arch (this shard)
+
+[137/200] ILSVRC2012_val_00040409.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3467 SSIM=0.9975 LPIPS=0.0091 adv float/uint8/repaired=1/1/1 | 21.1s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=56% p-share=2.40 amb-gain=28% gate@2196 kA=- kL=12.0
+   [time] 48.6 min for 137 images on vit_b_32; ~22.4 min left on this arch (this shard)
+
+[138/200] ILSVRC2012_val_00020238.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3347 SSIM=0.9954 LPIPS=0.0442 adv float/uint8/repaired=1/1/1 | 20.7s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.59 amb-gain=36% gate@1476 kA=- kL=12.0
+   [time] 49.0 min for 138 images on vit_b_32; ~22.0 min left on this arch (this shard)
+
+[139/200] ILSVRC2012_val_00042864.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.1559 SSIM=0.9900 LPIPS=0.0435 adv float/uint8/repaired=1/1/1 | 21.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.5 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=51% p-share=2.92 amb-gain=37% gate@3333 kA=- kL=24.0
+   [time] 49.3 min for 139 images on vit_b_32; ~21.7 min left on this arch (this shard)
+
+[140/200] ILSVRC2012_val_00006336.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6681 SSIM=0.9995 LPIPS=0.0041 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.5 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.23 amb-gain=29% gate@1084 kA=12.0 kL=12.0
+   [time] 49.7 min for 140 images on vit_b_32; ~21.3 min left on this arch (this shard)
+
+[141/200] ILSVRC2012_val_00012846.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7432 SSIM=0.9986 LPIPS=0.0149 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=47% p-share=2.17 amb-gain=27% gate@1213 kA=12.0 kL=24.0
+   [time] 50.0 min for 141 images on vit_b_32; ~20.9 min left on this arch (this shard)
+
+[142/200] ILSVRC2012_val_00033435.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9960 | pixL2@10000=1.8779 SSIM=0.9961 LPIPS=0.0101 adv float/uint8/repaired=1/1/1 | 21.5s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=37% p-share=1.85 amb-gain=21% gate@1619 kA=12.0 kL=24.0
+   [time] 50.4 min for 142 images on vit_b_32; ~20.6 min left on this arch (this shard)
+
+[143/200] ILSVRC2012_val_00041408.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7726 SSIM=0.9991 LPIPS=0.0024 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.88 amb-gain=36% gate@1089 kA=- kL=12.0
+   [time] 50.8 min for 143 images on vit_b_32; ~20.2 min left on this arch (this shard)
+
+[144/200] ILSVRC2012_val_00023004.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=2.1180 SSIM=0.9947 LPIPS=0.0306 adv float/uint8/repaired=1/0/1 | 21.4s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=53% p-share=1.69 amb-gain=26% gate@2342 kA=- kL=12.0
+   [time] 51.1 min for 144 images on vit_b_32; ~19.9 min left on this arch (this shard)
+
+[145/200] ILSVRC2012_val_00034741.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7439 SSIM=0.9986 LPIPS=0.0174 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.89 amb-gain=40% gate@1092 kA=- kL=24.0
+   [time] 51.5 min for 145 images on vit_b_32; ~19.5 min left on this arch (this shard)
+
+[146/200] ILSVRC2012_val_00001796.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.6272 SSIM=0.9770 LPIPS=0.0524 adv float/uint8/repaired=1/0/1 | 22.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=17.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=20% p-share=1.45 amb-gain=22% gate@7114 kA=- kL=12.0
+   [time] 51.9 min for 146 images on vit_b_32; ~19.2 min left on this arch (this shard)
+
+[147/200] ILSVRC2012_val_00039830.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7356 SSIM=0.9995 LPIPS=0.0016 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=2.91 amb-gain=33% gate@1089 kA=- kL=24.0
+   [time] 52.2 min for 147 images on vit_b_32; ~18.8 min left on this arch (this shard)
+
+[148/200] ILSVRC2012_val_00015816.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.9428 SSIM=0.9991 LPIPS=0.0029 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=4.00 amb-gain=35% gate@1098 kA=- kL=12.0
+   [time] 52.5 min for 148 images on vit_b_32; ~18.5 min left on this arch (this shard)
+
+[149/200] ILSVRC2012_val_00002004.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4932 SSIM=0.9994 LPIPS=0.0042 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=66% p-share=4.21 amb-gain=38% gate@1091 kA=6.0 kL=24.0
+   [time] 52.9 min for 149 images on vit_b_32; ~18.1 min left on this arch (this shard)
+
+[150/200] ILSVRC2012_val_00001583.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7474 SSIM=0.9988 LPIPS=0.0243 adv float/uint8/repaired=1/0/1 | 21.0s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=16.1 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=49% p-share=2.37 amb-gain=31% gate@1349 kA=12.0 kL=24.0
+   [time] 53.3 min for 150 images on vit_b_32; ~17.8 min left on this arch (this shard)
+
+[151/200] ILSVRC2012_val_00044630.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.3866 SSIM=0.9996 LPIPS=0.0023 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=14.9 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.54 amb-gain=38% gate@1082 kA=- kL=12.0
+   [time] 53.6 min for 151 images on vit_b_32; ~17.4 min left on this arch (this shard)
+
+[152/200] ILSVRC2012_val_00025104.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2354 SSIM=0.9996 LPIPS=0.0039 adv float/uint8/repaired=1/0/1 | 20.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=3.60 amb-gain=43% gate@1091 kA=- kL=24.0
+   [time] 53.9 min for 152 images on vit_b_32; ~17.0 min left on this arch (this shard)
+
+[153/200] ILSVRC2012_val_00022708.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=7.3365 SSIM=0.9826 LPIPS=0.0321 adv float/uint8/repaired=1/0/1 | 23.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9826)
+   [time] 54.3 min for 153 images on vit_b_32; ~16.7 min left on this arch (this shard)
+
+[154/200] ILSVRC2012_val_00011074.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.5428 SSIM=0.9966 LPIPS=0.0117 adv float/uint8/repaired=1/0/1 | 21.1s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=58% p-share=3.16 amb-gain=36% gate@2200 kA=- kL=24.0
+   [time] 54.7 min for 154 images on vit_b_32; ~16.3 min left on this arch (this shard)
+
+[155/200] ILSVRC2012_val_00044733.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=2.0536 SSIM=0.9836 LPIPS=0.0406 adv float/uint8/repaired=1/1/1 | 21.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=44% p-share=2.88 amb-gain=37% gate@4061 kA=- kL=24.0
+   [time] 55.1 min for 155 images on vit_b_32; ~16.0 min left on this arch (this shard)
+
+[156/200] ILSVRC2012_val_00015097.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9970 | pixL2@10000=0.1546 SSIM=0.9999 LPIPS=0.0011 adv float/uint8/repaired=1/0/1 | 19.8s | +1share=0.43 | GTE N=0% B=0% T=0% F=0% upd/it=14.1 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=3.51 amb-gain=28% gate@1078 kA=6.0 kL=24.0
+   [time] 55.4 min for 156 images on vit_b_32; ~15.6 min left on this arch (this shard)
+
+[157/200] ILSVRC2012_val_00044637.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.2043 SSIM=1.0000 LPIPS=0.0001 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=14.0 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=65% p-share=2.12 amb-gain=19% gate@1075 kA=- kL=12.0
+   [time] 55.8 min for 157 images on vit_b_32; ~15.3 min left on this arch (this shard)
+
+[158/200] ILSVRC2012_val_00015835.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9970 | pixL2@10000=0.0492 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.1 seq=CCCCCCCCCCCCCCCCCCCC | MA amb=67% p-share=29.74 amb-gain=50% gate@1095 kA=6.0 kL=24.0
+   [time] 56.1 min for 158 images on vit_b_32; ~14.9 min left on this arch (this shard)
+
+[159/200] ILSVRC2012_val_00003897.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=5.6121 SSIM=0.9860 LPIPS=0.0377 adv float/uint8/repaired=1/1/1 | 23.1s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=14% p-share=0.55 amb-gain=6% gate@8011 kA=- kL=12.0
+   [time] 56.5 min for 159 images on vit_b_32; ~14.6 min left on this arch (this shard)
+
+[160/200] ILSVRC2012_val_00009446.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.9737 SSIM=0.9964 LPIPS=0.0095 adv float/uint8/repaired=1/1/1 | 21.1s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=1.95 amb-gain=30% gate@1479 kA=- kL=24.0
+   [time] 56.8 min for 160 images on vit_b_32; ~14.2 min left on this arch (this shard)
+
+[161/200] ILSVRC2012_val_00036659.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2304 SSIM=0.9968 LPIPS=0.0279 adv float/uint8/repaired=1/0/1 | 21.0s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=3.78 amb-gain=37% gate@1613 kA=- kL=24.0
+   [time] 57.2 min for 161 images on vit_b_32; ~13.9 min left on this arch (this shard)
+
+[162/200] ILSVRC2012_val_00044440.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9978 | pixL2@10000=12.1056 SSIM=0.9689 LPIPS=0.0484 adv float/uint8/repaired=1/0/1 | 23.4s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.6 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9688)
+   [time] 57.6 min for 162 images on vit_b_32; ~13.5 min left on this arch (this shard)
+
+[163/200] ILSVRC2012_val_00001576.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.5724 SSIM=0.9997 LPIPS=0.0007 adv float/uint8/repaired=1/0/1 | 20.2s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=9.03 amb-gain=54% gate@1099 kA=- kL=12.0
+   [time] 57.9 min for 163 images on vit_b_32; ~13.2 min left on this arch (this shard)
+
+[164/200] ILSVRC2012_val_00019218.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=5.1920 SSIM=0.9798 LPIPS=0.0728 adv float/uint8/repaired=1/1/1 | 23.6s | +1share=0.45 | GTE N=0% B=0% T=0% F=0% upd/it=17.1 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9799)
+   [time] 58.3 min for 164 images on vit_b_32; ~12.8 min left on this arch (this shard)
+
+[165/200] ILSVRC2012_val_00021070.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.0907 SSIM=1.0000 LPIPS=0.0001 adv float/uint8/repaired=1/0/1 | 19.3s | +1share=0.53 | GTE N=0% B=0% T=0% F=0% upd/it=12.8 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=2.49 amb-gain=26% gate@1055 kA=- kL=12.0
+   [time] 58.7 min for 165 images on vit_b_32; ~12.4 min left on this arch (this shard)
+
+[166/200] ILSVRC2012_val_00002123.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=7.5867 SSIM=0.9887 LPIPS=0.0219 adv float/uint8/repaired=1/1/1 | 23.4s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9887)
+   [time] 59.1 min for 166 images on vit_b_32; ~12.1 min left on this arch (this shard)
+
+[167/200] ILSVRC2012_val_00038651.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.9515 SSIM=0.9901 LPIPS=0.0178 adv float/uint8/repaired=1/0/1 | 22.4s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=17.1 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=31% p-share=1.97 amb-gain=24% gate@5632 kA=- kL=24.0
+   [time] 59.4 min for 167 images on vit_b_32; ~11.7 min left on this arch (this shard)
+
+[168/200] ILSVRC2012_val_00022072.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=7.2374 SSIM=0.9848 LPIPS=0.0346 adv float/uint8/repaired=1/0/1 | 23.5s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9848)
+   [time] 59.8 min for 168 images on vit_b_32; ~11.4 min left on this arch (this shard)
+
+[169/200] ILSVRC2012_val_00001034.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.4131 SSIM=0.9996 LPIPS=0.0014 adv float/uint8/repaired=1/0/1 | 20.1s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=14.9 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.26 amb-gain=23% gate@1085 kA=- kL=24.0
+   [time] 60.2 min for 169 images on vit_b_32; ~11.0 min left on this arch (this shard)
+
+[170/200] ILSVRC2012_val_00038648.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=3.0059 SSIM=0.9893 LPIPS=0.0263 adv float/uint8/repaired=1/0/1 | 21.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=49% p-share=1.50 amb-gain=21% gate@3339 kA=- kL=24.0
+   [time] 60.6 min for 170 images on vit_b_32; ~10.7 min left on this arch (this shard)
+
+[171/200] ILSVRC2012_val_00036860.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3269 SSIM=0.9973 LPIPS=0.0073 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=3.27 amb-gain=37% gate@2049 kA=- kL=24.0
+   [time] 60.9 min for 171 images on vit_b_32; ~10.3 min left on this arch (this shard)
+
+[172/200] ILSVRC2012_val_00047855.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.6847 SSIM=0.9986 LPIPS=0.0031 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.75 amb-gain=33% gate@1098 kA=- kL=12.0
+   [time] 61.3 min for 172 images on vit_b_32; ~10.0 min left on this arch (this shard)
+
+[173/200] ILSVRC2012_val_00048649.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.1608 SSIM=1.0000 LPIPS=0.0003 adv float/uint8/repaired=1/0/1 | 19.7s | +1share=0.51 | GTE N=0% B=0% T=0% F=0% upd/it=14.0 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=3.50 amb-gain=28% gate@1077 kA=- kL=12.0
+   [time] 61.6 min for 173 images on vit_b_32; ~9.6 min left on this arch (this shard)
+
+[174/200] ILSVRC2012_val_00048747.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2482 SSIM=0.9958 LPIPS=0.0447 adv float/uint8/repaired=1/0/1 | 21.6s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.5 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=42% p-share=2.46 amb-gain=29% gate@2198 kA=12.0 kL=24.0
+   [time] 62.0 min for 174 images on vit_b_32; ~9.3 min left on this arch (this shard)
+
+[175/200] ILSVRC2012_val_00014392.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.7728 SSIM=0.9983 LPIPS=0.0195 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=46% p-share=1.82 amb-gain=28% gate@1219 kA=12.0 kL=24.0
+   [time] 62.3 min for 175 images on vit_b_32; ~8.9 min left on this arch (this shard)
+
+[176/200] ILSVRC2012_val_00038351.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.4858 SSIM=0.9998 LPIPS=0.0010 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCCCCCC | MA amb=61% p-share=12.51 amb-gain=53% gate@1899 kA=- kL=24.0
+   [time] 62.7 min for 176 images on vit_b_32; ~8.5 min left on this arch (this shard)
+
+[177/200] ILSVRC2012_val_00020066.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9971 | pixL2@10000=0.0662 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.2s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=12.8 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=3.23 amb-gain=23% gate@1057 kA=- kL=24.0
+   [time] 63.0 min for 177 images on vit_b_32; ~8.2 min left on this arch (this shard)
+
+[178/200] ILSVRC2012_val_00001213.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.8030 SSIM=0.9968 LPIPS=0.0150 adv float/uint8/repaired=1/1/1 | 21.2s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=53% p-share=2.57 amb-gain=32% gate@2348 kA=- kL=24.0
+   [time] 63.4 min for 178 images on vit_b_32; ~7.8 min left on this arch (this shard)
+
+[179/200] ILSVRC2012_val_00005153.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6466 SSIM=0.9990 LPIPS=0.0036 adv float/uint8/repaired=1/0/1 | 20.3s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.6 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=5.12 amb-gain=49% gate@1090 kA=- kL=24.0
+   [time] 63.7 min for 179 images on vit_b_32; ~7.5 min left on this arch (this shard)
+
+[180/200] ILSVRC2012_val_00036696.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.4109 SSIM=0.9961 LPIPS=0.0180 adv float/uint8/repaired=1/1/1 | 21.1s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.82 amb-gain=34% gate@1755 kA=- kL=24.0
+   [time] 64.1 min for 180 images on vit_b_32; ~7.1 min left on this arch (this shard)
+
+[181/200] ILSVRC2012_val_00021056.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.3900 SSIM=0.9946 LPIPS=0.0705 adv float/uint8/repaired=1/0/1 | 21.1s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=16.3 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=3.18 amb-gain=35% gate@1903 kA=- kL=24.0
+   [time] 64.4 min for 181 images on vit_b_32; ~6.8 min left on this arch (this shard)
+
+[182/200] ILSVRC2012_val_00025196.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.2587 SSIM=0.9999 LPIPS=0.0011 adv float/uint8/repaired=1/0/1 | 19.9s | +1share=0.43 | GTE N=0% B=0% T=0% F=0% upd/it=14.6 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=4.03 amb-gain=38% gate@1082 kA=- kL=12.0
+   [time] 64.8 min for 182 images on vit_b_32; ~6.4 min left on this arch (this shard)
+
+[183/200] ILSVRC2012_val_00032793.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6425 SSIM=0.9994 LPIPS=0.0013 adv float/uint8/repaired=1/0/1 | 20.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.4 seq=CCCCCCCCCCCCCCCCCCCCCCC | MA amb=61% p-share=2.18 amb-gain=25% gate@1088 kA=12.0 kL=12.0
+   [time] 65.1 min for 183 images on vit_b_32; ~6.0 min left on this arch (this shard)
+
+[184/200] ILSVRC2012_val_00038330.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.7834 SSIM=0.9969 LPIPS=0.0120 adv float/uint8/repaired=1/1/1 | 21.0s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=58% p-share=2.27 amb-gain=33% gate@2034 kA=- kL=12.0
+   [time] 65.5 min for 184 images on vit_b_32; ~5.7 min left on this arch (this shard)
+
+[185/200] ILSVRC2012_val_00014537.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.9706 SSIM=0.9991 LPIPS=0.0038 adv float/uint8/repaired=1/1/1 | 20.5s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCCCC | MA amb=64% p-share=2.32 amb-gain=25% gate@1095 kA=- kL=24.0
+   [time] 65.8 min for 185 images on vit_b_32; ~5.3 min left on this arch (this shard)
+
+[186/200] ILSVRC2012_val_00009923.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.8494 SSIM=0.9971 LPIPS=0.0147 adv float/uint8/repaired=1/1/1 | 20.7s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCC | MA amb=69% p-share=2.36 amb-gain=34% gate@1091 kA=- kL=24.0
+   [time] 66.2 min for 186 images on vit_b_32; ~5.0 min left on this arch (this shard)
+
+[187/200] ILSVRC2012_val_00037343.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.1807 SSIM=0.9973 LPIPS=0.0129 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.2 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=3.36 amb-gain=37% gate@1351 kA=- kL=24.0
+   [time] 66.5 min for 187 images on vit_b_32; ~4.6 min left on this arch (this shard)
+
+[188/200] ILSVRC2012_val_00030025.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.1494 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/1 | 19.7s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=13.5 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=2.17 amb-gain=28% gate@1061 kA=12.0 kL=12.0
+   [time] 66.9 min for 188 images on vit_b_32; ~4.3 min left on this arch (this shard)
+
+[189/200] ILSVRC2012_val_00030697.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9976 | pixL2@10000=2.8981 SSIM=0.9931 LPIPS=0.0179 adv float/uint8/repaired=1/0/1 | 21.4s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=54% p-share=2.10 amb-gain=29% gate@2672 kA=- kL=24.0
+   [time] 67.2 min for 189 images on vit_b_32; ~3.9 min left on this arch (this shard)
+
+[190/200] ILSVRC2012_val_00020753.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9974 | pixL2@10000=0.6861 SSIM=0.9987 LPIPS=0.0063 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=15.8 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=53% p-share=2.74 amb-gain=29% gate@1613 kA=12.0 kL=12.0
+   [time] 67.6 min for 190 images on vit_b_32; ~3.6 min left on this arch (this shard)
+
+[191/200] ILSVRC2012_val_00042392.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.5839 SSIM=0.9960 LPIPS=0.0168 adv float/uint8/repaired=1/1/1 | 21.0s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=16.0 seq=CCCCCCCCCCCCCCCCCCCCCCCC | MA amb=59% p-share=2.43 amb-gain=36% gate@1890 kA=- kL=12.0
+   [time] 67.9 min for 191 images on vit_b_32; ~3.2 min left on this arch (this shard)
+
+[192/200] ILSVRC2012_val_00029186.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.7860 SSIM=0.9953 LPIPS=0.0346 adv float/uint8/repaired=1/0/1 | 20.9s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=16.4 seq=CCCCCCCCCCCCCCCCCCCCCC | MA amb=63% p-share=1.98 amb-gain=29% gate@1219 kA=- kL=24.0
+   [time] 68.3 min for 192 images on vit_b_32; ~2.8 min left on this arch (this shard)
+
+[193/200] ILSVRC2012_val_00018397.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9966 | pixL2@10000=0.0145 SSIM=1.0000 LPIPS=0.0000 adv float/uint8/repaired=1/0/0 | 18.4s | +1share=0.53 | GTE N=0% B=0% T=0% F=0% upd/it=10.4 seq=CCCCCCCCCCCCCCCCCC | MA amb=70% p-share=3.93 amb-gain=34% gate@1031 kA=- kL=24.0
+   [time] 68.6 min for 193 images on vit_b_32; ~2.5 min left on this arch (this shard)
+
+[194/200] ILSVRC2012_val_00008986.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=5.8041 SSIM=0.9885 LPIPS=0.0244 adv float/uint8/repaired=1/0/1 | 23.4s | +1share=0.46 | GTE N=0% B=0% T=0% F=0% upd/it=16.7 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=0% p-share=0.00 amb-gain=0% gate closed (SSIM 0.9885)
+   [time] 69.0 min for 194 images on vit_b_32; ~2.1 min left on this arch (this shard)
+
+[195/200] ILSVRC2012_val_00027876.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9969 | pixL2@10000=0.1399 SSIM=1.0000 LPIPS=0.0008 adv float/uint8/repaired=1/0/1 | 19.6s | +1share=0.40 | GTE N=0% B=0% T=0% F=0% upd/it=14.0 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=4.25 amb-gain=37% gate@1073 kA=- kL=24.0
+   [time] 69.4 min for 195 images on vit_b_32; ~1.8 min left on this arch (this shard)
+
+[196/200] ILSVRC2012_val_00048637.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9972 | pixL2@10000=0.2361 SSIM=0.9998 LPIPS=0.0029 adv float/uint8/repaired=1/0/1 | 19.7s | +1share=0.47 | GTE N=0% B=0% T=0% F=0% upd/it=14.9 seq=CCCCCCCCCCCCCCCCC | MA amb=72% p-share=7.75 amb-gain=48% gate@1083 kA=- kL=24.0
+   [time] 69.7 min for 196 images on vit_b_32; ~1.4 min left on this arch (this shard)
+
+[197/200] ILSVRC2012_val_00030910.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9975 | pixL2@10000=1.2166 SSIM=0.9989 LPIPS=0.0042 adv float/uint8/repaired=1/0/1 | 20.6s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=15.9 seq=CCCCCCCCCCCCCCCCCCC | MA amb=68% p-share=2.94 amb-gain=34% gate@1093 kA=- kL=24.0
+   [time] 70.1 min for 197 images on vit_b_32; ~1.1 min left on this arch (this shard)
+
+[198/200] ILSVRC2012_val_00037908.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9973 | pixL2@10000=0.3697 SSIM=0.9996 LPIPS=0.0066 adv float/uint8/repaired=1/0/1 | 19.8s | +1share=0.49 | GTE N=0% B=0% T=0% F=0% upd/it=14.9 seq=CCCCCCCCCCCCCCCCC | MA amb=71% p-share=7.30 amb-gain=48% gate@1087 kA=- kL=24.0
+   [time] 70.4 min for 198 images on vit_b_32; ~0.7 min left on this arch (this shard)
+
+[199/200] ILSVRC2012_val_00027576.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9977 | pixL2@10000=4.4895 SSIM=0.9907 LPIPS=0.0198 adv float/uint8/repaired=1/0/1 | 22.0s | +1share=0.50 | GTE N=0% B=0% T=0% F=0% upd/it=17.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=44% p-share=1.37 amb-gain=20% gate@4069 kA=- kL=24.0
+   [time] 70.8 min for 199 images on vit_b_32; ~0.4 min left on this arch (this shard)
+
+[200/200] ILSVRC2012_val_00001468.JPEG -> ANY WRONG CLASS
+   LGC_RC_EGC Q= 9960 | pixL2@10000=7.3965 SSIM=0.9900 LPIPS=0.0285 adv float/uint8/repaired=1/0/1 | 23.4s | +1share=0.48 | GTE N=0% B=0% T=0% F=0% upd/it=17.2 seq=CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | MA amb=2% p-share=0.00 amb-gain=0% gate@9931
+   [time] 71.2 min for 200 images on vit_b_32; ~0.0 min left on this arch (this shard)
+
+=== vit_b_32 @ budget 10000 (sorted by median pixel L2) ===
+    arch     method  budget   n      ASR  ASR_uint8_raw  ASR_uint8_repaired  pixL2_mean  pixL2_median  SSIM_mean  LPIPS_mean
+vit_b_32 LGC_RC_EGC   10000 200 100.0000        22.0000             99.0000      1.6601        1.1298     0.9963      0.0148
+
+=== query breakdown (% of queries) ===
+            q_init_%  q_boundary_%  q_normal_%  q_update_%  iterations  wall_time_s  mean_sign_share  one_sided_pct  mean_n_probes
+method                                                                                                                            
+LGC_RC_EGC       0.0           0.2        90.9         8.9        60.1         20.9              0.5            0.0          153.3
+
+=== progress: finished runs per arch x method ===
+status                ok
+arch     method         
+vit_b_32 LGC_RC_EGC  200
+
+[*] analysis written:
+    summary                  Results/b5_main_LGC_RC_EGC_vit_b_32_NT/non_targeted/analysis/summary.csv
+    paired                   Results/b5_main_LGC_RC_EGC_vit_b_32_NT/non_targeted/analysis/paired_vs_LGC.csv
+    threshold_asr            Results/b5_main_LGC_RC_EGC_vit_b_32_NT/non_targeted/analysis/threshold_asr.csv
+    query_breakdown          Results/b5_main_LGC_RC_EGC_vit_b_32_NT/non_targeted/analysis/query_breakdown.csv

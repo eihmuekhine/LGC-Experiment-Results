@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Perceptual metrics at 10000 queries (mean), Salman2020Do\_R50, targeted.}
+\begin{tabular}{lcccccc}
+\toprule
+Method & SSIM $\uparrow$ & MS-SSIM $\uparrow$ & FSIM $\uparrow$ & LPIPS$_{\mathrm{alex}}$ $\downarrow$ & LPIPS$_{\mathrm{vgg}}$ $\downarrow$ & DISTS $\downarrow$ \\
+\midrule
+LGC-EGC (ours) & \textbf{0.8789} & \textbf{0.8797} & \textbf{0.9063} & \textbf{0.1562} & \textbf{0.1920} & \textbf{0.1703} \\
+TtBA & 0.6013 & 0.7202 & 0.8069 & 0.4737 & 0.4827 & 0.3349 \\
+CGBA-H & 0.6269 & 0.7315 & 0.8211 & 0.4509 & 0.4635 & 0.3238 \\
+ARS-OPT & 0.3948 & 0.6736 & 0.7369 & 0.5143 & 0.5279 & 0.3550 \\
+\bottomrule
+\end{tabular}
+\end{table}

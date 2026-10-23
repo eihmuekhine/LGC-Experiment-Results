@@ -1,0 +1,3 @@
+[gate] partial: PASS (ok) exit=0
+[gate] g5: N/A (n/a) G5 n/a (no published reference)
+[gate] domain: FAIL (E-OTHER) X=2 > 0 (stop rule for CGBA_H)

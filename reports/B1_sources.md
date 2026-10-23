@@ -166,3 +166,49 @@ actual `git rev-parse HEAD` of each clone (shallow).
   targeted mode (appendix, untargeted only — report to the threat-model table).
 - Early-stop/success thresholds to disable or carry forward per skill Section 4 / U12: none of the four
   main loops stop on success, so no change needed; only the total query budget must bind at 10 000.
+
+---
+
+## Erratum (B5a2-finish, 2026-10-22)
+
+The ARS-OPT citation above is wrong. ARS-OPT is: Xinjie Xu, Shuyu Cheng, Dongwei Xu, Qi Xuan, Chen Ma, 'Improving the
+Convergence Rate of Ray Search Optimization for Query-Efficient Hard-Label Attacks', Proc. AAAI Conference on
+Artificial Intelligence 40(14):11451-11459, 2026, DOI 10.1609/aaai.v40i14.38127, arXiv:2512.21241. The paper named
+above, 'Boosting Ray Search Procedure of Hard-label Attacks with Transfer-based Priors' (ICLR 2025, arXiv:2507.17577),
+is Prior-OPT, a surrogate-prior method that B5 did not run. The code source is unchanged.
+
+- Official repository and commit (as recorded in the table above): `/root/autodl-tmp/baselines/ARS-OPT`,
+  `git rev-parse HEAD` = `ab71cb88058ad0ca778e0048e5cf1b60921bb673`.
+- The call to the official attack, `adapters/run_arsopt.py:111-117` (constructor) and `:121` / `:123`
+  (attack invocation):
+
+      attacker = ParsOptL2Norm(
+          tracker, [], "ImageNet", params["epsilon"], _TARGETED, batch_size=1,
+          k=params["k"], alpha=params["lr"], beta=params["beta"], iterations=params["iterations"],
+          maximum_queries=params["maximum_queries"], method="ARS",
+          clip_grad_max_norm=params["clip_grad_max_norm"], tol=params["tol"],
+          grad_binary_search_tol=None, best_initial_target_sample=False, resized=False,
+          dim_reduce_factor=params["dim_reduce_factor"], line_search=False)
+      attacker.targeted_attack(0, x0, target_labels, x_tgt)      # adapters/run_arsopt.py:121
+      attacker.untargeted_attack(0, x0, true_labels)             # adapters/run_arsopt.py:123
+
+- The called function in the official clone, `PARS_OPT/pars_opt_l2_norm_attack.py:675` and `:577`:
+
+      def targeted_attack(self, image_index, images, target_labels, target_class_image):
+      def untargeted_attack(self, image_index, images, true_labels):
+
+- Prior-free mode (no surrogate, no transfer prior), `PARS_OPT/pars_opt_l2_norm_attack.py:21` and `:317-324`:
+
+      self.surrogate_models = surrogate_models if method == 'PARS' else []
+
+      def get_prior_grad(self, images, theta, bound_radius, true_label, target_label):
+          prior_grads = []
+          if self.method == 'PARS':
+              for surrogate_model in self.surrogate_models:
+                  prior_grad = self.get_g_grad(surrogate_model, images, theta, bound_radius, true_label, target_label)
+                  prior_grad = prior_grad / torch.norm(prior_grad, p=2, dim=[1, 2, 3], keepdim=True)
+                  prior_grads.append(prior_grad)
+          return prior_grads
+
+  (`get_prior_grad` returns `[]` unless `method == 'PARS'`; the adapter runs `method="ARS"` at
+  `adapters/run_arsopt.py:114`, so no surrogate or transfer prior is used.)

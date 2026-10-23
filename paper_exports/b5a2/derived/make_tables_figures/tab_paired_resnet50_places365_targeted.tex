@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Paired comparison at 10000 queries, resnet50\_places365, targeted.}
+\begin{tabular}{lccccc}
+\toprule
+LGC-EGC (ours) vs. & $\ell_2$ ratio & $\Delta$ LPIPS$_{\mathrm{alex}}$ & $\Delta$ LPIPS$_{\mathrm{vgg}}$ & $\Delta$ DISTS & $\Delta$ SSIM \\
+\midrule
+TtBA & 0.856$^{*}$ [0.792, 0.924] (120/80) & -0.1104$^{*}$ [-0.1283, -0.0929] (184/16) & -0.1143$^{*}$ [-0.1299, -0.0986] (189/11) & -0.0660$^{*}$ [-0.0757, -0.0565] (176/24) & 0.0834$^{*}$ [0.0686, 0.0988] (180/20) \\
+CGBA-H & 0.833$^{*}$ [0.773, 0.898] (124/76) & -0.0809$^{*}$ [-0.0941, -0.0675] (182/18) & -0.0906$^{*}$ [-0.1023, -0.0784] (186/14) & -0.0513$^{*}$ [-0.0586, -0.0436] (173/27) & 0.0634$^{*}$ [0.0517, 0.0750] (175/25) \\
+ARS-OPT & 0.425$^{*}$ [0.402, 0.451] (198/2) & -0.1605$^{*}$ [-0.1779, -0.1433] (196/4) & -0.1941$^{*}$ [-0.2070, -0.1803] (199/1) & -0.1024$^{*}$ [-0.1109, -0.0939] (198/2) & 0.2915$^{*}$ [0.2725, 0.3101] (199/1) \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Paired over common images; 95\% bootstrap CI; $^{*}$ Holm-corrected two-sided Wilcoxon $p<0.05$; (wins/losses) for ours.}
+\end{table*}

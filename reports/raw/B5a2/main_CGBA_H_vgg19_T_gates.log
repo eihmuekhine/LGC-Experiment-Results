@@ -1,0 +1,24 @@
+g5_check arch=vgg19 mode=targeted table1=/root/autodl-tmp/LGC_frozen/ttba_github/ttba_table1.json n_boot=10000 seed=0
+
+TtBA (median pix_l2_iter vs published median)  n=200
+  @2000: ratio(med)=1.021 95%CI=[0.929,1.112] intersect[0.5,2]=True (our med=41.842 pub med=40.990; ratio(mean)=0.986 descriptive)
+  @5000: ratio(med)=1.012 95%CI=[0.864,1.154] intersect[0.5,2]=True (our med=20.389 pub med=20.140; ratio(mean)=0.942 descriptive)
+  @10000: ratio(med)=1.006 95%CI=[0.879,1.128] intersect[0.5,2]=True (our med=8.471 pub med=8.420; ratio(mean)=0.949 descriptive)
+
+Traceback (most recent call last):
+  File "/root/autodl-tmp/LGC_frozen/tools/eval/g5_check.py", line 237, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/tools/eval/g5_check.py", line 210, in main
+    n_c, cgba_pass, cgba_lines = check_cgba(cgba_ck, ttba_ck, table1, a.arch, a.mode,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/tools/eval/g5_check.py", line 133, in check_cgba
+    pub_m = _pub(table1, arch, pub_key, mode, b)[1]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/LGC_frozen/tools/eval/g5_check.py", line 81, in _pub
+    return table1["table1"][arch][method][mode][str(budget)]
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+KeyError: 'CGBA_H'
+[gate] partial: PASS (ok) exit=0
+[gate] g5: FAIL (E-G5) G5 FAIL (CI outside [0.5,2] at a budget)
+[gate] domain: FAIL (E-OTHER) X=3 > 0 (stop rule for CGBA_H)

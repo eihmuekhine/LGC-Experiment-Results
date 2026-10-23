@@ -1,0 +1,11 @@
+g5_check arch=vit_b_32 mode=non_targeted table1=/root/autodl-tmp/LGC_frozen/ttba_github/ttba_table1.json n_boot=10000 seed=0
+
+TtBA (median pix_l2_iter vs published median)  n=200
+  @2000: ratio(med)=1.134 95%CI=[0.921,1.274] intersect[0.5,2]=True (our med=3.459 pub med=3.052; ratio(mean)=1.041 descriptive)
+  @5000: ratio(med)=1.131 95%CI=[0.971,1.297] intersect[0.5,2]=True (our med=1.762 pub med=1.558; ratio(mean)=1.014 descriptive)
+  @10000: ratio(med)=1.122 95%CI=[0.948,1.289] intersect[0.5,2]=True (our med=1.172 pub med=1.044; ratio(mean)=1.029 descriptive)
+
+VERDICT: PASS (all CIs intersect [0.5, 2] at every budget)
+[gate] partial: PASS (ok) exit=0
+[gate] g5: PASS (ok) VERDICT: PASS
+[gate] domain: SKIP (n/a) TtBA not in the domain gate

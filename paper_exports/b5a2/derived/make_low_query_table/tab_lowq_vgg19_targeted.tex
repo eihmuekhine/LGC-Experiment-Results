@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{E8 low-query regime for vgg19, targeted: found rate (\%), ASR (\%) at RMSE $\le$ 0.1, 0.05, 0.01, median pixel $\ell_2$ and median LPIPS-vgg.  n = LGC-EGC (ours):200, TtBA:200, CGBA-H:200, ARS-OPT:200; RMSE = $\ell_2/\sqrt{3\cdot 224 \cdot 224}$.}
+\begin{tabular}{lcccccccccccccccccccccccc}
+\toprule
+Method & \multicolumn{6}{c}{100} & \multicolumn{6}{c}{200} & \multicolumn{6}{c}{500} & \multicolumn{6}{c}{1000} \\
+\cmidrule(lr){2-7} \cmidrule(lr){8-13} \cmidrule(lr){14-19} \cmidrule(lr){20-25}
+ & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS & found & ASR$_{1}$ & ASR$_{2}$ & ASR$_{3}$ & L$_2$ & LPIPS \\
+\midrule
+LGC-EGC (ours) & \textbf{100.0\%} & 2.0\% & \textbf{0.0\%} & \textbf{0.0\%} & 89.74 & 0.5529 & \textbf{100.0\%} & 4.0\% & \textbf{0.5\%} & \textbf{0.0\%} & 83.80 & \textbf{0.5258} & \textbf{100.0\%} & 10.0\% & \textbf{1.0\%} & \textbf{0.0\%} & 72.68 & \textbf{0.4831} & \textbf{100.0\%} & \textbf{24.0\%} & \textbf{5.5\%} & \textbf{0.0\%} & 58.07 & \textbf{0.4174} \\
+TtBA & 100.0\% & \textbf{3.5\%} & 0.0\% & 0.0\% & \textbf{86.02} & 0.5662 & 100.0\% & 3.5\% & 0.0\% & 0.0\% & 83.00 & 0.5664 & 100.0\% & 7.0\% & 0.5\% & 0.0\% & 72.06 & 0.5478 & 100.0\% & 21.0\% & 3.5\% & 0.0\% & 57.45 & 0.5046 \\
+CGBA-H & 100.0\% & 3.0\% & 0.0\% & 0.0\% & 87.35 & 0.5533 & 100.0\% & \textbf{4.5\%} & 0.0\% & 0.0\% & \textbf{81.95} & 0.5407 & 100.0\% & \textbf{11.0\%} & 0.5\% & 0.0\% & \textbf{67.68} & 0.5173 & 100.0\% & 21.0\% & 3.0\% & 0.0\% & \textbf{55.82} & 0.4722 \\
+ARS-OPT & 100.0\% & 2.5\% & 0.0\% & 0.0\% & 92.51 & \textbf{0.5480} & 100.0\% & 2.5\% & 0.0\% & 0.0\% & 92.51 & 0.5480 & 100.0\% & 3.0\% & 0.0\% & 0.0\% & 83.47 & 0.5722 & 100.0\% & 7.0\% & 0.0\% & 0.0\% & 71.98 & 0.5408 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Found rate and ASR are percentages over the n images; an image with found = 0 or adv\_flag = 0 counts as a failure ($\ell_2=\infty$, contract D6). ASR$_{1}$/ASR$_{2}$/ASR$_{3}$ = ASR at RMSE $\le$ 0.1, 0.05, 0.01.  Median $\ell_2$ and LPIPS-vgg over found rows only.}
+\end{table*}

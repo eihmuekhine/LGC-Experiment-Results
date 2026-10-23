@@ -1,0 +1,62 @@
+{
+ "dev_overlap_rows_1_200": {
+  "resnet50_non_targeted": [
+   "ILSVRC2012_val_00008603",
+   "ILSVRC2012_val_00016786",
+   "ILSVRC2012_val_00038560",
+   "ILSVRC2012_val_00045721"
+  ],
+  "resnet50_targeted": [
+   "ILSVRC2012_val_00008603",
+   "ILSVRC2012_val_00020497",
+   "ILSVRC2012_val_00039521",
+   "ILSVRC2012_val_00016786",
+   "ILSVRC2012_val_00038560",
+   "ILSVRC2012_val_00045721"
+  ],
+  "vgg19_non_targeted": [
+   "ILSVRC2012_val_00028797",
+   "ILSVRC2012_val_00041362",
+   "ILSVRC2012_val_00042174",
+   "ILSVRC2012_val_00025606",
+   "ILSVRC2012_val_00023252",
+   "ILSVRC2012_val_00022005"
+  ],
+  "vgg19_targeted": [
+   "ILSVRC2012_val_00042141",
+   "ILSVRC2012_val_00028797",
+   "ILSVRC2012_val_00041362",
+   "ILSVRC2012_val_00042174",
+   "ILSVRC2012_val_00025606",
+   "ILSVRC2012_val_00023252",
+   "ILSVRC2012_val_00022005"
+  ],
+  "vit_b_32_non_targeted": [
+   "ILSVRC2012_val_00045462",
+   "ILSVRC2012_val_00030910"
+  ],
+  "vit_b_32_targeted": [
+   "ILSVRC2012_val_00024906",
+   "ILSVRC2012_val_00014068",
+   "ILSVRC2012_val_00045462",
+   "ILSVRC2012_val_00030910"
+  ]
+ },
+ "counts": {
+  "resnet50_non_targeted": 4,
+  "resnet50_targeted": 6,
+  "vgg19_non_targeted": 6,
+  "vgg19_targeted": 7,
+  "vit_b_32_non_targeted": 2,
+  "vit_b_32_targeted": 4
+ },
+ "expected": {
+  "resnet50_non_targeted": 4,
+  "resnet50_targeted": 6,
+  "vgg19_non_targeted": 6,
+  "vgg19_targeted": 7,
+  "vit_b_32_non_targeted": 2,
+  "vit_b_32_targeted": 4
+ },
+ "note": "images in rows 1-200 (order<200) of each main split that also appear in a dev-seed split (overlap_dev_seeds.json)"
+}

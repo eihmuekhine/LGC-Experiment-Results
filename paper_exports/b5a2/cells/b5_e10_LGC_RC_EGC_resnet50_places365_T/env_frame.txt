@@ -1,0 +1,15 @@
+torch 2.7.1+cu128
+cuda 12.8
+NVIDIA GeForce RTX 5090
+835f1933d9e571070e952aedafc5a50b9948717168115ea60b5433277006c28a  lgc_bench/engine.py
+70bd3d5c5989df6829b39a310a59203d6a5ee760f7481a5b213a2df49107eaaa  splits/places365/resnet50_places365_targeted.csv
+checkpoints 100 200 500 1000 2000 2500 5000 10000
+budget 10000
+backend.cuda_matmul_allow_tf32 False
+backend.cudnn_allow_tf32 False
+backend.cudnn_deterministic True
+backend.cudnn_benchmark False
+backend.float32_matmul_precision highest
+victim_weight_file resnet50_places365.pth.tar
+victim_weight_sha256 46529c86902bd0cfb0ea562a30b2850c28d2620d96282b3db9c318e1d774f6c5
+ADV_STORE_DTYPE float16 ADV_STORE_BUDGETS unset

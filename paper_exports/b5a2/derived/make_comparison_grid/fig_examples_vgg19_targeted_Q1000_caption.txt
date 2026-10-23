@@ -1,0 +1,4 @@
+Images selected by rule 'random' (seed 0) among 200 images with a stored state for every method; budget 1000; perturbations shown as 0.5 + amp*delta with one amplification per row.
+ILSVRC2012_val_00030440: common amplification x1.4
+ILSVRC2012_val_00022005: common amplification x0.7
+ILSVRC2012_val_00041362: common amplification x1.2

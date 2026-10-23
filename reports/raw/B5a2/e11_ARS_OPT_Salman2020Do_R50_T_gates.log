@@ -1,0 +1,3 @@
+[gate] partial: PASS (ok) exit=0
+[gate] g5: N/A (n/a) not a G5 method (D13)
+[gate] domain: FAIL (E-OTHER) X=1 > 0 (stop rule for ARS_OPT)

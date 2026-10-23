@@ -1,0 +1,8 @@
+[*] GPU NVIDIA GeForce RTX 5090  D12 matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| method | cell (arch/mode) | rows | C | Q9 | Q6 | X | median m(s=1) non-C | max m(s=1) non-C | adv_uint8==1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| CGBA_H | resnet50_places365/targeted | 1600 | 1160 | 440 | 0 | 0 | 0.000321 | 0.00496 | 765 |
+
+[*] wrote reports/raw/B5a2/gates/e10_CGBA_H_resnet50_places365_T_domain.csv (1600 rows)
+[+] no X>0 for any method (ARS_OPT and CGBA/CGBA_H both clamp correctly)

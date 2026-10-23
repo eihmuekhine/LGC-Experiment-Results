@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Paired comparison at 10000 queries, resnet50, non\_targeted.}
+\begin{tabular}{lccccc}
+\toprule
+LGC-EGC (ours) vs. & $\ell_2$ ratio & $\Delta$ LPIPS$_{\mathrm{alex}}$ & $\Delta$ LPIPS$_{\mathrm{vgg}}$ & $\Delta$ DISTS & $\Delta$ SSIM \\
+\midrule
+TtBA & 1.143$^{*}$ [1.048, 1.252] (75/125) & -0.0063 [-0.0103, -0.0028] (108/91) & -0.0134$^{*}$ [-0.0200, -0.0077] (122/77) & -0.0078$^{*}$ [-0.0128, -0.0033] (107/93) & 0.0062 [0.0026, 0.0108] (106/93) \\
+CGBA & 1.194$^{*}$ [1.101, 1.297] (70/130) & -0.0061 [-0.0105, -0.0024] (97/101) & -0.0118$^{*}$ [-0.0182, -0.0062] (109/91) & -0.0059 [-0.0106, -0.0018] (107/93) & 0.0064 [0.0028, 0.0109] (100/99) \\
+ARS-OPT & 0.552$^{*}$ [0.498, 0.611] (163/37) & -0.0167 [-0.0260, -0.0089] (95/104) & -0.0357$^{*}$ [-0.0463, -0.0260] (153/47) & -0.0152$^{*}$ [-0.0220, -0.0090] (100/100) & 0.0508$^{*}$ [0.0372, 0.0668] (191/9) \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\linewidth}{\scriptsize Paired over common images; 95\% bootstrap CI; $^{*}$ Holm-corrected two-sided Wilcoxon $p<0.05$; (wins/losses) for ours.}
+\end{table*}

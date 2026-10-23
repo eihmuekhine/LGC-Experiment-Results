@@ -1,0 +1,121 @@
+Load skills lgc-preflight, lgc-paper-contract (and lgc-baselines if installed). Phase B5a2-finish, part B: export of the
+B5 evidence for the paper. CPU only: start no GPU process (the offline metrics already ran). Worktree
+/root/autodl-tmp/LGC_frozen, branch paper-runs, contract v1.9-rev7.
+This session runs unattended (opencode run): never ask a question. On any doubt, conflict or failed check write a STOP
+bundle (skill section 7) to reports/stop/B5a2-finish_B_<task>.md and end the session with verdict STOPPED.
+
+Rules: Results/ is read-only (never edit, move, delete or create there); never re-run an attack; never edit an existing
+tool, the contract, prereg files or any prompt. Allowed writes: paper_exports/b5a2/**, reports/B5a2_finish_B.md,
+reports/E9_sources.md (create or update), reports/B1_sources.md (APPEND the erratum section only), reports/raw/B5a2/export/**,
+reports/raw/B5a2/finish/agent_log_B.md, a NEW file tools/eval/claims_registered.py only if B3 requires it, probe files
+under /tmp/b5finish_B/. No git add, commit, stash, tag or checkout. Every path written under paper_exports/ is relative
+to the repository and contains neither "autodl-tmp" nor "LGC_frozen" nor "..".
+
+B0 Preconditions. Run and copy: git rev-parse HEAD; git status --short | grep -v '^??'; tail -3 reports/B5a2_finish_A.md;
+  grep -c -v -E '^\s*(#|$)' reports/raw/B5a2/export/metrics_commands.sh; tail -20 reports/raw/B5a2/export/metrics_run.log;
+  find paper_exports/b5a2/metrics -type f | wc -l;
+  sha256sum -c /root/autodl-tmp/B5a2_manifest_20261021.sha256 2>&1 | grep -vc ': OK$'
+Check: HEAD 8cf80567009d7404d5a00f1edcfe5c4a09372f81; no tracked change; part A verdict READY-FOR-METRICS; one metrics
+output per command line (state the rule you used to pair them); no Traceback or Error in metrics_run.log; Results check
+prints 0. Otherwise STOP. Read reports/B5a2_stop_decisions.md (the cell decisions bind every task below).
+
+B1 Cell files. For each of the 52 output directories copy (cp -p, never mv) every runs_*.csv, per_checkpoint_*.csv,
+  env_* and run_manifest.json to paper_exports/b5a2/cells/<directory name>/<path below the directory>. No npz. Check:
+  file counts per directory equal the inventory of part A; every file <= 50 MB; sha256 of 5 copied files equals the source.
+
+B2 Derived outputs, with the existing tools only (read each tool's --help first; never edit a tool):
+  make_tables_figures.py per (arch, mode) of the main cells (summary_*.json, tab_*.tex, fig_curves_*, fig_pareto_*, PDF and PNG);
+  make_low_query_table.py (E8); make_comparison_grid.py with its caption/selection file (E7; if it needs a GPU, STOP);
+  the fairness table (E15); the cost-table input (E13: per-cell wall_time_s from runs_*.csv, median and sum);
+  the E14 dev-overlap recomputation (contract constants.dev_overlap_rows_1_200).
+  Display names (paper requirement, spec v3 section 7): run make_tables_figures.py and make_comparison_grid.py with the
+  tool's rename option (read its --help; the tool's docstring example is
+  --rename LGC_RC_EGC="LGC-EGC (ours)" CGBA_H=CGBA-H ARS_OPT=ARS-OPT) and exactly these three mappings:
+  LGC_RC_EGC -> "LGC-EGC (ours)", CGBA_H -> CGBA-H, ARS_OPT -> ARS-OPT. If either tool has no rename option, STOP
+  (never edit a tool). Use the same mappings for make_low_query_table.py only if it has the same option.
+  Check: for every PDF written by make_tables_figures.py or make_comparison_grid.py,
+  pdftotext <pdf> - | grep -c -E 'LGC_RC_EGC|ARS_OPT|CGBA_H' prints 0; any other count: STOP. For every other derived
+  .tex or .pdf file record the same count in COMMANDS.md.
+  Outputs go to paper_exports/b5a2/derived/<tool>/ (if a tool writes only to a fixed directory, run it and copy the
+  outputs; do not move them). Write paper_exports/b5a2/COMMANDS.md: every command line, exit status, the sha256 of the
+  tool file, and the outputs it produced. State there that make_tables_figures.py p-values are two-sided and
+  descriptive only. Cells EXCLUDED-FROM-CLAIMS stay in the tables with the flag of the decision file; if a tool cannot
+  flag them, record that in COMMANDS.md.
+
+B3 Registered claims (claims.json).
+  (a) Copy prereg_build38.txt section 6 and prereg_build38_amendment2.txt section 7 verbatim into
+      reports/raw/B5a2/export/claims_spec.md, with the file paths and sha256; also section 2 of the amendment (dev overlap).
+  (b) Candidate scripts: for confirm_ttba.py and every tools/eval/*.py or top-level *.py that contains "holm" (case
+      insensitive): git log --format='%h %ad %s' --date=iso -- <file>; and the commit dates of the tags build38-prereg
+      and build38-amend2 (git log -1 --format=%ad --date=iso <tag>).
+  (c) If one committed script implements exactly the quoted families (one-sided Wilcoxon signed-rank in the registered
+      direction, Holm within each family, the CI rules, the AUC definition of contract constants.auc_definition), run
+      it. Otherwise write tools/eval/claims_registered.py (python standard library, numpy and scipy as installed) that
+      implements only the quoted text, prints the family list and m, and reads bootstrap B and the seed from contract
+      constants.stats. Add a unit test on a synthetic paired sample with a known answer under /tmp/b5finish_B/.
+  (d) Output paper_exports/b5a2/claims/claims.json: a "meta" object (script path and sha256, prereg and amendment sha256,
+      contract sha256, bootstrap B and seed, sha256 of reports/B5a2_stop_decisions.md, the family list with m) and a
+      "rows" list with one object per claim row and exactly these keys: claim_id, family, victim, mode, baseline, metric,
+      estimand, estimate, ci_low, ci_high, p_one_sided, p_holm, n_pairs, n_excluded, decision. decision is "confirmed" or
+      "not_confirmed" by the registered rule. CI-only rows carry p_one_sided = null and p_holm = null. Comparisons that
+      involve an EXCLUDED-FROM-CLAIMS cell are in no family: list them under "excluded_comparisons" with the reason.
+  (e) The same rows recomputed without the dev-overlap images: paper_exports/b5a2/claims/claims_no_devoverlap.json
+      (descriptive; same keys; decision "descriptive").
+
+B4 E9 (ablation, confirm_37 data). Locate the CSVs named by contract paper_elements E9 inputs and by reports/E9_sources.md
+  if it exists: search the repository and Results/ (find . -maxdepth 4 \( -iname '*confirm_37*' -o -iname '*seed2718*' \)
+  and the paths the contract names). If found: copy them to paper_exports/b5a2/e9/ and write or update reports/E9_sources.md
+  (path, sha256, rows, columns). If not found: write reports/E9_sources.md stating "NOT FOUND" with every search command
+  and its output. Never rebuild or re-run anything for E9.
+
+B5 Other inputs: copy ttba_github/ttba_table1.json and reports/P2_selection_audit.md (if it exists; else state NOT FOUND)
+  to paper_exports/b5a2/inputs/.
+
+B6 Erratum. Append to reports/B1_sources.md (change no existing line) a section "## Erratum (B5a2-finish, 2026-10-22)":
+  "The ARS-OPT citation above is wrong. ARS-OPT is: Xinjie Xu, Shuyu Cheng, Dongwei Xu, Qi Xuan, Chen Ma, 'Improving the
+  Convergence Rate of Ray Search Optimization for Query-Efficient Hard-Label Attacks', Proc. AAAI Conference on
+  Artificial Intelligence 40(14):11451-11459, 2026, DOI 10.1609/aaai.v40i14.38127, arXiv:2512.21241. The paper named
+  above, 'Boosting Ray Search Procedure of Hard-label Attacks with Transfer-based Priors' (ICLR 2025, arXiv:2507.17577),
+  is Prior-OPT, a surrogate-prior method that B5 did not run. The code source is unchanged."
+  Then add: the official repository and commit as recorded earlier in the file; the file:line in adapters/run_arsopt.py
+  that calls the official attack; the file:line of the called function in the official clone; the file:line showing
+  that no surrogate or transfer prior is used (prior-free mode). Quote each line.
+
+B7 Manifest and commit lists.
+  cd paper_exports/b5a2 && find . -type f ! -name MANIFEST.sha256 | LC_ALL=C sort | xargs -d '\n' sha256sum > MANIFEST.sha256
+  Checks: no *.npz under paper_exports/; no file > 50 MB; no path containing autodl-tmp, LGC_frozen or "..";
+  sha256sum -c MANIFEST.sha256 all OK. Then write reports/raw/B5a2/export/add_force.txt (one path per line:
+  paper_exports/b5a2) and reports/raw/B5a2/export/add_normal.txt (one path per line, each existing: reports/B5_close.md,
+  reports/E17_sources.md, every reports/human_preflight_b5a2* file, reports/B5a2_stop_decisions.md,
+  reports/B5a2_finish_A.md, reports/B5a2_finish_B.md, reports/E9_sources.md, reports/B1_sources.md, reports/raw/B5a2,
+  reports/raw/B5a2_triage, every reports/stop/B5a2* file, tools/eval/claims_registered.py if created). For every
+  path in both lists print du -sh and the files > 50 MB (find <path> -type f -size +50M); a file > 50 MB that git would
+  add is a STOP. Print git check-ignore for 3 sample files under paper_exports/b5a2 (H uses git add -f for that list).
+
+B8 Report reports/B5a2_finish_B.md: B0-B7 with raw outputs, the claims table (claim_id, decision, estimate, CI, p_holm)
+copied from claims.json, deviations, sha256 of every created file, a five-line summary, and the RESULT block (X6) with
+phase: B5a2-finish-B and verdict: READY-FOR-REVIEW or STOPPED. STOP.
+
+Execution rules (kit v2). They add to the rules above and never relax them.
+ X1 Run every command for real; copy every value from its output. Never write a value you did not see.
+ X2 Foreground only: each command returns only after everything it started has ended. No nohup, setsid, disown, tmux or
+    screen; no process left running. A command that would run longer than 30 minutes: do not start it; STOP (E-SPEC).
+ X3 One task at a time, in the order given. Run the task's own check and read its output before the next task.
+ X4 A check that still fails after two fix attempts for the same cause ends the session: STOP bundle with both attempts.
+ X5 Log every command in reports/raw/B5a2/finish/agent_log_B.md immediately after it ran, one row each:
+    time | task | command | exit status | output file or first output line. Run each command as
+    <command>; ec=$?; date +%H:%M:%S; echo "exit=$ec" and copy the printed time and exit status. Never write rows later.
+ X6 End the report with this block, each value copied from a command output:
+      RESULT
+      phase: B5a2-finish-B
+      head: <git rev-parse HEAD>
+      contract_sha256: <sha256>
+      prompt_sha256: <sha256 of reports/raw/B5a2/finish/finish_B.txt>
+      tasks: <B0-B7 = PASS|FAIL|STOP>
+      claims: <confirmed count> confirmed, <not_confirmed count> not confirmed, <count> excluded comparisons
+      e9: FOUND | NOT FOUND
+      manifest_sha256: <sha256 of paper_exports/b5a2/MANIFEST.sha256>
+      files: <"path sha256", one line per created or changed file outside paper_exports/; the manifest covers the rest>
+      deviations: none | <count> (listed in the report)
+      stop_bundles: none | <paths>
+      verdict: READY-FOR-REVIEW | STOPPED

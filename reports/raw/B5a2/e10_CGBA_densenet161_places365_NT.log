@@ -1,0 +1,600 @@
+Initial boundary norm 40.93922424316406
+initial query 48
+[1/200] Places365_val_00002172 CGBA q=10000 L2@10000=2.5140578746795654 budget 32.8s
+Initial boundary norm 48.69678497314453
+initial query 53
+[2/200] Places365_val_00023888 CGBA q=10000 L2@10000=2.486746311187744 budget 31.6s
+Initial boundary norm 15.770095825195312
+initial query 31
+[3/200] Places365_val_00004317 CGBA q=10000 L2@10000=0.4792114794254303 budget 30.1s
+Initial boundary norm 36.309715270996094
+initial query 46
+[4/200] Places365_val_00033086 CGBA q=10000 L2@10000=1.5333256721496582 budget 30.8s
+Initial boundary norm 49.60956573486328
+initial query 54
+[5/200] Places365_val_00018167 CGBA q=10000 L2@10000=6.096222400665283 budget 32.1s
+Initial boundary norm 39.961605072021484
+initial query 49
+[6/200] Places365_val_00007295 CGBA q=10000 L2@10000=3.227783679962158 budget 31.3s
+Initial boundary norm 72.75970458984375
+initial query 71
+[7/200] Places365_val_00033997 CGBA q=10000 L2@10000=7.600898265838623 budget 31.6s
+Initial boundary norm 14.490949630737305
+initial query 30
+[8/200] Places365_val_00023231 CGBA q=10000 L2@10000=0.2334216684103012 budget 30.1s
+Initial boundary norm 6.106329441070557
+initial query 24
+[9/200] Places365_val_00019695 CGBA q=10000 L2@10000=0.07243707776069641 budget 29.7s
+Initial boundary norm 3.1362762451171875
+initial query 21
+[10/200] Places365_val_00009088 CGBA q=10000 L2@10000=0.004722296260297298 budget 27.8s
+Initial boundary norm 28.749216079711914
+initial query 39
+[11/200] Places365_val_00006719 CGBA q=10000 L2@10000=0.8151635527610779 budget 30.6s
+Initial boundary norm 32.5654182434082
+initial query 42
+[12/200] Places365_val_00002738 CGBA q=10000 L2@10000=1.3917933702468872 budget 30.3s
+Initial boundary norm 34.10030746459961
+initial query 42
+[13/200] Places365_val_00003940 CGBA q=10000 L2@10000=0.7878010869026184 budget 30.7s
+Initial boundary norm 38.331722259521484
+initial query 47
+[14/200] Places365_val_00032534 CGBA q=10000 L2@10000=1.0766186714172363 budget 30.5s
+Initial boundary norm 32.691036224365234
+initial query 42
+[15/200] Places365_val_00021678 CGBA q=10000 L2@10000=1.1720556020736694 budget 30.6s
+Initial boundary norm 34.50052261352539
+initial query 45
+[16/200] Places365_val_00028200 CGBA q=10000 L2@10000=1.8027987480163574 budget 30.9s
+Initial boundary norm 36.971195220947266
+initial query 45
+[17/200] Places365_val_00035564 CGBA q=10000 L2@10000=1.4260166883468628 budget 30.5s
+Initial boundary norm 10.687304496765137
+initial query 28
+[18/200] Places365_val_00016459 CGBA q=10000 L2@10000=0.5508324503898621 budget 30.8s
+Initial boundary norm 19.294498443603516
+initial query 33
+[19/200] Places365_val_00010243 CGBA q=10000 L2@10000=0.8521738648414612 budget 32.3s
+Initial boundary norm 26.32311248779297
+initial query 38
+[20/200] Places365_val_00014112 CGBA q=10000 L2@10000=1.793426513671875 budget 31.1s
+Initial boundary norm 3.424351930618286
+initial query 21
+[21/200] Places365_val_00006970 CGBA q=10000 L2@10000=0.0643923357129097 budget 29.1s
+Initial boundary norm 1.7076085805892944
+initial query 21
+[22/200] Places365_val_00001986 CGBA q=10000 L2@10000=0.01473817229270935 budget 28.1s
+Initial boundary norm 28.6521053314209
+initial query 39
+[23/200] Places365_val_00001856 CGBA q=10000 L2@10000=1.4825154542922974 budget 30.6s
+Initial boundary norm 16.34932518005371
+initial query 41
+[24/200] Places365_val_00026173 CGBA q=10000 L2@10000=1.257836937904358 budget 31.1s
+Initial boundary norm 34.383705139160156
+initial query 46
+[25/200] Places365_val_00005041 CGBA q=10000 L2@10000=0.8885166645050049 budget 30.8s
+Initial boundary norm 42.7420539855957
+initial query 49
+[26/200] Places365_val_00017078 CGBA q=10000 L2@10000=2.3115134239196777 budget 31.5s
+Initial boundary norm 46.223358154296875
+initial query 55
+[27/200] Places365_val_00000541 CGBA q=10000 L2@10000=1.3300721645355225 budget 31.5s
+Initial boundary norm 20.83543586730957
+initial query 34
+[28/200] Places365_val_00010236 CGBA q=10000 L2@10000=2.925123691558838 budget 31.1s
+Initial boundary norm 41.52796173095703
+initial query 50
+[29/200] Places365_val_00027966 CGBA q=10000 L2@10000=3.3025617599487305 budget 31.5s
+Initial boundary norm 88.34986877441406
+initial query 88
+[30/200] Places365_val_00033029 CGBA q=10000 L2@10000=3.353414297103882 budget 32.2s
+Initial boundary norm 21.751554489135742
+initial query 34
+[31/200] Places365_val_00004744 CGBA q=10000 L2@10000=0.5658571124076843 budget 30.6s
+Initial boundary norm 26.180744171142578
+initial query 42
+[32/200] Places365_val_00011900 CGBA q=10000 L2@10000=1.0911085605621338 budget 31.1s
+Initial boundary norm 76.35460662841797
+initial query 74
+[33/200] Places365_val_00010726 CGBA q=10000 L2@10000=1.4397109746932983 budget 32.0s
+Initial boundary norm 7.344241619110107
+initial query 28
+[34/200] Places365_val_00010020 CGBA q=10000 L2@10000=0.003594167996197939 budget 27.9s
+Initial boundary norm 72.47026062011719
+initial query 71
+[35/200] Places365_val_00023129 CGBA q=10000 L2@10000=7.8632073402404785 budget 31.7s
+Initial boundary norm 83.2414779663086
+initial query 81
+[36/200] Places365_val_00018904 CGBA q=10000 L2@10000=4.791716575622559 budget 31.9s
+Initial boundary norm 11.831052780151367
+initial query 31
+[37/200] Places365_val_00009054 CGBA q=10000 L2@10000=0.29066118597984314 budget 29.9s
+Initial boundary norm 0.8631582856178284
+initial query 22
+[38/200] Places365_val_00000905 CGBA q=10000 L2@10000=0.006919579580426216 budget 28.0s
+Initial boundary norm 38.184261322021484
+initial query 47
+[39/200] Places365_val_00002502 CGBA q=10000 L2@10000=1.214270830154419 budget 31.0s
+Initial boundary norm 36.26506042480469
+initial query 45
+[40/200] Places365_val_00000062 CGBA q=10000 L2@10000=2.693715810775757 budget 32.9s
+Initial boundary norm 54.98562240600586
+initial query 58
+[41/200] Places365_val_00034458 CGBA q=10000 L2@10000=0.5693917870521545 budget 31.4s
+Initial boundary norm 22.228330612182617
+initial query 36
+[42/200] Places365_val_00035786 CGBA q=10000 L2@10000=0.8725101351737976 budget 31.1s
+Initial boundary norm 41.228511810302734
+initial query 49
+[43/200] Places365_val_00033455 CGBA q=10000 L2@10000=0.7414040565490723 budget 31.1s
+Initial boundary norm 16.08831214904785
+initial query 33
+[44/200] Places365_val_00029684 CGBA q=10000 L2@10000=0.954744815826416 budget 31.1s
+Initial boundary norm 62.01772689819336
+initial query 61
+[45/200] Places365_val_00035791 CGBA q=10000 L2@10000=3.8401949405670166 budget 31.7s
+Initial boundary norm 47.715694427490234
+initial query 53
+[46/200] Places365_val_00020099 CGBA q=10000 L2@10000=4.207108497619629 budget 31.5s
+Initial boundary norm 1.9444856643676758
+initial query 21
+[47/200] Places365_val_00028847 CGBA q=10000 L2@10000=0.07028570026159286 budget 29.4s
+Initial boundary norm 44.76468276977539
+initial query 50
+[48/200] Places365_val_00012969 CGBA q=10000 L2@10000=2.9193413257598877 budget 32.1s
+Initial boundary norm 27.050626754760742
+initial query 40
+[49/200] Places365_val_00013443 CGBA q=10000 L2@10000=0.21340712904930115 budget 30.3s
+Initial boundary norm 18.002201080322266
+initial query 32
+[50/200] Places365_val_00028930 CGBA q=10000 L2@10000=0.3417639136314392 budget 30.2s
+Initial boundary norm 16.970565795898438
+initial query 32
+[51/200] Places365_val_00017764 CGBA q=10000 L2@10000=0.1716112643480301 budget 30.1s
+Initial boundary norm 44.76036834716797
+initial query 53
+[52/200] Places365_val_00007573 CGBA q=10000 L2@10000=1.1577688455581665 budget 31.1s
+Initial boundary norm 32.36244201660156
+initial query 41
+[53/200] Places365_val_00023916 CGBA q=10000 L2@10000=0.10741285979747772 budget 29.8s
+Initial boundary norm 11.2756929397583
+initial query 28
+[54/200] Places365_val_00001160 CGBA q=10000 L2@10000=0.08783651143312454 budget 29.4s
+Initial boundary norm 13.826541900634766
+initial query 29
+[55/200] Places365_val_00016648 CGBA q=10000 L2@10000=0.19820798933506012 budget 29.8s
+Initial boundary norm 33.97768783569336
+initial query 42
+[56/200] Places365_val_00030327 CGBA q=10000 L2@10000=2.320939064025879 budget 31.1s
+Initial boundary norm 46.366851806640625
+initial query 52
+[57/200] Places365_val_00025048 CGBA q=10000 L2@10000=0.7216523289680481 budget 31.9s
+Initial boundary norm 30.759157180786133
+initial query 41
+[58/200] Places365_val_00020790 CGBA q=10000 L2@10000=1.3558987379074097 budget 31.4s
+Initial boundary norm 129.86085510253906
+initial query 130
+[59/200] Places365_val_00010925 CGBA q=10000 L2@10000=2.5082221031188965 budget 32.6s
+Initial boundary norm 0.4836476147174835
+initial query 19
+[60/200] Places365_val_00023163 CGBA q=10000 L2@10000=0.006911836098879576 budget 27.8s
+Initial boundary norm 39.142940521240234
+initial query 47
+[61/200] Places365_val_00025524 CGBA q=10000 L2@10000=1.3289642333984375 budget 31.9s
+Initial boundary norm 28.128559112548828
+initial query 39
+[62/200] Places365_val_00031198 CGBA q=10000 L2@10000=1.4995008707046509 budget 30.8s
+Initial boundary norm 14.552687644958496
+initial query 31
+[63/200] Places365_val_00010174 CGBA q=10000 L2@10000=0.5595195889472961 budget 30.2s
+Initial boundary norm 19.087154388427734
+initial query 33
+[64/200] Places365_val_00033959 CGBA q=10000 L2@10000=0.8779955506324768 budget 30.9s
+Initial boundary norm 19.014440536499023
+initial query 33
+[65/200] Places365_val_00023915 CGBA q=10000 L2@10000=1.4497042894363403 budget 30.7s
+Initial boundary norm 29.051469802856445
+initial query 40
+[66/200] Places365_val_00008339 CGBA q=10000 L2@10000=0.8901140689849854 budget 30.6s
+Initial boundary norm 67.64512634277344
+initial query 74
+[67/200] Places365_val_00004531 CGBA q=10000 L2@10000=1.7312365770339966 budget 31.4s
+Initial boundary norm 52.009220123291016
+initial query 54
+[68/200] Places365_val_00006204 CGBA q=10000 L2@10000=0.824409544467926 budget 30.9s
+Initial boundary norm 50.26523208618164
+initial query 54
+[69/200] Places365_val_00033949 CGBA q=10000 L2@10000=2.2097702026367188 budget 31.1s
+Initial boundary norm 3.5629751682281494
+initial query 22
+[70/200] Places365_val_00026006 CGBA q=10000 L2@10000=0.10228125005960464 budget 29.2s
+Initial boundary norm 55.51482391357422
+initial query 57
+[71/200] Places365_val_00013527 CGBA q=10000 L2@10000=4.177587032318115 budget 31.8s
+Initial boundary norm 39.66345977783203
+initial query 46
+[72/200] Places365_val_00032686 CGBA q=10000 L2@10000=1.6500362157821655 budget 31.1s
+Initial boundary norm 9.083353996276855
+initial query 28
+[73/200] Places365_val_00015024 CGBA q=10000 L2@10000=0.2105499804019928 budget 29.9s
+Initial boundary norm 31.542972564697266
+initial query 42
+[74/200] Places365_val_00004216 CGBA q=10000 L2@10000=0.9313253164291382 budget 31.1s
+Initial boundary norm 32.22196960449219
+initial query 41
+[75/200] Places365_val_00002036 CGBA q=10000 L2@10000=2.923171043395996 budget 31.3s
+Initial boundary norm 34.717552185058594
+initial query 43
+[76/200] Places365_val_00013122 CGBA q=10000 L2@10000=0.43507495522499084 budget 30.7s
+Initial boundary norm 16.79863929748535
+initial query 31
+[77/200] Places365_val_00011740 CGBA q=10000 L2@10000=0.7573927044868469 budget 30.4s
+Initial boundary norm 37.774208068847656
+initial query 46
+[78/200] Places365_val_00031655 CGBA q=10000 L2@10000=1.5814282894134521 budget 31.3s
+Initial boundary norm 71.7465591430664
+initial query 71
+[79/200] Places365_val_00006284 CGBA q=10000 L2@10000=6.0006279945373535 budget 31.7s
+Initial boundary norm 4.756683349609375
+initial query 22
+[80/200] Places365_val_00023553 CGBA q=10000 L2@10000=0.08383858948945999 budget 28.9s
+Initial boundary norm 5.166556358337402
+initial query 24
+[81/200] Places365_val_00011301 CGBA q=10000 L2@10000=0.23225857317447662 budget 30.1s
+Initial boundary norm 27.02219581604004
+initial query 38
+[82/200] Places365_val_00023085 CGBA q=10000 L2@10000=0.23975789546966553 budget 31.0s
+Initial boundary norm 51.91214370727539
+initial query 58
+[83/200] Places365_val_00032304 CGBA q=10000 L2@10000=4.256067276000977 budget 32.2s
+Initial boundary norm 17.65537452697754
+initial query 34
+[84/200] Places365_val_00016302 CGBA q=10000 L2@10000=0.15377044677734375 budget 29.9s
+Initial boundary norm 4.2564239501953125
+initial query 22
+[85/200] Places365_val_00024415 CGBA q=10000 L2@10000=0.09107150882482529 budget 29.4s
+Initial boundary norm 20.977598190307617
+initial query 34
+[86/200] Places365_val_00014330 CGBA q=10000 L2@10000=0.9926496148109436 budget 30.6s
+Initial boundary norm 3.91471791267395
+initial query 24
+[87/200] Places365_val_00019954 CGBA q=10000 L2@10000=0.06840015202760696 budget 29.4s
+Initial boundary norm 24.694686889648438
+initial query 39
+[88/200] Places365_val_00021662 CGBA q=10000 L2@10000=0.9643133878707886 budget 30.7s
+Initial boundary norm 16.501453399658203
+initial query 31
+[89/200] Places365_val_00002466 CGBA q=10000 L2@10000=0.4284874498844147 budget 30.8s
+Initial boundary norm 11.634902000427246
+initial query 28
+[90/200] Places365_val_00008590 CGBA q=10000 L2@10000=0.576831042766571 budget 30.6s
+Initial boundary norm 66.38054656982422
+initial query 67
+[91/200] Places365_val_00029648 CGBA q=10000 L2@10000=7.979586124420166 budget 32.1s
+Initial boundary norm 90.40389251708984
+initial query 91
+[92/200] Places365_val_00032287 CGBA q=10000 L2@10000=1.186005711555481 budget 31.1s
+Initial boundary norm 14.517755508422852
+initial query 31
+[93/200] Places365_val_00027798 CGBA q=10000 L2@10000=0.09642844647169113 budget 29.4s
+Initial boundary norm 53.30392837524414
+initial query 55
+[94/200] Places365_val_00027705 CGBA q=10000 L2@10000=2.0862224102020264 budget 31.3s
+Initial boundary norm 57.268653869628906
+initial query 61
+[95/200] Places365_val_00029503 CGBA q=10000 L2@10000=4.7953691482543945 budget 31.9s
+Initial boundary norm 77.23968505859375
+initial query 74
+[96/200] Places365_val_00021969 CGBA q=10000 L2@10000=2.154214859008789 budget 31.8s
+Initial boundary norm 15.397128105163574
+initial query 32
+[97/200] Places365_val_00018515 CGBA q=10000 L2@10000=0.7531935572624207 budget 31.1s
+Initial boundary norm 30.569150924682617
+initial query 41
+[98/200] Places365_val_00010251 CGBA q=10000 L2@10000=0.5933228731155396 budget 30.6s
+Initial boundary norm 14.418821334838867
+initial query 30
+[99/200] Places365_val_00032601 CGBA q=10000 L2@10000=0.04615505412220955 budget 29.2s
+Initial boundary norm 18.387935638427734
+initial query 32
+[100/200] Places365_val_00019633 CGBA q=10000 L2@10000=0.5838819742202759 budget 30.4s
+Initial boundary norm 43.32071304321289
+initial query 51
+[101/200] Places365_val_00019178 CGBA q=10000 L2@10000=1.8115452527999878 budget 30.7s
+Initial boundary norm 38.41473388671875
+initial query 50
+[102/200] Places365_val_00029615 CGBA q=10000 L2@10000=0.7554768323898315 budget 31.8s
+Initial boundary norm 30.028339385986328
+initial query 41
+[103/200] Places365_val_00003743 CGBA q=10000 L2@10000=1.9429055452346802 budget 31.2s
+Initial boundary norm 1.1883859634399414
+initial query 19
+[104/200] Places365_val_00021385 CGBA q=10000 L2@10000=0.008976398035883904 budget 27.8s
+Initial boundary norm 23.129104614257812
+initial query 37
+[105/200] Places365_val_00022993 CGBA q=10000 L2@10000=0.41187864542007446 budget 29.9s
+Initial boundary norm 32.88585662841797
+initial query 44
+[106/200] Places365_val_00024738 CGBA q=10000 L2@10000=0.6552283763885498 budget 30.5s
+Initial boundary norm 62.94071578979492
+initial query 66
+[107/200] Places365_val_00014850 CGBA q=10000 L2@10000=4.625113010406494 budget 32.2s
+Initial boundary norm 30.606847763061523
+initial query 40
+[108/200] Places365_val_00022210 CGBA q=10000 L2@10000=1.5183204412460327 budget 30.7s
+Initial boundary norm 4.702327728271484
+initial query 24
+[109/200] Places365_val_00035015 CGBA q=10000 L2@10000=0.14588618278503418 budget 30.0s
+Initial boundary norm 53.972537994384766
+initial query 61
+[110/200] Places365_val_00003686 CGBA q=10000 L2@10000=3.092275857925415 budget 31.2s
+Initial boundary norm 47.85775375366211
+initial query 53
+[111/200] Places365_val_00020186 CGBA q=10000 L2@10000=2.1109306812286377 budget 31.3s
+Initial boundary norm 25.92012596130371
+initial query 39
+[112/200] Places365_val_00031890 CGBA q=10000 L2@10000=2.2642219066619873 budget 31.2s
+Initial boundary norm 28.940399169921875
+initial query 40
+[113/200] Places365_val_00004384 CGBA q=10000 L2@10000=0.7853028178215027 budget 30.7s
+Initial boundary norm 24.94955825805664
+initial query 40
+[114/200] Places365_val_00031328 CGBA q=10000 L2@10000=1.1055757999420166 budget 30.7s
+Initial boundary norm 24.12761116027832
+initial query 37
+[115/200] Places365_val_00001505 CGBA q=10000 L2@10000=2.793024778366089 budget 31.0s
+Initial boundary norm 44.88841247558594
+initial query 53
+[116/200] Places365_val_00017435 CGBA q=10000 L2@10000=3.3227381706237793 budget 31.1s
+Initial boundary norm 30.09693145751953
+initial query 43
+[117/200] Places365_val_00034321 CGBA q=10000 L2@10000=1.491490125656128 budget 30.8s
+Initial boundary norm 13.064915657043457
+initial query 29
+[118/200] Places365_val_00027298 CGBA q=10000 L2@10000=0.1440546065568924 budget 29.6s
+Initial boundary norm 10.802499771118164
+initial query 29
+[119/200] Places365_val_00002450 CGBA q=10000 L2@10000=0.3906591534614563 budget 30.3s
+Initial boundary norm 32.47784423828125
+initial query 42
+[120/200] Places365_val_00021959 CGBA q=10000 L2@10000=0.7161567211151123 budget 30.5s
+Initial boundary norm 33.6082763671875
+initial query 42
+[121/200] Places365_val_00008086 CGBA q=10000 L2@10000=0.8529457449913025 budget 31.1s
+Initial boundary norm 25.71176528930664
+initial query 38
+[122/200] Places365_val_00028576 CGBA q=10000 L2@10000=1.4150978326797485 budget 30.8s
+Initial boundary norm 65.0231704711914
+initial query 66
+[123/200] Places365_val_00001454 CGBA q=10000 L2@10000=0.4857423007488251 budget 31.7s
+Initial boundary norm 13.224014282226562
+initial query 30
+[124/200] Places365_val_00008174 CGBA q=10000 L2@10000=0.16118277609348297 budget 29.6s
+Initial boundary norm 42.07752990722656
+initial query 52
+[125/200] Places365_val_00021050 CGBA q=10000 L2@10000=0.422646701335907 budget 30.6s
+Initial boundary norm 16.264310836791992
+initial query 31
+[126/200] Places365_val_00004015 CGBA q=10000 L2@10000=0.5321899056434631 budget 30.1s
+Initial boundary norm 41.567100524902344
+initial query 56
+[127/200] Places365_val_00008732 CGBA q=10000 L2@10000=0.21923738718032837 budget 31.3s
+Initial boundary norm 1.4988734722137451
+initial query 21
+[128/200] Places365_val_00004866 CGBA q=10000 L2@10000=0.020692644640803337 budget 28.5s
+Initial boundary norm 46.10603332519531
+initial query 54
+[129/200] Places365_val_00003356 CGBA q=10000 L2@10000=1.9433544874191284 budget 31.0s
+Initial boundary norm 36.62105178833008
+initial query 44
+[130/200] Places365_val_00032076 CGBA q=10000 L2@10000=3.094090461730957 budget 31.2s
+Initial boundary norm 60.94798278808594
+initial query 62
+[131/200] Places365_val_00010883 CGBA q=10000 L2@10000=5.784577369689941 budget 31.8s
+Initial boundary norm 20.03175926208496
+initial query 35
+[132/200] Places365_val_00028076 CGBA q=10000 L2@10000=1.3249151706695557 budget 30.7s
+Initial boundary norm 46.97355651855469
+initial query 53
+[133/200] Places365_val_00034898 CGBA q=10000 L2@10000=6.183315753936768 budget 31.5s
+Initial boundary norm 42.67652893066406
+initial query 48
+[134/200] Places365_val_00033469 CGBA q=10000 L2@10000=1.1767042875289917 budget 30.9s
+Initial boundary norm 60.05000686645508
+initial query 58
+[135/200] Places365_val_00017891 CGBA q=10000 L2@10000=0.20269006490707397 budget 30.5s
+Initial boundary norm 3.3881866931915283
+initial query 24
+[136/200] Places365_val_00020240 CGBA q=10000 L2@10000=0.04647597298026085 budget 29.1s
+Initial boundary norm 78.0127182006836
+initial query 81
+[137/200] Places365_val_00031719 CGBA q=10000 L2@10000=4.6155314445495605 budget 32.1s
+Initial boundary norm 27.644012451171875
+initial query 38
+[138/200] Places365_val_00010800 CGBA q=10000 L2@10000=2.62955379486084 budget 30.9s
+Initial boundary norm 28.4075984954834
+initial query 40
+[139/200] Places365_val_00008407 CGBA q=10000 L2@10000=1.5981944799423218 budget 30.7s
+Initial boundary norm 6.824585914611816
+initial query 26
+[140/200] Places365_val_00020985 CGBA q=10000 L2@10000=0.05767841637134552 budget 29.6s
+Initial boundary norm 54.20581817626953
+initial query 59
+[141/200] Places365_val_00019180 CGBA q=10000 L2@10000=2.789675235748291 budget 32.7s
+Initial boundary norm 21.149494171142578
+initial query 36
+[142/200] Places365_val_00031747 CGBA q=10000 L2@10000=0.7066555619239807 budget 30.2s
+Initial boundary norm 44.0275764465332
+initial query 51
+[143/200] Places365_val_00009555 CGBA q=10000 L2@10000=1.8954237699508667 budget 31.4s
+Initial boundary norm 26.69573974609375
+initial query 40
+[144/200] Places365_val_00023283 CGBA q=10000 L2@10000=0.38084298372268677 budget 31.7s
+Initial boundary norm 38.25288009643555
+initial query 51
+[145/200] Places365_val_00004313 CGBA q=10000 L2@10000=0.36637642979621887 budget 30.4s
+Initial boundary norm 71.75350189208984
+initial query 70
+[146/200] Places365_val_00013947 CGBA q=10000 L2@10000=3.4522154331207275 budget 31.8s
+Initial boundary norm 5.615955829620361
+initial query 24
+[147/200] Places365_val_00030836 CGBA q=10000 L2@10000=0.028406266123056412 budget 29.1s
+Initial boundary norm 46.52602005004883
+initial query 53
+[148/200] Places365_val_00020636 CGBA q=10000 L2@10000=3.425269842147827 budget 31.7s
+Initial boundary norm 15.036667823791504
+initial query 31
+[149/200] Places365_val_00012799 CGBA q=10000 L2@10000=0.12401612848043442 budget 30.5s
+Initial boundary norm 45.922794342041016
+initial query 49
+[150/200] Places365_val_00000927 CGBA q=10000 L2@10000=2.924806594848633 budget 31.3s
+Initial boundary norm 20.437936782836914
+initial query 39
+[151/200] Places365_val_00036169 CGBA q=10000 L2@10000=0.10396042466163635 budget 29.3s
+Initial boundary norm 57.974483489990234
+initial query 62
+[152/200] Places365_val_00010033 CGBA q=10000 L2@10000=5.981005668640137 budget 31.7s
+Initial boundary norm 27.400026321411133
+initial query 39
+[153/200] Places365_val_00026735 CGBA q=10000 L2@10000=0.47723647952079773 budget 30.6s
+Initial boundary norm 65.40950012207031
+initial query 68
+[154/200] Places365_val_00027463 CGBA q=10000 L2@10000=4.304917335510254 budget 31.5s
+Initial boundary norm 59.90470886230469
+initial query 62
+[155/200] Places365_val_00033883 CGBA q=10000 L2@10000=0.8254998326301575 budget 31.1s
+Initial boundary norm 18.671344757080078
+initial query 32
+[156/200] Places365_val_00010455 CGBA q=10000 L2@10000=0.6189980506896973 budget 30.3s
+Initial boundary norm 61.5912971496582
+initial query 61
+[157/200] Places365_val_00030225 CGBA q=10000 L2@10000=1.1920868158340454 budget 30.7s
+Initial boundary norm 26.229936599731445
+initial query 38
+[158/200] Places365_val_00034395 CGBA q=10000 L2@10000=1.844417691230774 budget 31.4s
+Initial boundary norm 13.781437873840332
+initial query 29
+[159/200] Places365_val_00000097 CGBA q=10000 L2@10000=0.3734222948551178 budget 30.1s
+Initial boundary norm 48.171356201171875
+initial query 54
+[160/200] Places365_val_00015185 CGBA q=10000 L2@10000=3.7849857807159424 budget 31.9s
+Initial boundary norm 41.34053039550781
+initial query 48
+[161/200] Places365_val_00001404 CGBA q=10000 L2@10000=2.13249135017395 budget 31.3s
+Initial boundary norm 25.66222381591797
+initial query 39
+[162/200] Places365_val_00013466 CGBA q=10000 L2@10000=0.8280657529830933 budget 31.2s
+Initial boundary norm 23.476877212524414
+initial query 36
+[163/200] Places365_val_00014700 CGBA q=10000 L2@10000=2.084354877471924 budget 30.8s
+Initial boundary norm 34.525634765625
+initial query 46
+[164/200] Places365_val_00014816 CGBA q=10000 L2@10000=1.366881251335144 budget 32.0s
+Initial boundary norm 25.55730438232422
+initial query 38
+[165/200] Places365_val_00023578 CGBA q=10000 L2@10000=0.7360904812812805 budget 32.0s
+Initial boundary norm 49.8403205871582
+initial query 62
+[166/200] Places365_val_00006478 CGBA q=10000 L2@10000=2.431943893432617 budget 32.1s
+Initial boundary norm 14.876760482788086
+initial query 30
+[167/200] Places365_val_00003837 CGBA q=10000 L2@10000=1.145532250404358 budget 31.2s
+Initial boundary norm 58.554927825927734
+initial query 59
+[168/200] Places365_val_00023556 CGBA q=10000 L2@10000=0.026812618598341942 budget 30.3s
+Initial boundary norm 28.475576400756836
+initial query 39
+[169/200] Places365_val_00010180 CGBA q=10000 L2@10000=0.9905613660812378 budget 30.9s
+Initial boundary norm 6.448599815368652
+initial query 24
+[170/200] Places365_val_00007346 CGBA q=10000 L2@10000=0.14501632750034332 budget 29.6s
+Initial boundary norm 43.75984573364258
+initial query 49
+[171/200] Places365_val_00001581 CGBA q=10000 L2@10000=2.1138007640838623 budget 31.0s
+Initial boundary norm 35.727176666259766
+initial query 44
+[172/200] Places365_val_00021721 CGBA q=10000 L2@10000=2.3327982425689697 budget 31.0s
+Initial boundary norm 44.29071807861328
+initial query 51
+[173/200] Places365_val_00035889 CGBA q=10000 L2@10000=1.1537171602249146 budget 30.8s
+Initial boundary norm 12.918728828430176
+initial query 29
+[174/200] Places365_val_00008386 CGBA q=10000 L2@10000=0.2309945821762085 budget 29.9s
+Initial boundary norm 67.034423828125
+initial query 66
+[175/200] Places365_val_00029616 CGBA q=10000 L2@10000=0.7600822448730469 budget 30.4s
+Initial boundary norm 86.00272369384766
+initial query 81
+[176/200] Places365_val_00019266 CGBA q=10000 L2@10000=6.848128318786621 budget 32.2s
+Initial boundary norm 39.64421463012695
+initial query 46
+[177/200] Places365_val_00025046 CGBA q=10000 L2@10000=2.7316415309906006 budget 30.9s
+Initial boundary norm 44.771026611328125
+initial query 56
+[178/200] Places365_val_00028868 CGBA q=10000 L2@10000=0.3467893898487091 budget 30.3s
+Initial boundary norm 15.28609561920166
+initial query 31
+[179/200] Places365_val_00025728 CGBA q=10000 L2@10000=0.9881299734115601 budget 30.7s
+Initial boundary norm 33.597835540771484
+initial query 46
+[180/200] Places365_val_00004416 CGBA q=10000 L2@10000=1.1243922710418701 budget 31.2s
+Initial boundary norm 56.87742614746094
+initial query 59
+[181/200] Places365_val_00002067 CGBA q=10000 L2@10000=2.816412925720215 budget 31.4s
+Initial boundary norm 32.4337043762207
+initial query 42
+[182/200] Places365_val_00001113 CGBA q=10000 L2@10000=1.4227535724639893 budget 30.8s
+Initial boundary norm 52.5390739440918
+initial query 57
+[183/200] Places365_val_00011698 CGBA q=10000 L2@10000=5.795011043548584 budget 32.3s
+Initial boundary norm 50.493553161621094
+initial query 53
+[184/200] Places365_val_00010904 CGBA q=10000 L2@10000=4.74893045425415 budget 32.0s
+Initial boundary norm 22.00874137878418
+initial query 37
+[185/200] Places365_val_00017715 CGBA q=10000 L2@10000=1.7281436920166016 budget 32.0s
+Initial boundary norm 10.799145698547363
+initial query 31
+[186/200] Places365_val_00018407 CGBA q=10000 L2@10000=0.16164077818393707 budget 30.4s
+Initial boundary norm 11.409059524536133
+initial query 28
+[187/200] Places365_val_00026932 CGBA q=10000 L2@10000=0.38706275820732117 budget 30.1s
+Initial boundary norm 27.19951057434082
+initial query 38
+[188/200] Places365_val_00005673 CGBA q=10000 L2@10000=0.46314552426338196 budget 30.5s
+Initial boundary norm 36.75032043457031
+initial query 45
+[189/200] Places365_val_00031804 CGBA q=10000 L2@10000=3.266326904296875 budget 32.0s
+Initial boundary norm 28.358644485473633
+initial query 39
+[190/200] Places365_val_00023366 CGBA q=10000 L2@10000=1.559258222579956 budget 30.9s
+Initial boundary norm 29.164947509765625
+initial query 42
+[191/200] Places365_val_00019181 CGBA q=10000 L2@10000=1.1125794649124146 budget 31.0s
+Initial boundary norm 8.545370101928711
+initial query 25
+[192/200] Places365_val_00033768 CGBA q=10000 L2@10000=0.347659707069397 budget 29.9s
+Initial boundary norm 34.47615432739258
+initial query 44
+[193/200] Places365_val_00020265 CGBA q=10000 L2@10000=2.8083655834198 budget 31.0s
+Initial boundary norm 26.32951545715332
+initial query 38
+[194/200] Places365_val_00021738 CGBA q=10000 L2@10000=0.36830317974090576 budget 30.4s
+Initial boundary norm 47.50897979736328
+initial query 59
+[195/200] Places365_val_00006246 CGBA q=10000 L2@10000=3.094181776046753 budget 31.7s
+Initial boundary norm 38.12778854370117
+initial query 44
+[196/200] Places365_val_00010987 CGBA q=10000 L2@10000=0.8710756301879883 budget 31.2s
+Initial boundary norm 56.26849365234375
+initial query 61
+[197/200] Places365_val_00032314 CGBA q=10000 L2@10000=0.98541659116745 budget 31.3s
+Initial boundary norm 55.95469284057617
+initial query 59
+[198/200] Places365_val_00021646 CGBA q=10000 L2@10000=4.335397720336914 budget 31.6s
+Initial boundary norm 37.83903503417969
+initial query 46
+[199/200] Places365_val_00013246 CGBA q=10000 L2@10000=1.4264545440673828 budget 31.1s
+Initial boundary norm 51.70016860961914
+initial query 55
+[200/200] Places365_val_00014492 CGBA q=10000 L2@10000=1.7407828569412231 budget 31.5s

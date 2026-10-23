@@ -1,0 +1,8 @@
+[*] GPU NVIDIA GeForce RTX 5090  D12 matmul_tf32=False cudnn_tf32=False deterministic=True benchmark=False
+
+| method | cell (arch/mode) | rows | C | Q9 | Q6 | X | median m(s=1) non-C | max m(s=1) non-C | adv_uint8==1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| LGC_RC_EGC | Salman2020Do_R50/non_targeted | 1600 | 1010 | 589 | 0 | 1 | 2.57e-05 | 0.000557 | 804 |
+
+[*] wrote reports/raw/B5a2/gates/e11_LGC_RC_EGC_Salman2020Do_R50_NT_domain.csv (1600 rows)
+[!] E-OTHER: X > 0 for a method (post-fix: every method must decide on the stored clamped image) -> STOP

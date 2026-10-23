@@ -1,0 +1,15 @@
+torch 2.7.1+cu128
+cuda 12.8
+NVIDIA GeForce RTX 5090
+835f1933d9e571070e952aedafc5a50b9948717168115ea60b5433277006c28a  lgc_bench/engine.py
+1b847d4c3acc858a992a202bbdc6120f525922a1a8a42a0be2c6575a480778a7  splits/robust/Salman2020Do_R50_non_targeted.csv
+checkpoints 100 200 500 1000 2000 2500 5000 10000
+budget 10000
+backend.cuda_matmul_allow_tf32 False
+backend.cudnn_allow_tf32 False
+backend.cudnn_deterministic True
+backend.cudnn_benchmark False
+backend.float32_matmul_precision highest
+victim_weight_file Salman2020Do_R50.pt
+victim_weight_sha256 1835a5bbe5e31ef35915889dc949b96528bed513205bb9ec1cac80c32c84ce46
+ADV_STORE_DTYPE float16 ADV_STORE_BUDGETS unset

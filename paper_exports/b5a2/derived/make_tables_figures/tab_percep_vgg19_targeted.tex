@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Perceptual metrics at 10000 queries (mean), vgg19, targeted.}
+\begin{tabular}{lcccccc}
+\toprule
+Method & SSIM $\uparrow$ & MS-SSIM $\uparrow$ & FSIM $\uparrow$ & LPIPS$_{\mathrm{alex}}$ $\downarrow$ & LPIPS$_{\mathrm{vgg}}$ $\downarrow$ & DISTS $\downarrow$ \\
+\midrule
+LGC-EGC (ours) & \textbf{0.9366} & \textbf{0.9608} & 0.9541 & \textbf{0.0630} & \textbf{0.1293} & \textbf{0.1296} \\
+TtBA & 0.9139 & 0.9525 & 0.9678 & 0.0973 & 0.1721 & 0.1522 \\
+CGBA-H & 0.9199 & 0.9544 & \textbf{0.9694} & 0.0850 & 0.1613 & 0.1445 \\
+ARS-OPT & 0.7534 & 0.9437 & 0.9297 & 0.1209 & 0.2285 & 0.1706 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,2880 @@
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_ARS_OPT_densenet161_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_ARS_OPT_densenet161_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_ARS_OPT_resnet50_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  6s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  8s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  9s
+    1152/1600  9s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  10s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  11s
+    1440/1600  11s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  12s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_ARS_OPT_resnet50_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  9s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  11s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  12s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_CGBA_H_densenet161_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  5s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_CGBA_H_resnet50_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_CGBA_resnet50_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_LGC_RC_EGC_densenet161_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_LGC_RC_EGC_densenet161_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_LGC_RC_EGC_resnet50_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_LGC_RC_EGC_resnet50_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_TtBA_densenet161_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  5s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_TtBA_densenet161_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_TtBA_resnet50_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  9s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  11s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_TtBA_resnet50_places365_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  5s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  8s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_ARS_OPT_Salman2020Do_R50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_ARS_OPT_Salman2020Do_R50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  2s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  4s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  9s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  11s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_CGBA_H_Salman2020Do_R50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_CGBA_Salman2020Do_R50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_LGC_RC_EGC_Salman2020Do_R50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_LGC_RC_EGC_Salman2020Do_R50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  5s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  8s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_TtBA_Salman2020Do_R50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e11_TtBA_Salman2020Do_R50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_ARS_OPT_resnet50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  9s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_ARS_OPT_resnet50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_ARS_OPT_vgg19_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_ARS_OPT_vgg19_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_ARS_OPT_vit_b_32_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_ARS_OPT_vit_b_32_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_CGBA_H_resnet50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_CGBA_H_vgg19_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  5s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  8s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_CGBA_H_vit_b_32_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_LGC_RC_EGC_resnet50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_LGC_RC_EGC_resnet50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_LGC_RC_EGC_vgg19_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_LGC_RC_EGC_vgg19_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_LGC_RC_EGC_vit_b_32_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_LGC_RC_EGC_vit_b_32_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  5s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  8s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_TtBA_resnet50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  5s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  7s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  9s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  11s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_TtBA_resnet50_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_TtBA_vgg19_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  3s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  8s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  10s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_TtBA_vgg19_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  11s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_TtBA_vit_b_32_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1600 stored states, 1600 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1600  1s
+    64/1600  1s
+    96/1600  1s
+    128/1600  1s
+    160/1600  2s
+    192/1600  2s
+    224/1600  2s
+    256/1600  2s
+    288/1600  2s
+    320/1600  3s
+    352/1600  3s
+    384/1600  3s
+    416/1600  3s
+    448/1600  4s
+    480/1600  4s
+    512/1600  4s
+    544/1600  4s
+    576/1600  4s
+    608/1600  5s
+    640/1600  5s
+    672/1600  5s
+    704/1600  5s
+    736/1600  6s
+    768/1600  6s
+    800/1600  6s
+    832/1600  6s
+    864/1600  6s
+    896/1600  7s
+    928/1600  7s
+    960/1600  7s
+    992/1600  7s
+    1024/1600  7s
+    1056/1600  8s
+    1088/1600  8s
+    1120/1600  8s
+    1152/1600  8s
+    1184/1600  9s
+    1216/1600  9s
+    1248/1600  9s
+    1280/1600  9s
+    1312/1600  9s
+    1344/1600  10s
+    1376/1600  10s
+    1408/1600  10s
+    1440/1600  10s
+    1472/1600  10s
+    1504/1600  11s
+    1536/1600  11s
+    1568/1600  11s
+    1600/1600  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_TtBA_vit_b_32_T/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1599 stored states, 1599 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1599  1s
+    64/1599  1s
+    96/1599  1s
+    128/1599  1s
+    160/1599  2s
+    192/1599  2s
+    224/1599  2s
+    256/1599  2s
+    288/1599  3s
+    320/1599  3s
+    352/1599  3s
+    384/1599  3s
+    416/1599  3s
+    448/1599  4s
+    480/1599  4s
+    512/1599  4s
+    544/1599  4s
+    576/1599  4s
+    608/1599  5s
+    640/1599  5s
+    672/1599  5s
+    704/1599  5s
+    736/1599  6s
+    768/1599  6s
+    800/1599  6s
+    832/1599  6s
+    864/1599  6s
+    896/1599  7s
+    928/1599  7s
+    960/1599  7s
+    992/1599  7s
+    1024/1599  8s
+    1056/1599  8s
+    1088/1599  8s
+    1120/1599  8s
+    1152/1599  8s
+    1184/1599  9s
+    1216/1599  9s
+    1248/1599  9s
+    1280/1599  9s
+    1312/1599  9s
+    1344/1599  10s
+    1376/1599  10s
+    1408/1599  10s
+    1440/1599  10s
+    1472/1599  11s
+    1504/1599  11s
+    1536/1599  11s
+    1568/1599  11s
+    1599/1599  11s
+[+] wrote paper_exports/b5a2/metrics/b5_e10_CGBA_densenet161_places365_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1599 stored states, 1599 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1599  1s
+    64/1599  1s
+    96/1599  1s
+    128/1599  1s
+    160/1599  2s
+    192/1599  2s
+    224/1599  2s
+    256/1599  2s
+    288/1599  2s
+    320/1599  3s
+    352/1599  3s
+    384/1599  3s
+    416/1599  3s
+    448/1599  4s
+    480/1599  4s
+    512/1599  4s
+    544/1599  4s
+    576/1599  4s
+    608/1599  5s
+    640/1599  5s
+    672/1599  5s
+    704/1599  5s
+    736/1599  5s
+    768/1599  6s
+    800/1599  6s
+    832/1599  6s
+    864/1599  6s
+    896/1599  7s
+    928/1599  7s
+    960/1599  7s
+    992/1599  7s
+    1024/1599  7s
+    1056/1599  8s
+    1088/1599  8s
+    1120/1599  8s
+    1152/1599  8s
+    1184/1599  8s
+    1216/1599  9s
+    1248/1599  9s
+    1280/1599  9s
+    1312/1599  9s
+    1344/1599  10s
+    1376/1599  10s
+    1408/1599  10s
+    1440/1599  10s
+    1472/1599  10s
+    1504/1599  11s
+    1536/1599  11s
+    1568/1599  11s
+    1599/1599  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_CGBA_vgg19_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1594 stored states, 1594 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1594  1s
+    64/1594  1s
+    96/1594  1s
+    128/1594  1s
+    160/1594  2s
+    192/1594  2s
+    224/1594  2s
+    256/1594  2s
+    288/1594  3s
+    320/1594  3s
+    352/1594  3s
+    384/1594  3s
+    416/1594  3s
+    448/1594  4s
+    480/1594  4s
+    512/1594  4s
+    544/1594  4s
+    576/1594  4s
+    608/1594  5s
+    640/1594  5s
+    672/1594  5s
+    704/1594  5s
+    736/1594  6s
+    768/1594  6s
+    800/1594  6s
+    832/1594  6s
+    864/1594  6s
+    896/1594  7s
+    928/1594  7s
+    960/1594  7s
+    992/1594  7s
+    1024/1594  8s
+    1056/1594  8s
+    1088/1594  8s
+    1120/1594  8s
+    1152/1594  8s
+    1184/1594  9s
+    1216/1594  9s
+    1248/1594  9s
+    1280/1594  9s
+    1312/1594  10s
+    1344/1594  10s
+    1376/1594  10s
+    1408/1594  10s
+    1440/1594  10s
+    1472/1594  11s
+    1504/1594  11s
+    1536/1594  11s
+    1568/1594  11s
+    1594/1594  12s
+[+] wrote paper_exports/b5a2/metrics/b5_main_CGBA_resnet50_NT/metrics.csv
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:70: FutureWarning: Importing `spectral_angle_mapper` from `torchmetrics.functional` was deprecated and will be removed in 2.0. Import `spectral_angle_mapper` from `torchmetrics.image` instead.
+  _future_warning(
+[*] 1574 stored states, 1574 to evaluate, metrics ['l2', 'linf', 'psnr', 'ssim', 'ms_ssim', 'fsim', 'dists', 'lpips_alex', 'lpips_vgg']
+    32/1574  1s
+    64/1574  1s
+    96/1574  1s
+    128/1574  1s
+    160/1574  2s
+    192/1574  2s
+    224/1574  2s
+    256/1574  2s
+    288/1574  2s
+    320/1574  3s
+    352/1574  3s
+    384/1574  3s
+    416/1574  3s
+    448/1574  4s
+    480/1574  4s
+    512/1574  4s
+    544/1574  4s
+    576/1574  4s
+    608/1574  5s
+    640/1574  5s
+    672/1574  5s
+    704/1574  5s
+    736/1574  5s
+    768/1574  6s
+    800/1574  6s
+    832/1574  6s
+    864/1574  6s
+    896/1574  7s
+    928/1574  7s
+    960/1574  7s
+    992/1574  7s
+    1024/1574  7s
+    1056/1574  8s
+    1088/1574  8s
+    1120/1574  8s
+    1152/1574  8s
+    1184/1574  8s
+    1216/1574  9s
+    1248/1574  9s
+    1280/1574  9s
+    1312/1574  9s
+    1344/1574  10s
+    1376/1574  10s
+    1408/1574  10s
+    1440/1574  10s
+    1472/1574  10s
+    1504/1574  11s
+    1536/1574  11s
+    1568/1574  11s
+    1574/1574  11s
+[+] wrote paper_exports/b5a2/metrics/b5_main_CGBA_vit_b_32_NT/metrics.csv

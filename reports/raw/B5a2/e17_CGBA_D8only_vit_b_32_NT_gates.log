@@ -1,0 +1,3 @@
+[gate] partial: SKIP (n/a) E17 outside checker roots
+[gate] g5: N/A (n/a) E17 outside G5 (D13)
+[gate] domain: INFO (ok) X=1 (reported, not a stop rule)
