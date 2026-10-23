@@ -1,0 +1,95 @@
+Build 38 - Amendment 3 (2026-10-23): ablation of LGC-EGC on the main protocol (paper element E9).
+Committed as prereg_build38_amendment3.txt and tagged build38-amend3 BEFORE any ablation cell below is run.
+Coding agents never edit this file. prereg_build38.txt and prereg_build38_amendment2.txt stay binding wherever this
+amendment does not change them.
+
+0. What is known at registration (disclosed).
+   - B5 (amendment 2) is closed: tag b5a2-done-2026-10-23 of this repository. Its LGC_RC_EGC cells, its registered
+     claims and all its tables have been read. Those cells are reused unchanged as the EGC row of this ablation.
+   - None of the 18 ablation cells of section 4 has been run on rows 1-200 of any victim.
+   - Development evidence that chose the claims of section 6 (confirm_37, seed 2718, n = 100, ResNet-50
+     IMAGENET1K_V1, 2026-10-07; numbers as recorded in the project notes, the source CSVs are lost, see
+     reports/E9_sources.md):
+       EGC / LGC_RC, non-targeted, L2 at 10^4 queries: 0.503 [0.471, 0.541];
+       EGC - HT1000, targeted, LPIPS-vgg AUC: -0.048; EGC / HT1000, targeted, L2 AUC: 0.899;
+       EGC / EGCI, targeted, L2 at 10^4 queries: 0.927; EGC / EGCI, non-targeted, L2 AUC: 1.045 (the ellipse costs
+       about 5 % in non-targeted mode);
+       EGC / HT1000, non-targeted, L2 AUC 1.102 and 10^4 1.118 (the naive switch has LOWER L2 in non-targeted mode);
+       EGC / LGC_RC, targeted, L2 AUC: 0.987 [0.955, 1.022].
+     The modes and directions of A1-A4 follow this evidence. The opposite results (non-targeted HT1000, non-targeted
+     EGCI) are reported as descriptive rows, never omitted. Seed-2718 images inside rows 1-200 are dev-overlap rows
+     (amendment 2, section 2); every number is recomputed without them (section 6, descriptive).
+   - Contract D4 ("main-protocol ablations are NOT run; the ablation table uses confirm_37 data only") is superseded
+     for E9 by this amendment, because the confirm_37 CSVs were not found (reports/E9_sources.md, status NOT FOUND).
+     The contract file is not edited; for E9 this amendment governs. E9b (operator substitution) stays CUT.
+
+1. Reason. The TIFS decision and the planned TMM submission need a component ablation on the main protocol (same
+   images, victims, budget and checks as the main study), with the perceptual metrics that only stored images give.
+
+2. Data. Unchanged (amendment 2, section 2): rows 1-200 of splits/imagenet/ttba_github/{arch}_{mode}.csv, targeted =
+   the first 200 source-target pairs, the same split files (sha256 in the contract), seed 42, --exclude_seeds
+   992 2027 3141 2718, the TtBA-mini image loader.
+
+3. Victims. Unchanged: vgg19-dcbb9e9d, resnet50-11ad3fa6, vit_b_32-d86f8d99 (weights in /root/autodl-tmp/TtBA/model).
+
+4. Rows. All are frozen-engine methods (lgc_bench/engine.py sha256 835f1933d9e5..., REGISTRY names):
+   - LGC_RC_EGC (the method; "EGC"): the B5 cells b5_main_LGC_RC_EGC_{arch}_{NT,T}. Not re-run.
+   - LGC_RC ("no ambient block"): CGBA circle chord in the autoencoder latent + residual coordinate.
+   - LGC_RC_EGCI ("circle metric"): EGC with R ~ I (isotropic circle in the latent and ambient blocks), same SSIM
+     gate, same doubling exploration.
+   - LGC_RC_HT1000 ("naive switch"): LGC_RC for 1000 queries, then the engine's TtBA pixel stage (lgc_bench port of
+     TtBA, DCT f = 4; not the official TtBA repository code) on the full perturbation.
+   The 18 new cells are {LGC_RC, LGC_RC_EGCI, LGC_RC_HT1000} x {vgg19, resnet50, vit_b_32} x {non_targeted,
+   targeted}, n = 200 each, output Results/e9_{METHOD}_{arch}_{NT|T}. Each command line is the B5 LGC_RC_EGC command
+   line (run_b5_parallel.sh, cells main_LGC_RC_EGC_*) with only --methods and --out_dir changed: run_benchmark_33b.py
+   (sha256 9c62820e5fafbac7e8c3f2cf3a688e3e6e7c53f3c5fc7f709ef5f34d17861873), --save_adv, the 8 checkpoints
+   100 ... 10000, --max_queries 10000. The per-image seed depends only on the row (derive_seed(42, row)), so every
+   row of every method uses the same RNG stream as the B5 EGC row of that image (checked by gate G3).
+   Not run: LGC_RC_MAL_X (sanity variant), every other engine variant.
+
+5. Budget, checkpoints, convention. Unchanged: 10,000 queries; checkpoints 100 / 200 / 500 / 1k / 2k / 2.5k / 5k /
+   10k, all stored; every row reports the engine state at B (the same convention for all four rows); AUC budgets
+   500 / 1k / 2.5k / 5k / 10k.
+
+6. Claims (paired over the images both rows finished; conventions of tools/eval/claims_registered.py: per-image AUC,
+   paired geometric-mean L2 ratio, median paired LPIPS difference, image bootstrap B = 10000 with seed 0, one-sided
+   Wilcoxon signed-rank, Holm within each family, alpha 0.05).
+   - A1 ambient block (Holm, m = 3; non-targeted, every victim): L2@10k ratio EGC / LGC_RC < 1 and upper 95 % bound < 1.
+   - A2 naive switch (Holm, m = 3; targeted, every victim): LPIPS-vgg AUC delta (EGC - HT1000) < 0 and upper 95 %
+     bound < 0.
+   - A3 elliptic metric (Holm, m = 3; targeted, every victim): L2@10k ratio EGC / EGCI < 1 and upper 95 % bound < 1.
+   - A4 no targeted cost of the ambient block (interval only; targeted, every victim): L2 AUC ratio EGC / LGC_RC,
+     upper 95 % bound <= 1.03.
+   - Descriptive (no test, no decision): every other contrast of EGC against each row, both modes: L2 AUC ratio,
+     L2@10k ratio, LPIPS-vgg / LPIPS-alex / DISTS / SSIM AUC deltas; and the level of every row (n, mean, median of
+     L2, success, LPIPS-vgg, LPIPS-alex, DISTS, SSIM at 1k and 10k).
+   - Dev-overlap: every row recomputed without the dev-overlap rows (descriptive; reported as "would any decision
+     change").
+   - Failure policy: a claim that fails is reported as not confirmed, with its estimate and interval. The method is
+     never changed and no ablation cell is re-run selectively.
+   - Analysis code: tools/eval/claims_e9.py (sha256 in section 9); the EGC inputs are paper_exports/b5a2/cells and
+     paper_exports/b5a2/metrics at this commit.
+
+7. Metrics. The B5 offline implementation, unchanged (tools/eval/eval_metrics_offline.py, amendment 2, section 6),
+   run on the stored images of the 18 new cells. The EGC metrics are the B5 metrics files (not recomputed).
+
+8. Inputs and gate. Before launch, run_e9_parallel.sh refuses unless tools/eval/e9_gate.py --check_inputs finds the
+   autoencoder, the three victim files, the labels file, the six split files (sha256 = contract), every image of
+   rows 1-200 and the six B5 EGC cells. Gate (per cell, tools/eval/e9_gate.py): 200 runs rows without error; every
+   image has every checkpoint; the image set and the per-image seed equal those of the B5 EGC cell;
+   config_single.json matches section 4. A cell that fails
+   the gate stops the launcher (STOP bundle) and is reported, never repaired by hand. No domain-consistency gate is
+   run for the ablation rows: in B5 the X events of EGC were recorded, not gated (D1), and no ablation claim is made
+   against an external baseline.
+
+9. Environment and files. The B5 environment: NVIDIA GeForce RTX 5090, torch 2.7.1+cu128, torchvision 0.22.1+cu128,
+   cuDNN 90701 (run_e9_parallel.sh refuses otherwise). One attack process per GPU by default (PER_GPU=1); wall time
+   is not an E9 result. sha256 of the registered files at this commit:
+   claims_e9.py            ff75de4479d4b566b1003f6b64efea88512c5e64881814f2aa1d5bc3d6ec19e3
+   e9_gate.py              19e0ab4f9403fe86ff26625549b76136da599c0b3d4de519077cb88ba29deb98
+   run_e9_parallel.sh      278fa8706186c43b69e0e9a521144aeee83058c3bb27d8a1eb2802ab28948411
+   e9_finish.sh            b30addf1662ae9c1cef489e4d071981839bc67832dda36d5672326c880f5477f
+
+10. No result-dependent stopping. All 18 cells are completed (or their failures listed) before any analysis.
+
+Registered 2026-10-23 by H (committed and tagged build38-amend3 before the first ablation run).
