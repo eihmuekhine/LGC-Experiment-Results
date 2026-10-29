@@ -1,0 +1,19 @@
+Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
+1	:	1793181080.992	  4895.605	0	94	0	0	run_cell 'e9_LGC_RC_EGCI_vgg19_T	Results/e9_LGC_RC_EGCI_vgg19_T' 1
+2	:	1793185977.144	  4763.115	0	84	0	0	run_cell 'e9_LGC_RC_vgg19_T	Results/e9_LGC_RC_vgg19_T' 1
+3	:	1793190740.785	  4848.067	0	96	0	0	run_cell 'e9_LGC_RC_EGCI_vgg19_NT	Results/e9_LGC_RC_EGCI_vgg19_NT' 1
+4	:	1793195589.366	  3987.608	0	100	0	0	run_cell 'e9_LGC_RC_EGCI_resnet50_T	Results/e9_LGC_RC_EGCI_resnet50_T' 1
+5	:	1793199577.522	  4591.638	0	86	0	0	run_cell 'e9_LGC_RC_vgg19_NT	Results/e9_LGC_RC_vgg19_NT' 1
+6	:	1793204169.696	  3945.207	0	100	0	0	run_cell 'e9_LGC_RC_EGCI_vit_b_32_T	Results/e9_LGC_RC_EGCI_vit_b_32_T' 1
+7	:	1793208115.426	  3856.819	0	90	0	0	run_cell 'e9_LGC_RC_resnet50_T	Results/e9_LGC_RC_resnet50_T' 1
+8	:	1793211972.753	  3786.625	0	90	0	0	run_cell 'e9_LGC_RC_vit_b_32_T	Results/e9_LGC_RC_vit_b_32_T' 1
+9	:	1793215759.925	  3972.499	0	102	0	0	run_cell 'e9_LGC_RC_EGCI_resnet50_NT	Results/e9_LGC_RC_EGCI_resnet50_NT' 1
+10	:	1793219732.954	  3964.658	0	102	0	0	run_cell 'e9_LGC_RC_EGCI_vit_b_32_NT	Results/e9_LGC_RC_EGCI_vit_b_32_NT' 1
+11	:	1793223698.131	  3739.674	0	92	0	0	run_cell 'e9_LGC_RC_resnet50_NT	Results/e9_LGC_RC_resnet50_NT' 1
+12	:	1793227438.361	  3724.931	0	92	0	0	run_cell 'e9_LGC_RC_vit_b_32_NT	Results/e9_LGC_RC_vit_b_32_NT' 1
+13	:	1793231163.834	  2970.430	0	98	0	0	run_cell 'e9_LGC_RC_HT1000_vgg19_T	Results/e9_LGC_RC_HT1000_vgg19_T' 1
+14	:	1793234134.792	  2862.389	0	100	0	0	run_cell 'e9_LGC_RC_HT1000_vgg19_NT	Results/e9_LGC_RC_HT1000_vgg19_NT' 1
+15	:	1793236997.694	  2045.266	0	104	0	0	run_cell 'e9_LGC_RC_HT1000_resnet50_T	Results/e9_LGC_RC_HT1000_resnet50_T' 1
+16	:	1793239043.508	  1879.150	0	104	0	0	run_cell 'e9_LGC_RC_HT1000_vit_b_32_T	Results/e9_LGC_RC_HT1000_vit_b_32_T' 1
+17	:	1793240923.194	  1964.030	0	106	0	0	run_cell 'e9_LGC_RC_HT1000_resnet50_NT	Results/e9_LGC_RC_HT1000_resnet50_NT' 1
+18	:	1793242887.752	  1834.873	0	106	0	0	run_cell 'e9_LGC_RC_HT1000_vit_b_32_NT	Results/e9_LGC_RC_HT1000_vit_b_32_NT' 1

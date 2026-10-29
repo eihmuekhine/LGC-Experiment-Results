@@ -1,0 +1,836 @@
+[*] importing torch / torchvision (first run after install can take 1-2 min) ...
+[*] device=cuda | torch=2.7.1+cu128 | gpu=NVIDIA GeForce RTX 5090 (31 GB) | tf32=False deterministic=True | shard 1/1
+[*] methods: ['LGC_RC_HT1000']
+[*] autoencoder vgg16 loaded from checkpoints/vgg16_imagenet.pth
+
+==========================================================================================
+ IMAGENET | VGG19 | TARGETED
+==========================================================================================
+[*] victim vgg19: official TtBA weights vgg19-dcbb9e9d.pth from /root/autodl-tmp/TtBA/model
+[*] protocol split splits/imagenet/ttba_github/vgg19_targeted.csv (ttba_github:imagenet-vgg:targeted1, weights vgg19-dcbb9e9d.pth): 200 rows
+
+[1/200] ILSVRC2012_val_00037360.JPEG -> 661
+[*] image loader: official TtBA repo pre-processing (mean |x - data loader| on the first image 0.0000)
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.5598 SSIM=0.9770 LPIPS=0.0598 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@975
+   [time] 0.3 min for 1 images on vgg19; ~55.2 min left on this arch (this shard)
+
+[2/200] ILSVRC2012_val_00002148.JPEG -> 133
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=1.8820 SSIM=0.9852 LPIPS=0.0431 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.45 | switch@975
+   [time] 0.5 min for 2 images on vgg19; ~51.6 min left on this arch (this shard)
+
+[3/200] ILSVRC2012_val_00039161.JPEG -> 30
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.2594 SSIM=0.9871 LPIPS=0.0267 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@967
+   [time] 0.8 min for 3 images on vgg19; ~50.3 min left on this arch (this shard)
+
+[4/200] ILSVRC2012_val_00016499.JPEG -> 304
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.4499 SSIM=0.9912 LPIPS=0.0283 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.48 | switch@975
+   [time] 1.0 min for 4 images on vgg19; ~49.5 min left on this arch (this shard)
+
+[5/200] ILSVRC2012_val_00003924.JPEG -> 280
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.2140 SSIM=0.9740 LPIPS=0.0529 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 1.3 min for 5 images on vgg19; ~48.9 min left on this arch (this shard)
+
+[6/200] ILSVRC2012_val_00021552.JPEG -> 259
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=11.3978 SSIM=0.9516 LPIPS=0.1169 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 1.5 min for 6 images on vgg19; ~48.5 min left on this arch (this shard)
+
+[7/200] ILSVRC2012_val_00006890.JPEG -> 165
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=23.2194 SSIM=0.8649 LPIPS=0.2414 adv float/uint8/repaired=1/0/1 | 14.5s | +1share=0.50 | switch@963
+   [time] 1.8 min for 7 images on vgg19; ~48.3 min left on this arch (this shard)
+
+[8/200] ILSVRC2012_val_00006568.JPEG -> 121
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=19.1054 SSIM=0.8279 LPIPS=0.1816 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.46 | switch@962
+   [time] 2.0 min for 8 images on vgg19; ~48.0 min left on this arch (this shard)
+
+[9/200] ILSVRC2012_val_00022794.JPEG -> 764
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.8157 SSIM=0.9763 LPIPS=0.0595 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@966
+   [time] 2.2 min for 9 images on vgg19; ~47.7 min left on this arch (this shard)
+
+[10/200] ILSVRC2012_val_00016087.JPEG -> 564
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.4942 SSIM=0.9716 LPIPS=0.1070 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.50 | switch@962
+   [time] 2.5 min for 10 images on vgg19; ~47.4 min left on this arch (this shard)
+
+[11/200] ILSVRC2012_val_00008287.JPEG -> 103
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.1887 SSIM=0.9411 LPIPS=0.2495 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@960
+   [time] 2.7 min for 11 images on vgg19; ~47.1 min left on this arch (this shard)
+
+[12/200] ILSVRC2012_val_00035873.JPEG -> 612
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.0245 SSIM=0.9939 LPIPS=0.0263 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.50 | switch@962
+   [time] 3.0 min for 12 images on vgg19; ~46.7 min left on this arch (this shard)
+
+[13/200] ILSVRC2012_val_00002981.JPEG -> 449
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.4348 SSIM=0.8136 LPIPS=0.3282 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 3.2 min for 13 images on vgg19; ~46.5 min left on this arch (this shard)
+
+[14/200] ILSVRC2012_val_00009440.JPEG -> 38
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.1237 SSIM=0.9829 LPIPS=0.0723 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 3.5 min for 14 images on vgg19; ~46.2 min left on this arch (this shard)
+
+[15/200] ILSVRC2012_val_00011230.JPEG -> 35
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.5296 SSIM=0.9872 LPIPS=0.0784 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.49 | switch@974
+   [time] 3.7 min for 15 images on vgg19; ~45.8 min left on this arch (this shard)
+
+[16/200] ILSVRC2012_val_00022480.JPEG -> 111
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.5271 SSIM=0.9633 LPIPS=0.0570 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 4.0 min for 16 images on vgg19; ~45.6 min left on this arch (this shard)
+
+[17/200] ILSVRC2012_val_00009738.JPEG -> 254
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.4425 SSIM=0.9415 LPIPS=0.1635 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 4.2 min for 17 images on vgg19; ~45.3 min left on this arch (this shard)
+
+[18/200] ILSVRC2012_val_00046951.JPEG -> 269
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.4248 SSIM=0.9657 LPIPS=0.0996 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.50 | switch@962
+   [time] 4.5 min for 18 images on vgg19; ~45.0 min left on this arch (this shard)
+
+[19/200] ILSVRC2012_val_00032826.JPEG -> 526
+   LGC_RC_HT1000 Q= 9989 | pixL2@10000=40.9076 SSIM=0.6806 LPIPS=0.4502 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.49 | switch@962
+   [time] 4.7 min for 19 images on vgg19; ~44.8 min left on this arch (this shard)
+
+[20/200] ILSVRC2012_val_00046060.JPEG -> 621
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.8326 SSIM=0.9437 LPIPS=0.1178 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@975
+   [time] 5.0 min for 20 images on vgg19; ~44.6 min left on this arch (this shard)
+
+[21/200] ILSVRC2012_val_00012244.JPEG -> 31
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.9414 SSIM=0.9363 LPIPS=0.2040 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 5.2 min for 21 images on vgg19; ~44.3 min left on this arch (this shard)
+
+[22/200] ILSVRC2012_val_00000013.JPEG -> 256
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=18.5271 SSIM=0.8846 LPIPS=0.2563 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 5.4 min for 22 images on vgg19; ~44.1 min left on this arch (this shard)
+
+[23/200] ILSVRC2012_val_00002309.JPEG -> 475
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.0323 SSIM=0.9638 LPIPS=0.2195 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@975
+   [time] 5.7 min for 23 images on vgg19; ~43.8 min left on this arch (this shard)
+
+[24/200] ILSVRC2012_val_00036362.JPEG -> 610
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=6.3081 SSIM=0.9534 LPIPS=0.1280 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 5.9 min for 24 images on vgg19; ~43.6 min left on this arch (this shard)
+
+[25/200] ILSVRC2012_val_00042141.JPEG -> 902
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=3.1846 SSIM=0.9742 LPIPS=0.0861 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@962
+   [time] 6.2 min for 25 images on vgg19; ~43.3 min left on this arch (this shard)
+
+[26/200] ILSVRC2012_val_00004411.JPEG -> 833
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.8914 SSIM=0.9263 LPIPS=0.1698 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 6.4 min for 26 images on vgg19; ~43.0 min left on this arch (this shard)
+
+[27/200] ILSVRC2012_val_00028797.JPEG -> 188
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.5660 SSIM=0.9826 LPIPS=0.0399 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.48 | switch@962
+   [time] 6.7 min for 27 images on vgg19; ~42.8 min left on this arch (this shard)
+
+[28/200] ILSVRC2012_val_00048545.JPEG -> 719
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=17.4218 SSIM=0.8735 LPIPS=0.1652 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.49 | switch@971
+   [time] 6.9 min for 28 images on vgg19; ~42.5 min left on this arch (this shard)
+
+[29/200] ILSVRC2012_val_00009409.JPEG -> 450
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=19.0788 SSIM=0.8980 LPIPS=0.1619 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 7.2 min for 29 images on vgg19; ~42.3 min left on this arch (this shard)
+
+[30/200] ILSVRC2012_val_00001389.JPEG -> 371
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.3793 SSIM=0.9735 LPIPS=0.0921 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.50 | switch@975
+   [time] 7.4 min for 30 images on vgg19; ~42.0 min left on this arch (this shard)
+
+[31/200] ILSVRC2012_val_00034371.JPEG -> 307
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=13.6800 SSIM=0.8896 LPIPS=0.2472 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 7.7 min for 31 images on vgg19; ~41.8 min left on this arch (this shard)
+
+[32/200] ILSVRC2012_val_00016888.JPEG -> 786
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.8424 SSIM=0.9755 LPIPS=0.1054 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@965
+   [time] 7.9 min for 32 images on vgg19; ~41.6 min left on this arch (this shard)
+
+[33/200] ILSVRC2012_val_00026707.JPEG -> 368
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.9322 SSIM=0.9916 LPIPS=0.0534 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.50 | switch@962
+   [time] 8.2 min for 33 images on vgg19; ~41.3 min left on this arch (this shard)
+
+[34/200] ILSVRC2012_val_00003028.JPEG -> 121
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.7195 SSIM=0.9858 LPIPS=0.0340 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 8.4 min for 34 images on vgg19; ~41.0 min left on this arch (this shard)
+
+[35/200] ILSVRC2012_val_00005645.JPEG -> 111
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=13.0924 SSIM=0.9260 LPIPS=0.1714 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@964
+   [time] 8.7 min for 35 images on vgg19; ~40.8 min left on this arch (this shard)
+
+[36/200] ILSVRC2012_val_00034845.JPEG -> 408
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.3412 SSIM=0.9605 LPIPS=0.1159 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 8.9 min for 36 images on vgg19; ~40.5 min left on this arch (this shard)
+
+[37/200] ILSVRC2012_val_00014392.JPEG -> 114
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.0439 SSIM=0.9923 LPIPS=0.0811 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@975
+   [time] 9.1 min for 37 images on vgg19; ~40.3 min left on this arch (this shard)
+
+[38/200] ILSVRC2012_val_00001219.JPEG -> 386
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.6920 SSIM=0.9788 LPIPS=0.0784 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@975
+   [time] 9.4 min for 38 images on vgg19; ~40.0 min left on this arch (this shard)
+
+[39/200] ILSVRC2012_val_00001468.JPEG -> 879
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=18.0930 SSIM=0.8659 LPIPS=0.2621 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.51 | switch@962
+   [time] 9.6 min for 39 images on vgg19; ~39.8 min left on this arch (this shard)
+
+[40/200] ILSVRC2012_val_00040599.JPEG -> 373
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.6463 SSIM=0.9880 LPIPS=0.0318 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 9.9 min for 40 images on vgg19; ~39.5 min left on this arch (this shard)
+
+[41/200] ILSVRC2012_val_00039281.JPEG -> 294
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.1270 SSIM=0.9648 LPIPS=0.1918 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@975
+   [time] 10.1 min for 41 images on vgg19; ~39.3 min left on this arch (this shard)
+
+[42/200] ILSVRC2012_val_00035298.JPEG -> 52
+   LGC_RC_HT1000 Q= 9990 | pixL2@10000=61.1862 SSIM=0.6091 LPIPS=0.4786 adv float/uint8/repaired=1/0/0 | 14.6s | +1share=0.48 | switch@962
+   [time] 10.4 min for 42 images on vgg19; ~39.0 min left on this arch (this shard)
+
+[43/200] ILSVRC2012_val_00000398.JPEG -> 753
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=22.5880 SSIM=0.9243 LPIPS=0.2187 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.48 | switch@967
+   [time] 10.6 min for 43 images on vgg19; ~38.8 min left on this arch (this shard)
+
+[44/200] ILSVRC2012_val_00030649.JPEG -> 485
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=19.0482 SSIM=0.8351 LPIPS=0.2261 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 10.9 min for 44 images on vgg19; ~38.6 min left on this arch (this shard)
+
+[45/200] ILSVRC2012_val_00021610.JPEG -> 554
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.5007 SSIM=0.9738 LPIPS=0.0484 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 11.1 min for 45 images on vgg19; ~38.3 min left on this arch (this shard)
+
+[46/200] ILSVRC2012_val_00026013.JPEG -> 150
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.3132 SSIM=0.9897 LPIPS=0.0445 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@964
+   [time] 11.4 min for 46 images on vgg19; ~38.1 min left on this arch (this shard)
+
+[47/200] ILSVRC2012_val_00021070.JPEG -> 959
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=11.6424 SSIM=0.8775 LPIPS=0.2725 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 11.6 min for 47 images on vgg19; ~37.8 min left on this arch (this shard)
+
+[48/200] ILSVRC2012_val_00029126.JPEG -> 93
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.9526 SSIM=0.9556 LPIPS=0.1126 adv float/uint8/repaired=1/0/1 | 14.5s | +1share=0.49 | switch@973
+   [time] 11.9 min for 48 images on vgg19; ~37.6 min left on this arch (this shard)
+
+[49/200] ILSVRC2012_val_00016389.JPEG -> 572
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=6.0177 SSIM=0.9638 LPIPS=0.1501 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 12.1 min for 49 images on vgg19; ~37.3 min left on this arch (this shard)
+
+[50/200] ILSVRC2012_val_00017011.JPEG -> 323
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.4653 SSIM=0.7066 LPIPS=0.2036 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@963
+   [time] 12.4 min for 50 images on vgg19; ~37.1 min left on this arch (this shard)
+
+[51/200] ILSVRC2012_val_00003642.JPEG -> 858
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=20.2731 SSIM=0.7992 LPIPS=0.2232 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 12.6 min for 51 images on vgg19; ~36.8 min left on this arch (this shard)
+
+[52/200] ILSVRC2012_val_00042811.JPEG -> 638
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.1207 SSIM=0.9047 LPIPS=0.3262 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.46 | switch@975
+   [time] 12.9 min for 52 images on vgg19; ~36.6 min left on this arch (this shard)
+
+[53/200] ILSVRC2012_val_00040385.JPEG -> 918
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=20.0232 SSIM=0.8551 LPIPS=0.2466 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 13.1 min for 53 images on vgg19; ~36.3 min left on this arch (this shard)
+
+[54/200] ILSVRC2012_val_00005593.JPEG -> 895
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=20.4988 SSIM=0.7119 LPIPS=0.2595 adv float/uint8/repaired=1/0/1 | 14.5s | +1share=0.49 | switch@964
+   [time] 13.4 min for 54 images on vgg19; ~36.1 min left on this arch (this shard)
+
+[55/200] ILSVRC2012_val_00025089.JPEG -> 389
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.3458 SSIM=0.9523 LPIPS=0.1088 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 13.6 min for 55 images on vgg19; ~35.9 min left on this arch (this shard)
+
+[56/200] ILSVRC2012_val_00016828.JPEG -> 225
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.3615 SSIM=0.9877 LPIPS=0.0796 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.47 | switch@975
+   [time] 13.8 min for 56 images on vgg19; ~35.6 min left on this arch (this shard)
+
+[57/200] ILSVRC2012_val_00014723.JPEG -> 726
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.2170 SSIM=0.9491 LPIPS=0.1213 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 14.1 min for 57 images on vgg19; ~35.3 min left on this arch (this shard)
+
+[58/200] ILSVRC2012_val_00033236.JPEG -> 81
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.0765 SSIM=0.9712 LPIPS=0.1568 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.47 | switch@962
+   [time] 14.3 min for 58 images on vgg19; ~35.1 min left on this arch (this shard)
+
+[59/200] ILSVRC2012_val_00036604.JPEG -> 54
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.1239 SSIM=0.9294 LPIPS=0.1674 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.47 | switch@962
+   [time] 14.6 min for 59 images on vgg19; ~34.9 min left on this arch (this shard)
+
+[60/200] ILSVRC2012_val_00038351.JPEG -> 797
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.9150 SSIM=0.9763 LPIPS=0.0885 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.47 | switch@962
+   [time] 14.8 min for 60 images on vgg19; ~34.6 min left on this arch (this shard)
+
+[61/200] ILSVRC2012_val_00039082.JPEG -> 319
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.7316 SSIM=0.9380 LPIPS=0.1236 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 15.1 min for 61 images on vgg19; ~34.3 min left on this arch (this shard)
+
+[62/200] ILSVRC2012_val_00033046.JPEG -> 94
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.3215 SSIM=0.9844 LPIPS=0.0787 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.44 | switch@975
+   [time] 15.3 min for 62 images on vgg19; ~34.1 min left on this arch (this shard)
+
+[63/200] ILSVRC2012_val_00006896.JPEG -> 889
+   LGC_RC_HT1000 Q= 9984 | pixL2@10000=0.9718 SSIM=0.9974 LPIPS=0.0487 adv float/uint8/repaired=1/0/1 | 13.9s | +1share=0.47 | switch@966
+   [time] 15.6 min for 63 images on vgg19; ~33.8 min left on this arch (this shard)
+
+[64/200] ILSVRC2012_val_00032950.JPEG -> 900
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=12.4798 SSIM=0.9251 LPIPS=0.1484 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.49 | switch@962
+   [time] 15.8 min for 64 images on vgg19; ~33.6 min left on this arch (this shard)
+
+[65/200] ILSVRC2012_val_00015634.JPEG -> 408
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=18.3037 SSIM=0.8211 LPIPS=0.2185 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 16.1 min for 65 images on vgg19; ~33.3 min left on this arch (this shard)
+
+[66/200] ILSVRC2012_val_00042093.JPEG -> 307
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.4589 SSIM=0.9215 LPIPS=0.1125 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.49 | switch@965
+   [time] 16.3 min for 66 images on vgg19; ~33.1 min left on this arch (this shard)
+
+[67/200] ILSVRC2012_val_00002892.JPEG -> 863
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.5275 SSIM=0.9321 LPIPS=0.1346 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 16.5 min for 67 images on vgg19; ~32.9 min left on this arch (this shard)
+
+[68/200] ILSVRC2012_val_00015787.JPEG -> 392
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.1081 SSIM=0.9674 LPIPS=0.2761 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.47 | switch@975
+   [time] 16.8 min for 68 images on vgg19; ~32.6 min left on this arch (this shard)
+
+[69/200] ILSVRC2012_val_00004185.JPEG -> 193
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=3.0740 SSIM=0.9899 LPIPS=0.0315 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@975
+   [time] 17.0 min for 69 images on vgg19; ~32.3 min left on this arch (this shard)
+
+[70/200] ILSVRC2012_val_00044550.JPEG -> 384
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.9637 SSIM=0.9383 LPIPS=0.1210 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 17.3 min for 70 images on vgg19; ~32.1 min left on this arch (this shard)
+
+[71/200] ILSVRC2012_val_00035476.JPEG -> 243
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.9854 SSIM=0.9618 LPIPS=0.0984 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 17.5 min for 71 images on vgg19; ~31.9 min left on this arch (this shard)
+
+[72/200] ILSVRC2012_val_00031432.JPEG -> 691
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=6.8872 SSIM=0.9725 LPIPS=0.0957 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.48 | switch@966
+   [time] 17.8 min for 72 images on vgg19; ~31.6 min left on this arch (this shard)
+
+[73/200] ILSVRC2012_val_00041362.JPEG -> 296
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.5481 SSIM=0.9475 LPIPS=0.1188 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 18.0 min for 73 images on vgg19; ~31.4 min left on this arch (this shard)
+
+[74/200] ILSVRC2012_val_00047248.JPEG -> 724
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.8640 SSIM=0.8895 LPIPS=0.2541 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 18.3 min for 74 images on vgg19; ~31.1 min left on this arch (this shard)
+
+[75/200] ILSVRC2012_val_00011459.JPEG -> 704
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.1310 SSIM=0.9621 LPIPS=0.1135 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 18.5 min for 75 images on vgg19; ~30.9 min left on this arch (this shard)
+
+[76/200] ILSVRC2012_val_00001431.JPEG -> 671
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.5503 SSIM=0.9822 LPIPS=0.0618 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.50 | switch@962
+   [time] 18.8 min for 76 images on vgg19; ~30.6 min left on this arch (this shard)
+
+[77/200] ILSVRC2012_val_00004551.JPEG -> 630
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.5932 SSIM=0.9744 LPIPS=0.1265 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 19.0 min for 77 images on vgg19; ~30.4 min left on this arch (this shard)
+
+[78/200] ILSVRC2012_val_00011421.JPEG -> 201
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.3203 SSIM=0.9860 LPIPS=0.0646 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.48 | switch@975
+   [time] 19.3 min for 78 images on vgg19; ~30.1 min left on this arch (this shard)
+
+[79/200] ILSVRC2012_val_00017196.JPEG -> 551
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=22.0563 SSIM=0.8126 LPIPS=0.3120 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 19.5 min for 79 images on vgg19; ~29.9 min left on this arch (this shard)
+
+[80/200] ILSVRC2012_val_00047355.JPEG -> 280
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.2738 SSIM=0.9600 LPIPS=0.0719 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 19.7 min for 80 images on vgg19; ~29.6 min left on this arch (this shard)
+
+[81/200] ILSVRC2012_val_00038756.JPEG -> 194
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.3703 SSIM=0.9393 LPIPS=0.1523 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@975
+   [time] 20.0 min for 81 images on vgg19; ~29.4 min left on this arch (this shard)
+
+[82/200] ILSVRC2012_val_00020709.JPEG -> 487
+   LGC_RC_HT1000 Q= 9989 | pixL2@10000=40.0362 SSIM=0.7022 LPIPS=0.4247 adv float/uint8/repaired=1/0/1 | 14.6s | +1share=0.48 | switch@971
+   [time] 20.2 min for 82 images on vgg19; ~29.1 min left on this arch (this shard)
+
+[83/200] ILSVRC2012_val_00011407.JPEG -> 407
+   LGC_RC_HT1000 Q= 9989 | pixL2@10000=32.5652 SSIM=0.8466 LPIPS=0.2556 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.49 | switch@962
+   [time] 20.5 min for 83 images on vgg19; ~28.9 min left on this arch (this shard)
+
+[84/200] ILSVRC2012_val_00015695.JPEG -> 299
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=11.6105 SSIM=0.8804 LPIPS=0.2160 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@961
+   [time] 20.7 min for 84 images on vgg19; ~28.6 min left on this arch (this shard)
+
+[85/200] ILSVRC2012_val_00026813.JPEG -> 963
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.6461 SSIM=0.9590 LPIPS=0.0922 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@961
+   [time] 21.0 min for 85 images on vgg19; ~28.4 min left on this arch (this shard)
+
+[86/200] ILSVRC2012_val_00002683.JPEG -> 662
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.7708 SSIM=0.9178 LPIPS=0.1965 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 21.2 min for 86 images on vgg19; ~28.1 min left on this arch (this shard)
+
+[87/200] ILSVRC2012_val_00043679.JPEG -> 709
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=6.0372 SSIM=0.9470 LPIPS=0.1661 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@960
+   [time] 21.5 min for 87 images on vgg19; ~27.9 min left on this arch (this shard)
+
+[88/200] ILSVRC2012_val_00048315.JPEG -> 255
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=1.8775 SSIM=0.9945 LPIPS=0.0310 adv float/uint8/repaired=1/0/1 | 13.9s | +1share=0.49 | switch@975
+   [time] 21.7 min for 88 images on vgg19; ~27.6 min left on this arch (this shard)
+
+[89/200] ILSVRC2012_val_00020070.JPEG -> 358
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.0537 SSIM=0.9881 LPIPS=0.0511 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@962
+   [time] 22.0 min for 89 images on vgg19; ~27.4 min left on this arch (this shard)
+
+[90/200] ILSVRC2012_val_00016102.JPEG -> 792
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.7229 SSIM=0.9328 LPIPS=0.1524 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 22.2 min for 90 images on vgg19; ~27.1 min left on this arch (this shard)
+
+[91/200] ILSVRC2012_val_00012640.JPEG -> 800
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.4765 SSIM=0.9554 LPIPS=0.2029 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 22.5 min for 91 images on vgg19; ~26.9 min left on this arch (this shard)
+
+[92/200] ILSVRC2012_val_00013655.JPEG -> 67
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.8424 SSIM=0.9845 LPIPS=0.0453 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 22.7 min for 92 images on vgg19; ~26.6 min left on this arch (this shard)
+
+[93/200] ILSVRC2012_val_00040306.JPEG -> 266
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.0153 SSIM=0.9484 LPIPS=0.1403 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@975
+   [time] 22.9 min for 93 images on vgg19; ~26.4 min left on this arch (this shard)
+
+[94/200] ILSVRC2012_val_00010521.JPEG -> 849
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.4016 SSIM=0.9415 LPIPS=0.2103 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 23.2 min for 94 images on vgg19; ~26.1 min left on this arch (this shard)
+
+[95/200] ILSVRC2012_val_00018026.JPEG -> 983
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=6.5242 SSIM=0.9796 LPIPS=0.0973 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.50 | switch@962
+   [time] 23.4 min for 95 images on vgg19; ~25.9 min left on this arch (this shard)
+
+[96/200] ILSVRC2012_val_00040031.JPEG -> 742
+   LGC_RC_HT1000 Q= 9990 | pixL2@10000=75.7477 SSIM=0.6589 LPIPS=0.3427 adv float/uint8/repaired=1/1/1 | 14.7s | +1share=0.49 | switch@973
+   [time] 23.7 min for 96 images on vgg19; ~25.7 min left on this arch (this shard)
+
+[97/200] ILSVRC2012_val_00030392.JPEG -> 347
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.0586 SSIM=0.9898 LPIPS=0.0631 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@975
+   [time] 23.9 min for 97 images on vgg19; ~25.4 min left on this arch (this shard)
+
+[98/200] ILSVRC2012_val_00017844.JPEG -> 247
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=13.4410 SSIM=0.8927 LPIPS=0.2483 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@961
+   [time] 24.2 min for 98 images on vgg19; ~25.2 min left on this arch (this shard)
+
+[99/200] ILSVRC2012_val_00040549.JPEG -> 678
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.4831 SSIM=0.9644 LPIPS=0.1344 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 24.4 min for 99 images on vgg19; ~24.9 min left on this arch (this shard)
+
+[100/200] ILSVRC2012_val_00003084.JPEG -> 521
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.5513 SSIM=0.9574 LPIPS=0.1542 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.47 | switch@962
+   [time] 24.7 min for 100 images on vgg19; ~24.7 min left on this arch (this shard)
+
+[101/200] ILSVRC2012_val_00001161.JPEG -> 422
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.0845 SSIM=0.8852 LPIPS=0.1790 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 24.9 min for 101 images on vgg19; ~24.4 min left on this arch (this shard)
+
+[102/200] ILSVRC2012_val_00030440.JPEG -> 917
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.3155 SSIM=0.9512 LPIPS=0.2027 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.50 | switch@962
+   [time] 25.2 min for 102 images on vgg19; ~24.2 min left on this arch (this shard)
+
+[103/200] ILSVRC2012_val_00046650.JPEG -> 950
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=18.7901 SSIM=0.8523 LPIPS=0.3764 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 25.4 min for 103 images on vgg19; ~23.9 min left on this arch (this shard)
+
+[104/200] ILSVRC2012_val_00019420.JPEG -> 169
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.2615 SSIM=0.9074 LPIPS=0.1743 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.46 | switch@962
+   [time] 25.7 min for 104 images on vgg19; ~23.7 min left on this arch (this shard)
+
+[105/200] ILSVRC2012_val_00048951.JPEG -> 295
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.2309 SSIM=0.9441 LPIPS=0.1449 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@963
+   [time] 25.9 min for 105 images on vgg19; ~23.4 min left on this arch (this shard)
+
+[106/200] ILSVRC2012_val_00035801.JPEG -> 165
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.5545 SSIM=0.9649 LPIPS=0.0933 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@967
+   [time] 26.2 min for 106 images on vgg19; ~23.2 min left on this arch (this shard)
+
+[107/200] ILSVRC2012_val_00002011.JPEG -> 769
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.0451 SSIM=0.9108 LPIPS=0.1785 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 26.4 min for 107 images on vgg19; ~22.9 min left on this arch (this shard)
+
+[108/200] ILSVRC2012_val_00001205.JPEG -> 557
+   LGC_RC_HT1000 Q= 9989 | pixL2@10000=36.6432 SSIM=0.7443 LPIPS=0.3331 adv float/uint8/repaired=1/0/1 | 14.7s | +1share=0.50 | switch@973
+   [time] 26.7 min for 108 images on vgg19; ~22.7 min left on this arch (this shard)
+
+[109/200] ILSVRC2012_val_00003866.JPEG -> 293
+   LGC_RC_HT1000 Q= 9984 | pixL2@10000=1.1891 SSIM=0.9958 LPIPS=0.0873 adv float/uint8/repaired=1/0/1 | 13.9s | +1share=0.48 | switch@962
+   [time] 26.9 min for 109 images on vgg19; ~22.5 min left on this arch (this shard)
+
+[110/200] ILSVRC2012_val_00019317.JPEG -> 770
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.4019 SSIM=0.9819 LPIPS=0.0574 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.48 | switch@975
+   [time] 27.1 min for 110 images on vgg19; ~22.2 min left on this arch (this shard)
+
+[111/200] ILSVRC2012_val_00002791.JPEG -> 606
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.4782 SSIM=0.9919 LPIPS=0.0930 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.46 | switch@975
+   [time] 27.4 min for 111 images on vgg19; ~22.0 min left on this arch (this shard)
+
+[112/200] ILSVRC2012_val_00010778.JPEG -> 932
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.1487 SSIM=0.9490 LPIPS=0.1454 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@975
+   [time] 27.6 min for 112 images on vgg19; ~21.7 min left on this arch (this shard)
+
+[113/200] ILSVRC2012_val_00021170.JPEG -> 426
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.8171 SSIM=0.9594 LPIPS=0.1696 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@975
+   [time] 27.9 min for 113 images on vgg19; ~21.5 min left on this arch (this shard)
+
+[114/200] ILSVRC2012_val_00011306.JPEG -> 255
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.3272 SSIM=0.9853 LPIPS=0.0471 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 28.1 min for 114 images on vgg19; ~21.2 min left on this arch (this shard)
+
+[115/200] ILSVRC2012_val_00012507.JPEG -> 164
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.1838 SSIM=0.9904 LPIPS=0.0553 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.45 | switch@975
+   [time] 28.4 min for 115 images on vgg19; ~21.0 min left on this arch (this shard)
+
+[116/200] ILSVRC2012_val_00008960.JPEG -> 531
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=23.1721 SSIM=0.8006 LPIPS=0.2974 adv float/uint8/repaired=1/0/1 | 14.6s | +1share=0.49 | switch@972
+   [time] 28.6 min for 116 images on vgg19; ~20.7 min left on this arch (this shard)
+
+[117/200] ILSVRC2012_val_00042330.JPEG -> 779
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.6001 SSIM=0.9078 LPIPS=0.1744 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 28.9 min for 117 images on vgg19; ~20.5 min left on this arch (this shard)
+
+[118/200] ILSVRC2012_val_00031025.JPEG -> 56
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.1759 SSIM=0.9037 LPIPS=0.2393 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 29.1 min for 118 images on vgg19; ~20.2 min left on this arch (this shard)
+
+[119/200] ILSVRC2012_val_00045477.JPEG -> 895
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=6.9868 SSIM=0.9097 LPIPS=0.1641 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 29.4 min for 119 images on vgg19; ~20.0 min left on this arch (this shard)
+
+[120/200] ILSVRC2012_val_00023585.JPEG -> 131
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.2780 SSIM=0.9611 LPIPS=0.0744 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 29.6 min for 120 images on vgg19; ~19.7 min left on this arch (this shard)
+
+[121/200] ILSVRC2012_val_00042174.JPEG -> 648
+   LGC_RC_HT1000 Q= 9983 | pixL2@10000=1.1942 SSIM=0.9975 LPIPS=0.0161 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.48 | switch@962
+   [time] 29.8 min for 121 images on vgg19; ~19.5 min left on this arch (this shard)
+
+[122/200] ILSVRC2012_val_00009923.JPEG -> 189
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.1647 SSIM=0.9488 LPIPS=0.1305 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.50 | switch@962
+   [time] 30.1 min for 122 images on vgg19; ~19.2 min left on this arch (this shard)
+
+[123/200] ILSVRC2012_val_00006663.JPEG -> 701
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.3273 SSIM=0.9690 LPIPS=0.1267 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@960
+   [time] 30.3 min for 123 images on vgg19; ~19.0 min left on this arch (this shard)
+
+[124/200] ILSVRC2012_val_00045666.JPEG -> 450
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=6.0747 SSIM=0.9537 LPIPS=0.1216 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@965
+   [time] 30.6 min for 124 images on vgg19; ~18.7 min left on this arch (this shard)
+
+[125/200] ILSVRC2012_val_00036670.JPEG -> 617
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.6760 SSIM=0.8975 LPIPS=0.2115 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.47 | switch@962
+   [time] 30.8 min for 125 images on vgg19; ~18.5 min left on this arch (this shard)
+
+[126/200] ILSVRC2012_val_00033331.JPEG -> 77
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.9168 SSIM=0.9491 LPIPS=0.1405 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 31.1 min for 126 images on vgg19; ~18.3 min left on this arch (this shard)
+
+[127/200] ILSVRC2012_val_00044888.JPEG -> 412
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.1954 SSIM=0.8924 LPIPS=0.2450 adv float/uint8/repaired=1/0/1 | 14.5s | +1share=0.49 | switch@964
+   [time] 31.3 min for 127 images on vgg19; ~18.0 min left on this arch (this shard)
+
+[128/200] ILSVRC2012_val_00047747.JPEG -> 616
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.7413 SSIM=0.9732 LPIPS=0.1007 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 31.6 min for 128 images on vgg19; ~17.8 min left on this arch (this shard)
+
+[129/200] ILSVRC2012_val_00038992.JPEG -> 550
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.8515 SSIM=0.8472 LPIPS=0.2876 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 31.8 min for 129 images on vgg19; ~17.5 min left on this arch (this shard)
+
+[130/200] ILSVRC2012_val_00019878.JPEG -> 284
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.8724 SSIM=0.9396 LPIPS=0.1326 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 32.1 min for 130 images on vgg19; ~17.3 min left on this arch (this shard)
+
+[131/200] ILSVRC2012_val_00003060.JPEG -> 573
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.5464 SSIM=0.9735 LPIPS=0.1229 adv float/uint8/repaired=1/1/1 | 14.2s | +1share=0.50 | switch@962
+   [time] 32.3 min for 131 images on vgg19; ~17.0 min left on this arch (this shard)
+
+[132/200] ILSVRC2012_val_00039786.JPEG -> 894
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=17.3005 SSIM=0.9028 LPIPS=0.1697 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 32.6 min for 132 images on vgg19; ~16.8 min left on this arch (this shard)
+
+[133/200] ILSVRC2012_val_00020424.JPEG -> 982
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.4227 SSIM=0.9367 LPIPS=0.1697 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 32.8 min for 133 images on vgg19; ~16.5 min left on this arch (this shard)
+
+[134/200] ILSVRC2012_val_00009655.JPEG -> 13
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=14.8157 SSIM=0.8194 LPIPS=0.2857 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 33.1 min for 134 images on vgg19; ~16.3 min left on this arch (this shard)
+
+[135/200] ILSVRC2012_val_00025606.JPEG -> 701
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.0791 SSIM=0.9433 LPIPS=0.1291 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 33.3 min for 135 images on vgg19; ~16.0 min left on this arch (this shard)
+
+[136/200] ILSVRC2012_val_00031440.JPEG -> 745
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=21.7239 SSIM=0.7825 LPIPS=0.2138 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.48 | switch@968
+   [time] 33.6 min for 136 images on vgg19; ~15.8 min left on this arch (this shard)
+
+[137/200] ILSVRC2012_val_00015443.JPEG -> 702
+   LGC_RC_HT1000 Q= 9989 | pixL2@10000=41.0560 SSIM=0.6286 LPIPS=0.3158 adv float/uint8/repaired=1/0/1 | 14.6s | +1share=0.50 | switch@967
+   [time] 33.8 min for 137 images on vgg19; ~15.5 min left on this arch (this shard)
+
+[138/200] ILSVRC2012_val_00047038.JPEG -> 555
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=14.8456 SSIM=0.8857 LPIPS=0.2007 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 34.1 min for 138 images on vgg19; ~15.3 min left on this arch (this shard)
+
+[139/200] ILSVRC2012_val_00030127.JPEG -> 296
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.3034 SSIM=0.9870 LPIPS=0.0335 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.46 | switch@975
+   [time] 34.3 min for 139 images on vgg19; ~15.1 min left on this arch (this shard)
+
+[140/200] ILSVRC2012_val_00019526.JPEG -> 793
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.7525 SSIM=0.9358 LPIPS=0.2947 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 34.5 min for 140 images on vgg19; ~14.8 min left on this arch (this shard)
+
+[141/200] ILSVRC2012_val_00025393.JPEG -> 371
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.0348 SSIM=0.9794 LPIPS=0.1017 adv float/uint8/repaired=1/1/1 | 14.1s | +1share=0.48 | switch@975
+   [time] 34.8 min for 141 images on vgg19; ~14.6 min left on this arch (this shard)
+
+[142/200] ILSVRC2012_val_00010593.JPEG -> 133
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.0918 SSIM=0.9847 LPIPS=0.0310 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.48 | switch@962
+   [time] 35.0 min for 142 images on vgg19; ~14.3 min left on this arch (this shard)
+
+[143/200] ILSVRC2012_val_00037324.JPEG -> 323
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=6.7374 SSIM=0.9492 LPIPS=0.1499 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 35.3 min for 143 images on vgg19; ~14.1 min left on this arch (this shard)
+
+[144/200] ILSVRC2012_val_00001576.JPEG -> 186
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.1928 SSIM=0.8900 LPIPS=0.2178 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@962
+   [time] 35.5 min for 144 images on vgg19; ~13.8 min left on this arch (this shard)
+
+[145/200] ILSVRC2012_val_00039615.JPEG -> 3
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=23.2136 SSIM=0.8174 LPIPS=0.2168 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.48 | switch@962
+   [time] 35.8 min for 145 images on vgg19; ~13.6 min left on this arch (this shard)
+
+[146/200] ILSVRC2012_val_00027673.JPEG -> 995
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=12.0012 SSIM=0.9171 LPIPS=0.2123 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 36.0 min for 146 images on vgg19; ~13.3 min left on this arch (this shard)
+
+[147/200] ILSVRC2012_val_00037009.JPEG -> 746
+   LGC_RC_HT1000 Q= 9990 | pixL2@10000=53.6739 SSIM=0.7291 LPIPS=0.3735 adv float/uint8/repaired=1/0/1 | 14.6s | +1share=0.47 | switch@962
+   [time] 36.3 min for 147 images on vgg19; ~13.1 min left on this arch (this shard)
+
+[148/200] ILSVRC2012_val_00041536.JPEG -> 907
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.7268 SSIM=0.9704 LPIPS=0.0740 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@968
+   [time] 36.5 min for 148 images on vgg19; ~12.8 min left on this arch (this shard)
+
+[149/200] ILSVRC2012_val_00023252.JPEG -> 743
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.8817 SSIM=0.9231 LPIPS=0.1982 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 36.8 min for 149 images on vgg19; ~12.6 min left on this arch (this shard)
+
+[150/200] ILSVRC2012_val_00010466.JPEG -> 209
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.3675 SSIM=0.9878 LPIPS=0.0585 adv float/uint8/repaired=1/1/1 | 14.1s | +1share=0.48 | switch@975
+   [time] 37.0 min for 150 images on vgg19; ~12.3 min left on this arch (this shard)
+
+[151/200] ILSVRC2012_val_00018952.JPEG -> 529
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.6444 SSIM=0.9833 LPIPS=0.0601 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 37.3 min for 151 images on vgg19; ~12.1 min left on this arch (this shard)
+
+[152/200] ILSVRC2012_val_00035574.JPEG -> 127
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=25.0210 SSIM=0.7276 LPIPS=0.3674 adv float/uint8/repaired=1/1/1 | 14.5s | +1share=0.50 | switch@962
+   [time] 37.5 min for 152 images on vgg19; ~11.8 min left on this arch (this shard)
+
+[153/200] ILSVRC2012_val_00047413.JPEG -> 902
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=15.1935 SSIM=0.8944 LPIPS=0.1841 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 37.8 min for 153 images on vgg19; ~11.6 min left on this arch (this shard)
+
+[154/200] ILSVRC2012_val_00013659.JPEG -> 645
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=12.3574 SSIM=0.8884 LPIPS=0.1939 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 38.0 min for 154 images on vgg19; ~11.4 min left on this arch (this shard)
+
+[155/200] ILSVRC2012_val_00005338.JPEG -> 329
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.1181 SSIM=0.9336 LPIPS=0.1545 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.50 | switch@962
+   [time] 38.3 min for 155 images on vgg19; ~11.1 min left on this arch (this shard)
+
+[156/200] ILSVRC2012_val_00018725.JPEG -> 872
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.5871 SSIM=0.9546 LPIPS=0.1013 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.50 | switch@962
+   [time] 38.5 min for 156 images on vgg19; ~10.9 min left on this arch (this shard)
+
+[157/200] ILSVRC2012_val_00010290.JPEG -> 661
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=21.4196 SSIM=0.8212 LPIPS=0.3099 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 38.7 min for 157 images on vgg19; ~10.6 min left on this arch (this shard)
+
+[158/200] ILSVRC2012_val_00047308.JPEG -> 529
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=8.7227 SSIM=0.9238 LPIPS=0.1776 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 39.0 min for 158 images on vgg19; ~10.4 min left on this arch (this shard)
+
+[159/200] ILSVRC2012_val_00029574.JPEG -> 995
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.8713 SSIM=0.9221 LPIPS=0.1085 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.47 | switch@962
+   [time] 39.2 min for 159 images on vgg19; ~10.1 min left on this arch (this shard)
+
+[160/200] ILSVRC2012_val_00030967.JPEG -> 803
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.9934 SSIM=0.9605 LPIPS=0.0950 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.47 | switch@960
+   [time] 39.5 min for 160 images on vgg19; ~9.9 min left on this arch (this shard)
+
+[161/200] ILSVRC2012_val_00001742.JPEG -> 0
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=6.8878 SSIM=0.8730 LPIPS=0.1525 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@975
+   [time] 39.7 min for 161 images on vgg19; ~9.6 min left on this arch (this shard)
+
+[162/200] ILSVRC2012_val_00043840.JPEG -> 358
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.3053 SSIM=0.9777 LPIPS=0.0907 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 40.0 min for 162 images on vgg19; ~9.4 min left on this arch (this shard)
+
+[163/200] ILSVRC2012_val_00003790.JPEG -> 511
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.5438 SSIM=0.9902 LPIPS=0.0505 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@975
+   [time] 40.2 min for 163 images on vgg19; ~9.1 min left on this arch (this shard)
+
+[164/200] ILSVRC2012_val_00034135.JPEG -> 23
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.9733 SSIM=0.9848 LPIPS=0.0673 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@962
+   [time] 40.5 min for 164 images on vgg19; ~8.9 min left on this arch (this shard)
+
+[165/200] ILSVRC2012_val_00022005.JPEG -> 134
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.4996 SSIM=0.9188 LPIPS=0.2025 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@964
+   [time] 40.7 min for 165 images on vgg19; ~8.6 min left on this arch (this shard)
+
+[166/200] ILSVRC2012_val_00025075.JPEG -> 967
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=19.2546 SSIM=0.8150 LPIPS=0.2858 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 41.0 min for 166 images on vgg19; ~8.4 min left on this arch (this shard)
+
+[167/200] ILSVRC2012_val_00019788.JPEG -> 390
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.7406 SSIM=0.9679 LPIPS=0.1524 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 41.2 min for 167 images on vgg19; ~8.1 min left on this arch (this shard)
+
+[168/200] ILSVRC2012_val_00015988.JPEG -> 834
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.8636 SSIM=0.9340 LPIPS=0.1622 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.50 | switch@962
+   [time] 41.4 min for 168 images on vgg19; ~7.9 min left on this arch (this shard)
+
+[169/200] ILSVRC2012_val_00015726.JPEG -> 275
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.5861 SSIM=0.9859 LPIPS=0.0633 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.48 | switch@975
+   [time] 41.7 min for 169 images on vgg19; ~7.6 min left on this arch (this shard)
+
+[170/200] ILSVRC2012_val_00048747.JPEG -> 69
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.0280 SSIM=0.9716 LPIPS=0.1631 adv float/uint8/repaired=1/0/1 | 14.0s | +1share=0.47 | switch@974
+   [time] 41.9 min for 170 images on vgg19; ~7.4 min left on this arch (this shard)
+
+[171/200] ILSVRC2012_val_00040836.JPEG -> 986
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.8329 SSIM=0.9767 LPIPS=0.0802 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 42.2 min for 171 images on vgg19; ~7.2 min left on this arch (this shard)
+
+[172/200] ILSVRC2012_val_00045944.JPEG -> 93
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.5166 SSIM=0.9436 LPIPS=0.1531 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.49 | switch@965
+   [time] 42.4 min for 172 images on vgg19; ~6.9 min left on this arch (this shard)
+
+[173/200] ILSVRC2012_val_00027221.JPEG -> 101
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=17.5574 SSIM=0.8704 LPIPS=0.2593 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.49 | switch@962
+   [time] 42.7 min for 173 images on vgg19; ~6.7 min left on this arch (this shard)
+
+[174/200] ILSVRC2012_val_00005000.JPEG -> 756
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.3641 SSIM=0.9371 LPIPS=0.0834 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 42.9 min for 174 images on vgg19; ~6.4 min left on this arch (this shard)
+
+[175/200] ILSVRC2012_val_00033704.JPEG -> 509
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.7029 SSIM=0.9344 LPIPS=0.1450 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.49 | switch@975
+   [time] 43.2 min for 175 images on vgg19; ~6.2 min left on this arch (this shard)
+
+[176/200] ILSVRC2012_val_00029582.JPEG -> 81
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=19.8555 SSIM=0.8238 LPIPS=0.2727 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.50 | switch@963
+   [time] 43.4 min for 176 images on vgg19; ~5.9 min left on this arch (this shard)
+
+[177/200] ILSVRC2012_val_00035654.JPEG -> 783
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.9371 SSIM=0.9807 LPIPS=0.0734 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@975
+   [time] 43.7 min for 177 images on vgg19; ~5.7 min left on this arch (this shard)
+
+[178/200] ILSVRC2012_val_00002266.JPEG -> 551
+   LGC_RC_HT1000 Q= 9989 | pixL2@10000=26.8829 SSIM=0.8072 LPIPS=0.2614 adv float/uint8/repaired=1/0/1 | 14.6s | +1share=0.48 | switch@970
+   [time] 43.9 min for 178 images on vgg19; ~5.4 min left on this arch (this shard)
+
+[179/200] ILSVRC2012_val_00046345.JPEG -> 789
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=16.3821 SSIM=0.8574 LPIPS=0.3437 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@962
+   [time] 44.2 min for 179 images on vgg19; ~5.2 min left on this arch (this shard)
+
+[180/200] ILSVRC2012_val_00016681.JPEG -> 151
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.7005 SSIM=0.9620 LPIPS=0.1367 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.47 | switch@962
+   [time] 44.4 min for 180 images on vgg19; ~4.9 min left on this arch (this shard)
+
+[181/200] ILSVRC2012_val_00008307.JPEG -> 153
+   LGC_RC_HT1000 Q= 9984 | pixL2@10000=1.4747 SSIM=0.9966 LPIPS=0.0315 adv float/uint8/repaired=1/0/1 | 13.9s | +1share=0.44 | switch@975
+   [time] 44.6 min for 181 images on vgg19; ~4.7 min left on this arch (this shard)
+
+[182/200] ILSVRC2012_val_00013640.JPEG -> 682
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=6.0930 SSIM=0.9791 LPIPS=0.0835 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 44.9 min for 182 images on vgg19; ~4.4 min left on this arch (this shard)
+
+[183/200] ILSVRC2012_val_00002004.JPEG -> 986
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.5066 SSIM=0.9333 LPIPS=0.1868 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 45.1 min for 183 images on vgg19; ~4.2 min left on this arch (this shard)
+
+[184/200] ILSVRC2012_val_00021671.JPEG -> 570
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.8020 SSIM=0.9299 LPIPS=0.2399 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@962
+   [time] 45.4 min for 184 images on vgg19; ~3.9 min left on this arch (this shard)
+
+[185/200] ILSVRC2012_val_00023750.JPEG -> 195
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=3.4350 SSIM=0.9865 LPIPS=0.0620 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@960
+   [time] 45.6 min for 185 images on vgg19; ~3.7 min left on this arch (this shard)
+
+[186/200] ILSVRC2012_val_00046223.JPEG -> 295
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=11.0992 SSIM=0.9442 LPIPS=0.0864 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.50 | switch@962
+   [time] 45.9 min for 186 images on vgg19; ~3.5 min left on this arch (this shard)
+
+[187/200] ILSVRC2012_val_00045770.JPEG -> 549
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=12.6490 SSIM=0.9287 LPIPS=0.1197 adv float/uint8/repaired=1/1/1 | 14.4s | +1share=0.50 | switch@965
+   [time] 46.1 min for 187 images on vgg19; ~3.2 min left on this arch (this shard)
+
+[188/200] ILSVRC2012_val_00020533.JPEG -> 450
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.1234 SSIM=0.9685 LPIPS=0.1081 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.48 | switch@962
+   [time] 46.4 min for 188 images on vgg19; ~3.0 min left on this arch (this shard)
+
+[189/200] ILSVRC2012_val_00028007.JPEG -> 246
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=9.1306 SSIM=0.9273 LPIPS=0.1933 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 46.6 min for 189 images on vgg19; ~2.7 min left on this arch (this shard)
+
+[190/200] ILSVRC2012_val_00044766.JPEG -> 967
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=22.8167 SSIM=0.8276 LPIPS=0.3330 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@962
+   [time] 46.9 min for 190 images on vgg19; ~2.5 min left on this arch (this shard)
+
+[191/200] ILSVRC2012_val_00012606.JPEG -> 557
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=6.3695 SSIM=0.9557 LPIPS=0.0950 adv float/uint8/repaired=1/1/1 | 14.3s | +1share=0.50 | switch@962
+   [time] 47.1 min for 191 images on vgg19; ~2.2 min left on this arch (this shard)
+
+[192/200] ILSVRC2012_val_00008200.JPEG -> 778
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=4.3975 SSIM=0.9813 LPIPS=0.0452 adv float/uint8/repaired=1/0/1 | 14.2s | +1share=0.49 | switch@962
+   [time] 47.4 min for 192 images on vgg19; ~2.0 min left on this arch (this shard)
+
+[193/200] ILSVRC2012_val_00023723.JPEG -> 711
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=7.9147 SSIM=0.9615 LPIPS=0.1610 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.46 | switch@975
+   [time] 47.6 min for 193 images on vgg19; ~1.7 min left on this arch (this shard)
+
+[194/200] ILSVRC2012_val_00023734.JPEG -> 736
+   LGC_RC_HT1000 Q= 9986 | pixL2@10000=5.0562 SSIM=0.9641 LPIPS=0.0822 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.49 | switch@975
+   [time] 47.9 min for 194 images on vgg19; ~1.5 min left on this arch (this shard)
+
+[195/200] ILSVRC2012_val_00049827.JPEG -> 343
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.9202 SSIM=0.8961 LPIPS=0.2657 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.48 | switch@975
+   [time] 48.1 min for 195 images on vgg19; ~1.2 min left on this arch (this shard)
+
+[196/200] ILSVRC2012_val_00030704.JPEG -> 425
+   LGC_RC_HT1000 Q= 9987 | pixL2@10000=10.3053 SSIM=0.9166 LPIPS=0.2128 adv float/uint8/repaired=1/0/1 | 14.3s | +1share=0.48 | switch@975
+   [time] 48.3 min for 196 images on vgg19; ~1.0 min left on this arch (this shard)
+
+[197/200] ILSVRC2012_val_00015284.JPEG -> 401
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.7624 SSIM=0.9855 LPIPS=0.1126 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.48 | switch@975
+   [time] 48.6 min for 197 images on vgg19; ~0.7 min left on this arch (this shard)
+
+[198/200] ILSVRC2012_val_00004011.JPEG -> 935
+   LGC_RC_HT1000 Q= 9988 | pixL2@10000=23.0550 SSIM=0.8110 LPIPS=0.2362 adv float/uint8/repaired=1/0/1 | 14.4s | +1share=0.47 | switch@962
+   [time] 48.8 min for 198 images on vgg19; ~0.5 min left on this arch (this shard)
+
+[199/200] ILSVRC2012_val_00006108.JPEG -> 145
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.9017 SSIM=0.9882 LPIPS=0.1272 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.47 | switch@975
+   [time] 49.1 min for 199 images on vgg19; ~0.2 min left on this arch (this shard)
+
+[200/200] ILSVRC2012_val_00017507.JPEG -> 261
+   LGC_RC_HT1000 Q= 9985 | pixL2@10000=2.7684 SSIM=0.9954 LPIPS=0.0248 adv float/uint8/repaired=1/0/1 | 14.1s | +1share=0.49 | switch@962
+   [time] 49.3 min for 200 images on vgg19; ~0.0 min left on this arch (this shard)
+
+=== vgg19 @ budget 10000 (sorted by median pixel L2) ===
+ arch        method  budget   n      ASR  ASR_uint8_raw  ASR_uint8_repaired  pixL2_mean  pixL2_median  SSIM_mean  LPIPS_mean
+vgg19 LGC_RC_HT1000   10000 200 100.0000        27.0000             99.5000     10.6741        7.8096     0.9246      0.1555
+
+=== query breakdown (% of queries) ===
+               q_init_%  q_boundary_%  q_normal_%  q_update_%  iterations  wall_time_s  mean_sign_share  one_sided_pct  mean_n_probes
+method                                                                                                                               
+LGC_RC_HT1000       0.0           8.5        85.2         6.3        58.2         14.3              0.5            0.1          151.2
+
+=== boundary geometry (gamma_obs = 90 deg on a hyperplane; bisector steps only) ===
+ arch        method  images  curv_steps  gamma_obs_median  abs_dev_median  abs_dev_early  abs_dev_late  frac_beyond_TA_%  abs_lin_err_median  model_step_%  q_bridge_mean  q_radial_mean
+vgg19 LGC_RC_HT1000     200           0               NaN             NaN            NaN           NaN               NaN                0.03             0             10           18.1
+
+=== progress: finished runs per arch x method ===
+status                ok
+arch  method            
+vgg19 LGC_RC_HT1000  200
+
+[*] analysis written:
+    summary                  Results/e9_LGC_RC_HT1000_vgg19_T/targeted/analysis/summary.csv
+    paired                   Results/e9_LGC_RC_HT1000_vgg19_T/targeted/analysis/paired_vs_LGC.csv
+    threshold_asr            Results/e9_LGC_RC_HT1000_vgg19_T/targeted/analysis/threshold_asr.csv
+    query_breakdown          Results/e9_LGC_RC_HT1000_vgg19_T/targeted/analysis/query_breakdown.csv
+    geometry_summary         Results/e9_LGC_RC_HT1000_vgg19_T/targeted/analysis/geometry_summary.csv
