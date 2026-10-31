@@ -1,0 +1,148 @@
+Build 38 - Amendment 4 (2026-11-01): face recognition comparison of LGC-EGC with Latent-HSJA and HSJA re-run on the
+same pairs (descriptive, no claim).
+Committed as prereg_build38_amendment4.txt and tagged build38-amend4 BEFORE any main face pair below is run.
+Coding agents never edit this file. prereg_build38.txt and amendments 2 and 3 stay binding wherever this amendment
+does not change them; nothing here changes B5 (tag b5a2-done-2026-10-23) or E9 (tag e9-done-2026-10-29).
+
+0. What is known at registration (disclosed).
+   - B5 and E9 are closed and read. The EGC variant study (rows 1-50, 2026-10-28) selected no variant; the method is
+     the frozen LGC_RC_EGC.
+   - Latent-HSJA (Na, Ji, Kim, ECCV 2022 Workshops, LNCS 13801, pp. 467-482; arXiv 2208.11613) Table 2 has been read
+     in full (48 values). Its code (github.com/ndb796/LatentHSJA, commit 4d4d808) has been read: HSJA and Latent-HSJA
+     identity notebooks, evaluation notebook; pSp (commit 5cfff385); the authors' foolbox fork (ndb796/foolbox_test,
+     commit 1a6e965).
+   - Setup check F0 (F0a_report_20261101-010014.md and F0_report_20261101-010144.md, both PASS) and smoke run F1
+     (logs/f1_20261101-010419.log, PASS) were run and read. The F1 smoke pairs are the two pairs kept after the 100
+     main pairs of each task and are disjoint from them (verified: 0 rows in common for both tasks). No main pair of
+     any method has been run.
+   - The F1 smoke run is read, so the direction of the comparison is known at registration: on those 2 pairs per task
+     LGC-EGC had the lower perceptual distance on every metric and budget. This amendment registers no test and no
+     superiority claim, and the main results are reported whatever their values (section 7).
+   - The face rows of the prior LGC manuscript (arXiv 2605.31219) are not reused (their "SIM" was SSIM).
+   - Environment: one NVIDIA GeForce RTX 5090 (32 GB), driver 580.105.08, PyTorch 2.7.1+cu128, CUDA 12.8,
+     python 3.12.3; tf32 off, deterministic kernels on, as in B5 and E9. One attack process at a time on the GPU.
+
+1. Reason. Latent-HSJA is the closest decision-based attack with a generative latent prior. A re-run of Latent-HSJA
+   and HSJA on our pairs removes three limits of a comparison with the published numbers alone: (a) the published SIM
+   preprocessing is not reproducible from the release (256 x 256 inputs to IR_101(input_size = 112)); (b) Latent-HSJA
+   is published against its reconstruction G(w_src), not the real source; (c) the published gender pairs may contain
+   same-label pairs (the released notebook applies no y_src != y_trg filter; no gender attack notebook is released).
+
+2. Data. The released correctly-consistent sets: identity (corrected_facial_identity_images_ResNet18) 814 images in
+   307 class folders, manifest sha256 4029fb22a388cd47f46bee78ed9a86e02b5113db42ebf0489afd5d94ddfbceda; gender
+   (corrected_face_gender_images_ResNet18_1000) 968 images in 2 class folders, manifest sha256
+   74a1b67554637b1e82eedaf231d515944e408259fef9b9028da51873b21dba9a. Loader of the notebooks: PIL RGB ->
+   Resize((256, 256)) -> ToTensor (-> Normalize(0.5) for the classifiers); class index = sorted folder order.
+
+3. Victims. The released ResNet-18 weights: identity (307 classes) sha256
+   e2fcdfc00d9745f721c9036a2d4de403125c06d785cb1707cac3ee7dfb5dae5c, gender (2 classes) sha256
+   ce9bb3e03470053bad66ea06e873a8339fd94ad6cfbe96614017b207d7900608. F0 measured the victim accuracy on the released
+   set of each task: 1.0000 (0 wrong) for both.
+
+4. Pairs (targeted, common to all methods). Stream: random.seed(777); np.random.seed(777); two
+   np.random.choice(N, 10000) calls (the notebooks). Walked from index 0; pair i kept iff (R1) y_src != y_trg,
+   (R2) the source was not kept before, (R3) F(x) = y for both images, (R4) F(G(E(x))) = y for both images with the pSp
+   FFHQ encoder (the selection condition of the Latent-HSJA paper, section 4.1, and the notebook's start check).
+   First 100 kept pairs per task = main pairs; next 2 = F1 smoke pairs, never reported.
+   - identity: pairs/identity_main.csv sha256 2e1b83949705efb55c482d0b7cda0ed1e1916c46536e3db73262fdc86d5a91a0;
+     pairs/identity_smoke.csv sha256 ca4a812b06ff0da668496206914a5ebf814786e826566d6f2d3a9fb74836f5bb;
+     dropped on the way: same_label 1, repeated_source 4, misclassified 0, not_encodable 0; last stream index 106.
+   - gender: pairs/gender_main.csv sha256 bcd5a5c6b205fa50eb63207ca00b1333096b2e3d5b18e240287d3780dd6de188;
+     pairs/gender_smoke.csv sha256 5a19e8cf74f7c6625992bee413e0553d371aba3583428b8211cd6fffc591f9cb;
+     dropped on the way: same_label 114, repeated_source 6, misclassified 0, not_encodable 0; last stream index 221.
+   - R4 held for every image of both released sets (F0: consistency F(x) = F(G(E(x))) 1.0000 on 814 and on 968
+     images), so R4 dropped no pair; the drop counts above come from R1 and R2.
+   Both pair sets of the publication and ours are seeded random samples of the same released sets; the exact published
+   pairs are not recoverable.
+
+5. Methods and runs (one attack process at a time; budget 10,000 queries; log points / checkpoints 100, 200, 300, 500,
+   1k, 2k, 2.5k, 3k, 5k, 8k, 10k; seed 42).
+   - LGC-EGC: frozen LGC_RC_EGC (engine sha256 835f1933d9e5..., runner 9c62820e5faf...) through run_face.py (sha256
+     54dfcbe3fffb567c16512a0f60eddaad69b5757625ff40cf531a39a2c27b0e5e), which replaces only the victim, the image
+     loader, the pair reader and the dataset label; frozen ImageNet VGG16 autoencoder (not trained on faces;
+     disclosed: F0 measured its reconstruction PSNR on these images at 256 x 256 as 28.17 dB); start x_trg (exact
+     residual start; F0 measured max |Phi(origin) - x_src| = 5.96e-08 and max |Phi(target) - x_trg| = 1.19e-07);
+     adv_store float32.
+   - Latent-HSJA: run_baselines.py --method lhsja (sha256
+     025fc2048175f3c7cc22168c974f956621798f676e5ce9005161497d4e754aea), the notebook's CustomNetwork / pSp / foolbox
+     calls: W+ latents E(x) + latent_avg (stored once by lhsja_encode.py, sha256
+     b97b15c2ca739a54b6a3c88201785bf165ca0aed911e615caa3b3bb581a1ae22), min-max normalised to [0, 1] over the whole
+     released set of the task (notebook cell 22; F0 measured the latent range as [-36.6885, 41.2187] for identity and
+     [-41.1656, 41.4365] for gender), bound 18, HopSkipJump(init_attack=None, query_limit=10000) of the fork with its
+     defaults (64 steps, 100 sqrt(t+1) gradient evaluations, geometric step search), TargetedMisclassification,
+     start G(w_trg); best-so-far = minimum latent MSE among target-classified queries, saved as PNG at each log point.
+     pSp FFHQ encoder psp_ffhq_encode.pt: file sha256 bf0f092869a8ec7f3e024c67491c71b4c377b99e30dfa3e36b45edf5e66ede45;
+     because this checkpoint exists in two serialisations of the same weights, the content hashes are recorded as
+     well: state_dict (sorted keys, shapes, dtypes and tensor bytes)
+     3b7703f4bdc2cf8c80a2a773edc27a3327399c9687926e12703c977df1ca34a5, latent_avg
+     f611084282de5678fd5b705ea04efa3c4a4101a4f802af702a792bb59796dac1 (792 tensors, latent_avg of shape (18, 512)).
+     StyleGAN2 ops: the CUDA build of the pSp operators compiled and is used (lhsja_env.json: cuda_build ok,
+     arch 12.0); its maximum absolute difference to the pure-PyTorch implementations of the same operators is 0.0,
+     measured by lhsja_common.py opcheck (sha256 fa52946b8d3ffe6e1e81fdbe4e0907c42d64a66669f9b84dd83ffa5d3180c071).
+   - HSJA: run_baselines.py --method hsja: the HSJA notebook (pixel space, bounds (0, 1), start x_trg, best-so-far =
+     minimum pixel MSE among target-classified queries).
+   Deviations from the notebooks, all methods treated alike: our pairs; attack_batch 1 (the fork's step-size and binary
+   searches run until every batch member is done, so with the notebooks' batch of 2 a pair's queries depend on its
+   partner); one seed per pair (42 + pair index); log points that a baseline does not reach hold its last best image
+   (counted, "carry-forward"); 10k instead of 20k queries (the published 20k column is cited only).
+   Budget accounting, disclosed: the fork checks its query limit after a completed step, so a baseline may finish
+   slightly above 10,000 queries, while LGC-EGC stops at or below its budget. In F1 the median queries used were
+   9,968-9,976 for LGC-EGC, 10,236-10,266 for Latent-HSJA and 10,486-10,576 for HSJA, i.e. the baselines received
+   about 2.6-6.1 % more queries than LGC-EGC. The queries actually used are recorded per pair and reported with the
+   cost table (6b); no run is re-done or truncated to equalise them, because the difference favours the baselines.
+
+6. Metrics (evaluation only, all methods with the same code; 6a on 8-bit images, 6b on float images; budgets = log
+   points / checkpoints 100, 200, 300, 500, 1k, 2k, 2.5k, 3k, 5k, 8k, 10k: the Latent-HSJA log points up to 10k plus
+   the B5 budgets).
+   6a. Latent-HSJA protocol metrics (face_metrics.py sha256
+     136689ecb5418a69c735140a4e5a72dcb1dbdf7f0021c37eacace3dbcebacef5):
+   - Reference x_src (the real source) for every method; Latent-HSJA additionally against its reconstruction G(w_src)
+     (its paper's definition), reported separately.
+   - LPIPS: pSp criteria.lpips, AlexNet, v0.1 linear layers, inputs in [-1, 1].
+   - SIM: CurricularFace IR-101 embedding dot product with the MTCNN alignment to 112 x 112 of pSp
+     scripts/calc_id_loss_parallel.py; sensitivity rows: pSp IDLoss crop + pool, plain resize. An MTCNN failure
+     removes that image from the SIM mean of that budget (counted; F0 measured 0 failures on 20 pairs per task).
+   - Source of the two metric checkpoints, disclosed, because the links of the LatentHSJA notebooks no longer work:
+     (i) CurricularFace_Backbone.pth was taken from the original CurricularFace repository
+     (github.com/HuangYG123/CurricularFace, Google Drive id 1upOyrPzZ5OI3p6WkA5D5JFYCeiZuaPcp), 260,837,256 bytes,
+     sha256 031ea0f7ba5f46905980cc446f0bbf9539e361246bff95f7077efffe2f110e04. ndb796 re-hosted this file under the
+     same name; that copy is no longer reachable, so identity with it cannot be verified. (ii) mtcnn.tar.gz of the
+     notebook is likewise unreachable; the MTCNN weights shipped inside the pSp repository are used instead
+     (models/mtcnn/mtcnn_pytorch/src/weights: pnet sha256 03e19e5c473932ab38f5a6308fe6210624006994a687e858d1dcda53c66f18cb,
+     rnet 5660aad67688edc9e8a3dd4e47ed120932835e06a8a711a423252a6f2c747083,
+     onet 313141c3646bebb73cb8350a2d5fee4c7f044fb96304b46ccc21aeea8b818f83).
+     Consequence, stated with the results: our SIM values are not guaranteed to be comparable with the published
+     Table 2 even where the preprocessing matches. LPIPS remains the primary perceptual comparison (section 7).
+   6b. The B5 metric set (the main study's metrics, same implementation): face_store.py (sha256
+     1c9f64ffcf35ab20c1650d99b252fff6ea3083334398d269f262a0b8be926a25) writes one adv_store with the float image of
+     every method, pair and budget, as B5's store (LGC-EGC: its stored state; baselines: the float best-so-far image,
+     Latent-HSJA's generated image clamped to [0, 1]; reference x_src; adv_flag = the attack's own decision as B5's
+     adv_float; LGC-EGC checkpoints before its first state hold x_trg, counted; the victim's re-evaluation of the
+     stored image and its decision on the 8-bit image are recorded and reported as domain consistency and 8-bit
+     success), and the frozen tools/eval/eval_metrics_offline.py (sha256 4f83267714d2...) computes l2, Linf, PSNR,
+     SSIM, MS-SSIM, LPIPS-alex, LPIPS-vgg, DISTS and FSIM. face_b5_summary.py (sha256
+     4e6ae42a30ba73756702703b3615f87834c000263f59304573c90d264467ec69) applies the B5 conventions: checkpoint table
+     (mean, bootstrap interval) at 2k / 5k / 10k; AUC = per-image mean over 500 / 1k / 2.5k / 5k / 10k (l2: mean log);
+     P-SR = adversarial and LPIPS-vgg <= 0.3 and SSIM >= 0.75 (contract D3, targeted) per budget and as AUC;
+     low-query table (E8: found rate, ASR at RMSE <= 0.1 / 0.05 / 0.01, median l2 and LPIPS-vgg at 100 / 200 / 500 /
+     1k); paired contrasts LGC-EGC minus each baseline on the images adversarial at 10k for both (contract D6): median
+     paired difference of the AUC of LPIPS-vgg, LPIPS-alex, DISTS, SSIM and P-SR with the bootstrap interval of the
+     median (B = 10000, seed 0), l2 AUC paired geometric-mean ratio; cost (median seconds and queries per image).
+     Pixel l2 is computed with the set but not reported in the paper (decision of 2026-10-30) unless H changes that.
+
+7. Reporting. Descriptive only. Per task, the quantities of 6a at the budgets of 6a and every quantity of 6b at the
+   budgets of 6b: per method the mean over the 100 pairs with a percentile bootstrap 95 % interval (B = 10000,
+   seed 0); paired differences LGC-EGC minus Latent-HSJA and minus HSJA on the same pairs with bootstrap intervals;
+   success, MTCNN failures, start-held and carry-forward counts; domain consistency and 8-bit success per method.
+   No test and no superiority claim. The published Table 2 rows are shown as context (other pairs; SIM preprocessing
+   unknown; Latent-HSJA against G(w_src); CurricularFace copy not verifiable). Stated: our autoencoder is an ImageNet
+   VGG16 with a reconstruction PSNR of 28.17 dB on these images, Latent-HSJA's prior a face StyleGAN2 trained on
+   faces. The results are reported whatever their values; if page limits remove them from the paper, the supplement
+   says so and points to the evidence repository. Pixel l2 is not reported (paper decision of 2026-10-30).
+
+8. Stop rules and deviations. `face_run.sh main` refuses to start without this tag. An interrupted run is resumed
+   (finished pairs skipped; unfinished baseline pair directories moved to _interrupted/ and re-run from the start with
+   the same seed); no pair is replaced or removed. The whole main run and its metrics stage are executed on the one
+   GPU named in section 0; if the GPU or the container has to be changed mid-run, the change and the pairs affected
+   are recorded, because the cost table of 6b reports wall-clock seconds. Any change to sections 2-7 needs a new
+   amendment before the affected run.
