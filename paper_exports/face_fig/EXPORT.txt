@@ -1,0 +1,4 @@
+budget=2000
+picks=identity=425__img1.png gender=male__img244.png
+selection=authors
+domain_rows=evidence/face/domain/domain_rows.csv

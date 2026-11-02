@@ -1,0 +1,638 @@
+{
+ "rule": "Rule (fixed before looking at any image, unchanged): for each task, the first pair in the order of the pairs file\nwhose stored state at the reference budget --budget is of class C (adversarial when re-evaluated, face_domain.py)\nfor all three methods. For that pair: source x_src, target x_trg, and per method and per budget in --budgets the\nstored image x, plus the perturbation of the reference budget shown as 0.5 + k (x - x_src), with one factor k per\nrow: k = 0.5 / (largest 99.5th percentile of |x - x_src| over the three methods at the reference budget).",
+ "budget": 2000,
+ "budgets": [
+  2000
+ ],
+ "selection": "authors",
+ "picked": {
+  "identity": "425__img1.png",
+  "gender": "male__img244.png"
+ },
+ "rows": {
+  "gender": {
+   "pair_index": 7,
+   "source": "male__img244.png",
+   "source_label": 1,
+   "target": "female__img363.png",
+   "target_label": 0,
+   "k": 0.6704218116492612,
+   "pairs_skipped": 7,
+   "class": {
+    "egc_q2000": "Q9",
+    "lhsja_q2000": "C",
+    "hsja_q2000": "C"
+   }
+  },
+  "identity": {
+   "pair_index": 8,
+   "source": "425__img1.png",
+   "source_label": 183,
+   "target": "2131__img0.png",
+   "target_label": 118,
+   "k": 0.6123493025833822,
+   "pairs_skipped": 8,
+   "class": {
+    "egc_q2000": "C",
+    "lhsja_q2000": "C",
+    "hsja_q2000": "C"
+   }
+  }
+ },
+ "cells": [
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "ssim",
+   "value": "0.9908849"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "lpips_vgg",
+   "value": "0.0491123"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "lpips_alex",
+   "value": "0.0058559"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "dists",
+   "value": "0.0477583"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "l2",
+   "value": "4.1713076"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "psnr",
+   "value": "40.5305672"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "adv_flag",
+   "value": "1"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "state_query",
+   "value": "1759"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "sim_mtcnn",
+   "value": "0.9037179946899414"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "adv_uint8",
+   "value": "0"
+  },
+  {
+   "task": "gender",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "class",
+   "value": "Q9"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "ssim",
+   "value": "0.6126256"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "lpips_vgg",
+   "value": "0.3575947"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "lpips_alex",
+   "value": "0.2177826"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "dists",
+   "value": "0.205541"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "l2",
+   "value": "69.3273621"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "psnr",
+   "value": "16.117918"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "adv_flag",
+   "value": "1"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "state_query",
+   "value": "2000"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "sim_mtcnn",
+   "value": "0.3366752862930298"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "adv_uint8",
+   "value": "0"
+  },
+  {
+   "task": "gender",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "class",
+   "value": "C"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "ssim",
+   "value": "0.2538496"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "lpips_vgg",
+   "value": "0.5735773"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "lpips_alex",
+   "value": "0.62954"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "dists",
+   "value": "0.3970721"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "l2",
+   "value": "88.4256287"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "psnr",
+   "value": "14.0044489"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "adv_flag",
+   "value": "1"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "state_query",
+   "value": "2000"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "sim_mtcnn",
+   "value": "0.7500037550926208"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "adv_uint8",
+   "value": "0"
+  },
+  {
+   "task": "gender",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "male__img244.png",
+   "budget": 2000,
+   "metric": "class",
+   "value": "C"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "ssim",
+   "value": "0.9788308"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "lpips_vgg",
+   "value": "0.0322829"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "lpips_alex",
+   "value": "0.0126787"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "dists",
+   "value": "0.0337868"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "l2",
+   "value": "8.775013"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "psnr",
+   "value": "34.0710564"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "adv_flag",
+   "value": "1"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "state_query",
+   "value": "1907"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "sim_mtcnn",
+   "value": "0.8575009107589722"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "adv_uint8",
+   "value": "1"
+  },
+  {
+   "task": "identity",
+   "method": "LGC_RC_EGC",
+   "col": "egc",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "class",
+   "value": "C"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "ssim",
+   "value": "0.3842658"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "lpips_vgg",
+   "value": "0.4985479"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "lpips_alex",
+   "value": "0.3448041"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "dists",
+   "value": "0.2135063"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "l2",
+   "value": "123.8959122"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "psnr",
+   "value": "11.074873"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "adv_flag",
+   "value": "1"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "state_query",
+   "value": "2000"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "sim_mtcnn",
+   "value": "0.10447220504283905"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "adv_uint8",
+   "value": "1"
+  },
+  {
+   "task": "identity",
+   "method": "LatentHSJA",
+   "col": "lhsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "class",
+   "value": "C"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "ssim",
+   "value": "0.5615959"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "lpips_vgg",
+   "value": "0.3684814"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "lpips_alex",
+   "value": "0.2440708"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "dists",
+   "value": "0.2716912"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "l2",
+   "value": "64.9534454"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "psnr",
+   "value": "16.6839676"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "adv_flag",
+   "value": "1"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "state_query",
+   "value": "2000"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "sim_mtcnn",
+   "value": "0.6145320534706116"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "adv_uint8",
+   "value": "0"
+  },
+  {
+   "task": "identity",
+   "method": "HSJA",
+   "col": "hsja",
+   "image": "425__img1.png",
+   "budget": 2000,
+   "metric": "class",
+   "value": "C"
+  }
+ ]
+}
